@@ -1,0 +1,13 @@
+[project]
+name = "hne"
+version = "0.1.0"
+
+[project.optional-dependencies]
+dev = ["jupyter"]
+
+[tool.setuptools.packages.find]
+where = ["src"] # Tells setuptools to find packages in the 'src' directory
+
+# [build-system]
+# requires = ["setuptools>=40.8.0"]
+# build-backend = "setuptools.build_meta"
