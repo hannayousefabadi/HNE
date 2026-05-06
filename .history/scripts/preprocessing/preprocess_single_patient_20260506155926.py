@@ -4,8 +4,7 @@ import sys
 from hne.preprocessing import preprocess_patient
 from hne.spots_qc import QCTracker
 
-logging.basicConfig(level=logging.INFO, 
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 if __name__ == "__main__":

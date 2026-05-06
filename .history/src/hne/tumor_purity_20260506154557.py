@@ -132,8 +132,8 @@ def compute_tile_purity(
 
 
 def filter_tumor_tiles(df, 
-                       tumor_threshold, # tile at least has 30% tumor purity
-                       min_spots,        # tile at least has 40 spots
+                       tumor_threshold=0.3, # tile at least has 30% tumor purity
+                       min_spots=40,        # tile at least has 40 spots
                        patient_id,
                        logger=None,
                        qc_tracker=None

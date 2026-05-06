@@ -1,7 +1,7 @@
 # 2. Compute/attach tumor fraction per spot
 import pandas as pd
 
-def attach_tumor_fraction(spots, vis, patient_id, logger=None):
+def attach_tumor_fraction(spots, vis, logger=None, patient_id):
     """
     Compute tumor fraction per spot
     Returns:
@@ -132,8 +132,8 @@ def compute_tile_purity(
 
 
 def filter_tumor_tiles(df, 
-                       tumor_threshold, # tile at least has 30% tumor purity
-                       min_spots,        # tile at least has 40 spots
+                       tumor_threshold=0.3, # tile at least has 30% tumor purity
+                       min_spots=40,        # tile at least has 40 spots
                        patient_id,
                        logger=None,
                        qc_tracker=None

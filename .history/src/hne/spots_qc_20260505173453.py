@@ -31,15 +31,6 @@ class QCTracker:
         with open(self.log_file, 'a') as f:
             f.write(f"{patient_id},{stage},{status},{message}\n")
     
-    def save_aggregated_qc_plots(self, all_patients_data, output_dir="cohort_qc_plots"):
-        """Generate cohort-level QC plots"""
-        # Combine all patients' tile signatures
-        all_tiles = pd.concat([p['tiles_sig'] for p in all_patients_data if p['tiles_sig'] is not None])
-        
-        # Generate same plots but for entire cohort
-        signature_distribution(all_tiles, self.sig_cols, save_path=output_dir/"cohort_distribution.png")
-        # etc.
-    
     def to_dataframe(self):
         return pd.DataFrame(self.records)
     
@@ -61,7 +52,7 @@ class QCTracker:
 
 
 
-def signature_variation(spots_df, tumor_tiles, sig_cols, logger):
+def signature_variation(spots_df, tumor_tiles, sig_cols):
     tumor_spots = spots_df[spots_df["tile_id"].isin(tumor_tiles["tile_id"])]
 
     variation_df = pd.DataFrame({
