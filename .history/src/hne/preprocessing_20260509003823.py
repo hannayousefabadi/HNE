@@ -87,5 +87,5 @@ def preprocess_patient(patient_id,
     
     logger.info(f"Completed preprocessing for {patient_id}.")
 
-    return patient_metadata, tiles_sig_tumor, spots_df, sig_cols
+    return patient_metadata, tiles_sig_tumor, spots_df
 

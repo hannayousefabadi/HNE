@@ -122,73 +122,73 @@ class QCTracker:
         
         return metadata_df
     
-    def save_cohort_spot_qc_plots(self, all_spot_data, sig_cols):
-        """
-        Generate cohort-level spot QC plots by aggregating all patients' spots
-        
-        Args:
-            all_spot_data: List of spot DataFrames from each patient (spots_df)
-            sig_cols: List of signature column names
-        """
-        # Combine all spots from all patients
-        all_spots_combined = pd.concat(all_spot_data, ignore_index=True)
-        
-        # Spot-level variation
-        variation_df = pd.DataFrame({
-            "signature": sig_cols,
-            "std": [all_spots_combined[col].std() for col in sig_cols],
-            "cv": [all_spots_combined[col].std() / np.abs(all_spots_combined[col].mean()) for col in sig_cols]
-        }).sort_values("std", ascending=False)
-        
-        plt.figure(figsize=(8,5))
-        sns.barplot(data=variation_df, x="signature", y="std", hue="signature", palette="viridis", legend=False)
-        plt.xticks(rotation=45)
-        plt.title("Cohort-level signature variation across all tumor spots")
-        plt.ylabel("Standard deviation")
-        plt.tight_layout()
-        plt.savefig(self.output_dir / "spot_signature_variation.png", dpi=300, bbox_inches='tight')
-        plt.close()
-        
-        # Spot-level distribution
-        plt.figure(figsize=(8,6))
-        for col in sig_cols:
-            sns.kdeplot(all_spots_combined[col], label=col, linewidth=2)
-        plt.legend()
-        plt.title("Cohort-level distribution of pathway signatures (spots)")
-        plt.xlabel("Signature score")
-        plt.ylabel("Density")
-        plt.tight_layout()
-        plt.savefig(self.output_dir / "spot_signature_distribution.png", dpi=300, bbox_inches='tight')
-        plt.close()
-        
-        # Spot-level sparsity
-        SPARSE_THRESHOLD = 1e-6
-        sparsity_df = pd.DataFrame({
-            "signature": sig_cols,
-            "zero_fraction": [
-                (np.abs(all_spots_combined[c]) < SPARSE_THRESHOLD).mean()
-                for c in sig_cols
-            ]
-        })
-        
-        plt.figure(figsize=(8,5))
-        sns.barplot(data=sparsity_df, x="signature", y="zero_fraction", hue="signature", palette="viridis", legend=False)
-        plt.xticks(rotation=45)
-        plt.ylabel("Fraction of near‑zero scores")
-        plt.title("Cohort-level signature sparsity across tumor spots")
-        plt.ylim(0, 1)
-        plt.tight_layout()
-        plt.savefig(self.output_dir / "spot_signature_sparsity.png", dpi=300, bbox_inches='tight')
-        plt.close()
-        
-        # Spot-level correlation
-        corr_matrix = all_spots_combined[sig_cols].corr()
-        plt.figure(figsize=(7,6))
-        sns.heatmap(corr_matrix, annot=True, cmap="RdBu_r", center=0, vmin=-1, vmax=1, fmt='.2f')
-        plt.title("Cohort-level correlation between pathway signatures (spots)")
-        plt.tight_layout()
-        plt.savefig(self.output_dir / "spot_signature_correlation.png", dpi=300, bbox_inches='tight')
-        plt.close()
+def save_cohort_spot_qc_plots(self, all_spot_data, sig_cols):
+    """
+    Generate cohort-level spot QC plots by aggregating all patients' spots
+    
+    Args:
+        all_spot_data: List of spot DataFrames from each patient (spots_df)
+        sig_cols: List of signature column names
+    """
+    # Combine all spots from all patients
+    all_spots_combined = pd.concat(all_spot_data, ignore_index=True)
+    
+    # Spot-level variation
+    variation_df = pd.DataFrame({
+        "signature": sig_cols,
+        "std": [all_spots_combined[col].std() for col in sig_cols],
+        "cv": [all_spots_combined[col].std() / np.abs(all_spots_combined[col].mean()) for col in sig_cols]
+    }).sort_values("std", ascending=False)
+    
+    plt.figure(figsize=(8,5))
+    sns.barplot(data=variation_df, x="signature", y="std", hue="signature", palette="viridis", legend=False)
+    plt.xticks(rotation=45)
+    plt.title("Cohort-level signature variation across all tumor spots")
+    plt.ylabel("Standard deviation")
+    plt.tight_layout()
+    plt.savefig(self.output_dir / "spot_signature_variation.png", dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    # Spot-level distribution
+    plt.figure(figsize=(8,6))
+    for col in sig_cols:
+        sns.kdeplot(all_spots_combined[col], label=col, linewidth=2)
+    plt.legend()
+    plt.title("Cohort-level distribution of pathway signatures (spots)")
+    plt.xlabel("Signature score")
+    plt.ylabel("Density")
+    plt.tight_layout()
+    plt.savefig(self.output_dir / "spot_signature_distribution.png", dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    # Spot-level sparsity
+    SPARSE_THRESHOLD = 1e-6
+    sparsity_df = pd.DataFrame({
+        "signature": sig_cols,
+        "zero_fraction": [
+            (np.abs(all_spots_combined[c]) < SPARSE_THRESHOLD).mean()
+            for c in sig_cols
+        ]
+    })
+    
+    plt.figure(figsize=(8,5))
+    sns.barplot(data=sparsity_df, x="signature", y="zero_fraction", hue="signature", palette="viridis", legend=False)
+    plt.xticks(rotation=45)
+    plt.ylabel("Fraction of near‑zero scores")
+    plt.title("Cohort-level signature sparsity across tumor spots")
+    plt.ylim(0, 1)
+    plt.tight_layout()
+    plt.savefig(self.output_dir / "spot_signature_sparsity.png", dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    # Spot-level correlation
+    corr_matrix = all_spots_combined[sig_cols].corr()
+    plt.figure(figsize=(7,6))
+    sns.heatmap(corr_matrix, annot=True, cmap="RdBu_r", center=0, vmin=-1, vmax=1, fmt='.2f')
+    plt.title("Cohort-level correlation between pathway signatures (spots)")
+    plt.tight_layout()
+    plt.savefig(self.output_dir / "spot_signature_correlation.png", dpi=300, bbox_inches='tight')
+    plt.close()
 
 
 

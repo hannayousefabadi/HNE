@@ -14,7 +14,7 @@ logging.basicConfig(
 
 if __name__ == "__main__":
     qc = QCTracker(mode='single_patient')
-    metadata, tiles_sig, _, __ = preprocess_patient(
+    metadata, tiles_sig = preprocess_patient(
         "CH_L_282", 
         mode='single_patient',
         tile_size=100,        # in pixels, ≈ 1 mm in hires image

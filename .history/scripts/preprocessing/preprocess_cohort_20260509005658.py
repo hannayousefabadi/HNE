@@ -10,8 +10,6 @@ logging.basicConfig(
     ]
 )
 
-logger = logging.getLogger(__name__) 
-
 from preprocessing import preprocess_patient
 from hne.spots_qc import QCTracker
 from hne.paths import PATIENT_IDS
