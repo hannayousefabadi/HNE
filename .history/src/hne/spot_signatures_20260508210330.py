@@ -66,7 +66,7 @@ def compute_signatures(vis, final_df, logger=None):
     obs_sig = vis.obs[sig_cols].copy()
     obs_sig = obs_sig.rename_axis("barcode")
     # merge with spots df
-    spots_df = final_df.merge(obs_sig, on="barcode", how="inner")
+    spots_df = final_dfdf.merge(obs_sig, on="barcode", how="inner")
 
     # metadata
     metadata = {

@@ -65,7 +65,7 @@ def preprocess_patient(patient_id,
         return patient_metadata, None
     
     # crop and save image tiles
-    tumor_tiles, meta = crop_and_save_tiles(tumor_tiles_df, tile_size, img, patient_id, logger)
+    tumor_tiles, meta = crop_and_save_tiles(tumor_tiles, tile_size, img, patient_id, logger)
     patient_metadata.update(meta)
     
     # compute signatures per spot, aggregate per tile
@@ -78,7 +78,7 @@ def preprocess_patient(patient_id,
     
     # QC plots - separate flag
     if run_qc_plots:
-        tumor_spots = spots_df[spots_df["tile_id"].isin(tumor_tiles_df["tile_id"])]
+        tumor_spots = spots_df[spots_df["tile_id"].isin(tumor_tiles["tile_id"])]
         signature_variation(tumor_spots, sig_cols, patient_id, mode)
         signature_distribution(sig_cols, tumor_spots, patient_id, mode)
         signature_sparsity(sig_cols, tumor_spots, patient_id, mode)

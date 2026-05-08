@@ -1,5 +1,5 @@
 
-def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df, logger=None):
+def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles, logger=None):
     """
     Aggregate spot signatures to tile-level
     """
@@ -27,28 +27,18 @@ def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df, logger=N
     tiles_sig['y_max_hires'] = tiles_sig['y_min_hires'] + tile_size
 
     # filter to tumor tiles
-    tumor_tiles_id = set(tumor_tiles_df["tile_id"])
+    tumor_tiles_id = set(tumor_tiles["tile_id"])
     tiles_sig_tumor = tiles_sig.loc[tiles_sig.index.isin(tumor_tiles_id)].copy()
 
-    # metadata
-    metadata = {
-        "n_total_tiles_aggregated": len(tiles_sig),
-        "n_tumor_tiles_aggregated": len(tiles_sig_tumor),
-        "avg_spots_per_tiles": round(float(tiles_sig_tumor['n_spots'].mean()), 2)
-    }
+    print(len(tiles_sig_tumor), "tumor tiles with signatures")
 
-    if metadata['n_total_tiles_aggregated'] > 0:
-        pct_tumor = (metadata["n_tumor_tiles_aggregated"] / metadata["n_total_tiles_aggregated"]) * 100
-        logger.debug(f"{pct_tumor:.2f}% of tiles are tumor tiles")
-
-    return tiles_sig_tumor, metadata
+    return tiles_sig_tumor
 
 
 
 def zscore_and_binary(sig_cols, tiles_sig_tumor):
     """
-    Apply z-score normalization and binary calls to tile signatures
-    
+    Apply z-score and binary calls
     """
     BINARY_THRESHOLD = 1.0
 

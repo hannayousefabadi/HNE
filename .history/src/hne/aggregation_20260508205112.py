@@ -1,5 +1,5 @@
 
-def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df, logger=None):
+def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles, logger=None):
     """
     Aggregate spot signatures to tile-level
     """
@@ -27,7 +27,7 @@ def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df, logger=N
     tiles_sig['y_max_hires'] = tiles_sig['y_min_hires'] + tile_size
 
     # filter to tumor tiles
-    tumor_tiles_id = set(tumor_tiles_df["tile_id"])
+    tumor_tiles_id = set(tumor_tiles["tile_id"])
     tiles_sig_tumor = tiles_sig.loc[tiles_sig.index.isin(tumor_tiles_id)].copy()
 
     # metadata

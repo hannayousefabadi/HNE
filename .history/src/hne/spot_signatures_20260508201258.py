@@ -1,6 +1,6 @@
 import scanpy as sc
 
-def compute_signatures(vis, final_df, logger=None):
+def compute_signatures(vis, df, logger=None):
     """
     Compute pathway signatures per spot
     """
@@ -66,12 +66,15 @@ def compute_signatures(vis, final_df, logger=None):
     obs_sig = vis.obs[sig_cols].copy()
     obs_sig = obs_sig.rename_axis("barcode")
     # merge with spots df
-    spots_df = final_df.merge(obs_sig, on="barcode", how="inner")
+    spots_df = df.merge(obs_sig, on="barcode", how="inner")
 
     # metadata
     metadata = {
         "genes_per_signatures": {f"{k}: {len(v)}/{len(signatures[k])} genes" for k, v in signature_genes.items()}
     }
 
-    return sig_cols, signature_genes, spots_df, metadata
+
+    return sig_cols, signature_genes, spots_df
+
+
 

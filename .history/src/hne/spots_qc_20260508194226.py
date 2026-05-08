@@ -80,7 +80,7 @@ class QCTracker:
 
         # flag patients that should be excluded
         summary['exclude'] = (summary['n_errors'] > 0) | (summary.index.isin(no_tumor_patients))
-        summary['exclude_reason'] = ""
+        summary['exclude_reason'] == ""
         summary.loc[summary['n_errors'] > 0, 'exclude_reason'] = "Has errors"
         summary.loc[summary.index.isin(no_tumor_patients), 'exclude_reason'] = "No tumor tiles"
         
@@ -135,9 +135,7 @@ def signature_variation(tumor_spots,
         data=variation_df,
         x="signature",
         y="std",
-        hue="signature",
-        palette="viridis",
-        legend=False
+        palette="viridis"
     )
     plt.xticks(rotation=45)
     plt.title(f"Variation of pathway signatures across tumor spots" + 
@@ -148,7 +146,7 @@ def signature_variation(tumor_spots,
     # save
     save_dir = Path(save_dir) / mode
     save_dir.mkdir(parents=True, exist_ok=True)
-    filename = f"signature_variation_{patient_id}.png" if patient_id else "signature_variation.png"
+    filename = f"signature_variation_{patient_id.png}" if patient_id else "signature_variation.png"
     plt.savefig(save_dir / filename, dpi=600, bbox_inches="tight")
     plt.close()
     logger.info(f"Saved variation plot to {save_dir / filename}")
@@ -207,9 +205,7 @@ def signature_sparsity(sig_cols,
         data=sparsity_df,
         x="signature",
         y="zero_fraction",
-        hue="signature",
-        palette="viridis",
-        legend=False
+        palette="viridis"
     )
     plt.xticks(rotation=45)
     plt.ylabel("Fraction of near‑zero scores")
@@ -291,9 +287,7 @@ def signature_consistency(vis,
         data=consistency_df,
         x="signature",
         y="mean_gene_corr",
-        hue="signature",
-        palette="coolwarm",
-        legend=False
+        palette="coolwarm"
     )
     plt.xticks(rotation=45)
     plt.ylabel("Mean gene correlation")

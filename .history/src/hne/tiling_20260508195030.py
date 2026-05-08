@@ -1,18 +1,12 @@
 from hne.paths import TILES
 from pathlib import Path
 
-def crop_and_save_tiles(tumor_tiles, tile_size, hne_img, patient_id, logger=None):
+def crop_and_save_tiles(tumor_tiles, tile_size, hne_img, patient_id):
     """
     Generate & save image tiles (H&E crops)
     """
-    # fallback to a dummy logger
-    if logger is None:
-        import logging
-        logger = logging.getLogger(__name__)
 
     tiles = []
-    tiles_path = Path(TILES) / patient_id
-    tiles_path.mkdir(parents=True, exist_ok=True)
 
     for _, row in tumor_tiles.iterrows():
 
@@ -28,18 +22,11 @@ def crop_and_save_tiles(tumor_tiles, tile_size, hne_img, patient_id, logger=None
         tiles.append(tile_img)
 
         tile_id = f"tile_r{tile_row}_c{tile_col}"
+        tiles_path = Path(TILES) / patient_id
+        tiles_path.mkdir(parents=True, exist_ok=True)
         tile_img.save(tiles_path / f"{tile_id}.png", dpi=(600, 600))
 
-        # metadata
-        metadata = {
-            "n_tumor_tiles_saved": len(tiles),
-            "tiles_path": str(tiles_path)
-        }
-
-        logger.info(f"Saved {len(tiles)} tumor tiles for patient {patient_id}")
-
-    return tiles, metadata
-    
+    return tiles    
 
 
 

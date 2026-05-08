@@ -78,7 +78,7 @@ def preprocess_patient(patient_id,
     
     # QC plots - separate flag
     if run_qc_plots:
-        tumor_spots = spots_df[spots_df["tile_id"].isin(tumor_tiles_df["tile_id"])]
+        tumor_spots = spots_df[spots_df["tile_id"].isin(tumor_tiles["tile_id"])]
         signature_variation(tumor_spots, sig_cols, patient_id, mode)
         signature_distribution(sig_cols, tumor_spots, patient_id, mode)
         signature_sparsity(sig_cols, tumor_spots, patient_id, mode)
