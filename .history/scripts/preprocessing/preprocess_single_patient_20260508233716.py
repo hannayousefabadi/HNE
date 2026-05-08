@@ -25,7 +25,6 @@ if __name__ == "__main__":
         verbose=True,         # console output level (True=INFO, False=WARNING)
         run_qc_plots=True
     )
-    qc.save_metadata(metadata)
     print(f"\nMetadata: {metadata}")
     summary = qc.save_summary()
     print(f"\nQC Summary:\n{summary}")

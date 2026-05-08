@@ -70,8 +70,7 @@ def compute_signatures(vis, final_df, logger=None):
 
     # metadata
     metadata = {
-        "genes_per_signatures": sorted([f'{sig}: {len(v)}/{len(signatures[sig])} genes' 
-                                        for sig, v in signature_genes.items()])
+        "genes_per_signatures": sorted([f'{sig}: {len(v)}/{len(signatures[sig])} genes' for sig, v in signature_genes.items()])
     }
     
     return sig_cols, signature_genes, spots_df, metadata

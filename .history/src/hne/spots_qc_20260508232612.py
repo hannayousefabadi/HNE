@@ -88,28 +88,7 @@ class QCTracker:
         summary.to_csv(output_path)
         return summary
     
-    def save_metadata(self, metadata, output_name="metadata.csv"):
-        """Save metadata dict into a single csv"""
-        if not metadata:
-            logger.warning("No metadata to save")
-            return
-        
-        metadata_df = pd.DataFrame(metadata)
-
-        # Flatten nested dictionaries if any
-        for col in metadata_df.columns:
-            if metadata_df[col].apply(lambda x: isinstance(x, dict)).any():
-                # Expand nested dicts into separate columns
-                expanded = metadata_df[col].apply(pd.Series)
-                expanded = expanded.add_prefix(f"{col}_")
-                metadata_df = metadata_df.drop(columns=[col]).join(expanded)
-
-        output_path = self.output_dir / output_name
-        metadata_df.to_csv(output_path, index=False)
-        
-        return metadata_df
-
-
+    
     # def save_aggregated_qc_plots(self, all_patients_data):
         """Generate cohort-level QC plots"""
         # # Combine all patients' tile signatures
