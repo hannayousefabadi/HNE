@@ -58,6 +58,18 @@ def preprocess_patient(patient_id,
     # filter tumor tiles (qc_tracker will record it)
     tumor_tiles, meta = filter_tumor_tiles(final_df, tumor_threshold, min_spots, patient_id, logger, qc_tracker)
     patient_metadata.update(meta)
+
+    # add QC record
+    if qc_tracker:
+        if not meta.get('has_tumor_tiles', False):
+            qc_tracker.add_record(patient_id, "tumor_filter", "ERROR", 
+                                 f"No tumor tiles: threshold={tumor_threshold}, min_spots={min_spots}")
+        elif meta['n_tumor_tiles'] < 10:
+            qc_tracker.add_record(patient_id, "tumor_filter", "WARNING", 
+                                 f"Only {meta['n_tumor_tiles']} tumor tiles")
+        else:
+            qc_tracker.add_record(patient_id, "tumor_filter", "PASS", 
+                                 f"Found {meta['n_tumor_tiles']} tumor tiles")
     
     # check if we have tiles BEFORE proceeding
     if not meta.get('has_tumor_tiles', False):

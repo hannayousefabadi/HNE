@@ -17,13 +17,8 @@ if __name__ == "__main__":
     metadata, tiles = preprocess_patient(
         "CH_L_282", 
         mode='single_patient'
-        tile_size=100,        # in pixels, ≈ 1 mm in hires image
-        k=2, 
-        tumor_threshold=0.3,  # tile at least has 30% tumor purity
-        min_spots=40,         # tile at least has 40 spots
         qc_tracker=qc,
-        verbose=True,          # console output level (True=INFO, False=WARNING)
-        run_qc_plots=True
+        verbose=True
     )
     print(f"\nMetadata: {metadata}")
     summary = qc.save_summary()

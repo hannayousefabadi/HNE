@@ -155,11 +155,7 @@ def signature_variation(tumor_spots,
 
 
 
-def signature_distribution(sig_cols, 
-                           tumor_spots, 
-                           patient_id=None, 
-                           mode='single_patient', 
-                           save_dir=PREPROCESSING_QC_REPORTS):
+def signature_distribution(sig_cols, tumor_spots, patient_id=None, mode='single_patient', save_dir=PREPROCESSING_QC_REPORTS):
     """Plot distribution of pathway signatures"""
     plt.figure(figsize=(8,6))
 
@@ -184,11 +180,7 @@ def signature_distribution(sig_cols,
 
 
 
-def signature_sparsity(sig_cols,
-                       tumor_spots, 
-                       patient_id=None, 
-                       mode='single_patient', 
-                       save_dir=PREPROCESSING_QC_REPORTS):
+def signature_sparsity(sig_cols, tumor_spots, patient_id=None, mode='single_patient', save_dir=PREPROCESSING_QC_REPORTS):
     """Calculate and plot signature sparsity (fraction of non-zero scores)"""
     SPARSE_THRESHOLD = 1e-6
 
@@ -224,12 +216,7 @@ def signature_sparsity(sig_cols,
     return sparsity_df        
 
 
-def signature_consistency(vis, 
-                          tumor_spots, 
-                          signature_genes, 
-                          patient_id=None, 
-                          mode='single_patient', 
-                          save_dir=PREPROCESSING_QC_REPORTS):
+def signature_consistency(vis, tumor_spots, signature_genes, patient_id=None, mode='single_patient', save_dir=PREPROCESSING_QC_REPORTS):
     """
     Calculate internal consistency of signatures (mean gene-gene correlation)
 
@@ -238,7 +225,6 @@ def signature_consistency(vis,
         tumor_spots: DataFrame with tumor spots barcodes
         signature_genes: Dic of signature names -> list of gene
         patient_id: Optional patient ID for naming saved plots
-        mode: 
         save_dir: Directory to save plots
 
     """
@@ -305,11 +291,7 @@ def signature_consistency(vis,
 
 
 
-def signature_correlation(sig_cols, 
-                          tumor_spots, 
-                          patient_id=None, 
-                          mode='single_patient', 
-                          save_dir=PREPROCESSING_QC_REPORTS):
+def signature_correlation(sig_cols, tumor_spots, patient_id=None, mode='single_patient', save_dir=PREPROCESSING_QC_REPORTS):
     """Plot correlation matrix between sigantures"""
     corr_matrix = tumor_spots[sig_cols].corr()
 

@@ -28,7 +28,7 @@ if __name__ == "__main__":
             tumor_threshold=0.3,  # tile at least has 30% tumor purity
             min_spots=40,         # tile at least has 40 spots
             qc_tracker=qc,
-            verbose=False,        # console quiet
+            verbose=False,          # console output level (True=INFO, False=WARNING)
             run_qc_plots=True
         )
         all_results.append(metadata)

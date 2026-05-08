@@ -31,7 +31,10 @@ PATIENTS = {p: PatienPaths(p) for p in PATIENT_IDS}
 TILES = ROOT / "tiles"
 TILE_FEATURES = ROOT / "tile_features"
 QC_REPORTS = ROOT / "qc_reports"
-PREPROCESSING_QC_REPORTS = ROOT / "qc_reports" / "preprocessing_qc"
+
+
+PREPRO_PATIENT_QC_REPORTS = QC_REPORTS / "preprocessing_qc" / "single_patient"
+PREPRO_COHOROT_QC_REPORTS = QC_REPORTS / "preprocessing_qc" / "cohort"
 
 
 # PREPROCESSING_QC_PLOTS = PREPROCESSING_QC_REPORTS / "plots"
