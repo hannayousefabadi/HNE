@@ -1,7 +1,7 @@
 import logging
 import sys
-from hne.preprocessing import preprocess_patient
-from hne.spots_qc import QCTracker
+from hne.preprocessing.pipeline import preprocess_patient
+from hne.preprocessing_qc.tracker import QCTracker
 
 logging.basicConfig(
     level=logging.INFO,
