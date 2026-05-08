@@ -1,0 +1,30 @@
+2026-05-09 01:03:52,361 - hne.spots_qc - INFO - Starting preprocessing patient: CH_L_282
+2026-05-09 01:03:53,340 - hne.spots_qc - INFO - Patient CH_L_282 has 4114 tissue spots,0 spots with missing tumor fraction
+2026-05-09 01:03:53,344 - hne.spots_qc - INFO - Created 42 initial tiles
+2026-05-09 01:03:53,344 - hne.spots_qc - WARNING - Very few initial tiles created: 42
+2026-05-09 01:03:53,347 - hne.spots_qc - INFO - Bayesian tile purtiy computed (k=2): mean=0.348
+2026-05-09 01:03:53,358 - hne.spots_qc - INFO - Filtered from 42 to 19 tumor tiles
+2026-05-09 01:03:53,358 - hne.spots_qc - INFO - [CH_L_282] tumor_filter: Found 19 tumor tiles
+2026-05-09 01:03:53,455 - hne.spots_qc - INFO - Saved 19 tumor tiles for patient CH_L_282
+2026-05-09 01:03:53,457 - hne.spots_qc - INFO - Genes kept per signature:
+2026-05-09 01:03:53,457 - hne.spots_qc - INFO - FMRP_signature: 50/50 genes
+2026-05-09 01:03:53,457 - hne.spots_qc - INFO - Cell_cycle_signature: 19/20 genes
+2026-05-09 01:03:53,457 - hne.spots_qc - INFO - YAP_signature: 6/6 genes
+2026-05-09 01:03:53,457 - hne.spots_qc - INFO - WNT_signature: 16/17 genes
+2026-05-09 01:03:53,457 - hne.spots_qc - INFO - EMT_signature: 6/6 genes
+2026-05-09 01:03:58,211 - hne.spots_qc - INFO - Completed preprocessing for CH_L_282.
+2026-05-09 01:24:29,580 - hne.qc.plots - INFO - Starting preprocessing patient: CH_L_282
+2026-05-09 01:24:32,037 - hne.qc.plots - INFO - Patient CH_L_282 has 4114 tissue spots,0 spots with missing tumor fraction
+2026-05-09 01:24:32,041 - hne.qc.plots - INFO - Created 42 initial tiles
+2026-05-09 01:24:32,042 - hne.qc.plots - WARNING - Very few initial tiles created: 42
+2026-05-09 01:24:32,046 - hne.qc.plots - INFO - Bayesian tile purtiy computed (k=2): mean=0.348
+2026-05-09 01:24:32,057 - hne.qc.plots - INFO - Filtered from 42 to 19 tumor tiles
+2026-05-09 01:24:32,058 - hne.qc.tracker - INFO - [CH_L_282] tumor_filter: Found 19 tumor tiles
+2026-05-09 01:24:32,171 - hne.qc.plots - INFO - Saved 19 tumor tiles for patient CH_L_282
+2026-05-09 01:24:32,172 - hne.qc.plots - INFO - Genes kept per signature:
+2026-05-09 01:24:32,172 - hne.qc.plots - INFO - FMRP_signature: 50/50 genes
+2026-05-09 01:24:32,172 - hne.qc.plots - INFO - Cell_cycle_signature: 19/20 genes
+2026-05-09 01:24:32,172 - hne.qc.plots - INFO - YAP_signature: 6/6 genes
+2026-05-09 01:24:32,172 - hne.qc.plots - INFO - WNT_signature: 16/17 genes
+2026-05-09 01:24:32,172 - hne.qc.plots - INFO - EMT_signature: 6/6 genes
+2026-05-09 01:24:37,424 - hne.qc.plots - INFO - Completed preprocessing for CH_L_282.
