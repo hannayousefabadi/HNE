@@ -94,7 +94,7 @@ class QCTracker:
             logger.warning("No metadata to save")
             return
         
-        # handle both a single dict and a list of dicts (single patient vs. cohort)
+        # handle both a single dict and a list of dicts
         if isinstance(metadata, dict):
             metadata = [metadata]
 

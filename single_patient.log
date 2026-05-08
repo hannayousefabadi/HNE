@@ -601,3 +601,33 @@
 2026-05-08 23:57:38,419 - hne.spots_qc - INFO - WNT_signature: 16/17 genes
 2026-05-08 23:57:38,419 - hne.spots_qc - INFO - EMT_signature: 6/6 genes
 2026-05-08 23:57:43,656 - hne.spots_qc - INFO - Completed preprocessing for CH_L_282.
+2026-05-08 23:58:55,850 - hne.spots_qc - INFO - Starting preprocessing patient: CH_L_282
+2026-05-08 23:58:56,508 - hne.spots_qc - INFO - Patient CH_L_282 has 4114 tissue spots,0 spots with missing tumor fraction
+2026-05-08 23:58:56,512 - hne.spots_qc - INFO - Created 42 initial tiles
+2026-05-08 23:58:56,513 - hne.spots_qc - WARNING - Very few initial tiles created: 42
+2026-05-08 23:58:56,517 - hne.spots_qc - INFO - Bayesian tile purtiy computed (k=2): mean=0.348
+2026-05-08 23:58:56,526 - hne.spots_qc - INFO - Filtered from 42 to 19 tumor tiles
+2026-05-08 23:58:56,526 - hne.spots_qc - INFO - [CH_L_282] tumor_filter: Found 19 tumor tiles
+2026-05-08 23:58:56,636 - hne.spots_qc - INFO - Saved 19 tumor tiles for patient CH_L_282
+2026-05-08 23:58:56,637 - hne.spots_qc - INFO - Genes kept per signature:
+2026-05-08 23:58:56,637 - hne.spots_qc - INFO - FMRP_signature: 50/50 genes
+2026-05-08 23:58:56,638 - hne.spots_qc - INFO - Cell_cycle_signature: 19/20 genes
+2026-05-08 23:58:56,638 - hne.spots_qc - INFO - YAP_signature: 6/6 genes
+2026-05-08 23:58:56,638 - hne.spots_qc - INFO - WNT_signature: 16/17 genes
+2026-05-08 23:58:56,638 - hne.spots_qc - INFO - EMT_signature: 6/6 genes
+2026-05-08 23:59:02,466 - hne.spots_qc - INFO - Completed preprocessing for CH_L_282.
+2026-05-09 00:05:20,499 - hne.spots_qc - INFO - Starting preprocessing patient: CH_L_282
+2026-05-09 00:05:21,278 - hne.spots_qc - INFO - Patient CH_L_282 has 4114 tissue spots,0 spots with missing tumor fraction
+2026-05-09 00:05:21,282 - hne.spots_qc - INFO - Created 42 initial tiles
+2026-05-09 00:05:21,282 - hne.spots_qc - WARNING - Very few initial tiles created: 42
+2026-05-09 00:05:21,286 - hne.spots_qc - INFO - Bayesian tile purtiy computed (k=2): mean=0.348
+2026-05-09 00:05:21,296 - hne.spots_qc - INFO - Filtered from 42 to 19 tumor tiles
+2026-05-09 00:05:21,296 - hne.spots_qc - INFO - [CH_L_282] tumor_filter: Found 19 tumor tiles
+2026-05-09 00:05:21,402 - hne.spots_qc - INFO - Saved 19 tumor tiles for patient CH_L_282
+2026-05-09 00:05:21,404 - hne.spots_qc - INFO - Genes kept per signature:
+2026-05-09 00:05:21,404 - hne.spots_qc - INFO - FMRP_signature: 50/50 genes
+2026-05-09 00:05:21,405 - hne.spots_qc - INFO - Cell_cycle_signature: 19/20 genes
+2026-05-09 00:05:21,405 - hne.spots_qc - INFO - YAP_signature: 6/6 genes
+2026-05-09 00:05:21,405 - hne.spots_qc - INFO - WNT_signature: 16/17 genes
+2026-05-09 00:05:21,405 - hne.spots_qc - INFO - EMT_signature: 6/6 genes
+2026-05-09 00:05:26,949 - hne.spots_qc - INFO - Completed preprocessing for CH_L_282.
