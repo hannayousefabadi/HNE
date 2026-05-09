@@ -70,7 +70,9 @@ class QCTracker:
         summary = df.groupby('patient_id').agg(
             n_errors=('status', lambda x: (x == 'ERROR').sum()),
             n_warnings=('status', lambda x: (x == 'WARNING').sum()),
-            n_checks=('patient_id', 'count')
+            n_checks=('status', lambda x: (x == 'INFO').sum())
+            # n_checks=('patient_id', 'count')
+
         )
         # n_error: number of errors for this patient, n_checks: number of QC records for this patient
         

@@ -112,7 +112,7 @@ def add_tile_coordinates(scales,
 def compute_tile_purity(
         df: pd.DataFrame,
         k=2,
-        patient_id=None,
+        patient_id,
         logger=None,
         qc_tracker=None
         ) -> pd.DataFrame:

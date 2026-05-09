@@ -41,7 +41,7 @@ def attach_tumor_fraction(spots,
     if qc_tracker:
         if metadata['n_spots_missin_tumor_fraction'] > 0:
             qc_tracker.add_record(patient_id, "tumor_fraction", "WARNING", 
-                                  f"{metadata['n_spots_missin_tumor_fraction']} spots missing tumor fraction", metadata)
+                                  f"{metadata["n_spots_missin_tumor_fraction"]} spots missing tumor fraction", metadata)
         else:
             qc_tracker.add_record(patient_id, "tumor_fraction", "PASS",
                                   "All spots have tumor fraction", metadata)
@@ -109,16 +109,16 @@ def add_tile_coordinates(scales,
     return merged, metadata
 
 
+
 def compute_tile_purity(
         df: pd.DataFrame,
         k=2,
-        patient_id=None,
+        patient_id,
         logger=None,
         qc_tracker=None
         ) -> pd.DataFrame:
     """
-    Computes Bayesian tumor purity per tile.
-
+    Computes Bayesian tumor purity per tile. 
     Returns:
         final_df
         metadata
@@ -148,13 +148,7 @@ def compute_tile_purity(
 
     # warning is tumor purity is very low
     if metadata['mean_tile_purtiy'] < 0.3:
-        msg = f"Mean tile purity is very low: {metadata['mean_tile_purt']}"
-        logger.warning(msg)
-        if qc_tracker:
-            qc_tracker.add_record(patient_id, "tumor_purity", "WARNING", msg)
-    else:
-        if qc_tracker:
-            qc_tracker.add_record(patient_id, "tumort_purity", "PASS", "Mean tile purity is above 30%")    
+        logger.warning(f"Mean tile purity is very low: {metadata['mean_tile_purt']}")
 
     return final_df, metadata
 
@@ -214,6 +208,7 @@ def filter_tumor_tiles(df,
     else:
             qc_tracker.add_record(patient_id, "tumor_filter", "PASS", 
                                  f"Found {metadata['n_tumor_tiles']} tumor tiles")
+
 
     return tumor_tiles, metadata
 

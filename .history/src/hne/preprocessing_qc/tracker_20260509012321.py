@@ -67,11 +67,10 @@ class QCTracker:
             return pd.DataFrame()
         
         # count issues per patient
-        summary = df.groupby('patient_id').agg(
-            n_errors=('status', lambda x: (x == 'ERROR').sum()),
-            n_warnings=('status', lambda x: (x == 'WARNING').sum()),
-            n_checks=('patient_id', 'count')
-        )
+        summary = df.groupby('patient_id').agg({
+            'status': lambda x: (x == 'ERROR').sum(),
+            'patient_id': 'count'
+        }).rename(columns={'status': 'n_errors', 'patient_id': 'n_checks'})
         # n_error: number of errors for this patient, n_checks: number of QC records for this patient
         
        # check which patients had tumor tiles

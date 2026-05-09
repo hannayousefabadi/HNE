@@ -52,7 +52,7 @@ def preprocess_patient(patient_id,
     df, meta = add_tile_coordinates(scales, tile_size, merged, patient_id, logger, qc_tracker)
     patient_metadata.update(meta)
     
-    final_df, meta = compute_tile_purity(df, k, patient_id, logger, qc_tracker)
+    final_df, meta = compute_tile_purity(df, k, logger)
     patient_metadata.update(meta)
     
     # filter tumor tiles (qc_tracker will record it)
