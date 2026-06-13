@@ -1,4 +1,3 @@
-# 2. Compute/attach tumor fraction per spot
 import pandas as pd
 
 def attach_tumor_fraction(spots, 

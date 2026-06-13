@@ -1,4 +1,3 @@
-# 2. Compute/attach tumor fraction per spot
 import pandas as pd
 
 def attach_tumor_fraction(spots, 
@@ -41,7 +40,7 @@ def attach_tumor_fraction(spots,
     if qc_tracker:
         if metadata['n_spots_missin_tumor_fraction'] > 0:
             qc_tracker.add_record(patient_id, "tumor_fraction", "WARNING", 
-                                  f"{metadata["n_spots_missin_tumor_fraction"]} spots missing tumor fraction", metadata)
+                                  f"{metadata['n_spots_missin_tumor_fraction']} spots missing tumor fraction", metadata)
         else:
             qc_tracker.add_record(patient_id, "tumor_fraction", "PASS",
                                   "All spots have tumor fraction", metadata)
@@ -109,16 +108,16 @@ def add_tile_coordinates(scales,
     return merged, metadata
 
 
-
 def compute_tile_purity(
         df: pd.DataFrame,
         k=2,
-        patient_id,
+        patient_id=None,
         logger=None,
         qc_tracker=None
         ) -> pd.DataFrame:
     """
-    Computes Bayesian tumor purity per tile. 
+    Computes Bayesian tumor purity per tile.
+
     Returns:
         final_df
         metadata
@@ -214,7 +213,6 @@ def filter_tumor_tiles(df,
     else:
             qc_tracker.add_record(patient_id, "tumor_filter", "PASS", 
                                  f"Found {metadata['n_tumor_tiles']} tumor tiles")
-
 
     return tumor_tiles, metadata
 

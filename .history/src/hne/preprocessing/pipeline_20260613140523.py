@@ -1,14 +1,15 @@
 """Main preprocessing pipeline - reusable for both single patient and cohort"""
 
 import logging
-from hne.paths import PATIENTS
-from hne.data_io import *
-from hne.tumor_purity import *
-from hne.tiling import crop_and_save_tiles
-from hne.spot_signatures import compute_signatures
-from hne.aggregation import aggregate_signatures, zscore_and_binary
-from hne.spots_qc import *
+from hne.core.paths import PATIENTS
+from hne.core.data_io import *
+from hne.preprocessing.tumor_purity import *
+from hne.preprocessing.tiling import crop_and_save_tiles
+from hne.preprocessing.spot_signatures import compute_signatures
+from hne.preprocessing.aggregation import aggregate_signatures, zscore_and_binary
+from hne.preprocessing_qc.plots import *
 
+logger = logging.getLogger(__name__)
 
 def preprocess_patient(patient_id, 
                        mode='single_patient', # or 'cohort'
@@ -49,10 +50,10 @@ def preprocess_patient(patient_id,
     merged, meta = attach_tumor_fraction(spots, vis, patient_id, logger)
     patient_metadata.update(meta)
 
-    df, meta = add_tile_coordinates(scales, tile_size, merged, logger)
+    df, meta = add_tile_coordinates(scales, tile_size, merged, patient_id, logger, qc_tracker)
     patient_metadata.update(meta)
     
-    final_df, meta = compute_tile_purity(df, k, logger)
+    final_df, meta = compute_tile_purity(df, k, patient_id, logger, qc_tracker)
     patient_metadata.update(meta)
     
     # filter tumor tiles (qc_tracker will record it)

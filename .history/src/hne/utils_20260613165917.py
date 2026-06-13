@@ -6,9 +6,9 @@ from typing import Optional, Union
 
 def setup_logging(
     log_file: Optional[Union[str, Path]] = None,
-    console_level: str = "INFO",
+    console_level: str = "WARNING",
     file_level: str = "DEBUG",
-    log_format: str = '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    log_format: str = '%(asctimes)s - %(name)s - %(levelname)s - %(message)s',
     date_format: str = '%Y-%m-%d %H:%M:%S'
 ):
     
@@ -35,18 +35,14 @@ def setup_logging(
         "CRITICAL": logging.CRITICAL
     }
 
-    console_num = level_map.get(console_level.upper(), logging.INFO)
-    file_num = level_map.get(file_level.upper(), logging.DEBUG)
-
-    # set root logger to the lower level (more detailed)
-    root_level = min(console_num, file_num) if log_file else console_num   
+    root_level = min(level_map[console_level], level_map[file_level])   # set root logger to the lower level (more detailed)
     root_logger.setLevel(root_level)
 
     formatter = logging.Formatter(log_format, date_format)
 
     # adding console handler
     console_handler = logging.StreamHandler(sys.stdout)     # sneds log messages to the console
-    console_handler.setLevel(console_num)
+    console_handler.setLevel(level_map[console_level])
     console_handler.setFormatter(formatter)
     root_logger.addHandler(console_handler)
 
@@ -55,26 +51,21 @@ def setup_logging(
         log_path = Path(log_file)
         log_path.parent.mkdir(parents=True, exist_ok=True)
         file_handler = logging.FileHandler(log_path, encoding='utf-8')
-        file_handler.setLevel(file_num)
+        file_handler.setLevel(level_map[file_level])
         file_handler.setFormatter(formatter)
         root_logger.addHandler(file_handler)
 
     # silent other third-party loggers
     for lib in ['matplotlib', 'PIL', 'urllib3']:
         logging.getLogger(lib).setLevel(logging.WARNING)
-
+        
 
 def get_logger(name: str = None):
     """
     Get a logger instance for a module
 
-    Usage:
-        in any module. just do:
-            from hne.utils import get_logger
-            logger = get_logger(__name__)
-        
-        or simply:
-            logger = get_logger() # auto-detects __name__
+    Args:
+        name: usually __name__ from the calling module
     """
     if name is None:
         import inspect

@@ -9,6 +9,7 @@ from hne.preprocessing.spot_signatures import compute_signatures
 from hne.preprocessing.aggregation import aggregate_signatures, zscore_and_binary
 from hne.preprocessing_qc.plots import *
 
+logger = logging.getLogger(__name__)
 
 def preprocess_patient(patient_id, 
                        mode='single_patient', # or 'cohort'
