@@ -1,12 +1,12 @@
+import logging
+from hne.utils import get_logger
 
-def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df, logger=None):
+logger = logging.get_logger()
+
+def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df):
     """
     Aggregate spot signatures to tile-level
     """
-    if logger is None:
-        import logging
-        logger = logging.getLogger(__name__)
-
     # aggregate tiles metadata    
     tiles_mdata = spots_df.groupby("tile_id").agg(
         tile_row=("tile_row", "first"),

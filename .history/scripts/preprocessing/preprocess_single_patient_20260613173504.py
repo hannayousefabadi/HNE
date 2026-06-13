@@ -1,20 +1,27 @@
 import logging
 import sys
-from hne.preprocessing import preprocess_patient
-from hne.spots_qc import QCTracker
+from hne.preprocessing.pipeline import preprocess_patient
+from hne.preprocessing_qc.tracker import QCTracker
+from hne.utils import setup_logging, get_logger
+from hne.paths import RESULTS
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.FileHandler("single_patient.log")
-    ]
-)
+setup_logging(
+    log_file=RESULTS / "preprocessing" / "logs" / "single_patient.log",
+    console_level="INFO",
+    file_level="DEBUG",
+    log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+
+logger = get_logger()
 
 if __name__ == "__main__":
+    logger.info("=" * 40)
+    logger.info("Starting single patient preprocessing")
+    logger.info("=" * 40)
+
     qc = QCTracker(mode='single_patient')
-    metadata, tiles = preprocess_patient(
+    
+    metadata, tiles_sig, _, __ = preprocess_patient(
         "CH_L_282", 
         mode='single_patient',
         tile_size=100,        # in pixels, ≈ 1 mm in hires image

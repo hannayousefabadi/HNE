@@ -1,3 +1,7 @@
+import logging
+from hne.utils import get_logger
+
+logger = logging.get_logger()
 
 def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df, logger=None):
     """
@@ -42,7 +46,6 @@ def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df, logger=N
         logger.debug(f"{pct_tumor:.2f}% of tiles are tumor tiles")
 
     return tiles_sig_tumor, metadata
-
 
 
 def zscore_and_binary(sig_cols, tiles_sig_tumor):

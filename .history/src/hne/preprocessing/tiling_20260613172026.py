@@ -1,15 +1,14 @@
+import logging
+from hne.utils import get_logger
 from hne.core.paths import TILES
 from pathlib import Path
 
-def crop_and_save_tiles(tumor_tiles, tile_size, hne_img, patient_id, logger=None):
+logger = get_logger()
+
+def crop_and_save_tiles(tumor_tiles, tile_size, hne_img, patient_id):
     """
     Generate & save image tiles (H&E crops)
     """
-    # fallback to a dummy logger
-    if logger is None:
-        import logging
-        logger = logging.getLogger(__name__)
-
     tiles = []
     tiles_path = Path(TILES) / patient_id
     tiles_path.mkdir(parents=True, exist_ok=True)

@@ -6,11 +6,10 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
 import logging
-from hne.utils import get_logger
 
 from hne.core.paths import PREPROCESSING_QC_REPORTS
 
-logger = get_logger()
+logger = logging.getLogger(__name__)
 
 def signature_variation(tumor_spots, 
                         sig_cols, 

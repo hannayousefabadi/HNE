@@ -1,13 +1,13 @@
-import logging
-from hne.utils import get_logger
 import scanpy as sc
 
-logger = get_logger()
-
-def compute_signatures(vis, final_df):
+def compute_signatures(vis, final_df, logger=None):
     """
     Compute pathway signatures per spot
     """
+    if logger is None:
+        import logging
+        logger = logging.getLogger(__name__)
+
     signatures = {
     "FMRP_signature": ["MARCKSL1", "S100A16", "DDAH1", "MYCL", "SHANK2", "ITIH2", "PIK3AP1", 
             "LHFPL6", "FRMD5", "CLDN6", "ATP11A", "SLC25A21", "B4GALNT3", "WNT10A", 
@@ -52,6 +52,7 @@ def compute_signatures(vis, final_df):
             score_name=f"{sig}_score",
             layer="log_norm_count"
         )
+
 
     sig_cols = [
     "FMRP_signature_score",

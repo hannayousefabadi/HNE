@@ -5,8 +5,9 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
 import logging
+from hne.utils import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 from hne.core.paths import PREPROCESSING_QC_REPORTS
 
@@ -43,7 +44,7 @@ class QCTracker:
 
         self.records.append(record)
 
-        # use logger for console / file output
+        # use logger for console and file output
         if status == "ERROR":
             logger.error(f"[{patient_id}] {stage}: {message}")
         elif status == "WARNING":

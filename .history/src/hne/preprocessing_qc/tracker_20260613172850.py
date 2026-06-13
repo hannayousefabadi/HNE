@@ -5,8 +5,9 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
 import logging
+from hne.utils import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger()
 
 from hne.core.paths import PREPROCESSING_QC_REPORTS
 
@@ -43,7 +44,7 @@ class QCTracker:
 
         self.records.append(record)
 
-        # use logger for console / file output
+        # use logger for console and file output
         if status == "ERROR":
             logger.error(f"[{patient_id}] {stage}: {message}")
         elif status == "WARNING":
@@ -70,8 +71,7 @@ class QCTracker:
         summary = df.groupby('patient_id').agg(
             n_errors=('status', lambda x: (x == 'ERROR').sum()),
             n_warnings=('status', lambda x: (x == 'WARNING').sum()),
-            n_checks=('status', lambda x: (x == 'INFO').sum())
-            # n_checks=('patient_id', 'count')
+            n_checks=('patient_id', 'count')
         )
         # n_error: number of errors for this patient, n_checks: number of QC records for this patient
         
