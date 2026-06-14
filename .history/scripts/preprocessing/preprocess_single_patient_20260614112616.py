@@ -34,7 +34,7 @@ if __name__ == "__main__":
     print(f"\nMetadata: {metadata}")
     summary = qc.save_summary()
     print(f"\nQC Summary:\n{summary}")
-    logger.info("=" * 40)
+    logger.info("=" * 60)
     logger.info("Preprocessing completed successfully")
     
 

@@ -3,6 +3,7 @@ from hne.utils import get_logger
 
 logger = get_logger()
 
+
 def attach_tumor_fraction(spots, 
                           vis, 
                           patient_id, 

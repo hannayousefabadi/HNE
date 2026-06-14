@@ -1,10 +1,10 @@
 from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
 from hne.utils import setup_logging, get_logger
-from hne.core.paths import PREPROCESSING_QC_REPORTS
+from paths import PREPROCESSING_QC_REPORTS
 
 setup_logging(
-    log_file = PREPROCESSING_QC_REPORTS / "single_patient" / "single_patient.log",
+    log_file = PREPROCESSING_QC_REPORTS / "single_patient.log",
     console_level="INFO",
     file_level="DEBUG",
     log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     print(f"\nMetadata: {metadata}")
     summary = qc.save_summary()
     print(f"\nQC Summary:\n{summary}")
-    logger.info("=" * 40)
+    logger.info("=" * 60)
     logger.info("Preprocessing completed successfully")
     
 
