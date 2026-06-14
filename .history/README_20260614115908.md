@@ -1,10 +1,8 @@
-# H&E MIL - Visium Spatial Transcriptomics + H&E Image Analysis
-
-Pipeline for preprocessing Visium spatial transcriptomics data with matched H&E images for Multiple Instance Learning (MIL).
+#  MIL (Multiple Instance Learning) pathology framework for lung cancer using H&E Image Analysis, Visium Spatial Transcriptomics and Whole-exome Sequencing
 
 ## Overview
 
-This pipeline processes paired Visium ST and H&E data to generate tile-level feature matrices ready for MIL model training.
+This pipeline process H&E images for Multiple Instance Learning (MIL) using matched Visium and WES data.
 
 **Key steps:**
 - Tumor purity estimation (Bayesian shrinkage)
