@@ -74,6 +74,7 @@ def attach_tumor_fraction(spots,
     return merged, metadata
 
 
+
 def add_tile_coordinates(scales, 
                          tile_size,     # ≈ 1 mm in hires image
                          merged,

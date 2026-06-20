@@ -40,38 +40,29 @@ def attach_tumor_fraction(spots,
                  f"mean={metadata["mean_tumor_fraction"]:.2f}"
                  f"median={metadata["median_tumor_fraction"]:.2f}"
                  )
-    
-    if metadata['n_spots_missin_tumor_fraction'] > 0:
-        logger.debug(f"{metadata['n_spots_missin_tumor_fraction']} spots missing tumor fraction")
-    
-    missing_fraction = (metadata["n_spots_missin_tumor_fraction"] / metadata["n_spots_in_tissue"])
-    
 
     if qc_tracker:
-
         if metadata["n_spots_in_tissue"] == 0:
-            qc_tracker.add_record(patient_id,
-                                  "tumor_fraction",
-                                  "ERROR",
-                                  f"No in-tissue spots found",
-                                  metadata)    
- 
-        elif missing_fraction > 0.1:
-            qc_tracker.add_record(patient_id, 
-                                  "tumor_fraction",
-                                  "WARNING",
-                                  f"{missing_fraction:.2f}% missing tumor fraction",
-                                  metadata)
-        
-        elif metadata["mean_tumor_fraction"] < 0.05:
-            qc_tracker.add_record(patient_id, "tumor_fraction", "ERROR",
-                                  f"Mean tumor fraction is {metadata['mean_tumor_fraction']}")
-            
+            logger.error("No in-tissue spots found")
+
+        if metadata['n_spots_missin_tumor_fraction'] > 0:
+            qc_tracker.add_record(patient_id, "tumor_fraction", "WARNING", 
+                                  f"{metadata['n_spots_missin_tumor_fraction']} spots missing tumor fraction", metadata)
         else:
             qc_tracker.add_record(patient_id, "tumor_fraction", "PASS",
                                   "All spots have tumor fraction", metadata)
-        
+
+        missing_fraction = (metadata["n_spots_missin_tumor_fraction"] / metadata["n_spots_in_tissue"])
+        if missing_fraction > 0.1:
+            logger.error(
+                f"High tumor fraction missingness "
+                f"{missing_fraction:.1f}"
+            )
+            qc_tracker.add_record(patient_id, "tumor_fraction", "WARNING", 
+                                  "High tumor fraction missingness", metadata)
+
     return merged, metadata
+
 
 
 def add_tile_coordinates(scales, 

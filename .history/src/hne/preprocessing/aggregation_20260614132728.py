@@ -6,12 +6,6 @@ def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df):
     """
     Aggregate spot signatures to tile-level
     """
-    if len(spots_df) == 0:
-        logger.error("No spots data provided for aggregation")
-
-    if len(tumor_tiles_df) == 0:
-        logger.error("No tumor tiles provided - returning empty result")
-        
     # aggregate tiles metadata    
     tiles_mdata = spots_df.groupby("tile_id").agg(
         tile_row=("tile_row", "first"),
@@ -70,6 +64,6 @@ def zscore_and_binary(sig_cols, tiles_sig_tumor):
 
         tiles_sig_tumor[f"{col}_binary"] = (z >= BINARY_THRESHOLD).astype(int) 
 
-        logger.debug(f"Z-score ranges - {col}: [{tiles_sig_tumor[col].min():.2f}," 
-                     f"{tiles_sig_tumor[col].max():.2f}]")
+        logger.debug(f"Z-score ranges - {col}: [{tiles_sig_tumor[col].min():.2f}, 
+                     {tiles_sig_tumor[col].max():.2f}]")
     return tiles_sig_tumor    

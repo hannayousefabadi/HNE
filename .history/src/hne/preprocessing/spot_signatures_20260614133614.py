@@ -33,9 +33,9 @@ def compute_signatures(vis, final_df):
     }
 
     # log genes kept per signature
-    logger.debug("Genes retained per signature:")
+    logger.info("Genes kept per signature:")
     for k, v in signature_genes.items():
-        logger.debug(f"{k}: {len(v)}/{len(signatures[k])} genes")
+        logger.info(f"{k}: {len(v)}/{len(signatures[k])} genes")
 
     # compute signature scores
     for sig, genes in signatures.items():

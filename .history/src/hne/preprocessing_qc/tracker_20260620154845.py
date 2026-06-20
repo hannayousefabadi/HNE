@@ -1,13 +1,3 @@
-"""
-QCTracker
-├── store QC decisions
-├── compute patient verdicts
-├── save patient QC
-└── save cohort QC summary
-"""
-
-
-
 import pandas as pd
 import numpy as np
 from pathlib import Path
@@ -49,8 +39,10 @@ class QCTracker:
 
         VALID_QC_STAGES = {
             "tumor_fraction",
-            "filter_tumor_tiles",
-            "signature_qc"
+            "tumor_filter",
+            "spot_assignment",
+            "signature_qc",
+            "preprocessing"
         }
 
         if stage not in VALID_QC_STAGES:
@@ -63,9 +55,7 @@ class QCTracker:
             ),
             None
         )
-
-        if existing is not None:
-            self.records.remove(existing)
+        self.records.remove(existing)
         
         # add metadata if provided
         if metadata:
@@ -74,40 +64,12 @@ class QCTracker:
         self.records.append(record)
 
 
-
     def to_dataframe(self):
+        """Convert records to dataframe"""
         return pd.DataFrame(self.records)
     
-
-
-    def get_patient_verdict(self, patient_id):
-        
-        patient_records = [
-            r for r in self.records
-            if r["patient_id"] == patient_id
-        ]
-
-        statuses = [r["status"] for r in patient_records]
-
-        if "EXCLUDE" in statuses:
-            return "EXCLUDE"
-        if "FLAG" in statuses:
-            return "REVIEW"
-        
-        return "OK"
-
-
-
-    def save_patient_qc(self):
-        df = self.to_dataframe()
-
-        df.to_csv(
-            self.output_dir / "qc_records.csv",
-            index=False
-        ) 
-
-
-    def save_cohort_summary(self):
+    
+    def save_summary(self):
         """Save summary csv and return exclusion list"""
         output_path = self.output_dir / "qc_summary.csv"
         df = self.to_dataframe()
@@ -123,12 +85,56 @@ class QCTracker:
             n_checks=('patient_id', 'count')
         )
 
+       # check which patients had tumor tiles
+        tumor_filter_results = df[df['stage'] == "tumor_filter"]
+        no_tumor_patients = set(tumor_filter_results[tumor_filter_results['status'] == "ERROR"]["patient_id"])
+
         # patients that should be excluded
         summary['exclude'] = (summary["n_excluded"] > 0)
         
         summary.to_csv(output_path)
-        return summary    
-            
+        return summary
+    
+    def save_metadata(self, metadata, output_name="metadata.csv"):
+        """Save metadata dict into a single csv"""
+        
+        # handle both a single dict and a list of dicts (single patient vs. cohort)
+        if isinstance(metadata, dict):
+            metadata = [metadata]
+
+        for item in metadata:
+            for key, value in item.items():
+                if isinstance(value, set):
+                    item[key] = sorted(value)
+                elif isinstance(value, dict):
+                    for subkey, subvalue in value.items():
+                        if isinstance(subvalue, set):
+                            value[subkey] = sorted(subvalue)
+
+        metadata_df = pd.DataFrame(metadata)
+
+        # Flatten nested dictionaries if any
+        for col in metadata_df.columns:
+            if metadata_df[col].apply(lambda x: isinstance(x, dict)).any():
+                # Expand nested dicts into separate columns
+                expanded = metadata_df[col].apply(pd.Series)
+                expanded = expanded.add_prefix(f"{col}_")
+                metadata_df = metadata_df.drop(columns=[col]).join(expanded)
+
+        output_path = self.output_dir / output_name
+        metadata_df.to_csv(output_path, index=False)
+        
+        return metadata_df
+    
+    def get_patient_verdict(self, patient_id):
+        if any(EXCLUDE):
+            return "EXCLUDE"
+        elif any(FLAG):
+            return "REVIEW"
+        else:
+            return "OK"
+        
+        
     
     def save_cohort_spot_qc_plots(self, all_spot_data, sig_cols):
         """
