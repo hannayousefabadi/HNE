@@ -35,11 +35,10 @@ if __name__ == "__main__":
     save_metadata(metadata, qc.output_dir / "metadata.csv")
     print(f"\nMetadata: {metadata}")
 
-    summary = qc.save_summary()
+    summary = qc.save_cohort_summary()
     print(f"\nQC Summary:\n{summary}")
     logger.info("=" * 40)
-    verdict = qc.get_patient_verdict("CH_L_282")
-    logger.info(f"Preprocessing completed | QC verdict={verdict}")
+    logger.info("Preprocessing completed successfully")
     
 
 

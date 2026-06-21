@@ -51,13 +51,14 @@ def preprocess_patient(patient_id,
     final_df, meta = compute_tile_purity(df, k, patient_id, qc_tracker)
     patient_metadata.update(meta)
     
+    # filter tumor tiles (qc_tracker will record it)
     tumor_tiles_df, meta = filter_tumor_tiles(final_df, tumor_threshold, min_spots, patient_id, qc_tracker)
     patient_metadata.update(meta)
     
     # check if we have tiles BEFORE proceeding
     if not meta.get('has_tumor_tiles', False):
         logger.warning(f"Skipping remaining steps for {patient_id} no tumor tiles!")
-        return patient_metadata, None, None, None
+        return patient_metadata, None
     
     # crop and save image tiles
     tumor_tiles, meta = crop_and_save_tiles(tumor_tiles_df, tile_size, img, patient_id)

@@ -137,23 +137,6 @@ class QCTracker:
             n_stages_evaluated=('patient_id', 'count')
         )
 
-        # failed stages
-        failed_stages = (
-            df[df["status"] != "OK"]
-            .groupby("patient_id")["stage"]
-            .apply(lambda x: "; ".join(x))
-        )
-
-        # QC reasons
-        qc_reasons = (
-            df[df["status"] != "OK"]
-            .groupby("patient_id")["message"]
-            .apply(lambda x: " | ".join(x))
-        )
-
-        summary = summary.join(failed_stages.rename("failed_stages"))
-        summary = summary.join(qc_reasons.rename("qc_reasons"))
-
         # patients that should be excluded
         summary["verdict"] = "OK"
 
@@ -167,8 +150,6 @@ class QCTracker:
             "verdict"
         ] = "EXCLUDE"
 
-        summary["failed_stages"] = summary["failed_stages"].fillna("")
-        summary["qc_reasons"] = summary["qc_reasons"].fillna("")        
         
         summary.to_csv(output_path)
         return summary    

@@ -51,6 +51,7 @@ def preprocess_patient(patient_id,
     final_df, meta = compute_tile_purity(df, k, patient_id, qc_tracker)
     patient_metadata.update(meta)
     
+    # filter tumor tiles (qc_tracker will record it)
     tumor_tiles_df, meta = filter_tumor_tiles(final_df, tumor_threshold, min_spots, patient_id, qc_tracker)
     patient_metadata.update(meta)
     

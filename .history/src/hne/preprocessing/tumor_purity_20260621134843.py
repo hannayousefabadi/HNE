@@ -6,9 +6,7 @@ QC thresholds:
 - Missing tumor fraction > 10%             -> FLAG
 - Mean tile purity < 0.30                  -> FLAG
 - 0 tumor tiles after filtering            -> EXCLUDE
-- < 30 initial tiles                       -> Logger warning
 - <20 tumor tiles after filtering          -> FLAG
-
 """
 
 import pandas as pd
@@ -143,7 +141,6 @@ def compute_tile_purity(
         final_df
         metadata
     """
-
     MEAN_PURITY_THRESHOLD = 0.3
 
     grouped = df.groupby("tile_id")["tumor_fraction"]
