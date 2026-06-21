@@ -1,22 +1,26 @@
 import logging
 import sys
 
-logging.basicConfig(
-    level=logging.WARNING,  # Only warnings in console
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.FileHandler("cohort_preprocessing.log")
-    ]
+from hne.utils import setup_logging, get_logger
+from hne.core.data_io import save_metadata
+from hne.preprocessing.pipeline import preprocess_patient
+from hne.preprocessing_qc.tracker import QCTracker
+from hne.core.paths import PREPROCESSING_QC_REPORTS, PATIENT_IDS
+
+setup_logging(
+    log_file= PREPROCESSING_QC_REPORTS / "cohort" / "cohort.log", 
+    console_level="WARNING",
+    file_level="DEBUG",
+    log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 
-logger = logging.getLogger(__name__) 
-
-from hne.preprocessing.pipeline import preprocess_patient
-from hne.spots_qc import QCTracker
-from hne.core.paths import PATIENT_IDS
+logger = get_logger()
 
 if __name__ == "__main__":
+    
+    logger.info("=" * 40)
+    logger.info("Starting cohort preprocessing")
+    logger.info("=" * 40)
     
     qc = QCTracker(mode='cohort')
     all_metadata = []
@@ -45,8 +49,11 @@ if __name__ == "__main__":
         if sig_cols is None and sig_cols_patient:
             sig_cols = sig_cols_patient    
 
-    qc.save_summary()
-    qc.save_metadata(all_metadata)
+    qc.save_qc_records()
+    summary = qc.save_summary()
+    save_metadata(all_metadata, qc.output_dir / "metadata.csv")
+    print("\nQC verdicts:")
+    print(summary["verdict"].value_counts())
 
     # generate cohort-level QC plots (requires collecting sig matrices)
     if sig_cols and all_spot_data:
@@ -54,5 +61,7 @@ if __name__ == "__main__":
     else:
         logger.warning("No signature columns or spot data - skipping cohort QC plots")    
 
-    print(f"Processed {len(all_metadata)} patients")
+    logger.info("=" * 40)
+    logger.info(f"Processed {len(all_metadata)} patients")
+    logger.info("Cohort preprocessing completed")
 

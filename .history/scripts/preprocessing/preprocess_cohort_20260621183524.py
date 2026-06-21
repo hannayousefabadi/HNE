@@ -1,20 +1,10 @@
 import logging
 import sys
 
-logging.basicConfig(
-    level=logging.WARNING,  # Only warnings in console
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.FileHandler("cohort_preprocessing.log")
-    ]
-)
-
-logger = logging.getLogger(__name__) 
-
-from hne.preprocessing import preprocess_patient
-from hne.spots_qc import QCTracker
-from hne.core.paths import PATIENT_IDS
+from hne.utils import setup_logging, get_logger
+from hne.preprocessing.pipeline import preprocess_patient
+from hne.preprocessing_qc.tracker import QCTracker
+from hne.core.paths import PREPROCESSING_QC_REPORTS, PATIENT_IDS
 
 if __name__ == "__main__":
     

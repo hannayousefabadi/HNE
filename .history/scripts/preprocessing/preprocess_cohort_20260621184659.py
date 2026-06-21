@@ -1,3 +1,6 @@
+import logging
+import sys
+
 from hne.utils import setup_logging, get_logger
 from hne.core.data_io import save_metadata
 from hne.preprocessing.pipeline import preprocess_patient
@@ -41,7 +44,7 @@ if __name__ == "__main__":
             all_metadata.append(metadata)
             all_spot_data.append(spot_df)
             if tiles_sig is not None:
-                all_tiles_sig.append(tiles_sig)  # to do: add all_tiles_sig return for later analysis
+                all_tiles_sig.append(tiles_sig)
 
             # collect signature columns from first successful patient    
             if sig_cols is None and sig_cols_patient:

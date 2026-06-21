@@ -125,6 +125,11 @@ class QCTracker:
         output_path = self.output_dir / "qc_summary.csv"
         df = self.to_dataframe()
 
+        summary = summary.sort_values(
+            ["verdict", "n_flags"],
+            ascending=[False, False]
+        )
+
         if len(df) == 0:
             print("No QC records to summarize")
             return pd.DataFrame()
@@ -168,12 +173,7 @@ class QCTracker:
         ] = "EXCLUDE"
 
         summary["failed_stages"] = summary["failed_stages"].fillna("")
-        summary["qc_reasons"] = summary["qc_reasons"].fillna("")
-
-        summary = summary.sort_values(
-            ["verdict", "n_flags"],
-            ascending=[False, False]
-        )        
+        summary["qc_reasons"] = summary["qc_reasons"].fillna("")        
         
         summary.to_csv(output_path)
         return summary    

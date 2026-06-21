@@ -6,7 +6,7 @@ from hne.core.paths import PREPROCESSING_QC_REPORTS
 
 setup_logging(
     log_file = PREPROCESSING_QC_REPORTS / "single_patient" / "single_patient.log",
-    console_level="INFO",
+    console_level="WARNING",
     file_level="DEBUG",
     log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
@@ -37,7 +37,6 @@ if __name__ == "__main__":
 
     summary = qc.save_summary()
     print(f"\nQC Summary:\n{summary}")
-    
     logger.info("=" * 40)
     verdict = qc.get_patient_verdict("CH_L_282")
     logger.info(f"Preprocessing completed | QC verdict={verdict}")
