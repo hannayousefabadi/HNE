@@ -38,7 +38,9 @@ def compute_signatures(vis, final_df):
         logger.debug(f"{k}: {len(v)}/{len(signatures[k])} genes")
 
     # compute signature scores
-    for sig, genes_present in signature_genes.items():
+    for sig, genes in signatures.items():
+        genes_present = [g for g in genes if g in vis.var_names]
+
         if len(genes_present) == 0:
             logger.warning(f"No genes found for {sig} - skipping")
             continue
@@ -51,10 +53,12 @@ def compute_signatures(vis, final_df):
         )
 
     sig_cols = [
-        f"{sig}_score" for sig, genes in signature_genes.items()
-        if len(genes) > 0
+    "FMRP_signature_score",
+    "Cell_cycle_signature_score",
+    "YAP_signature_score",
+    "WNT_signature_score",
+    "EMT_signature_score"
     ]
-    
 
     # extract signatures to df
     obs_sig = vis.obs[sig_cols].copy()
@@ -67,6 +71,11 @@ def compute_signatures(vis, final_df):
         "genes_per_signatures": sorted([f'{sig}: {len(v)}/{len(signatures[sig])} genes' 
                                         for sig, v in signature_genes.items()])
     }
+
+    logger.info(
+        f"Computed {len(sig_cols)} pathway signatures "
+        f"for {len(spots_df)} spots"
+    )
     
     return sig_cols, signature_genes, spots_df, metadata
 
