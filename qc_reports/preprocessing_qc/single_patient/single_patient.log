@@ -23,3 +23,15 @@
 2026-06-14 11:26:32 - hne.preprocessing.pipeline - INFO - Completed preprocessing for CH_L_282.
 2026-06-14 11:26:32 - __main__ - INFO - ============================================================
 2026-06-14 11:26:32 - __main__ - INFO - Preprocessing completed successfully
+2026-06-21 13:43:54 - __main__ - INFO - ========================================
+2026-06-21 13:43:54 - __main__ - INFO - Starting single patient preprocessing
+2026-06-21 13:43:54 - __main__ - INFO - ========================================
+2026-06-21 13:43:54 - hne.preprocessing.pipeline - INFO - Starting preprocessing patient: CH_L_282
+2026-06-21 13:43:54 - h5py._conv - DEBUG - Creating converter from 3 to 5
+2026-06-21 13:44:57 - __main__ - INFO - ========================================
+2026-06-21 13:44:57 - __main__ - INFO - Starting single patient preprocessing
+2026-06-21 13:44:57 - __main__ - INFO - ========================================
+2026-06-21 13:44:57 - hne.preprocessing.pipeline - INFO - Starting preprocessing patient: CH_L_282
+2026-06-21 13:44:57 - h5py._conv - DEBUG - Creating converter from 3 to 5
+2026-06-21 13:44:58 - hne.preprocessing.tumor_purity - INFO - Attached tumor fraction to 4114 tissue spots
+2026-06-21 13:44:58 - hne.preprocessing.tumor_purity - DEBUG - Tumor fraction stats | missing=0mean=0.37median=0.30
