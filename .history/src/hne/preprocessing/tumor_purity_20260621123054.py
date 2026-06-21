@@ -1,14 +1,3 @@
-"""
-Tumor purity preprocessing.
-
-QC thresholds:
-- Mean tumor fraction of tiles < 0.2       -> EXCLUDE
-- Missing tumor fraction > 10%             -> FLAG
-- Mean tile purity < 0.30                  -> FLAG
-- 0 tumor tiles after filtering            -> EXCLUDE
-- <20 tumor tiles after filtering          -> FLAG
-"""
-
 import pandas as pd
 from hne.utils import get_logger
 
@@ -24,7 +13,7 @@ def attach_tumor_fraction(spots,
         merged_df
         metadata_dict
     """
-    MEAN_TUMOR_FRACTION_THRESHOLD = 0.2
+    MEAN_TUMOR_FRACTION_THRESHOLD = 0.05
 
     in_tissue_spots = spots[spots["in_tissue"] == 1].copy()
     in_tissue_spots["barcode"] = in_tissue_spots["barcode"].astype(str)
@@ -52,7 +41,11 @@ def attach_tumor_fraction(spots,
                  f"missing={metadata["n_spots_missin_tumor_fraction"]}"
                  f"mean={metadata["mean_tumor_fraction"]:.2f}"
                  f"median={metadata["median_tumor_fraction"]:.2f}"
-                 )    
+                 )
+    
+    if metadata['n_spots_missin_tumor_fraction'] > 0:
+        logger.debug(f"{metadata['n_spots_missin_tumor_fraction']} spots missing tumor fraction")
+    
 
     if qc_tracker:
 

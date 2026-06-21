@@ -1,14 +1,3 @@
-"""
-Tumor purity preprocessing.
-
-QC thresholds:
-- Mean tumor fraction of tiles < 0.2       -> EXCLUDE
-- Missing tumor fraction > 10%             -> FLAG
-- Mean tile purity < 0.30                  -> FLAG
-- 0 tumor tiles after filtering            -> EXCLUDE
-- <20 tumor tiles after filtering          -> FLAG
-"""
-
 import pandas as pd
 from hne.utils import get_logger
 
@@ -24,8 +13,6 @@ def attach_tumor_fraction(spots,
         merged_df
         metadata_dict
     """
-    MEAN_TUMOR_FRACTION_THRESHOLD = 0.2
-
     in_tissue_spots = spots[spots["in_tissue"] == 1].copy()
     in_tissue_spots["barcode"] = in_tissue_spots["barcode"].astype(str)
 
@@ -52,7 +39,11 @@ def attach_tumor_fraction(spots,
                  f"missing={metadata["n_spots_missin_tumor_fraction"]}"
                  f"mean={metadata["mean_tumor_fraction"]:.2f}"
                  f"median={metadata["median_tumor_fraction"]:.2f}"
-                 )    
+                 )
+    
+    if metadata['n_spots_missin_tumor_fraction'] > 0:
+        logger.debug(f"{metadata['n_spots_missin_tumor_fraction']} spots missing tumor fraction")
+    
 
     if qc_tracker:
 
@@ -63,23 +54,21 @@ def attach_tumor_fraction(spots,
                                   f"No in-tissue spots found",
                                   metadata)    
  
-        elif (metadata["n_spots_missin_tumor_fraction"] / metadata["n_spots_in_tissue"]) > 0.1:
-            missing_fraction = (metadata["n_spots_missin_tumor_fraction"] / metadata["n_spots_in_tissue"])
+        missing_fraction = (metadata["n_spots_missin_tumor_fraction"] / metadata["n_spots_in_tissue"])
+        elif missing_fraction > 0.1:
             qc_tracker.add_record(patient_id, 
                                   "tumor_fraction",
                                   "FLAG",
-                                  f"{missing_fraction * 100:.1f}% missing tumor fraction",
+                                  f"{missing_fraction:.2f}% missing tumor fraction",
                                   metadata)
         
-        elif metadata["mean_tumor_fraction"] < MEAN_TUMOR_FRACTION_THRESHOLD:
+        elif metadata["mean_tumor_fraction"] < 0.05:
             qc_tracker.add_record(patient_id, "tumor_fraction", "EXCLUDE",
-                                  f"Mean tumor fraction is {metadata['mean_tumor_fraction']}",
-                                  metadata)
+                                  f"Mean tumor fraction is {metadata['mean_tumor_fraction']}")
             
         else:
             qc_tracker.add_record(patient_id, "tumor_fraction", "OK",
-                                  "Tumor fraction attached successfully", 
-                                  metadata)
+                                  "All spots have tumor fraction", metadata)
         
     return merged, metadata
 
@@ -87,7 +76,8 @@ def attach_tumor_fraction(spots,
 def add_tile_coordinates(scales, 
                          tile_size,     # ≈ 1 mm in hires image
                          merged,
-                         patient_id=None
+                         patient_id=None,
+                         qc_tracker=None
                          ):
     """
     Derive tile coordinates from spot positions
@@ -95,8 +85,6 @@ def add_tile_coordinates(scales,
         df
         metadata
     """
-    MIN_INITIAL_TILES = 100
-
     spot_diameter = 55  # Visium spot diameter in µm
 
     spot_diameter_fullres = scales["spot_diameter_fullres"]
@@ -122,9 +110,11 @@ def add_tile_coordinates(scales,
     logger.info(f"Created {metadata['n_initial_tiles']} initial tiles")
 
     # warning if very few tiles
-    if metadata['n_initial_tiles'] < MIN_INITIAL_TILES:
+    if metadata['n_initial_tiles'] < 100:
         msg = f"Very few initial tiles created: {metadata['n_initial_tiles']}"
         logger.warning(msg)
+        if qc_tracker:
+            qc_tracker.add_record(patient_id, "tile_coordinates", "WARNING", msg, metadata)    
 
     return merged, metadata
 
@@ -142,8 +132,6 @@ def compute_tile_purity(
         final_df
         metadata
     """
-    MEAN_PURITY_THRESHOLD = 0.3
-
     grouped = df.groupby("tile_id")["tumor_fraction"]
     alpha = grouped.sum()
     n_spots = grouped.count()
@@ -154,32 +142,30 @@ def compute_tile_purity(
     final_df = df.merge(tile_purity, on="tile_id", how="left")
 
     metadata = {"k_value": k,
-                "mean_tile_purity": float(tile_purity.mean()),
+                "mean_tile_purtiy": float(tile_purity.mean()),
                 "median_tile_purity": float(tile_purity.median()),
                 "tile_purity_std": float(tile_purity.std())
                 }
     
-    msg = f"Bayesian tile purtiy computed (k={k}): mean={metadata['mean_tile_purity']:.3f}"
+    msg = f"Bayesian tile purtiy computed (k={k}): mean={metadata['mean_tile_purtiy']:.3f}"
     logger.info(msg)
 
     # warning is tumor purity is very low
-    if metadata['mean_tile_purity'] < MEAN_PURITY_THRESHOLD:
-        msg = f"Mean tile purity is very low: {metadata['mean_tile_purity']}"
+    if metadata['mean_tile_purtiy'] < 0.3:
+        msg = f"Mean tile purity is very low: {metadata['mean_tile_purt']}"
         logger.warning(msg)
         if qc_tracker:
-            qc_tracker.add_record(patient_id, "tile_purity", "FLAG", msg, metadata)
+            qc_tracker.add_record(patient_id, "tumor_purity", "WARNING", msg)
     else:
         if qc_tracker:
-            qc_tracker.add_record(patient_id, "tile_purity", "OK", 
-                                  f"Mean tile purity is above {MEAN_PURITY_THRESHOLD * 100}%",
-                                  metadata)    
+            qc_tracker.add_record(patient_id, "tumort_purity", "PASS", "Mean tile purity is above 30%")    
 
     return final_df, metadata
 
 
 def filter_tumor_tiles(df, 
-                       tumor_threshold,
-                       min_spots,        
+                       tumor_threshold, # tile at least has 30% tumor purity
+                       min_spots,        # tile at least has 40 spots
                        patient_id,
                        qc_tracker=None
                        ):
@@ -189,9 +175,6 @@ def filter_tumor_tiles(df,
         tumor_tiles
         metadata
     """
-    MIN_FINAL_TILES = 20
-
-
     tiles_stats = df.groupby(["tile_row", "tile_col"]).agg(
         tile_id=("tile_id", "first"),
         tile_purity=("tile_purity", "first"),
@@ -219,17 +202,16 @@ def filter_tumor_tiles(df,
         msg = f"No tumor tiles found! Check threshold={tumor_threshold}, min_spots={min_spots}"
         logger.error(msg)
         if qc_tracker:
-            qc_tracker.add_record(patient_id, "filter_tumor_tiles", "EXCLUDE", msg, metadata)
-        
-    elif metadata['n_tumor_tiles'] < MIN_FINAL_TILES:
+            qc_tracker.add_record(patient_id, "tumor_filter", "ERROR", msg)
+        return tumor_tiles, metadata
+    elif metadata['n_tumor_tiles'] < 10:
         msg = f"Only {len(tumor_tiles)} tumor tiles - insufficient for MIL training"
         logger.warning(msg)
         if qc_tracker:
-            qc_tracker.add_record(patient_id, "filter_tumor_tiles", "FLAG", msg, metadata)
-
+            qc_tracker.add_record(patient_id, "tumor_filter", "WARNING", msg)
     else:
-            qc_tracker.add_record(patient_id, "filter_tumor_tiles", "OK", 
-                                 f"Found {metadata['n_tumor_tiles']} tumor tiles", metadata)
+            qc_tracker.add_record(patient_id, "tumor_filter", "PASS", 
+                                 f"Found {metadata['n_tumor_tiles']} tumor tiles")
 
     return tumor_tiles, metadata
 

@@ -32,7 +32,7 @@ class QCTracker:
                    patient_id, 
                    stage, 
                    status, 
-                   message=None, 
+                   message, 
                    metadata=None):
         """Add a QC record per stage for OK, FLAG or EXCLUDE""" 
 
@@ -45,8 +45,6 @@ class QCTracker:
 
         VALID_QC_STAGES = {
             "tumor_fraction",
-            "tile_coordinates",
-            "tile_purity",
             "filter_tumor_tiles",
             "signature_qc"
         }

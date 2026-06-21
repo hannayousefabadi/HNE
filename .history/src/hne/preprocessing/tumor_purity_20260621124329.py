@@ -52,7 +52,11 @@ def attach_tumor_fraction(spots,
                  f"missing={metadata["n_spots_missin_tumor_fraction"]}"
                  f"mean={metadata["mean_tumor_fraction"]:.2f}"
                  f"median={metadata["median_tumor_fraction"]:.2f}"
-                 )    
+                 )
+    
+    if metadata['n_spots_missin_tumor_fraction'] > 0:
+        logger.debug(f"{metadata['n_spots_missin_tumor_fraction']} spots missing tumor fraction")
+    
 
     if qc_tracker:
 
