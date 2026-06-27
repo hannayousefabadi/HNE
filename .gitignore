@@ -17,3 +17,5 @@ tile_features/
 *.csv
 
 .ipynb_checkpoints/
+
+.history/
