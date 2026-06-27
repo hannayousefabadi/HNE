@@ -116,6 +116,7 @@ def add_tile_coordinates(scales,
     merged["y_hires"] = merged["pxl_row_in_fullres"] * tissue_hires_scalef
 
     # use the dynamically calculated pixel size for the grid
+    # hard assignment: using the floor division here to assign every single spot to exactly one tile
     merged["tile_col"] = (merged["x_hires"] // tile_size_px).astype(int)    # tile_col = index tiles (0,1,2,3,…) vertically
     merged["tile_row"] = (merged["y_hires"] // tile_size_px).astype(int)    # tile_row = index tiles (0,1,2,3,…) horizontally
     merged["tile_id"] = merged["tile_row"].astype(str) + "-" + merged["tile_col"].astype(str)

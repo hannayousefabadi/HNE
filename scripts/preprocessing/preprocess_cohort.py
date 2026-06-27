@@ -5,6 +5,7 @@ from hne.core.data_io import save_metadata, save_tile_features
 from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
 from hne.core.paths import TILE_FEATURES, PREPROCESSING_QC_REPORTS, PATIENT_IDS
+from hne.preprocessing_qc.plots import cohort_tile_variation, save_cohort_spot_qc_plots
 
 setup_logging(
     log_file= PREPROCESSING_QC_REPORTS / "cohort" / "cohort.log", 
@@ -43,7 +44,7 @@ if __name__ == "__main__":
             all_metadata.append(metadata)
             if spot_df is not None:
                 all_spot_data.append(spot_df)
-                
+
             if tiles_sig is not None:
                 all_tiles_sig.append(tiles_sig)
 
@@ -63,16 +64,24 @@ if __name__ == "__main__":
     print("\nQC verdicts:")
     print(summary["verdict"].value_counts())
 
+    # generate cohort-level QC plots
     if all_tiles_sig:
+        cohort_tile_df = pd.concat(all_tiles_sig, ignore_index=True)
+        # save to csv
         save_tile_features(all_tiles_sig)
         logger.info("Saved cohort tile signatures to tile_features directory")
+
+        # cohort proof of concept plots
+        if sig_cols:
+            rates = cohort_tile_variation(cohort_tile_df, sig_cols)
+            logger.info(f"Generated cohort tile variation plots. Positivity rates:\n{rates.to_string(index=False)}")
+
     else:
         logger.warning("No tile signatures generated for the cohort")    
 
-
-    # generate cohort-level QC plots (requires collecting sig matrices)
+    
     if sig_cols and all_spot_data:
-        qc.save_cohort_spot_qc_plots(all_spot_data, sig_cols)
+        save_cohort_spot_qc_plots(all_spot_data, sig_cols)
     else:
         logger.warning("No signature columns or spot data - skipping cohort QC plots")    
 
