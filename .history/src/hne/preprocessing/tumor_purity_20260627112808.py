@@ -91,11 +91,10 @@ def add_tile_coordinates(scales,
                          merged
                          ):
     """
-    Derive tile coordinates from spot positions based on slide's physical sizze
+    Derive tile coordinates from spot positions
     Returns:
         df
         metadata
-        tile_size_px
     """
     MIN_INITIAL_TILES = 100
 
@@ -107,24 +106,18 @@ def add_tile_coordinates(scales,
     fullres_pixel_size = spot_diameter / spot_diameter_fullres
     hires_pixel_size = spot_diameter / (spot_diameter_fullres * tissue_hires_scalef)
 
-    # dynamic calculation: how many pixels are needed to reach the target physical size
-    tile_size_px = int(target_physical_size_um / hires_pixel_size)
-    logger.debug(f"Pixel sizes - Hires: {hires_pixel_size:.2f} µm/pixel")
-    logger.info(f"Target physical size {target_physical_size_um} µm -> {tile_size_px} pixels")
+    logger.debug(f"Pixel sizes - Fullres: {fullres_pixel_size:.2f} µm/pixel, Hires: {hires_pixel_size:.2f} µm/pixel")
 
     merged["x_hires"] = merged["pxl_col_in_fullres"] * tissue_hires_scalef
     merged["y_hires"] = merged["pxl_row_in_fullres"] * tissue_hires_scalef
-
-    # use the dynamically calculated pixel size for the grid
-    merged["tile_col"] = (merged["x_hires"] // tile_size_px).astype(int)    # tile_col = index tiles (0,1,2,3,…) vertically
-    merged["tile_row"] = (merged["y_hires"] // tile_size_px).astype(int)    # tile_row = index tiles (0,1,2,3,…) horizontally
+    merged["tile_col"] = (merged["x_hires"] // tile_size).astype(int)    # tile_col = index tiles (0,1,2,3,…) vertically
+    merged["tile_row"] = (merged["y_hires"] // tile_size).astype(int)    # tile_row = index tiles (0,1,2,3,…) horizontally
     merged["tile_id"] = merged["tile_row"].astype(str) + "-" + merged["tile_col"].astype(str)
 
     metadata = {
         "n_initial_tiles": len(merged['tile_id'].unique()),
         "fullres_pixel_size": fullres_pixel_size,
-        "hires_pixel_size": hires_pixel_size,
-        "tile_size_pixels": tile_size_px
+        "hires_pixel_size": hires_pixel_size
     }
     
     logger.info(f"Created {metadata['n_initial_tiles']} initial tiles")
@@ -134,8 +127,7 @@ def add_tile_coordinates(scales,
         msg = f"Very few initial tiles created: {metadata['n_initial_tiles']}"
         logger.warning(msg)
 
-    return merged, metadata, tile_size_px
-
+    return merged, metadata
 
 
 def compute_tile_purity(

@@ -45,7 +45,7 @@ def preprocess_patient(patient_id,
     merged, meta = attach_tumor_fraction(spots, vis, patient_id, qc_tracker)
     patient_metadata.update(meta)
 
-    df, meta, tile_size_px = add_tile_coordinates(scales, target_physical_size_um, merged)
+    df, meta = add_tile_coordinates(scales, tile_size, merged)
     patient_metadata.update(meta)
     
     final_df, meta = compute_tile_purity(df, k, patient_id, qc_tracker)
@@ -60,13 +60,13 @@ def preprocess_patient(patient_id,
         return patient_metadata, None, None, None
     
     # crop and save image tiles
-    tumor_tiles, meta = crop_and_save_tiles(tumor_tiles_df, tile_size_px, img, patient_id)
+    tumor_tiles, meta = crop_and_save_tiles(tumor_tiles_df, tile_size, img, patient_id)
     patient_metadata.update(meta)
     
     # compute signatures per spot, aggregate per tile
     sig_cols, signature_genes, spots_df, meta = compute_signatures(vis, final_df)
     patient_metadata.update(meta)
-    tiles_sig_tumor, meta = aggregate_signatures(spots_df, sig_cols, tile_size_px, tumor_tiles_df)
+    tiles_sig_tumor, meta = aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df)
     patient_metadata.update(meta)
     tiles_sig_tumor = zscore_and_binary(sig_cols, tiles_sig_tumor)
     save_tile_features(tiles_sig_tumor, patient_id, mode)
