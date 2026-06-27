@@ -4,7 +4,7 @@ from hne.utils import setup_logging, get_logger
 from hne.core.data_io import save_metadata, save_tile_features
 from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
-from hne.core.paths import TILE_FEATURES, PREPROCESSING_QC_REPORTS, PATIENT_IDS
+from hne.core.paths import PREPROCESSING_QC_REPORTS, PATIENT_IDS
 from hne.preprocessing_qc.plots import cohort_tile_variation, save_cohort_spot_qc_plots
 
 setup_logging(
