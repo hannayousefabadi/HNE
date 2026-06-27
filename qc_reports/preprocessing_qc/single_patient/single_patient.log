@@ -1,30 +1,30 @@
-2026-06-21 18:55:38 - __main__ - INFO - ========================================
-2026-06-21 18:55:38 - __main__ - INFO - Starting single patient preprocessing
-2026-06-21 18:55:38 - __main__ - INFO - ========================================
-2026-06-21 18:55:38 - hne.preprocessing.pipeline - INFO - Starting preprocessing patient: CH_L_282
-2026-06-21 18:55:38 - h5py._conv - DEBUG - Creating converter from 3 to 5
-2026-06-21 18:55:39 - hne.preprocessing.tumor_purity - INFO - Attached tumor fraction to 4114 tissue spots
-2026-06-21 18:55:39 - hne.preprocessing.tumor_purity - DEBUG - Tumor fraction stats | missing=0mean=0.37median=0.30
-2026-06-21 18:55:39 - hne.preprocessing.tumor_purity - DEBUG - Pixel sizes - Fullres: 0.37 µm/pixel, Hires: 9.00 µm/pixel
-2026-06-21 18:55:39 - hne.preprocessing.tumor_purity - INFO - Created 42 initial tiles
-2026-06-21 18:55:39 - hne.preprocessing.tumor_purity - WARNING - Very few initial tiles created: 42
-2026-06-21 18:55:39 - hne.preprocessing.tumor_purity - INFO - Bayesian tile purtiy computed (k=2): mean=0.348
-2026-06-21 18:55:39 - hne.preprocessing.tumor_purity - INFO - Filtered from 42 to 19 tumor tiles
-2026-06-21 18:55:39 - hne.preprocessing.tumor_purity - WARNING - Only 19 tumor tiles - insufficient for MIL training
-2026-06-21 18:55:39 - hne.preprocessing.tiling - INFO - Saved 19 tumor tiles for patient CH_L_282
-2026-06-21 18:55:39 - hne.preprocessing.spot_signatures - DEBUG - Genes retained per signature:
-2026-06-21 18:55:39 - hne.preprocessing.spot_signatures - DEBUG - FMRP_signature: 50/50 genes
-2026-06-21 18:55:39 - hne.preprocessing.spot_signatures - DEBUG - Cell_cycle_signature: 19/20 genes
-2026-06-21 18:55:39 - hne.preprocessing.spot_signatures - DEBUG - YAP_signature: 6/6 genes
-2026-06-21 18:55:39 - hne.preprocessing.spot_signatures - DEBUG - WNT_signature: 16/17 genes
-2026-06-21 18:55:39 - hne.preprocessing.spot_signatures - DEBUG - EMT_signature: 6/6 genes
-2026-06-21 18:55:40 - hne.preprocessing.aggregation - INFO - Aggregated 19 tumor tiles with avg 119.0 spots per tile
-2026-06-21 18:55:40 - hne.preprocessing.aggregation - DEBUG - 45.24% of tiles are tumor tiles
-2026-06-21 18:55:40 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - FMRP_signature_score:[-1.86, 1.65]
-2026-06-21 18:55:40 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - Cell_cycle_signature_score:[-1.76, 1.59]
-2026-06-21 18:55:40 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - YAP_signature_score:[-1.74, 2.87]
-2026-06-21 18:55:40 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - WNT_signature_score:[-1.67, 2.54]
-2026-06-21 18:55:40 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - EMT_signature_score:[-1.54, 2.04]
-2026-06-21 18:55:44 - hne.preprocessing.pipeline - INFO - Completed preprocessing for CH_L_282.
-2026-06-21 18:55:44 - __main__ - INFO - ========================================
-2026-06-21 18:55:44 - __main__ - INFO - Preprocessing completed | QC verdict=REVIEW
+2026-06-27 09:52:44 - __main__ - INFO - ========================================
+2026-06-27 09:52:44 - __main__ - INFO - Starting single patient preprocessing
+2026-06-27 09:52:44 - __main__ - INFO - ========================================
+2026-06-27 09:52:44 - hne.preprocessing.pipeline - INFO - Starting preprocessing patient: CH_L_282
+2026-06-27 09:52:44 - h5py._conv - DEBUG - Creating converter from 3 to 5
+2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - INFO - Attached tumor fraction to 4114 tissue spots
+2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - DEBUG - Tumor fraction stats | missing=0mean=0.37median=0.30
+2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - DEBUG - Pixel sizes - Fullres: 0.37 µm/pixel, Hires: 9.00 µm/pixel
+2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - INFO - Created 42 initial tiles
+2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - WARNING - Very few initial tiles created: 42
+2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - INFO - Bayesian tile purtiy computed (k=2): mean=0.348
+2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - INFO - Filtered from 42 to 19 tumor tiles
+2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - WARNING - Only 19 tumor tiles - insufficient for MIL training
+2026-06-27 09:52:48 - hne.preprocessing.tiling - INFO - Saved 19 tumor tiles for patient CH_L_282
+2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - Genes retained per signature:
+2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - FMRP_signature: 50/50 genes
+2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - Cell_cycle_signature: 19/20 genes
+2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - YAP_signature: 6/6 genes
+2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - WNT_signature: 16/17 genes
+2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - EMT_signature: 6/6 genes
+2026-06-27 09:52:49 - hne.preprocessing.aggregation - INFO - Aggregated 19 tumor tiles with avg 119.0 spots per tile
+2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - 45.24% of tiles are tumor tiles
+2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - FMRP_signature_score:[-1.86, 1.65]
+2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - Cell_cycle_signature_score:[-1.76, 1.59]
+2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - YAP_signature_score:[-1.74, 2.87]
+2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - WNT_signature_score:[-1.67, 2.54]
+2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - EMT_signature_score:[-1.54, 2.04]
+2026-06-27 09:52:54 - hne.preprocessing.pipeline - INFO - Completed preprocessing for CH_L_282.
+2026-06-27 09:52:54 - __main__ - INFO - ========================================
+2026-06-27 09:52:54 - __main__ - INFO - Preprocessing completed | QC verdict=REVIEW

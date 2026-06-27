@@ -1,7 +1,7 @@
 import pandas as pd
 
 from hne.utils import setup_logging, get_logger
-from hne.core.data_io import save_metadata, save_tile_features
+from hne.core.data_io import save_metadata
 from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
 from hne.core.paths import TILE_FEATURES, PREPROCESSING_QC_REPORTS, PATIENT_IDS
@@ -43,7 +43,7 @@ if __name__ == "__main__":
             all_metadata.append(metadata)
             all_spot_data.append(spot_df)
             if tiles_sig is not None:
-                all_tiles_sig.append(tiles_sig)
+                all_tiles_sig.append(tiles_sig)  # to do: add all_tiles_sig return for later analysis
 
             # collect signature columns from first successful patient    
             if sig_cols is None and sig_cols_patient:
@@ -60,13 +60,6 @@ if __name__ == "__main__":
     save_metadata(all_metadata, qc.output_dir / "metadata.csv")
     print("\nQC verdicts:")
     print(summary["verdict"].value_counts())
-
-    if all_tiles_sig:
-        save_tile_features(all_tiles_sig)
-        logger.info("Saved cohort tile signatures to tile_features directory")
-    else:
-        logger.warning("No tile signatures generated for the cohort")    
-
 
     # generate cohort-level QC plots (requires collecting sig matrices)
     if sig_cols and all_spot_data:

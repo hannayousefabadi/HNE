@@ -24,7 +24,7 @@ def load_he_image(paths: PatienPaths):
     return Image.open(paths.visium_info / "tissue_hires_image.png")
 
 
-def save_tile_features(tiles_sig_tumor, patient_id=None, mode='cohort'):
+def save_tile_features(tiles_sig_tumor, patient_id, mode='cohort'):
     """
     Save tile‑level signature matrix
     Handle both single_patient DataFrame and a list of DataFrames (cohort) 
@@ -32,16 +32,14 @@ def save_tile_features(tiles_sig_tumor, patient_id=None, mode='cohort'):
     output_dir = Path(TILE_FEATURES)
     output_dir.mkdir(parents=True, exist_ok=True)
     tiles_sig_tumor = tiles_sig_tumor.copy()
+    tiles_sig_tumor.insert(0, "patient_id", patient_id) # add patinet_id as the first col
 
     # handle list of DataFrames 
     if isinstance(tiles_sig_tumor, list):
         df = pd.concat(tiles_sig_tumor, ignore_index=True)
         file_name = f"tiles_signature_matrix_{mode}.csv"
     # handle single patient
-    else:
-        if "patinet_id" not in tiles_sig_tumor.columns:
-            tiles_sig_tumor.insert(0, "patient_id", patient_id) # add patinet_id as the first col
-
+    else: 
         df = tiles_sig_tumor
         file_name = f"tiles_signature_marix_{patient_id}.csv"
 

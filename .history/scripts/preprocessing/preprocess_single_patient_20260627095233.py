@@ -19,9 +19,10 @@ if __name__ == "__main__":
     logger.info("=" * 40)
 
     qc = QCTracker(mode='single_patient')
-    
+    patient_id = 'CH_L_282'
+
     metadata, tiles_sig, _, __ = preprocess_patient(
-        "CH_L_282", 
+        patient_id, 
         mode='single_patient',
         tile_size=100,        # in pixels, ≈ 1 mm in hires image
         k=2, 
@@ -41,3 +42,6 @@ if __name__ == "__main__":
     logger.info("=" * 40)
     verdict = qc.get_patient_verdict("CH_L_282")
     logger.info(f"Preprocessing completed | QC verdict={verdict}")
+    
+
+
