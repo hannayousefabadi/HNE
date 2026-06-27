@@ -64,7 +64,7 @@ def preprocess_patient(patient_id,
     patient_metadata.update(meta)
     
     # compute signatures per spot, aggregate per tile
-    sig_cols, signature_genes, spots_df, meta = compute_signatures(vis, final_df)
+    sig_cols, signature_genes, spots_df, meta = compute_signatures(vis, final_df, patient_id, qc_tracker)
     patient_metadata.update(meta)
     tiles_sig_tumor, meta = aggregate_signatures(spots_df, sig_cols, tile_size_px, tumor_tiles_df)
     patient_metadata.update(meta)

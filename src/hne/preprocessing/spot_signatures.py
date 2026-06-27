@@ -3,7 +3,7 @@ import scanpy as sc
 
 logger = get_logger()
 
-def compute_signatures(vis, final_df):
+def compute_signatures(vis, final_df, patient_id=None, qc_tracker=None):
     """
     Compute pathway signatures per spot
     """
@@ -32,10 +32,8 @@ def compute_signatures(vis, final_df):
         for key, genes in signatures.items()
     }
 
-    # log genes kept per signature
-    logger.debug("Genes retained per signature:")
-    for k, v in signature_genes.items():
-        logger.debug(f"{k}: {len(v)}/{len(signatures[k])} genes")
+    vis.X = vis.layers["log_norm_count"].copy()
+    missing_signatures = []
 
     # compute signature scores
     for sig, genes_present in signature_genes.items():
@@ -46,8 +44,7 @@ def compute_signatures(vis, final_df):
         sc.tl.score_genes(
             vis,
             gene_list=genes_present,
-            score_name=f"{sig}_score",
-            layer="log_norm_count"
+            score_name=f"{sig}_score"
         )
 
     sig_cols = [
@@ -55,7 +52,6 @@ def compute_signatures(vis, final_df):
         if len(genes) > 0
     ]
     
-
     # extract signatures to df
     obs_sig = vis.obs[sig_cols].copy()
     obs_sig = obs_sig.rename_axis("barcode").reset_index()
@@ -65,8 +61,22 @@ def compute_signatures(vis, final_df):
     # metadata
     metadata = {
         "genes_per_signature": sorted([f'{sig}: {len(v)}/{len(signatures[sig])} genes' 
-                                        for sig, v in signature_genes.items()])
+                                        for sig, v in signature_genes.items()]),
+        "n_missing_signatures": len(missing_signatures)                                        
     }
+
+    if qc_tracker and patient_id:
+        if len(missing_signatures) == len(signatures):
+            qc_tracker.add_record(patient_id, "signature_qc", "EXCLUDE",
+                                  "Failed to compute ANY signatures", metadata)
+        elif len(missing_signatures) > 12:
+            failed_sigs = ", ".join(missing_signatures)
+            qc_tracker.add_record(patient_id, "signature_qc", "FLAG",
+                                  f"Missing genes for signatures: {failed_sigs}", metadata)
+            
+        else:
+             qc_tracker.add_record(patient_id, "signature_qc", "OK",
+                                   "All 5 pathway signatures computed successfully", metadata)   
     
     return sig_cols, signature_genes, spots_df, metadata
 
