@@ -1,3 +1,5 @@
+"""Preprocess single patient"""
+
 from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
 from hne.utils import setup_logging, get_logger
@@ -21,15 +23,16 @@ if __name__ == "__main__":
     qc = QCTracker(mode='single_patient')
     
     metadata, tiles_sig, _, __ = preprocess_patient(
-        "CH_L_282", 
+        "CH_L_282a", 
         mode='single_patient',
-        tile_size=100,        # in pixels, ≈ 1 mm in hires image
+        target_physical_size_um=1000,     # <-- 1000 µm = 1 mm
         k=2, 
         tumor_threshold=0.3,  # tile at least has 30% tumor purity
         min_spots=40,         # tile at least has 40 spots
         qc_tracker=qc,
         verbose=True,         # console output level (True=INFO, False=WARNING)
-        run_qc_plots=True
+        run_qc_plots=True,
+        use_s3_discovery=False
     )
 
     save_metadata(metadata, qc.output_dir / "metadata.csv")
