@@ -1,27 +1,59 @@
+"""data_io"""
+
 import scanpy as sc
 import pandas as pd
 from PIL import Image
 import json
 from pathlib import Path
 
-from hne.core.paths import PatienPaths, TILE_FEATURES
+from hne.core.paths import (PatientS3Paths, PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, 
+                            RAW_DATA_BUCKET, RAW_DATA_PREFIX, TILES, TILE_FEATURES)
+from hne.core.s3_io import S3DataLoader
 
-def load_visium(paths: PatienPaths):
-    h5ad_file = f"{paths.patient_id}a_vis_c2l_annots.h5ad"
-    return sc.read_h5ad(paths.visium_st / h5ad_file)
+_s3_loader = None
 
+def get_s3_loader():
+    global _s3_loader
+    if _s3_loader is None:
+        _s3_loader = S3DataLoader()
+    return _s3_loader        
 
-def load_spots(paths: PatienPaths):
-    return pd.read_csv(paths.visium_info / "tissue_positions.csv")
+def load_visium(patient_paths: PatientS3Paths):
+    loader = get_s3_loader()
+    h5ad_path = f"{patient_paths.visium_st}/{patient_paths.patient_id}_vis_c2l_annots.h5ad"
+    return loader.read_h5ad(h5ad_path)
 
+def load_spots(patient_paths: PatientS3Paths):
+    loader = get_s3_loader()
+    positions_path = f"{patient_paths.visium_info}/tissue_positions.csv"
+    return loader.read_csv(positions_path)
 
-def load_scale_factor(paths: PatienPaths):    
-    with open(paths.visium_info / "scalefactors_json.json") as f:
-        return json.load(f)
+def load_scale_factor(patient_paths: PatientS3Paths):
+    loader = get_s3_loader()
+    scale_path = f"{patient_paths.visium_info}/scalefactors_json.json"
+    return loader.read_json(scale_path)
+
+def load_he_image(patient_paths: PatientS3Paths, qc_tracker=None):
+    loader = get_s3_loader()
     
 
-def load_he_image(paths: PatienPaths):     
-    return Image.open(paths.visium_info / "tissue_hires_image.png")
+    clean_id = patient_paths.patient_id.replace('_vis', '')
+    tif_key = loader.find_tif_for_patient(
+        bucket=RAW_DATA_BUCKET,
+        prefix=RAW_DATA_PREFIX,
+        patient_id=clean_id
+    )
+
+    if tif_key:
+        tif_path = f"{RAW_DATA_BUCKET}/{tif_key}"
+        return loader.read_tif(tif_path)
+
+    elif qc_tracker:
+            qc_tracker.add_record(patient_paths.patient_id,
+                                  "fullresimg_load",
+                                  "EXCLUDE",
+                                  f"No full resolution image found found for {patient_paths.patient_id}",
+                                  metadata={})    
 
 
 def save_tile_features(tiles_sig_tumor, patient_id=None, mode='cohort'):
@@ -81,3 +113,7 @@ def save_metadata(metadata, output_path):
     metadata_df.to_csv(output_path, index=False)
     
     return metadata_df
+
+
+
+
