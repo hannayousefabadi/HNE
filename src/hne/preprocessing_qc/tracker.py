@@ -48,6 +48,7 @@ class QCTracker:
         }
 
         VALID_QC_STAGES = {
+            "fullresimg_load",
             "tumor_fraction",
             "tile_purity",
             "filter_tumor_tiles",
