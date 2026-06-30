@@ -1,11 +1,16 @@
+"""Preprocess cohort"""
+
 import pandas as pd
+from tqdm import tqdm
 
 from hne.utils import setup_logging, get_logger
 from hne.core.data_io import save_metadata, save_tile_features
 from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
-from hne.core.paths import PREPROCESSING_QC_REPORTS, PATIENT_IDS
+from hne.core.paths import PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, PREPROCESSING_QC_REPORTS, PATIENT_IDS
 from hne.preprocessing_qc.plots import cohort_tile_variation, save_cohort_spot_qc_plots
+
+from hne.core.s3_io import S3DataLoader
 
 setup_logging(
     log_file= PREPROCESSING_QC_REPORTS / "cohort" / "cohort.log", 
@@ -22,26 +27,48 @@ if __name__ == "__main__":
     logger.info("Starting cohort preprocessing")
     logger.info("=" * 40)
     
+    loader = S3DataLoader()
+
+    patient_ids = loader.list_patients_from_processed(
+        bucket=PROCESSED_VISIUM_BUCKET,
+        prefix=PROCESSED_VISIUM_PREFIX
+    )
+    
+    logger.info(f"Found {len(patient_ids)} patients in processed data")
+
+    if not patient_ids:
+        logger.error("No patients found! check S3 paths and permissions.")
+        exit(1)
+
+    logger.info(f"First 10 patients: {patient_ids[:10]}")
+    logger.info("-" * 40)    
+
+
     qc = QCTracker(mode='cohort')
     all_metadata = []
     all_tiles_sig = []
     all_spot_data = []
     sig_cols = None
+    failed_patients = []
 
-    for patient_id in PATIENT_IDS:
+    for patient_id in tqdm(patient_ids, desc="Preprocessing patients"):
         try: 
+            logger.info(f"Preprocessing patient: {patient_id}")
             metadata, tiles_sig, spot_df, sig_cols_patient = preprocess_patient(
                 patient_id,
                 mode='cohort',
-                tile_size=100,        # in pixels, ≈ 1 mm in hires image
+                target_physical_size_um=1000,       # <-- 1000 µm = 1 mm
                 k=2, 
                 tumor_threshold=0.3,  # tile at least has 30% tumor purity
                 min_spots=40,         # tile at least has 40 spots
                 qc_tracker=qc,
                 verbose=False,        # console quiet
-                run_qc_plots=False
+                run_qc_plots=False,
+                use_s3_discovery=True # finding the entire cohort dynamically   
             )
+
             all_metadata.append(metadata)
+
             if spot_df is not None:
                 all_spot_data.append(spot_df)
 
@@ -56,13 +83,16 @@ if __name__ == "__main__":
             logger.exception(
                 f"Failed preprocessing patient {patient_id}"
             )
+            failed_patients.append(patient_id)
             continue         
 
     qc.save_qc_records()
     summary = qc.save_summary()
-    save_metadata(all_metadata, qc.output_dir / "metadata.csv")
     print("\nQC verdicts:")
     print(summary["verdict"].value_counts())
+
+    if all_metadata:
+        save_metadata(all_metadata, PREPROCESSING_QC_REPORTS / "cohort" / "metadata.csv")
 
     # generate cohort-level QC plots
     if all_tiles_sig:
@@ -86,6 +116,11 @@ if __name__ == "__main__":
         logger.warning("No signature columns or spot data - skipping cohort QC plots")    
 
     logger.info("=" * 40)
-    logger.info(f"Processed {len(all_metadata)} patients")
+    logger.info(f"Total patients discovered: {len(patient_ids)}")
+    logger.info(f"Successfully processed: {len(all_metadata)}")
+    logger.info(f"Failed patients: {len(failed_patients)}")
+    if failed_patients:
+        logger.warning(f"Failed patients: {failed_patients}")
+        
     logger.info("Cohort preprocessing completed")
 
