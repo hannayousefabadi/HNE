@@ -1,4 +1,6 @@
+"""Paths.py"""
 from pathlib import Path
+import os
 
 # project root
 def _find_repo_root(start: Path) -> Path:
@@ -10,22 +12,43 @@ def _find_repo_root(start: Path) -> Path:
 
 ROOT = _find_repo_root(Path(__file__))
 
-# patients ids
+
+# s3 configuration
+PROCESSED_VISIUM_BUCKET = "***REMOVED***"
+PROCESSED_VISIUM_PREFIX = "***REMOVED***"
+
+RAW_DATA_BUCKET = "***REMOVED***"
+RAW_DATA_PREFIX = "***REMOVED***"
+
+# s3 paths
+class PatientS3Paths:
+    """
+    S3 paths for patient data
+    Handles both processed data (folders) and raw images (files).
+    """
+
+    def __init__(self, patient_id: str):
+        self.patient_id = patient_id
+
+        # clean patient_id:
+        self.clean_id = patient_id.replace('_vis', '')
+
+        self.processed_base = f"s3://{PROCESSED_VISIUM_BUCKET}/{PROCESSED_VISIUM_PREFIX}"
+        self.visium_st = f"{self.processed_base}/v2/without_spotclean/stLearn/{patient_id}_vis"
+        self.visium_info = f"{self.processed_base}/v2/spaceranger_count/{patient_id}_vis/outs/spatial"
+
+        self.raw_base = f"s3://{RAW_DATA_BUCKET}/{RAW_DATA_PREFIX}"
+        self.raw_iamge_prefix = f"{self.raw_base}/spatial_transcriptomics/Visium/image_files"
+        
+
+# patients ids -> for testing single patient mode only
+# the cohort script will discover patients dynamically from S3  
 PATIENT_IDS = [
-    "CH_L_282",
+    "CH_L_282a",
     # others
 ]
 
-# patient-context object
-class PatienPaths:
-    def __init__(self, patient_id):
-        self.patient_id = patient_id
-        self.base = ROOT / "data" / patient_id
-        self.visium_st = self.base / "without_spotclean" / "stLearn"
-        self.visium_info = self.base / "spaceranger_count" / "spatial" 
-
-
-PATIENTS = {p: PatienPaths(p) for p in PATIENT_IDS}
+PATIENTS = {p: PatientS3Paths(p) for p in PATIENT_IDS}
 
 
 TILES = ROOT / "tiles"
@@ -33,3 +56,7 @@ TILE_FEATURES = ROOT / "tile_features"
 QC_REPORTS = ROOT / "qc_reports"
 PREPROCESSING_QC_REPORTS = ROOT / "qc_reports" / "preprocessing_qc"
 RESULTS = ROOT / "results"
+
+
+for path in [TILES, TILE_FEATURES, QC_REPORTS, PREPROCESSING_QC_REPORTS]:
+    path.mkdir(parents=True, exist_ok=True)
