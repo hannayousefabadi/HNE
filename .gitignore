@@ -24,3 +24,6 @@ tile_features/
 *.egg-info/
 dist/
 build/
+
+# ignore env files
+.env
