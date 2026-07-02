@@ -1,6 +1,9 @@
 """Paths.py"""
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # project root
 def _find_repo_root(start: Path) -> Path:
@@ -14,11 +17,11 @@ ROOT = _find_repo_root(Path(__file__))
 
 
 # s3 configuration
-PROCESSED_VISIUM_BUCKET = "***REMOVED***"
-PROCESSED_VISIUM_PREFIX = "***REMOVED***"
+PROCESSED_VISIUM_BUCKET = os.getenv("PROCESSED_VISIUM_BUCKET")
+PROCESSED_VISIUM_PREFIX = os.getenv("PROCESSED_VISIUM_PREFIX")
 
-RAW_DATA_BUCKET = "***REMOVED***"
-RAW_DATA_PREFIX = "***REMOVED***"
+RAW_DATA_BUCKET = os.getenv("RAW_DATA_BUCKET")
+RAW_DATA_PREFIX = os.getenv("RAW_DATA_PREFIX")
 
 # s3 paths
 class PatientS3Paths:
