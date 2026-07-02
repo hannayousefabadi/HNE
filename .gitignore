@@ -27,3 +27,4 @@ build/
 
 # ignore env files
 .env
+remove-patterns.txt
