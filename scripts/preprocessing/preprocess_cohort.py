@@ -7,7 +7,7 @@ from hne.utils import setup_logging, get_logger
 from hne.core.data_io import save_metadata, save_tile_features
 from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
-from hne.core.paths import PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, PREPROCESSING_QC_REPORTS, PATIENT_IDS
+from hne.core.paths import PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, PREPROCESSING_QC_REPORTS
 from hne.preprocessing_qc.plots import cohort_tile_variation, save_cohort_spot_qc_plots
 
 from hne.core.s3_io import S3DataLoader
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     if all_tiles_sig:
         cohort_tile_df = pd.concat(all_tiles_sig, ignore_index=True)
         # save to csv
-        save_tile_features(all_tiles_sig)
+        save_tile_features(all_tiles_sig, mode='cohort')
         logger.info("Saved cohort tile signatures to tile_features directory")
 
         # cohort proof of concept plots

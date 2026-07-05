@@ -42,5 +42,5 @@ if __name__ == "__main__":
     print(f"\nQC Summary:\n{summary}")
     
     logger.info("=" * 40)
-    verdict = qc.get_patient_verdict("CH_L_282")
+    verdict = qc.get_patient_verdict("CH_L_282a")
     logger.info(f"Preprocessing completed | QC verdict={verdict}")
