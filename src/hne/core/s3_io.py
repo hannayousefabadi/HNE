@@ -1,7 +1,6 @@
 """
-s3 i/o utility - read only from S3, save results to repo
+s3_io.py - read only from S3, save results to repo
 """
-
 
 import boto3
 import io
@@ -13,7 +12,6 @@ import tifffile
 from typing import Tuple, List, Optional
 import tempfile
 from io import BytesIO
-
 
 from hne.utils import get_logger
 
@@ -30,7 +28,8 @@ class S3DataLoader:
         """Parse s3://bucker/prefix into bucket, prefix""" 
         if s3_path.startswith("s3://"):
             s3_path = s3_path[5:]
-        bucket, prefix = s3_path.split("/", 1)
+        if '/' in s3_path:
+            bucket, prefix = s3_path.split("/", 1)
         return bucket, prefix
 
     def _read_bytes(self, s3_path: str) -> bytes:
@@ -118,9 +117,9 @@ class S3DataLoader:
                         
                         for part in parts:
                             if part.startswith(pattern):
-                                # Clean up patient ID
+                                # clean up patient ID
                                 patient_id = part
-                                # Remove any trailing stuff
+                                # remove any trailing stuff
                                 if patient_id.endswith('.tif'):
                                     patient_id = patient_id[:-4]
                                 patients.add(patient_id)
@@ -133,7 +132,7 @@ class S3DataLoader:
         Find TIF file for a patient.
         The patient_id can be with or without _vis suffix.
         """
-        # Clean patient ID (remove _vis if present)
+        # clean patient ID (remove _vis if present)
         clean_id = patient_id.replace('_vis', '')
         
         paginator = self.s3_client.get_paginator('list_objects_v2')
@@ -146,8 +145,8 @@ class S3DataLoader:
                     key = obj['Key']
                     filename = key.split('/')[-1]
                     
-                    # Check if this TIF belongs to this patient
-                    # Look for the patient ID in the filename
+                    # check if this TIF belongs to this patient
+                    # look for the patient ID in the filename
                     if clean_id in filename and key.endswith('.tif'):
                         logger.info(f"Found TIF for {patient_id}: {filename}")
                         return key

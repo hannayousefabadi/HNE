@@ -1,13 +1,9 @@
 """data_io"""
 
-import scanpy as sc
 import pandas as pd
-from PIL import Image
-import json
 from pathlib import Path
 
-from hne.core.paths import (PatientS3Paths, PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, 
-                            RAW_DATA_BUCKET, RAW_DATA_PREFIX, TILES, TILE_FEATURES)
+from hne.core.paths import (PatientS3Paths, RAW_DATA_BUCKET, RAW_DATA_PREFIX, TILE_FEATURES)
 from hne.core.s3_io import S3DataLoader
 
 _s3_loader = None
@@ -35,7 +31,6 @@ def load_scale_factor(patient_paths: PatientS3Paths):
 
 def load_he_image(patient_paths: PatientS3Paths, qc_tracker=None):
     loader = get_s3_loader()
-    
 
     clean_id = patient_paths.patient_id.replace('_vis', '')
     tif_key = loader.find_tif_for_patient(
@@ -45,7 +40,7 @@ def load_he_image(patient_paths: PatientS3Paths, qc_tracker=None):
     )
 
     if tif_key:
-        tif_path = f"{RAW_DATA_BUCKET}/{tif_key}"
+        tif_path = f"s3://{RAW_DATA_BUCKET}/{tif_key}"
         return loader.read_tif(tif_path)
 
     elif qc_tracker:
@@ -71,11 +66,11 @@ def save_tile_features(tiles_sig_tumor, patient_id=None, mode='cohort'):
         file_name = f"tiles_signature_matrix_{mode}.csv"
     # handle single patient
     else:
-        if "patinet_id" not in tiles_sig_tumor.columns:
+        if "patient_id" not in tiles_sig_tumor.columns:
             tiles_sig_tumor.insert(0, "patient_id", patient_id) # add patinet_id as the first col
 
         df = tiles_sig_tumor
-        file_name = f"tiles_signature_marix_{patient_id}.csv"
+        file_name = f"tiles_signature_matrix_{patient_id}.csv"
 
     output_path = output_dir / file_name
     df.to_csv(output_path, index=False)
