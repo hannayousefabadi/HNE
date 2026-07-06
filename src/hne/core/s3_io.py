@@ -39,11 +39,20 @@ class S3DataLoader:
         return response["Body"].read()
 
     def read_h5ad(self, s3_path: str) -> sc.AnnData:
-        """Read AnnData directly from S3."""
+        """Read AnnData directly from S3 without loading the whole file into RAM."""
+        logger.debug(f"Reading AnnData from: {s3_path}")
+
         bucket, prefix = self._parse_s3_path(s3_path)
-    
+
+        response = self.s3_client.get_object(Bucket=bucket, Key=prefix)
+
         with tempfile.NamedTemporaryFile(suffix=".h5ad", delete=True) as tmp:
-            self.s3_client.download_fileobj(bucket, prefix, tmp)
+            while True:
+                chunk = response["Body"].read(8 * 1024 * 1024)  # 8 MB
+                if not chunk:
+                    break
+                tmp.write(chunk)
+
             tmp.flush()
             return sc.read_h5ad(tmp.name)
         
