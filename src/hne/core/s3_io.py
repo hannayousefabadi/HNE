@@ -133,6 +133,7 @@ class S3DataLoader:
                                 break
         
         return sorted(list(patients))
+    
 
     def find_tif_for_patient(self, bucket: str, prefix: str, patient_id: str) -> Optional[str]:
         """
@@ -141,12 +142,14 @@ class S3DataLoader:
         """
         # clean patient ID (remove _vis if present)
         clean_id = patient_id.replace('_vis', '')
+        base_prefix = prefix.rstrip('/')
+        full_prefix = f"{base_prefix}/spatial_transcriptomics/Visium/image_files/"
         
         paginator = self.s3_client.get_paginator('list_objects_v2')
         prefix = f"{prefix}/image_files/" if not prefix.endswith('image_files') else prefix
         
         # Search for TIF files
-        for page in paginator.paginate(Bucket=bucket, Prefix=prefix):
+        for page in paginator.paginate(Bucket=bucket, Prefix=full_prefix):
             if 'Contents' in page:
                 for obj in page['Contents']:
                     key = obj['Key']
@@ -159,6 +162,6 @@ class S3DataLoader:
                         return key
         
         logger.warning(f"No TIF found for patient {patient_id}")
-        return None            
+        return None         
     
     
