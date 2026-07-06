@@ -1,30 +1,106 @@
-2026-06-27 09:52:44 - __main__ - INFO - ========================================
-2026-06-27 09:52:44 - __main__ - INFO - Starting single patient preprocessing
-2026-06-27 09:52:44 - __main__ - INFO - ========================================
-2026-06-27 09:52:44 - hne.preprocessing.pipeline - INFO - Starting preprocessing patient: CH_L_282
-2026-06-27 09:52:44 - h5py._conv - DEBUG - Creating converter from 3 to 5
-2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - INFO - Attached tumor fraction to 4114 tissue spots
-2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - DEBUG - Tumor fraction stats | missing=0mean=0.37median=0.30
-2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - DEBUG - Pixel sizes - Fullres: 0.37 µm/pixel, Hires: 9.00 µm/pixel
-2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - INFO - Created 42 initial tiles
-2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - WARNING - Very few initial tiles created: 42
-2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - INFO - Bayesian tile purtiy computed (k=2): mean=0.348
-2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - INFO - Filtered from 42 to 19 tumor tiles
-2026-06-27 09:52:48 - hne.preprocessing.tumor_purity - WARNING - Only 19 tumor tiles - insufficient for MIL training
-2026-06-27 09:52:48 - hne.preprocessing.tiling - INFO - Saved 19 tumor tiles for patient CH_L_282
-2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - Genes retained per signature:
-2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - FMRP_signature: 50/50 genes
-2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - Cell_cycle_signature: 19/20 genes
-2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - YAP_signature: 6/6 genes
-2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - WNT_signature: 16/17 genes
-2026-06-27 09:52:48 - hne.preprocessing.spot_signatures - DEBUG - EMT_signature: 6/6 genes
-2026-06-27 09:52:49 - hne.preprocessing.aggregation - INFO - Aggregated 19 tumor tiles with avg 119.0 spots per tile
-2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - 45.24% of tiles are tumor tiles
-2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - FMRP_signature_score:[-1.86, 1.65]
-2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - Cell_cycle_signature_score:[-1.76, 1.59]
-2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - YAP_signature_score:[-1.74, 2.87]
-2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - WNT_signature_score:[-1.67, 2.54]
-2026-06-27 09:52:49 - hne.preprocessing.aggregation - DEBUG - Z-score ranges - EMT_signature_score:[-1.54, 2.04]
-2026-06-27 09:52:54 - hne.preprocessing.pipeline - INFO - Completed preprocessing for CH_L_282.
-2026-06-27 09:52:54 - __main__ - INFO - ========================================
-2026-06-27 09:52:54 - __main__ - INFO - Preprocessing completed | QC verdict=REVIEW
+2026-07-06 14:24:45 - __main__ - INFO - ========================================
+2026-07-06 14:24:45 - __main__ - INFO - Starting single patient preprocessing
+2026-07-06 14:24:45 - __main__ - INFO - ========================================
+2026-07-06 14:24:45 - hne.preprocessing.pipeline - INFO - Starting preprocessing patient: CH_L_282a
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from creating-client-class.iot-data to creating-client-class.iot-data-plane
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from before-call.apigateway to before-call.api-gateway
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from request-created.machinelearning.Predict to request-created.machine-learning.Predict
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from before-parameter-build.autoscaling.CreateLaunchConfiguration to before-parameter-build.auto-scaling.CreateLaunchConfiguration
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from before-parameter-build.route53 to before-parameter-build.route-53
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from request-created.cloudsearchdomain.Search to request-created.cloudsearch-domain.Search
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from docs.*.autoscaling.CreateLaunchConfiguration.complete-section to docs.*.auto-scaling.CreateLaunchConfiguration.complete-section
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from before-parameter-build.logs.CreateExportTask to before-parameter-build.cloudwatch-logs.CreateExportTask
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from docs.*.logs.CreateExportTask.complete-section to docs.*.cloudwatch-logs.CreateExportTask.complete-section
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from before-parameter-build.cloudsearchdomain.Search to before-parameter-build.cloudsearch-domain.Search
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Changing event name from docs.*.cloudsearchdomain.Search.complete-section to docs.*.cloudsearch-domain.Search.complete-section
+2026-07-06 14:24:45 - botocore.utils - DEBUG - IMDS ENDPOINT: http://169.254.169.254/
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: env
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: assume-role
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: assume-role-with-web-identity
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: sso
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: shared-credentials-file
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: login
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: custom-process
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: config-file
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: ec2-credentials-file
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: boto-config
+2026-07-06 14:24:45 - botocore.credentials - DEBUG - Looking for credentials via: container-role
+2026-07-06 14:24:45 - botocore.loaders - DEBUG - Loading JSON file: /opt/conda/lib/python3.12/site-packages/botocore/data/endpoints.json
+2026-07-06 14:24:45 - botocore.loaders - DEBUG - Loading JSON file: /opt/conda/lib/python3.12/site-packages/botocore/data/sdk-default-configuration.json
+2026-07-06 14:24:45 - botocore.hooks - DEBUG - Event choose-service-name: calling handler <function handle_service_name_alias at 0x7f58f101fec0>
+2026-07-06 14:24:46 - botocore.loaders - DEBUG - Loading JSON file: /opt/conda/lib/python3.12/site-packages/botocore/data/s3/2006-03-01/service-2.json
+2026-07-06 14:24:46 - botocore.loaders - DEBUG - Loading JSON file: /opt/conda/lib/python3.12/site-packages/botocore/data/s3/2006-03-01/service-2.sdk-extras.json
+2026-07-06 14:24:46 - botocore.loaders - DEBUG - Loading JSON file: /opt/conda/lib/python3.12/site-packages/botocore/data/s3/2006-03-01/endpoint-rule-set-1.json
+2026-07-06 14:24:46 - botocore.loaders - DEBUG - Loading JSON file: /opt/conda/lib/python3.12/site-packages/botocore/data/partitions.json
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event creating-client-class.s3: calling handler <function add_generate_presigned_post at 0x7f58f119e160>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event creating-client-class.s3: calling handler <function lazy_call.<locals>._handler at 0x7f58e0d73920>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event creating-client-class.s3: calling handler <function add_generate_presigned_url at 0x7f58f119dee0>
+2026-07-06 14:24:46 - botocore.configprovider - DEBUG - Looking for endpoint for s3 via: environment_service
+2026-07-06 14:24:46 - botocore.configprovider - DEBUG - Looking for endpoint for s3 via: environment_global
+2026-07-06 14:24:46 - botocore.configprovider - DEBUG - Looking for endpoint for s3 via: config_service
+2026-07-06 14:24:46 - botocore.configprovider - DEBUG - Looking for endpoint for s3 via: config_global
+2026-07-06 14:24:46 - botocore.configprovider - DEBUG - No configured endpoint found.
+2026-07-06 14:24:46 - botocore.endpoint - DEBUG - Setting s3 timeout as (60, 60)
+2026-07-06 14:24:46 - botocore.loaders - DEBUG - Loading JSON file: /opt/conda/lib/python3.12/site-packages/botocore/data/_retry.json
+2026-07-06 14:24:46 - botocore.client - DEBUG - Registering retry handlers for service: s3
+2026-07-06 14:24:46 - botocore.utils - DEBUG - Registering S3 region redirector handler
+2026-07-06 14:24:46 - botocore.utils - DEBUG - Registering S3Express Identity Resolver
+2026-07-06 14:24:46 - hne.core.s3_io - DEBUG - Reading AnnData from: s3://pa-bjplnclqvp1ar8f36-ada854zrhbscx1tue369yzroowz4neuw1b-s3alias/73b9c29a-c63b-4f76-a79c-a7babd70c02b/v2/without_spotclean/stLearn/CH_L_282a_vis/CH_L_282a_vis_c2l_annots.h5ad
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-parameter-build.s3.GetObject: calling handler <function sse_md5 at 0x7f58f1031da0>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-parameter-build.s3.GetObject: calling handler <function validate_bucket_name at 0x7f58f1031d00>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-parameter-build.s3.GetObject: calling handler <function remove_bucket_from_url_paths_from_model at 0x7f58f104c180>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-parameter-build.s3.GetObject: calling handler <bound method S3RegionRedirectorv2.annotate_request_context of <botocore.utils.S3RegionRedirectorv2 object at 0x7f58df1e5730>>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-parameter-build.s3.GetObject: calling handler <bound method ClientCreator._inject_s3_input_parameters of <botocore.client.ClientCreator object at 0x7f58df3c05f0>>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-parameter-build.s3.GetObject: calling handler <function generate_idempotent_uuid at 0x7f58f1031b20>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-parameter-build.s3.GetObject: calling handler <function _handle_request_validation_mode_member at 0x7f58f104c900>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-endpoint-resolution.s3: calling handler <function customize_endpoint_resolver_builtins at 0x7f58f104c360>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-endpoint-resolution.s3: calling handler <bound method S3RegionRedirectorv2.redirect_from_cache of <botocore.utils.S3RegionRedirectorv2 object at 0x7f58df1e5730>>
+2026-07-06 14:24:46 - botocore.regions - DEBUG - Calling endpoint provider with parameters: {'Bucket': 'pa-bjplnclqvp1ar8f36-ada854zrhbscx1tue369yzroowz4neuw1b-s3alias', 'Region': 'eu-west-1', 'UseFIPS': False, 'UseDualStack': False, 'ForcePathStyle': False, 'Accelerate': False, 'UseGlobalEndpoint': False, 'Key': '73b9c29a-c63b-4f76-a79c-a7babd70c02b/v2/without_spotclean/stLearn/CH_L_282a_vis/CH_L_282a_vis_c2l_annots.h5ad', 'DisableMultiRegionAccessPoints': False, 'UseArnRegion': True, 'DisableS3ExpressSessionAuth': False}
+2026-07-06 14:24:46 - botocore.regions - DEBUG - Endpoint provider result: https://pa-bjplnclqvp1ar8f36-ada854zrhbscx1tue369yzroowz4neuw1b-s3alias.s3.eu-west-1.amazonaws.com
+2026-07-06 14:24:46 - botocore.regions - DEBUG - Selecting from endpoint provider's list of auth schemes: "sigv4". User selected auth scheme is: "None"
+2026-07-06 14:24:46 - botocore.regions - DEBUG - Selected auth type "v4" as "v4" with signing context params: {'region': 'eu-west-1', 'signing_name': 's3', 'disableDoubleEncoding': True}
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-call.s3.GetObject: calling handler <function add_expect_header at 0x7f58f10320c0>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-call.s3.GetObject: calling handler <bound method S3ExpressIdentityResolver.apply_signing_cache_key of <botocore.utils.S3ExpressIdentityResolver object at 0x7f58df1e5d60>>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-call.s3.GetObject: calling handler <function add_recursion_detection_header at 0x7f58f1030900>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-call.s3.GetObject: calling handler <function inject_api_version_header_if_needed at 0x7f58f1033600>
+2026-07-06 14:24:46 - botocore.endpoint - DEBUG - Making request for OperationModel(name=GetObject) with params: {'url_path': '/73b9c29a-c63b-4f76-a79c-a7babd70c02b/v2/without_spotclean/stLearn/CH_L_282a_vis/CH_L_282a_vis_c2l_annots.h5ad', 'query_string': {}, 'method': 'GET', 'headers': {'x-amz-checksum-mode': 'ENABLED', 'User-Agent': 'Boto3/1.42.97 md/Botocore#1.42.97 ua/2.1 os/linux#6.12.88-119.157.amzn2023.x86_64 md/arch#x86_64 lang/python#3.12.13 md/pyimpl#CPython m/z,Z,b,D cfg/retry-mode#legacy Botocore/1.42.97'}, 'body': b'', 'auth_path': '/pa-bjplnclqvp1ar8f36-ada854zrhbscx1tue369yzroowz4neuw1b-s3alias/73b9c29a-c63b-4f76-a79c-a7babd70c02b/v2/without_spotclean/stLearn/CH_L_282a_vis/CH_L_282a_vis_c2l_annots.h5ad', 'url': 'https://pa-bjplnclqvp1ar8f36-ada854zrhbscx1tue369yzroowz4neuw1b-s3alias.s3.eu-west-1.amazonaws.com/73b9c29a-c63b-4f76-a79c-a7babd70c02b/v2/without_spotclean/stLearn/CH_L_282a_vis/CH_L_282a_vis_c2l_annots.h5ad', 'context': {'client_region': 'eu-west-1', 'client_config': <botocore.config.Config object at 0x7f58df18f560>, 'has_streaming_input': False, 'auth_type': 'v4', 'unsigned_payload': None, 'auth_options': ['aws.auth#sigv4'], 's3_redirect': {'redirected': False, 'bucket': 'pa-bjplnclqvp1ar8f36-ada854zrhbscx1tue369yzroowz4neuw1b-s3alias', 'params': {'Bucket': 'pa-bjplnclqvp1ar8f36-ada854zrhbscx1tue369yzroowz4neuw1b-s3alias', 'Key': '73b9c29a-c63b-4f76-a79c-a7babd70c02b/v2/without_spotclean/stLearn/CH_L_282a_vis/CH_L_282a_vis_c2l_annots.h5ad', 'ChecksumMode': 'ENABLED'}}, 'input_params': {'Bucket': 'pa-bjplnclqvp1ar8f36-ada854zrhbscx1tue369yzroowz4neuw1b-s3alias', 'Key': '73b9c29a-c63b-4f76-a79c-a7babd70c02b/v2/without_spotclean/stLearn/CH_L_282a_vis/CH_L_282a_vis_c2l_annots.h5ad'}, 'signing': {'region': 'eu-west-1', 'signing_name': 's3', 'disableDoubleEncoding': True}, 'endpoint_properties': {'authSchemes': [{'disableDoubleEncoding': True, 'name': 'sigv4', 'signingName': 's3', 'signingRegion': 'eu-west-1'}]}, 'checksum': {'response_algorithms': ['crc32', 'sha1', 'sha256', 'sha512']}}}
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event request-created.s3.GetObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x7f58df18f0b0>>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event choose-signer.s3.GetObject: calling handler <bound method ClientCreator._default_s3_presign_to_sigv2 of <botocore.client.ClientCreator object at 0x7f58df3c05f0>>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event choose-signer.s3.GetObject: calling handler <function set_operation_specific_signer at 0x7f58f1031800>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-sign.s3.GetObject: calling handler <function remove_arn_from_signing_path at 0x7f58f104c2c0>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-sign.s3.GetObject: calling handler <function _set_extra_headers_for_unsigned_request at 0x7f58f104c9a0>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-sign.s3.GetObject: calling handler <bound method S3ExpressIdentityResolver.resolve_s3express_identity of <botocore.utils.S3ExpressIdentityResolver object at 0x7f58df1e5d60>>
+2026-07-06 14:24:46 - botocore.auth - DEBUG - Calculating signature using v4 auth.
+2026-07-06 14:24:46 - botocore.auth - DEBUG - CanonicalRequest:
+GET
+/73b9c29a-c63b-4f76-a79c-a7babd70c02b/v2/without_spotclean/stLearn/CH_L_282a_vis/CH_L_282a_vis_c2l_annots.h5ad
+
+host:pa-bjplnclqvp1ar8f36-ada854zrhbscx1tue369yzroowz4neuw1b-s3alias.s3.eu-west-1.amazonaws.com
+x-amz-checksum-mode:ENABLED
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20260706T142446Z
+x-amz-security-token:IQoJb3JpZ2luX2VjEI///////////wEaCWV1LXdlc3QtMSJHMEUCICmYI/FFs2YVfa0s1PrWC0UvSgGsWbgV1ISNTY2bCJkOAiEAzR3wM458KIRc4LtWl8QeT7N5Zduv2hIMhuUufSmsqfkqsQMIVxAAGgw3NjczOTc5OTU4MjQiDMJSHdU2lg0vkiDWYSqOA/roUoSl1AzHUwiv4hoPorR6tr4s4uSY0RmyZDSzQdIKPvYVE0nJ9AUBYVlos7hIoVfeZrKJ61cKm/z18bxv+Ubq/AH6tI3ifp3KBl8xk20/OqgWhkO2zUMjmAsQB/wkPtnstnK9E2RkFWH85nVRTvxNXHXb3wp2OGrbtc92a33EVD5u03bi4BloGqB4HYUYz5tkgneb1FPoJLMQhhyFxmFWBWBTqRZAEbglmn0TIpGaLrsMKkdhK2hg/ftRltxcdcUueG8pMQc49CnjMbU5mVHyGim6IohcFHhxHbCJXyEtucZjGJagRFAXDzRdFASm3iw5sI3g+T7regaZ9Gs+j6XvMn5gqrKn4s1VJa2LoS2K7X75Njl2Ot8kR1jNOIHvopJp5rwbYYvMqic82PnyW9m9L7I+CIXoxvfZR9Bhd68XjyUh7Q2taZXDQuemnwXo/xyAtwNr6OI4eEE0ddgZ8r3472me5FnaeoBq4VCWOSsxQnQgOTAImmwMNwbHaJH7F45xDnhOpEGMB3ek6LcJMM3zrtIGOpwB1jI8HzCLfFDl6xO+S61LdegOSFzcjeFxKvs6nAenjv/bfyQUkhSYdrkGV5u7JhMHz9obRb43EVBNUJ2CSuk17uGelmSizo5vVmKckHbd+sO4eFyTrp2IkBGFwgNBSaMlweH9RYTUeyLYYiCfnkLTiyjyi8xHqKCotkXTThBGCU+2DZBqDVFAycy82/2wSijjFAjRh/PHB3Vj+v/k
+
+host;x-amz-checksum-mode;x-amz-content-sha256;x-amz-date;x-amz-security-token
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+2026-07-06 14:24:46 - botocore.auth - DEBUG - StringToSign:
+AWS4-HMAC-SHA256
+20260706T142446Z
+20260706/eu-west-1/s3/aws4_request
+878178e5b7f4ae67a7af0ddd1db5462e0f590b4f027cfac0838ed3ea8be98d24
+2026-07-06 14:24:46 - botocore.auth - DEBUG - Signature:
+ed13cf5e9927ce45b989b09b881f575dd9888f2c784326dca55bd3039d0a567d
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event request-created.s3.GetObject: calling handler <bound method UserAgentString.rebuild_and_replace_user_agent_handler of <botocore.useragent.UserAgentString object at 0x7f58df1e4dd0>>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event request-created.s3.GetObject: calling handler <function add_retry_headers at 0x7f58f104c0e0>
+2026-07-06 14:24:46 - botocore.endpoint - DEBUG - Sending http request: <AWSPreparedRequest stream_output=True, method=GET, url=https://pa-bjplnclqvp1ar8f36-ada854zrhbscx1tue369yzroowz4neuw1b-s3alias.s3.eu-west-1.amazonaws.com/73b9c29a-c63b-4f76-a79c-a7babd70c02b/v2/without_spotclean/stLearn/CH_L_282a_vis/CH_L_282a_vis_c2l_annots.h5ad, headers={'x-amz-checksum-mode': b'ENABLED', 'User-Agent': b'Boto3/1.42.97 md/Botocore#1.42.97 ua/2.1 os/linux#6.12.88-119.157.amzn2023.x86_64 md/arch#x86_64 lang/python#3.12.13 md/pyimpl#CPython m/z,Z,b,D cfg/retry-mode#legacy Botocore/1.42.97', 'X-Amz-Date': b'20260706T142446Z', 'X-Amz-Security-Token': b'IQoJb3JpZ2luX2VjEI///////////wEaCWV1LXdlc3QtMSJHMEUCICmYI/FFs2YVfa0s1PrWC0UvSgGsWbgV1ISNTY2bCJkOAiEAzR3wM458KIRc4LtWl8QeT7N5Zduv2hIMhuUufSmsqfkqsQMIVxAAGgw3NjczOTc5OTU4MjQiDMJSHdU2lg0vkiDWYSqOA/roUoSl1AzHUwiv4hoPorR6tr4s4uSY0RmyZDSzQdIKPvYVE0nJ9AUBYVlos7hIoVfeZrKJ61cKm/z18bxv+Ubq/AH6tI3ifp3KBl8xk20/OqgWhkO2zUMjmAsQB/wkPtnstnK9E2RkFWH85nVRTvxNXHXb3wp2OGrbtc92a33EVD5u03bi4BloGqB4HYUYz5tkgneb1FPoJLMQhhyFxmFWBWBTqRZAEbglmn0TIpGaLrsMKkdhK2hg/ftRltxcdcUueG8pMQc49CnjMbU5mVHyGim6IohcFHhxHbCJXyEtucZjGJagRFAXDzRdFASm3iw5sI3g+T7regaZ9Gs+j6XvMn5gqrKn4s1VJa2LoS2K7X75Njl2Ot8kR1jNOIHvopJp5rwbYYvMqic82PnyW9m9L7I+CIXoxvfZR9Bhd68XjyUh7Q2taZXDQuemnwXo/xyAtwNr6OI4eEE0ddgZ8r3472me5FnaeoBq4VCWOSsxQnQgOTAImmwMNwbHaJH7F45xDnhOpEGMB3ek6LcJMM3zrtIGOpwB1jI8HzCLfFDl6xO+S61LdegOSFzcjeFxKvs6nAenjv/bfyQUkhSYdrkGV5u7JhMHz9obRb43EVBNUJ2CSuk17uGelmSizo5vVmKckHbd+sO4eFyTrp2IkBGFwgNBSaMlweH9RYTUeyLYYiCfnkLTiyjyi8xHqKCotkXTThBGCU+2DZBqDVFAycy82/2wSijjFAjRh/PHB3Vj+v/k', 'X-Amz-Content-SHA256': b'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'Authorization': b'AWS4-HMAC-SHA256 Credential=ASIA3FLD4EUYFQGDLVN7/20260706/eu-west-1/s3/aws4_request, SignedHeaders=host;x-amz-checksum-mode;x-amz-content-sha256;x-amz-date;x-amz-security-token, Signature=ed13cf5e9927ce45b989b09b881f575dd9888f2c784326dca55bd3039d0a567d', 'amz-sdk-invocation-id': b'bb9abc93-c5c7-41e8-aa8a-b62659a405b6', 'amz-sdk-request': b'attempt=1'}>
+2026-07-06 14:24:46 - botocore.httpsession - DEBUG - Certificate path: /opt/conda/lib/python3.12/site-packages/certifi/cacert.pem
+2026-07-06 14:24:46 - botocore.httpchecksum - DEBUG - Skipping checksum validation. Response did not contain one of the following algorithms: ['crc32', 'sha1', 'sha256', 'sha512'].
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-parse.s3.GetObject: calling handler <function _handle_200_error at 0x7f58f104c680>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event before-parse.s3.GetObject: calling handler <function handle_expires_header at 0x7f58f104c4a0>
+2026-07-06 14:24:46 - botocore.parsers - DEBUG - Response headers: {'x-amz-id-2': '5rVi4uaH3jpNHu1PLwMjHz3oXNXhV1QgIsYyr0OIbuXA6bYOLmLcjtMXCCuaVS4oXxgme/djDTPnSEGRwUuK5RWc2NTqLeZn', 'x-amz-request-id': 'SVPVQ9XKRWZAKC6R', 'Date': 'Mon, 06 Jul 2026 14:24:47 GMT', 'x-amz-replication-status': 'COMPLETED', 'Last-Modified': 'Fri, 28 Mar 2025 22:22:23 GMT', 'ETag': '"beef8741494c2105c43ce647918656a8-89"', 'x-amz-checksum-crc64nvme': '4lFmselA82U=', 'x-amz-checksum-type': 'FULL_OBJECT', 'x-amz-tagging-count': '1', 'x-amz-storage-class': 'INTELLIGENT_TIERING', 'x-amz-server-side-encryption': 'AES256', 'x-amz-version-id': 'RU74lfjKsoFQ3XQBfELkr5IXU80tz0J6', 'Accept-Ranges': 'bytes', 'Content-Type': 'binary/octet-stream', 'Content-Length': '744977762', 'Server': 'AmazonS3'}
+2026-07-06 14:24:46 - botocore.parsers - DEBUG - Response body:
+<botocore.response.StreamingBody object at 0x7f58df1e76d0>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event needs-retry.s3.GetObject: calling handler <function _update_status_code at 0x7f58f104c860>
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event needs-retry.s3.GetObject: calling handler <botocore.retryhandler.RetryHandler object at 0x7f58df1e5cd0>
+2026-07-06 14:24:46 - botocore.retryhandler - DEBUG - No retry needed.
+2026-07-06 14:24:46 - botocore.hooks - DEBUG - Event needs-retry.s3.GetObject: calling handler <bound method S3RegionRedirectorv2.redirect_from_error of <botocore.utils.S3RegionRedirectorv2 object at 0x7f58df1e5730>>
