@@ -200,7 +200,7 @@ def filter_tumor_tiles(df,
         tumor_tiles
         metadata
     """
-    MIN_FINAL_TILES = 20
+    MIN_FINAL_TILES = 10
 
 
     tiles_stats = df.groupby(["tile_row", "tile_col"]).agg(
