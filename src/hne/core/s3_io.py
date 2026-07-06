@@ -40,10 +40,8 @@ class S3DataLoader:
 
     def read_h5ad(self, s3_path: str) -> sc.AnnData:
         """Read AnnData directly from S3."""
-        logger.debug(f"Reading AnnData from: {s3_path}")
-
         bucket, prefix = self._parse_s3_path(s3_path)
-
+    
         with tempfile.NamedTemporaryFile(suffix=".h5ad", delete=True) as tmp:
             self.s3_client.download_fileobj(bucket, prefix, tmp)
             tmp.flush()
