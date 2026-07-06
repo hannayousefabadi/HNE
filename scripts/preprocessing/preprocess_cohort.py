@@ -12,6 +12,8 @@ from hne.preprocessing_qc.plots import cohort_tile_variation, save_cohort_spot_q
 
 from hne.core.s3_io import S3DataLoader
 
+from hne.core.paths import PATIENT_IDS
+
 setup_logging(
     log_file= PREPROCESSING_QC_REPORTS / "cohort" / "cohort.log", 
     console_level="WARNING",
@@ -27,14 +29,21 @@ if __name__ == "__main__":
     logger.info("Starting cohort preprocessing")
     logger.info("=" * 40)
     
-    loader = S3DataLoader()
 
-    patient_ids = loader.list_patients_from_processed(
-        bucket=PROCESSED_VISIUM_BUCKET,
-        prefix=PROCESSED_VISIUM_PREFIX
-    )
+    # dynamic patient S3 patients' name discovery
+    # loader = S3DataLoader()
+
+    # patient_ids = loader.list_patients_from_processed(
+    #     bucket=PROCESSED_VISIUM_BUCKET,
+    #     prefix=PROCESSED_VISIUM_PREFIX
+    # )
     
-    logger.info(f"Found {len(patient_ids)} patients in processed data")
+    # logger.info(f"Found {len(patient_ids)} patients in processed data")
+
+    # use the hardcoded list instead
+    patient_ids = PATIENT_IDS
+    
+    logger.info(f"Found {len(patient_ids)} patients in hardcoded list")
 
     if not patient_ids:
         logger.error("No patients found! check S3 paths and permissions.")
@@ -64,7 +73,7 @@ if __name__ == "__main__":
                 qc_tracker=qc,
                 verbose=False,        # console quiet
                 run_qc_plots=False,
-                use_s3_discovery=True # finding the entire cohort dynamically   
+                use_s3_discovery=False # finding the entire cohort dynamically   
             )
 
             all_metadata.append(metadata)
