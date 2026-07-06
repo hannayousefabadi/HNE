@@ -7,7 +7,7 @@ QC thresholds:
 - Mean tile purity < 0.30                  -> FLAG
 - 0 tumor tiles after filtering            -> EXCLUDE
 - < 30 initial tiles                       -> Logger warning
-- <20 tumor tiles after filtering          -> FLAG
+- <10 tumor tiles after filtering          -> FLAG
 
 """
 
@@ -97,7 +97,7 @@ def add_tile_coordinates(scales,
         metadata
         tile_size_px
     """
-    MIN_INITIAL_TILES = 100
+    MIN_INITIAL_TILES = 30
 
     spot_diameter = 55  # Visium spot diameter in µm
 
