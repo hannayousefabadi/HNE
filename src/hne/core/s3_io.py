@@ -40,7 +40,6 @@ class S3DataLoader:
 
     def read_h5ad(self, s3_path: str) -> sc.AnnData:
         """Read AnnData directly from S3 without loading the whole file into RAM."""
-        logger.debug(f"Reading AnnData from: {s3_path}")
 
         bucket, prefix = self._parse_s3_path(s3_path)
 
