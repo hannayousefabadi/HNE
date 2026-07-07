@@ -1,8 +1,8 @@
-#  MIL (Multiple Instance Learning) pathology framework for lung cancer using H&E Image Analysis, Visium Spatial Transcriptomics and Whole-exome Sequencing
+#  an MIL pathology framework for lung cancer using H&E Image Analysis, Visium Spatial Transcriptomics and Whole-exome Sequencing
 
 ## Overview
 
-This pipeline process H&E images for Multiple Instance Learning (MIL) using matched Visium and WES data.
+This pipeline process H&E images using matched Visium and WES data.
 
 **Key steps:**
 - Tumor purity estimation (Bayesian shrinkage)
