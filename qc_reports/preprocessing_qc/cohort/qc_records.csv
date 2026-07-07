@@ -1,0 +1,373 @@
+patient_id,stage,status,message,n_spots_in_tissue,n_spots_missin_tumor_fraction,mean_tumor_fraction,median_tumor_fraction,k_value,mean_tile_purity,median_tile_purity,tile_purity_std,tiles_before_filter,n_tumor_tiles,has_tumor_tiles,tumor_threshold,min_spots,genes_per_signature,n_missing_signatures
+CH_L_275a,tumor_fraction,OK,Tumor fraction attached successfully,4392.0,0.0,0.5259584134625154,0.5723674025726897,,,,,,,,,,,
+CH_L_275a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5101288970746009,0.5423245161858748,0.18607680366124563,,,,,,,
+CH_L_275a,filter_tumor_tiles,OK,Found 23 tumor tiles,,,,,,,,,37.0,23.0,True,0.3,40.0,,
+CH_L_275a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_276a,tumor_fraction,OK,Tumor fraction attached successfully,4924.0,0.0,0.3922367752397717,0.35264349295101227,,,,,,,,,,,
+CH_L_276a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.3737100220529499,0.3751033635568171,0.09167309547002066,,,,,,,
+CH_L_276a,filter_tumor_tiles,OK,Found 24 tumor tiles,,,,,,,,,42.0,24.0,True,0.3,40.0,,
+CH_L_276a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_277a,tumor_fraction,OK,Tumor fraction attached successfully,2192.0,0.0,0.6369686552160477,0.6764513747699302,,,,,,,,,,,
+CH_L_277a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6158962424893282,0.6162541239882602,0.1503255739101863,,,,,,,
+CH_L_277a,filter_tumor_tiles,OK,Found 17 tumor tiles,,,,,,,,,23.0,17.0,True,0.3,40.0,,
+CH_L_277a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_278a,tumor_fraction,OK,Tumor fraction attached successfully,4377.0,0.0,0.4045460084222129,0.342231920557574,,,,,,,,,,,
+CH_L_278a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.38171907653323106,0.42082554674770045,0.23241108894332774,,,,,,,
+CH_L_278a,filter_tumor_tiles,OK,Found 18 tumor tiles,,,,,,,,,35.0,18.0,True,0.3,40.0,,
+CH_L_278a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_279a,tumor_fraction,OK,Tumor fraction attached successfully,4744.0,0.0,0.33451603790671397,0.2281010980342959,,,,,,,,,,,
+CH_L_279a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.3214412650312927,0.2906011830126509,0.20226198254205013,,,,,,,
+CH_L_279a,filter_tumor_tiles,OK,Found 17 tumor tiles,,,,,,,,,42.0,17.0,True,0.3,40.0,,
+CH_L_279a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_280a,tumor_fraction,OK,Tumor fraction attached successfully,4992.0,0.0,0.7196719617183316,0.8720274950308011,,,,,,,,,,,
+CH_L_280a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6989486108878439,0.7058845446429773,0.1705137265280456,,,,,,,
+CH_L_280a,filter_tumor_tiles,OK,Found 35 tumor tiles,,,,,,,,,38.0,35.0,True,0.3,40.0,,
+CH_L_280a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_281a,tumor_fraction,OK,Tumor fraction attached successfully,4545.0,0.0,0.44790833602322744,0.4830532777307527,,,,,,,,,,,
+CH_L_281a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4162243741644963,0.4176368689783435,0.20740366863058388,,,,,,,
+CH_L_281a,filter_tumor_tiles,OK,Found 26 tumor tiles,,,,,,,,,36.0,26.0,True,0.3,40.0,,
+CH_L_281a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_281b,tumor_fraction,OK,Tumor fraction attached successfully,4485.0,0.0,0.3960819808828397,0.40185600797655574,,,,,,,,,,,
+CH_L_281b,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.40353093166402865,0.40239492993483855,0.10413153232642666,,,,,,,
+CH_L_281b,filter_tumor_tiles,OK,Found 23 tumor tiles,,,,,,,,,41.0,23.0,True,0.3,40.0,,
+CH_L_281b,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_282a,tumor_fraction,OK,Tumor fraction attached successfully,4114.0,0.0,0.39875101998564816,0.3385270312074401,,,,,,,,,,,
+CH_L_282a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4050583033624565,0.39007083714499186,0.19701026579824596,,,,,,,
+CH_L_282a,filter_tumor_tiles,OK,Found 16 tumor tiles,,,,,,,,,37.0,16.0,True,0.3,40.0,,
+CH_L_282a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_283a,tumor_fraction,OK,Tumor fraction attached successfully,4922.0,0.0,0.7432613070367493,0.9004386277633198,,,,,,,,,,,
+CH_L_283a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.7225631192656657,0.8068802715928041,0.1946294830289271,,,,,,,
+CH_L_283a,filter_tumor_tiles,OK,Found 32 tumor tiles,,,,,,,,,36.0,32.0,True,0.3,40.0,,
+CH_L_283a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_284a,tumor_fraction,OK,Tumor fraction attached successfully,4548.0,0.0,0.3953598029847906,0.32823818597574167,,,,,,,,,,,
+CH_L_284a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.37413237813379946,0.33733475276964753,0.16107292540877227,,,,,,,
+CH_L_284a,filter_tumor_tiles,OK,Found 16 tumor tiles,,,,,,,,,36.0,16.0,True,0.3,40.0,,
+CH_L_284a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_285a,tumor_fraction,OK,Tumor fraction attached successfully,4423.0,0.0,0.5107281689659905,0.5672811213018748,,,,,,,,,,,
+CH_L_285a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4592350872016616,0.45626023040428293,0.21484186383026416,,,,,,,
+CH_L_285a,filter_tumor_tiles,OK,Found 24 tumor tiles,,,,,,,,,36.0,24.0,True,0.3,40.0,,
+CH_L_285a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_287a,tumor_fraction,OK,Tumor fraction attached successfully,4843.0,0.0,0.4355939983851749,0.476454546602399,,,,,,,,,,,
+CH_L_287a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.43127005845313965,0.47003669116293734,0.1881987046957615,,,,,,,
+CH_L_287a,filter_tumor_tiles,OK,Found 22 tumor tiles,,,,,,,,,41.0,22.0,True,0.3,40.0,,
+CH_L_287a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_288a,tumor_fraction,OK,Tumor fraction attached successfully,4620.0,0.0,0.5582821195728297,0.584602882315076,,,,,,,,,,,
+CH_L_288a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5035522679275812,0.38585781859748924,0.23481351007958162,,,,,,,
+CH_L_288a,filter_tumor_tiles,OK,Found 25 tumor tiles,,,,,,,,,36.0,25.0,True,0.3,40.0,,
+CH_L_288a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_289a,tumor_fraction,OK,Tumor fraction attached successfully,4825.0,0.0,0.5932695985216759,0.6484724911842368,,,,,,,,,,,
+CH_L_289a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5840206685000835,0.6111033760974123,0.1290791302474881,,,,,,,
+CH_L_289a,filter_tumor_tiles,OK,Found 34 tumor tiles,,,,,,,,,34.0,34.0,True,0.3,40.0,,
+CH_L_289a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_290a,tumor_fraction,OK,Tumor fraction attached successfully,4712.0,0.0,0.3669710376058086,0.3497751877640012,,,,,,,,,,,
+CH_L_290a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.36651236056488157,0.3738812643223237,0.14475922410739722,,,,,,,
+CH_L_290a,filter_tumor_tiles,OK,Found 19 tumor tiles,,,,,,,,,36.0,19.0,True,0.3,40.0,,
+CH_L_290a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_291a,tumor_fraction,OK,Tumor fraction attached successfully,4626.0,0.0,0.7099179112522597,0.8790147584263492,,,,,,,,,,,
+CH_L_291a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.677316647939909,0.7215441698514032,0.19342693021085625,,,,,,,
+CH_L_291a,filter_tumor_tiles,OK,Found 30 tumor tiles,,,,,,,,,41.0,30.0,True,0.3,40.0,,
+CH_L_291a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_292a,tumor_fraction,OK,Tumor fraction attached successfully,3972.0,0.0,0.5107077936363478,0.53580848283921,,,,,,,,,,,
+CH_L_292a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.48898869234428427,0.4691711689693085,0.11933060210889825,,,,,,,
+CH_L_292a,filter_tumor_tiles,OK,Found 28 tumor tiles,,,,,,,,,35.0,28.0,True,0.3,40.0,,
+CH_L_292a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_293a,tumor_fraction,OK,Tumor fraction attached successfully,4718.0,0.0,0.8228886699058362,0.9218965533556873,,,,,,,,,,,
+CH_L_293a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.7839760111958027,0.8502055898934557,0.1474244903505315,,,,,,,
+CH_L_293a,filter_tumor_tiles,OK,Found 30 tumor tiles,,,,,,,,,41.0,30.0,True,0.3,40.0,,
+CH_L_293a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_294a,tumor_fraction,OK,Tumor fraction attached successfully,4904.0,0.0,0.46294598446467033,0.5223435088290507,,,,,,,,,,,
+CH_L_294a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.45107821329037545,0.4912482171481532,0.1328918085485437,,,,,,,
+CH_L_294a,filter_tumor_tiles,OK,Found 30 tumor tiles,,,,,,,,,36.0,30.0,True,0.3,40.0,,
+CH_L_294a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_295a,tumor_fraction,OK,Tumor fraction attached successfully,4350.0,0.0,0.48988545091238117,0.5210502154034715,,,,,,,,,,,
+CH_L_295a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.48530956901809563,0.5099108633817898,0.1759011247706447,,,,,,,
+CH_L_295a,filter_tumor_tiles,OK,Found 21 tumor tiles,,,,,,,,,39.0,21.0,True,0.3,40.0,,
+CH_L_295a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_296a,tumor_fraction,OK,Tumor fraction attached successfully,4344.0,0.0,0.34107381063549086,0.3325953717877492,,,,,,,,,,,
+CH_L_296a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.3403242402026933,0.34059472030067045,0.03401359695190375,,,,,,,
+CH_L_296a,filter_tumor_tiles,OK,Found 25 tumor tiles,,,,,,,,,34.0,25.0,True,0.3,40.0,,
+CH_L_296a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_298a,tumor_fraction,OK,Tumor fraction attached successfully,2107.0,0.0,0.5112816612623963,0.584386235030832,,,,,,,,,,,
+CH_L_298a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4891091450769489,0.5245952324547623,0.16783287682775117,,,,,,,
+CH_L_298a,filter_tumor_tiles,OK,Found 18 tumor tiles,,,,,,,,,36.0,18.0,True,0.3,40.0,,
+CH_L_298a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_299a,tumor_fraction,OK,Tumor fraction attached successfully,4809.0,0.0,0.5315679341291158,0.6423355329777132,,,,,,,,,,,
+CH_L_299a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5076138093570136,0.5009509092959866,0.2914223154692247,,,,,,,
+CH_L_299a,filter_tumor_tiles,OK,Found 24 tumor tiles,,,,,,,,,41.0,24.0,True,0.3,40.0,,
+CH_L_299a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_300a,tumor_fraction,OK,Tumor fraction attached successfully,4719.0,0.0,0.20802275450222843,0.06792181584897287,,,,,,,,,,,
+CH_L_300a,tile_purity,FLAG,Mean tile purity is very low: 0.21733963543107646,,,,,2.0,0.21733963543107646,0.19619825912199634,0.14620417596029384,,,,,,,
+CH_L_300a,filter_tumor_tiles,FLAG,Only 8 tumor tiles - insufficient for MIL training,,,,,,,,,40.0,8.0,True,0.3,40.0,,
+CH_L_300a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_301a,tumor_fraction,OK,Tumor fraction attached successfully,4434.0,0.0,0.5230972223332007,0.5961769546304854,,,,,,,,,,,
+CH_L_301a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5098148301301636,0.5321277194790259,0.15636655733914942,,,,,,,
+CH_L_301a,filter_tumor_tiles,OK,Found 30 tumor tiles,,,,,,,,,35.0,30.0,True,0.3,40.0,,
+CH_L_301a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_302a,tumor_fraction,OK,Tumor fraction attached successfully,4978.0,0.0,0.6284270751997288,0.7256267762854728,,,,,,,,,,,
+CH_L_302a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6380572820441501,0.66950792816173,0.1867908002388916,,,,,,,
+CH_L_302a,filter_tumor_tiles,OK,Found 34 tumor tiles,,,,,,,,,36.0,34.0,True,0.3,40.0,,
+CH_L_302a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_303a,tumor_fraction,OK,Tumor fraction attached successfully,4987.0,0.0,0.3629256236706343,0.34564017718564527,,,,,,,,,,,
+CH_L_303a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.39939815396083267,0.4079991350329232,0.13400312921080204,,,,,,,
+CH_L_303a,filter_tumor_tiles,OK,Found 22 tumor tiles,,,,,,,,,40.0,22.0,True,0.3,40.0,,
+CH_L_303a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_305a,tumor_fraction,OK,Tumor fraction attached successfully,4757.0,0.0,0.6112214933212545,0.673968122944004,,,,,,,,,,,
+CH_L_305a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5638365793883667,0.5712580789444393,0.18987102413368784,,,,,,,
+CH_L_305a,filter_tumor_tiles,OK,Found 30 tumor tiles,,,,,,,,,42.0,30.0,True,0.3,40.0,,
+CH_L_305a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_306a,tumor_fraction,OK,Tumor fraction attached successfully,4673.0,0.0,0.24301308080337014,0.20502465738369977,,,,,,,,,,,
+CH_L_306a,tile_purity,FLAG,Mean tile purity is very low: 0.24431714771588398,,,,,2.0,0.24431714771588398,0.25182366381171584,0.09705282950018118,,,,,,,
+CH_L_306a,filter_tumor_tiles,OK,Found 13 tumor tiles,,,,,,,,,36.0,13.0,True,0.3,40.0,,
+CH_L_306a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_306b,tumor_fraction,OK,Tumor fraction attached successfully,4388.0,0.0,0.42584575809240705,0.4353162122569806,,,,,,,,,,,
+CH_L_306b,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.43807841141412995,0.4431694259484009,0.08908255659536193,,,,,,,
+CH_L_306b,filter_tumor_tiles,OK,Found 22 tumor tiles,,,,,,,,,35.0,22.0,True,0.3,40.0,,
+CH_L_306b,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_307a,tumor_fraction,OK,Tumor fraction attached successfully,4898.0,0.0,0.5579307567495363,0.6106455426382367,,,,,,,,,,,
+CH_L_307a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5372781592185562,0.5717893179935809,0.21781938807554982,,,,,,,
+CH_L_307a,filter_tumor_tiles,OK,Found 24 tumor tiles,,,,,,,,,38.0,24.0,True,0.3,40.0,,
+CH_L_307a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_308a,tumor_fraction,OK,Tumor fraction attached successfully,4905.0,0.0,0.4855798589746469,0.4846653714822973,,,,,,,,,,,
+CH_L_308a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4899069426733301,0.4808521111088898,0.22055157096202735,,,,,,,
+CH_L_308a,filter_tumor_tiles,OK,Found 27 tumor tiles,,,,,,,,,42.0,27.0,True,0.3,40.0,,
+CH_L_308a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_309a,tumor_fraction,OK,Tumor fraction attached successfully,4796.0,0.0,0.620397663999602,0.7314332325718864,,,,,,,,,,,
+CH_L_309a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6165826574618153,0.6844030437990305,0.19302061528971828,,,,,,,
+CH_L_309a,filter_tumor_tiles,OK,Found 26 tumor tiles,,,,,,,,,36.0,26.0,True,0.3,40.0,,
+CH_L_309a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_310a,tumor_fraction,OK,Tumor fraction attached successfully,4469.0,0.0,0.28940128203482857,0.281226773790031,,,,,,,,,,,
+CH_L_310a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.3248894496671999,0.3524689366896876,0.12743730751700527,,,,,,,
+CH_L_310a,filter_tumor_tiles,OK,Found 16 tumor tiles,,,,,,,,,38.0,16.0,True,0.3,40.0,,
+CH_L_310a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_311a,tumor_fraction,OK,Tumor fraction attached successfully,4789.0,0.0,0.5315597408770419,0.5707391890076137,,,,,,,,,,,
+CH_L_311a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.46414761078043254,0.5022449798420268,0.21130560782042868,,,,,,,
+CH_L_311a,filter_tumor_tiles,OK,Found 27 tumor tiles,,,,,,,,,41.0,27.0,True,0.3,40.0,,
+CH_L_311a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_312a,tumor_fraction,OK,Tumor fraction attached successfully,4700.0,0.0,0.3992924377619648,0.38379292721791275,,,,,,,,,,,
+CH_L_312a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.38672441734334073,0.3910266967763121,0.1576036634290911,,,,,,,
+CH_L_312a,filter_tumor_tiles,OK,Found 21 tumor tiles,,,,,,,,,40.0,21.0,True,0.3,40.0,,
+CH_L_312a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_313a,tumor_fraction,OK,Tumor fraction attached successfully,4000.0,0.0,0.2762966592276242,0.1354293823959986,,,,,,,,,,,
+CH_L_313a,tile_purity,FLAG,Mean tile purity is very low: 0.26575144151260593,,,,,2.0,0.26575144151260593,0.23104625015725672,0.19412103677155262,,,,,,,
+CH_L_313a,filter_tumor_tiles,FLAG,Only 8 tumor tiles - insufficient for MIL training,,,,,,,,,35.0,8.0,True,0.3,40.0,,
+CH_L_313a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_314a,tumor_fraction,OK,Tumor fraction attached successfully,4243.0,0.0,0.4186331645224359,0.44659240808471296,,,,,,,,,,,
+CH_L_314a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4210141378933305,0.4262441493387901,0.22945481671321433,,,,,,,
+CH_L_314a,filter_tumor_tiles,OK,Found 20 tumor tiles,,,,,,,,,39.0,20.0,True,0.3,40.0,,
+CH_L_314a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_315a,tumor_fraction,OK,Tumor fraction attached successfully,4153.0,0.0,0.4658963113978462,0.487873532082676,,,,,,,,,,,
+CH_L_315a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4245311008833726,0.41413824185415893,0.17831383032881043,,,,,,,
+CH_L_315a,filter_tumor_tiles,OK,Found 24 tumor tiles,,,,,,,,,37.0,24.0,True,0.3,40.0,,
+CH_L_315a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_317a,tumor_fraction,OK,Tumor fraction attached successfully,4898.0,0.0,0.48287398309596363,0.497854000062381,,,,,,,,,,,
+CH_L_317a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4671030851745882,0.4737548526354607,0.10664360857089916,,,,,,,
+CH_L_317a,filter_tumor_tiles,OK,Found 34 tumor tiles,,,,,,,,,36.0,34.0,True,0.3,40.0,,
+CH_L_317a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_318a,tumor_fraction,OK,Tumor fraction attached successfully,4947.0,0.0,0.6482364717790944,0.6911810107960723,,,,,,,,,,,
+CH_L_318a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6277448407313769,0.6304830992833661,0.11222308846546286,,,,,,,
+CH_L_318a,filter_tumor_tiles,OK,Found 32 tumor tiles,,,,,,,,,41.0,32.0,True,0.3,40.0,,
+CH_L_318a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_319a,tumor_fraction,OK,Tumor fraction attached successfully,4736.0,0.0,0.5936929177255506,0.7579405594285249,,,,,,,,,,,
+CH_L_319a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5120235755048949,0.53530978083424,0.29987378629583644,,,,,,,
+CH_L_319a,filter_tumor_tiles,OK,Found 24 tumor tiles,,,,,,,,,38.0,24.0,True,0.3,40.0,,
+CH_L_319a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_320a,tumor_fraction,OK,Tumor fraction attached successfully,4157.0,0.0,0.4721292364692234,0.4714148208242754,,,,,,,,,,,
+CH_L_320a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.46748260810363246,0.4637794259388394,0.1846288383223084,,,,,,,
+CH_L_320a,filter_tumor_tiles,OK,Found 23 tumor tiles,,,,,,,,,42.0,23.0,True,0.3,40.0,,
+CH_L_320a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_321a,tumor_fraction,OK,Tumor fraction attached successfully,4963.0,0.0,0.684052324323643,0.7678058227869702,,,,,,,,,,,
+CH_L_321a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6544615387759848,0.6897180868746339,0.1716212743997412,,,,,,,
+CH_L_321a,filter_tumor_tiles,OK,Found 34 tumor tiles,,,,,,,,,36.0,34.0,True,0.3,40.0,,
+CH_L_321a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_322a,tumor_fraction,OK,Tumor fraction attached successfully,4387.0,0.0,0.7292176965711977,0.9027322117900755,,,,,,,,,,,
+CH_L_322a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6775991722180007,0.816110950829767,0.30448637076500185,,,,,,,
+CH_L_322a,filter_tumor_tiles,OK,Found 28 tumor tiles,,,,,,,,,35.0,28.0,True,0.3,40.0,,
+CH_L_322a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_323a,tumor_fraction,OK,Tumor fraction attached successfully,4155.0,0.0,0.6220430059073032,0.6797815047827284,,,,,,,,,,,
+CH_L_323a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6139453474718509,0.6011672053984103,0.14698542144743185,,,,,,,
+CH_L_323a,filter_tumor_tiles,OK,Found 31 tumor tiles,,,,,,,,,38.0,31.0,True,0.3,40.0,,
+CH_L_323a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_326a,tumor_fraction,OK,Tumor fraction attached successfully,4392.0,0.0,0.5708190831539027,0.6293862118823529,,,,,,,,,,,
+CH_L_326a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5562528060854723,0.5813043162592237,0.13282033743050645,,,,,,,
+CH_L_326a,filter_tumor_tiles,OK,Found 28 tumor tiles,,,,,,,,,34.0,28.0,True,0.3,40.0,,
+CH_L_326a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_327a,tumor_fraction,OK,Tumor fraction attached successfully,4623.0,0.0,0.6768846280484044,0.7607268638524582,,,,,,,,,,,
+CH_L_327a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6144604792978395,0.5899581429392711,0.17858349609355528,,,,,,,
+CH_L_327a,filter_tumor_tiles,OK,Found 30 tumor tiles,,,,,,,,,38.0,30.0,True,0.3,40.0,,
+CH_L_327a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_328a,tumor_fraction,OK,Tumor fraction attached successfully,4431.0,0.0,0.6507882651171151,0.7185734331948118,,,,,,,,,,,
+CH_L_328a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6184205539242805,0.6522955900017695,0.14793296689640567,,,,,,,
+CH_L_328a,filter_tumor_tiles,OK,Found 33 tumor tiles,,,,,,,,,36.0,33.0,True,0.3,40.0,,
+CH_L_328a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_329a,tumor_fraction,OK,Tumor fraction attached successfully,3944.0,0.0,0.5411769753297435,0.559835056307128,,,,,,,,,,,
+CH_L_329a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5306121868822782,0.531717322559877,0.1926892581293881,,,,,,,
+CH_L_329a,filter_tumor_tiles,OK,Found 26 tumor tiles,,,,,,,,,36.0,26.0,True,0.3,40.0,,
+CH_L_329a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_333a,tumor_fraction,OK,Tumor fraction attached successfully,4857.0,0.0,0.25141883407747306,0.16295774463350768,,,,,,,,,,,
+CH_L_333a,tile_purity,FLAG,Mean tile purity is very low: 0.25632007609517604,,,,,2.0,0.25632007609517604,0.22062125590134468,0.11807889156513314,,,,,,,
+CH_L_333a,filter_tumor_tiles,FLAG,Only 9 tumor tiles - insufficient for MIL training,,,,,,,,,37.0,9.0,True,0.3,40.0,,
+CH_L_333a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_334a,tumor_fraction,OK,Tumor fraction attached successfully,4402.0,0.0,0.6294448144036715,0.7261354718286208,,,,,,,,,,,
+CH_L_334a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5605351113935899,0.6417724213622432,0.19989895127955487,,,,,,,
+CH_L_334a,filter_tumor_tiles,OK,Found 27 tumor tiles,,,,,,,,,36.0,27.0,True,0.3,40.0,,
+CH_L_334a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_335a,tumor_fraction,OK,Tumor fraction attached successfully,4573.0,0.0,0.22547363275224502,0.03433349360549994,,,,,,,,,,,
+CH_L_335a,tile_purity,FLAG,Mean tile purity is very low: 0.25044135269338075,,,,,2.0,0.25044135269338075,0.14890933502637405,0.19448305910507147,,,,,,,
+CH_L_335a,filter_tumor_tiles,FLAG,Only 9 tumor tiles - insufficient for MIL training,,,,,,,,,38.0,9.0,True,0.3,40.0,,
+CH_L_335a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_336a,tumor_fraction,OK,Tumor fraction attached successfully,4975.0,0.0,0.4269623205667467,0.4234489736757348,,,,,,,,,,,
+CH_L_336a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4253418496505716,0.3956050771052338,0.21445238408165482,,,,,,,
+CH_L_336a,filter_tumor_tiles,OK,Found 22 tumor tiles,,,,,,,,,36.0,22.0,True,0.3,40.0,,
+CH_L_336a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_337a,tumor_fraction,OK,Tumor fraction attached successfully,4658.0,0.0,0.33435370575207796,0.18097451759174782,,,,,,,,,,,
+CH_L_337a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.3350627774399255,0.3142865135625153,0.17768168479360863,,,,,,,
+CH_L_337a,filter_tumor_tiles,OK,Found 16 tumor tiles,,,,,,,,,39.0,16.0,True,0.3,40.0,,
+CH_L_337a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_338a,tumor_fraction,OK,Tumor fraction attached successfully,4615.0,0.0,0.34977817043700976,0.34941185801810254,,,,,,,,,,,
+CH_L_338a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.33494548747941433,0.3340133573809848,0.09780436924462467,,,,,,,
+CH_L_338a,filter_tumor_tiles,OK,Found 21 tumor tiles,,,,,,,,,36.0,21.0,True,0.3,40.0,,
+CH_L_338a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_339a,tumor_fraction,OK,Tumor fraction attached successfully,3226.0,0.0,0.6539831577644206,0.826283110073557,,,,,,,,,,,
+CH_L_339a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5499560004820379,0.5095750662688258,0.21932621406298272,,,,,,,
+CH_L_339a,filter_tumor_tiles,OK,Found 22 tumor tiles,,,,,,,,,35.0,22.0,True,0.3,40.0,,
+CH_L_339a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_340a,tumor_fraction,OK,Tumor fraction attached successfully,4915.0,0.0,0.6682337921122448,0.7530483169950372,,,,,,,,,,,
+CH_L_340a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6381989845856608,0.6398045250967519,0.11506935255458722,,,,,,,
+CH_L_340a,filter_tumor_tiles,OK,Found 30 tumor tiles,,,,,,,,,38.0,30.0,True,0.3,40.0,,
+CH_L_340a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_341a,tumor_fraction,OK,Tumor fraction attached successfully,4543.0,0.0,0.3121273219380528,0.31412450700473893,,,,,,,,,,,
+CH_L_341a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.30178699682195487,0.3018026499176722,0.07061400879556257,,,,,,,
+CH_L_341a,filter_tumor_tiles,OK,Found 16 tumor tiles,,,,,,,,,37.0,16.0,True,0.3,40.0,,
+CH_L_341a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 48/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_342a,tumor_fraction,OK,Tumor fraction attached successfully,4948.0,0.0,0.3693349319263544,0.19726710101148212,,,,,,,,,,,
+CH_L_342a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.3633312766215207,0.2602483544310652,0.2588551468437459,,,,,,,
+CH_L_342a,filter_tumor_tiles,OK,Found 11 tumor tiles,,,,,,,,,39.0,11.0,True,0.3,40.0,,
+CH_L_342a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_344a,tumor_fraction,OK,Tumor fraction attached successfully,4753.0,0.0,0.7111952862255572,0.8130571098677565,,,,,,,,,,,
+CH_L_344a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6601627006113652,0.7410265403271432,0.1831160251555457,,,,,,,
+CH_L_344a,filter_tumor_tiles,OK,Found 25 tumor tiles,,,,,,,,,44.0,25.0,True,0.3,40.0,,
+CH_L_344a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_345a,tumor_fraction,OK,Tumor fraction attached successfully,4743.0,0.0,0.7336121088795381,0.8858584883546001,,,,,,,,,,,
+CH_L_345a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.7097468859679766,0.7726590825616313,0.1865340711533409,,,,,,,
+CH_L_345a,filter_tumor_tiles,OK,Found 30 tumor tiles,,,,,,,,,35.0,30.0,True,0.3,40.0,,
+CH_L_345a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_346a,tumor_fraction,OK,Tumor fraction attached successfully,4092.0,0.0,0.6884057006503241,0.7865242265284639,,,,,,,,,,,
+CH_L_346a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6474514323092796,0.7264359385877639,0.19871501000320893,,,,,,,
+CH_L_346a,filter_tumor_tiles,OK,Found 32 tumor tiles,,,,,,,,,36.0,32.0,True,0.3,40.0,,
+CH_L_346a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_347a,tumor_fraction,OK,Tumor fraction attached successfully,4946.0,0.0,0.6301966800006129,0.7322987599016939,,,,,,,,,,,
+CH_L_347a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.582581622893446,0.6419492563168496,0.18520586344363413,,,,,,,
+CH_L_347a,filter_tumor_tiles,OK,Found 29 tumor tiles,,,,,,,,,45.0,29.0,True,0.3,40.0,,
+CH_L_347a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_348a,tumor_fraction,OK,Tumor fraction attached successfully,4581.0,0.0,0.47801399803762157,0.500110872489173,,,,,,,,,,,
+CH_L_348a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4758245778047233,0.5100482540673166,0.15210295717547348,,,,,,,
+CH_L_348a,filter_tumor_tiles,OK,Found 28 tumor tiles,,,,,,,,,36.0,28.0,True,0.3,40.0,,
+CH_L_348a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_349a,tumor_fraction,OK,Tumor fraction attached successfully,4672.0,0.0,0.4093342410617469,0.3464100031628493,,,,,,,,,,,
+CH_L_349a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.39180262535612076,0.3366841020360156,0.24845774197445,,,,,,,
+CH_L_349a,filter_tumor_tiles,OK,Found 18 tumor tiles,,,,,,,,,42.0,18.0,True,0.3,40.0,,
+CH_L_349a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_350a,tumor_fraction,OK,Tumor fraction attached successfully,3509.0,0.0,0.6661436643096985,0.7263154195201973,,,,,,,,,,,
+CH_L_350a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6566074996269607,0.6808403048751374,0.08197102209179609,,,,,,,
+CH_L_350a,filter_tumor_tiles,OK,Found 30 tumor tiles,,,,,,,,,36.0,30.0,True,0.3,40.0,,
+CH_L_350a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_351a,tumor_fraction,OK,Tumor fraction attached successfully,4874.0,0.0,0.3624589825913349,0.2935882618467768,,,,,,,,,,,
+CH_L_351a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.39388117703031067,0.40964541651002034,0.21562264436520337,,,,,,,
+CH_L_351a,filter_tumor_tiles,OK,Found 17 tumor tiles,,,,,,,,,42.0,17.0,True,0.3,40.0,,
+CH_L_351a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_352a,tumor_fraction,OK,Tumor fraction attached successfully,4180.0,0.0,0.4020183047503026,0.39719151058676144,,,,,,,,,,,
+CH_L_352a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4350987830411485,0.44520644380184715,0.17721829821487756,,,,,,,
+CH_L_352a,filter_tumor_tiles,OK,Found 23 tumor tiles,,,,,,,,,36.0,23.0,True,0.3,40.0,,
+CH_L_352a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_353a,tumor_fraction,OK,Tumor fraction attached successfully,4568.0,0.0,0.3842532228435656,0.3744428180435171,,,,,,,,,,,
+CH_L_353a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.3876243499175688,0.387421724391803,0.10434274072269892,,,,,,,
+CH_L_353a,filter_tumor_tiles,OK,Found 26 tumor tiles,,,,,,,,,37.0,26.0,True,0.3,40.0,,
+CH_L_353a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_356a,tumor_fraction,OK,Tumor fraction attached successfully,4297.0,0.0,0.3952537148293223,0.3589854270445667,,,,,,,,,,,
+CH_L_356a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.3890440839533882,0.39118974236410164,0.19137329509010548,,,,,,,
+CH_L_356a,filter_tumor_tiles,OK,Found 17 tumor tiles,,,,,,,,,41.0,17.0,True,0.3,40.0,,
+CH_L_356a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_359a,tumor_fraction,OK,Tumor fraction attached successfully,4522.0,0.0,0.3666932225590699,0.3059162366042685,,,,,,,,,,,
+CH_L_359a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.3909583106354032,0.44869587809178446,0.18189129063025902,,,,,,,
+CH_L_359a,filter_tumor_tiles,OK,Found 20 tumor tiles,,,,,,,,,40.0,20.0,True,0.3,40.0,,
+CH_L_359a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_360a,tumor_fraction,OK,Tumor fraction attached successfully,4491.0,0.0,0.542746707950056,0.5837817278619494,,,,,,,,,,,
+CH_L_360a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5077321055165668,0.5172204950520405,0.21679073330951895,,,,,,,
+CH_L_360a,filter_tumor_tiles,OK,Found 27 tumor tiles,,,,,,,,,36.0,27.0,True,0.3,40.0,,
+CH_L_360a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_361a,tumor_fraction,OK,Tumor fraction attached successfully,4741.0,0.0,0.4387749307999028,0.4587781400967112,,,,,,,,,,,
+CH_L_361a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4285002189763342,0.4577245544304831,0.13619272900220955,,,,,,,
+CH_L_361a,filter_tumor_tiles,OK,Found 31 tumor tiles,,,,,,,,,36.0,31.0,True,0.3,40.0,,
+CH_L_361a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_362a,tumor_fraction,OK,Tumor fraction attached successfully,4881.0,0.0,0.5683461004811459,0.6594577176509752,,,,,,,,,,,
+CH_L_362a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5549689564570275,0.5818511990951676,0.18492487249941617,,,,,,,
+CH_L_362a,filter_tumor_tiles,OK,Found 30 tumor tiles,,,,,,,,,39.0,30.0,True,0.3,40.0,,
+CH_L_362a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_363a,tumor_fraction,OK,Tumor fraction attached successfully,4877.0,0.0,0.678499975658204,0.8325309109463102,,,,,,,,,,,
+CH_L_363a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6732788031262245,0.7048296773890528,0.19668969660771954,,,,,,,
+CH_L_363a,filter_tumor_tiles,OK,Found 28 tumor tiles,,,,,,,,,36.0,28.0,True,0.3,40.0,,
+CH_L_363a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_364a,tumor_fraction,OK,Tumor fraction attached successfully,3962.0,0.0,0.2972435606690018,0.22402696409982298,,,,,,,,,,,
+CH_L_364a,tile_purity,FLAG,Mean tile purity is very low: 0.2875834279138582,,,,,2.0,0.2875834279138582,0.28755333732429766,0.19363770163324023,,,,,,,
+CH_L_364a,filter_tumor_tiles,OK,Found 12 tumor tiles,,,,,,,,,42.0,12.0,True,0.3,40.0,,
+CH_L_364a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_367a,tumor_fraction,OK,Tumor fraction attached successfully,4074.0,0.0,0.593661205885061,0.6976346568490124,,,,,,,,,,,
+CH_L_367a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6008189760762798,0.6601624324384064,0.17546679381906136,,,,,,,
+CH_L_367a,filter_tumor_tiles,OK,Found 22 tumor tiles,,,,,,,,,40.0,22.0,True,0.3,40.0,,
+CH_L_367a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_368a,tumor_fraction,OK,Tumor fraction attached successfully,4364.0,0.0,0.5128845176282198,0.5367839248293487,,,,,,,,,,,
+CH_L_368a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4851465570303135,0.4374049775476198,0.1926491797881762,,,,,,,
+CH_L_368a,filter_tumor_tiles,OK,Found 26 tumor tiles,,,,,,,,,37.0,26.0,True,0.3,40.0,,
+CH_L_368a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_369a,tumor_fraction,OK,Tumor fraction attached successfully,4670.0,0.0,0.5726369822794423,0.6561975070681074,,,,,,,,,,,
+CH_L_369a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5849523291206715,0.6307103272112318,0.19358276340657385,,,,,,,
+CH_L_369a,filter_tumor_tiles,OK,Found 25 tumor tiles,,,,,,,,,36.0,25.0,True,0.3,40.0,,
+CH_L_369a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_371a,tumor_fraction,OK,Tumor fraction attached successfully,4848.0,0.0,0.6736610385360348,0.7446836861346411,,,,,,,,,,,
+CH_L_371a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6457574426833204,0.6832819370879617,0.15487988686376547,,,,,,,
+CH_L_371a,filter_tumor_tiles,OK,Found 33 tumor tiles,,,,,,,,,41.0,33.0,True,0.3,40.0,,
+CH_L_371a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_372a,tumor_fraction,OK,Tumor fraction attached successfully,4788.0,0.0,0.6973621176392321,0.7688145393847325,,,,,,,,,,,
+CH_L_372a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.6568927050651777,0.6835277583296051,0.15595905430555093,,,,,,,
+CH_L_372a,filter_tumor_tiles,OK,Found 33 tumor tiles,,,,,,,,,40.0,33.0,True,0.3,40.0,,
+CH_L_372a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_373a,tumor_fraction,OK,Tumor fraction attached successfully,3528.0,0.0,0.37996229321283304,0.31197372336908524,,,,,,,,,,,
+CH_L_373a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.3741724969345562,0.35547618030009676,0.11873460584578173,,,,,,,
+CH_L_373a,filter_tumor_tiles,OK,Found 20 tumor tiles,,,,,,,,,34.0,20.0,True,0.3,40.0,,
+CH_L_373a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_376a,tumor_fraction,OK,Tumor fraction attached successfully,1183.0,0.0,0.42825318313930294,0.3797470407611412,,,,,,,,,,,
+CH_L_376a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.4320218141891988,0.38674728047520196,0.21340850146946974,,,,,,,
+CH_L_376a,filter_tumor_tiles,FLAG,Only 6 tumor tiles - insufficient for MIL training,,,,,,,,,23.0,6.0,True,0.3,40.0,,
+CH_L_376a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_387a,tumor_fraction,OK,Tumor fraction attached successfully,789.0,0.0,0.5466184959266062,0.5937686405967733,,,,,,,,,,,
+CH_L_387a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5414994045896389,0.5675027329413015,0.15801298211332543,,,,,,,
+CH_L_387a,filter_tumor_tiles,FLAG,Only 7 tumor tiles - insufficient for MIL training,,,,,,,,,16.0,7.0,True,0.3,40.0,,
+CH_L_387a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_388a,tumor_fraction,OK,Tumor fraction attached successfully,770.0,0.0,0.28604857381533133,0.18814516649220175,,,,,,,,,,,
+CH_L_388a,tile_purity,FLAG,Mean tile purity is very low: 0.2921745657729271,,,,,2.0,0.2921745657729271,0.25909575369440097,0.10161598664424515,,,,,,,
+CH_L_388a,filter_tumor_tiles,FLAG,Only 2 tumor tiles - insufficient for MIL training,,,,,,,,,20.0,2.0,True,0.3,40.0,,
+CH_L_388a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_389a,tumor_fraction,OK,Tumor fraction attached successfully,1812.0,0.0,0.28889483116874565,0.07552193242716954,,,,,,,,,,,
+CH_L_389a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.31931212995581976,0.2648411208434285,0.24903127676248626,,,,,,,
+CH_L_389a,filter_tumor_tiles,FLAG,Only 7 tumor tiles - insufficient for MIL training,,,,,,,,,30.0,7.0,True,0.3,40.0,,
+CH_L_389a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_390a,tumor_fraction,OK,Tumor fraction attached successfully,772.0,0.0,0.5063355688965212,0.5517152600628705,,,,,,,,,,,
+CH_L_390a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.47295546647812503,0.5016619778669893,0.12851265622567556,,,,,,,
+CH_L_390a,filter_tumor_tiles,FLAG,Only 7 tumor tiles - insufficient for MIL training,,,,,,,,,18.0,7.0,True,0.3,40.0,,
+CH_L_390a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_395a,tumor_fraction,OK,Tumor fraction attached successfully,929.0,0.0,0.6022479001891405,0.6694451250872545,,,,,,,,,,,
+CH_L_395a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5818837439825565,0.5719018399539166,0.12006488043115572,,,,,,,
+CH_L_395a,filter_tumor_tiles,FLAG,Only 9 tumor tiles - insufficient for MIL training,,,,,,,,,21.0,9.0,True,0.3,40.0,,
+CH_L_395a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_399a,tumor_fraction,OK,Tumor fraction attached successfully,2234.0,0.0,0.20573762807131998,0.12944919200076238,,,,,,,,,,,
+CH_L_399a,tile_purity,FLAG,Mean tile purity is very low: 0.22369001925644813,,,,,2.0,0.22369001925644813,0.1927723816559362,0.11806250230368125,,,,,,,
+CH_L_399a,filter_tumor_tiles,FLAG,Only 3 tumor tiles - insufficient for MIL training,,,,,,,,,27.0,3.0,True,0.3,40.0,,
+CH_L_399a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_400a,tumor_fraction,OK,Tumor fraction attached successfully,628.0,0.0,0.5805933427385044,0.6883064273099464,,,,,,,,,,,
+CH_L_400a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5591908245835046,0.5579904811826032,0.16006953254620446,,,,,,,
+CH_L_400a,filter_tumor_tiles,FLAG,Only 6 tumor tiles - insufficient for MIL training,,,,,,,,,15.0,6.0,True,0.3,40.0,,
+CH_L_400a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0
+CH_L_403a,tumor_fraction,OK,Tumor fraction attached successfully,1467.0,0.0,0.6420521116854407,0.7770461984133488,,,,,,,,,,,
+CH_L_403a,tile_purity,OK,Mean tile purity is above 30.0%,,,,,2.0,0.5950617939748114,0.6583817639416067,0.20530880068258317,,,,,,,
+CH_L_403a,filter_tumor_tiles,OK,Found 11 tumor tiles,,,,,,,,,22.0,11.0,True,0.3,40.0,,
+CH_L_403a,signature_qc,OK,All 5 pathway signatures computed successfully,,,,,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 16/17 genes', 'YAP_signature: 6/6 genes']",0.0

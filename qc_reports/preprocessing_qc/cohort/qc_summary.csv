@@ -1,0 +1,94 @@
+patient_id,n_excluded,n_flags,n_ok,n_stages_evaluated,failed_stages,qc_reasons,verdict
+CH_L_300a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.21733963543107646 | Only 8 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_313a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.26575144151260593 | Only 8 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_333a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.25632007609517604 | Only 9 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_335a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.25044135269338075 | Only 9 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_388a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.2921745657729271 | Only 2 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_399a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.22369001925644813 | Only 3 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_306a,0,1,3,4,tile_purity,Mean tile purity is very low: 0.24431714771588398,REVIEW
+CH_L_364a,0,1,3,4,tile_purity,Mean tile purity is very low: 0.2875834279138582,REVIEW
+CH_L_376a,0,1,3,4,filter_tumor_tiles,Only 6 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_387a,0,1,3,4,filter_tumor_tiles,Only 7 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_389a,0,1,3,4,filter_tumor_tiles,Only 7 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_390a,0,1,3,4,filter_tumor_tiles,Only 7 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_395a,0,1,3,4,filter_tumor_tiles,Only 9 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_400a,0,1,3,4,filter_tumor_tiles,Only 6 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_275a,0,0,4,4,,,OK
+CH_L_276a,0,0,4,4,,,OK
+CH_L_277a,0,0,4,4,,,OK
+CH_L_278a,0,0,4,4,,,OK
+CH_L_279a,0,0,4,4,,,OK
+CH_L_280a,0,0,4,4,,,OK
+CH_L_281a,0,0,4,4,,,OK
+CH_L_281b,0,0,4,4,,,OK
+CH_L_282a,0,0,4,4,,,OK
+CH_L_283a,0,0,4,4,,,OK
+CH_L_284a,0,0,4,4,,,OK
+CH_L_285a,0,0,4,4,,,OK
+CH_L_287a,0,0,4,4,,,OK
+CH_L_288a,0,0,4,4,,,OK
+CH_L_289a,0,0,4,4,,,OK
+CH_L_290a,0,0,4,4,,,OK
+CH_L_291a,0,0,4,4,,,OK
+CH_L_292a,0,0,4,4,,,OK
+CH_L_293a,0,0,4,4,,,OK
+CH_L_294a,0,0,4,4,,,OK
+CH_L_295a,0,0,4,4,,,OK
+CH_L_296a,0,0,4,4,,,OK
+CH_L_298a,0,0,4,4,,,OK
+CH_L_299a,0,0,4,4,,,OK
+CH_L_301a,0,0,4,4,,,OK
+CH_L_302a,0,0,4,4,,,OK
+CH_L_303a,0,0,4,4,,,OK
+CH_L_305a,0,0,4,4,,,OK
+CH_L_306b,0,0,4,4,,,OK
+CH_L_307a,0,0,4,4,,,OK
+CH_L_308a,0,0,4,4,,,OK
+CH_L_309a,0,0,4,4,,,OK
+CH_L_310a,0,0,4,4,,,OK
+CH_L_311a,0,0,4,4,,,OK
+CH_L_312a,0,0,4,4,,,OK
+CH_L_314a,0,0,4,4,,,OK
+CH_L_315a,0,0,4,4,,,OK
+CH_L_317a,0,0,4,4,,,OK
+CH_L_318a,0,0,4,4,,,OK
+CH_L_319a,0,0,4,4,,,OK
+CH_L_320a,0,0,4,4,,,OK
+CH_L_321a,0,0,4,4,,,OK
+CH_L_322a,0,0,4,4,,,OK
+CH_L_323a,0,0,4,4,,,OK
+CH_L_326a,0,0,4,4,,,OK
+CH_L_327a,0,0,4,4,,,OK
+CH_L_328a,0,0,4,4,,,OK
+CH_L_329a,0,0,4,4,,,OK
+CH_L_334a,0,0,4,4,,,OK
+CH_L_336a,0,0,4,4,,,OK
+CH_L_337a,0,0,4,4,,,OK
+CH_L_338a,0,0,4,4,,,OK
+CH_L_339a,0,0,4,4,,,OK
+CH_L_340a,0,0,4,4,,,OK
+CH_L_341a,0,0,4,4,,,OK
+CH_L_342a,0,0,4,4,,,OK
+CH_L_344a,0,0,4,4,,,OK
+CH_L_345a,0,0,4,4,,,OK
+CH_L_346a,0,0,4,4,,,OK
+CH_L_347a,0,0,4,4,,,OK
+CH_L_348a,0,0,4,4,,,OK
+CH_L_349a,0,0,4,4,,,OK
+CH_L_350a,0,0,4,4,,,OK
+CH_L_351a,0,0,4,4,,,OK
+CH_L_352a,0,0,4,4,,,OK
+CH_L_353a,0,0,4,4,,,OK
+CH_L_356a,0,0,4,4,,,OK
+CH_L_359a,0,0,4,4,,,OK
+CH_L_360a,0,0,4,4,,,OK
+CH_L_361a,0,0,4,4,,,OK
+CH_L_362a,0,0,4,4,,,OK
+CH_L_363a,0,0,4,4,,,OK
+CH_L_367a,0,0,4,4,,,OK
+CH_L_368a,0,0,4,4,,,OK
+CH_L_369a,0,0,4,4,,,OK
+CH_L_371a,0,0,4,4,,,OK
+CH_L_372a,0,0,4,4,,,OK
+CH_L_373a,0,0,4,4,,,OK
+CH_L_403a,0,0,4,4,,,OK
