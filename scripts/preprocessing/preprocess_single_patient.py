@@ -1,5 +1,5 @@
 """Preprocess single patient"""
-
+import logging
 from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
 from hne.utils import setup_logging, get_logger
@@ -12,6 +12,11 @@ setup_logging(
     file_level="DEBUG",
     log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
+# silencing botto logger
+logging.getLogger("botocore").setLevel(logging.CRITICAL)
+logging.getLogger("boto3").setLevel(logging.CRITICAL)
+logging.getLogger("s3transfer").setLevel(logging.CRITICAL)
+logging.getLogger("urllib3").setLevel(logging.CRITICAL)
 
 logger = get_logger()
 
