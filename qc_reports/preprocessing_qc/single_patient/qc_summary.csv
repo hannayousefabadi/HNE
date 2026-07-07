@@ -1,0 +1,2 @@
+patient_id,n_excluded,n_flags,n_ok,n_stages_evaluated,failed_stages,qc_reasons,verdict
+CH_L_282,0,1,2,3,filter_tumor_tiles,Only 19 tumor tiles - insufficient for MIL training,REVIEW

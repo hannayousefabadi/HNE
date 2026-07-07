@@ -13,8 +13,6 @@ tiles/
 tile_features/
 
 *.h5ad
-*.png
-*.csv
 
 .ipynb_checkpoints/
 
