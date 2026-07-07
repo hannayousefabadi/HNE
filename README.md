@@ -1,4 +1,4 @@
-#  an MIL pathology framework for lung cancer using H&E Image Analysis, Visium Spatial Transcriptomics and Whole-exome Sequencing
+#  a pathology framework for lung cancer using H&E Image Analysis, Visium Spatial Transcriptomics and Whole-exome Sequencing
 
 ## Overview
 
