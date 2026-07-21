@@ -48,6 +48,3 @@ def phikon_feature_extraction(patients_dir: str = TILES,
             np.save(output_file, features.numpy())
 
     print("\nFeature extraction with Phikon-v2 completed!")        
-
-
-
