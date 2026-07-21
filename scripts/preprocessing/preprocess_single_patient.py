@@ -4,10 +4,10 @@ from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
 from hne.utils import setup_logging, get_logger
 from hne.core.data_io import save_metadata
-from hne.core.paths import PREPROCESSING_QC_REPORTS
+from hne.core.paths import PREPROCESSED_SINGLE_PATIENT
 
 setup_logging(
-    log_file = PREPROCESSING_QC_REPORTS / "single_patient" / "single_patient.log",
+    log_file = PREPROCESSED_SINGLE_PATIENT / "single_patient.log",
     console_level="INFO",
     file_level="DEBUG",
     log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
