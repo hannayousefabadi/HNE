@@ -3,7 +3,7 @@
 import pandas as pd
 from pathlib import Path
 
-from hne.core.paths import (PatientS3Paths, RAW_DATA_BUCKET, RAW_DATA_PREFIX, TILE_FEATURES)
+from hne.core.paths import (PatientS3Paths, RAW_DATA_BUCKET, RAW_DATA_PREFIX, TILES_SIGNATURE_MATRIX)
 from hne.core.s3_io import S3DataLoader
 
 _s3_loader = None
@@ -56,7 +56,7 @@ def save_tile_features(tiles_sig_tumor, patient_id=None, mode='cohort'):
     Save tile‑level signature matrix
     Handle both single_patient DataFrame and a list of DataFrames (cohort) 
     """
-    output_dir = Path(TILE_FEATURES)
+    output_dir = Path(TILES_SIGNATURE_MATRIX)
     output_dir.mkdir(parents=True, exist_ok=True)
     tiles_sig_tumor = tiles_sig_tumor.copy()
 

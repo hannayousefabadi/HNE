@@ -199,12 +199,11 @@ PATIENT_IDS = [
 ]
 
 
-
 PATIENTS = {p: PatientS3Paths(p) for p in PATIENT_IDS}
 
 
 TILES = ROOT / "tiles"
-TILE_FEATURES = ROOT / "tile_features"
+TILES_SIGNATURE_MATRIX = ROOT / "tile_signature_matrix"
 QC_REPORTS = ROOT / "qc_reports"
 PREPROCESSING_QC_REPORTS = ROOT / "qc_reports" / "preprocessing_qc"
 
@@ -215,6 +214,6 @@ RESULTS = ROOT / "results"
 
 
 
-for path in [TILES, TILE_FEATURES, QC_REPORTS, PREPROCESSING_QC_REPORTS, 
+for path in [TILES, TILES_SIGNATURE_MATRIX, QC_REPORTS, PREPROCESSING_QC_REPORTS, 
              PREPROCESSED_SINGLE_PATIENT, PREPROCESSED_COHORT]:
     path.mkdir(parents=True, exist_ok=True)

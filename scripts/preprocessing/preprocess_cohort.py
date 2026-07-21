@@ -113,7 +113,7 @@ if __name__ == "__main__":
         cohort_tile_df = pd.concat(all_tiles_sig, ignore_index=True)
         # save to csv
         save_tile_features(all_tiles_sig, mode='cohort')
-        logger.info("Saved cohort tile signatures to tile_features directory")
+        logger.info("Saved cohort tile signatures to tile_signature_matrix directory")
 
         # cohort proof of concept plots
         if sig_cols:
