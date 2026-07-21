@@ -2,12 +2,12 @@
 Tumor purity preprocessing.
 
 QC thresholds:
-- Mean tumor fraction of tiles < 0.2       -> EXCLUDE
+- Mean tumor fraction of tiles < 0.2       -> EXCLUDE       # tumor fraction mean in one patient (all spots)
 - Missing tumor fraction > 10%             -> FLAG
-- Mean tile purity < 0.30                  -> FLAG
+- Mean tile purity < 0.30                  -> FLAG          # purity threshold for accepted tiles
 - 0 tumor tiles after filtering            -> EXCLUDE
 - < 30 initial tiles                       -> Logger warning
-- <10 tumor tiles after filtering          -> FLAG
+- < 10 tumor tiles after filtering         -> FLAG
 
 """
 
@@ -26,7 +26,7 @@ def attach_tumor_fraction(spots,
         merged_df
         metadata_dict
     """
-    MEAN_TUMOR_FRACTION_THRESHOLD = 0.2
+    MEAN_TUMOR_FRACTION_THRESHOLD = 0.2  # this is tumor fraction mean in one patient (all spots)
 
     in_tissue_spots = spots[spots["in_tissue"] == 1].copy()
     in_tissue_spots["barcode"] = in_tissue_spots["barcode"].astype(str)
@@ -152,7 +152,6 @@ def compute_tile_purity(
         final_df
         metadata
     """
-
     MEAN_PURITY_THRESHOLD = 0.3
 
     grouped = df.groupby("tile_id")["tumor_fraction"]
