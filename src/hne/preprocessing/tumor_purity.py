@@ -91,7 +91,7 @@ def add_tile_coordinates(scales,
                          merged
                          ):
     """
-    Derive tile coordinates from spot positions based on slide's physical sizze
+    Derive tile coordinates from spot positions based on slide's physical size
     Returns:
         df
         metadata
@@ -102,29 +102,24 @@ def add_tile_coordinates(scales,
     spot_diameter = 55  # Visium spot diameter in µm
 
     spot_diameter_fullres = scales["spot_diameter_fullres"]
-    tissue_hires_scalef = scales["tissue_hires_scalef"]
 
-    fullres_pixel_size = spot_diameter / spot_diameter_fullres
-    hires_pixel_size = spot_diameter / (spot_diameter_fullres * tissue_hires_scalef)
+    fullres_pixel_size = spot_diameter / spot_diameter_fullres      # mpp of full res h&E
+    logger.debug(f"Pixel size - Fullres: {fullres_pixel_size:.4f} µm/pixel")
 
-    # dynamic calculation: how many pixels are needed to reach the target physical size
-    tile_size_px = int(target_physical_size_um / hires_pixel_size)
-    logger.debug(f"Pixel sizes - Hires: {hires_pixel_size:.2f} µm/pixel")
-    logger.info(f"Target physical size {target_physical_size_um} µm -> {tile_size_px} pixels")
-
-    merged["x_hires"] = merged["pxl_col_in_fullres"] * tissue_hires_scalef
-    merged["y_hires"] = merged["pxl_row_in_fullres"] * tissue_hires_scalef
+    # dynamic calculation: how many fullres pixels are needed to reach the target physical size
+    tile_size_px = int(target_physical_size_um / fullres_pixel_size)
+    logger.info(f"Target physical size {target_physical_size_um} µm -> {tile_size_px} fullres pixels")
 
     # use the dynamically calculated pixel size for the grid
     # hard assignment: using the floor division here to assign every single spot to exactly one tile
-    merged["tile_col"] = (merged["x_hires"] // tile_size_px).astype(int)    # tile_col = index tiles (0,1,2,3,…) vertically
-    merged["tile_row"] = (merged["y_hires"] // tile_size_px).astype(int)    # tile_row = index tiles (0,1,2,3,…) horizontally
+    # in fullres coordinates 
+    merged["tile_col"] = (merged["pxl_col_in_fullres"] // tile_size_px).astype(int)    # tile_col = index tiles (0,1,2,3,…) vertically
+    merged["tile_row"] = (merged["pxl_row_in_fullres"] // tile_size_px).astype(int)    # tile_row = index tiles (0,1,2,3,…) horizontally
     merged["tile_id"] = merged["tile_row"].astype(str) + "-" + merged["tile_col"].astype(str)
 
     metadata = {
         "n_initial_tiles": len(merged['tile_id'].unique()),
         "fullres_pixel_size": fullres_pixel_size,
-        "hires_pixel_size": hires_pixel_size,
         "tile_size_pixels": tile_size_px
     }
     
