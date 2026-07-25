@@ -1,8 +1,8 @@
+"""utils.py"""
 import logging 
 import sys
 from pathlib import Path
 from typing import Optional, Union
-
 
 def setup_logging(
     log_file: Optional[Union[str, Path]] = None,
@@ -93,4 +93,3 @@ class LoggerMixin:
             )
         return self._logger        
  
-    
