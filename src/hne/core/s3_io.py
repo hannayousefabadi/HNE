@@ -12,6 +12,8 @@ import tifffile
 from typing import Tuple, List, Optional
 import tempfile
 from io import BytesIO
+import openslide
+import tempfile
 
 from hne.utils import get_logger
 
@@ -76,7 +78,18 @@ class S3DataLoader:
             return Image.fromarray(img_array)
         else:
             return Image.fromarray(img_array, mode='L')
-
+        
+    def read_tif_as_openslide(self, 
+                              s3_path: str) -> tuple[openslide.OpenSlide, str]:
+        """Download tif to a temp file an open it as OpenSlide for patching module."""
+        data_bytes = self._read_bytes(s3_path)
+        tmp = tempfile.NamedTemporaryFile(suffix=".tif", delete=False)
+        tmp.write(data_bytes)
+        tmp.flush()
+        tmp.close()
+        slide = openslide.OpenSlide(tmp.name)
+        return slide, tmp.name
+    
     def list_patients_from_processed(self, bucket: str, prefix: str) -> List[str]:
         """
         Discover patient IDs from PROCESSED data folders.
