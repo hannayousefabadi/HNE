@@ -5,7 +5,6 @@ from PIL import Image
 import openslide
 import numpy as np
 
-
 @dataclass
 class PatchSpec:
     """FMs-specific patch requirements."""
@@ -46,6 +45,7 @@ def extract_patches_for_tile(slide: openslide.OpenSlide,
     for py in range(y0, y0 + tile_size_px_fullres - patch_px_native + 1, stride_px_native):
         for px in range(x0, x0 + tile_size_px_fullres - patch_px_native + 1, stride_px_native):
             # cutting the right amount of real tissue
+            # using the read_region to stream just the patch, without ever materializing the whole decoded image in memory,
             crop = slide.read_region((px, py), 0, (patch_px_native, patch_px_native)).convert("RGB")
 
             if not _has_enough_tissue(crop, min_tissue_fraction):   # True
@@ -67,8 +67,5 @@ def _has_enough_tissue(crop: Image.Image,
     gray = np.array(crop.convert("L"))  # converting RGB patch to grayscale
     tissue_pixels = (gray < 220).sum()  # any pixel with grayscale intensity below 220 is assumed to be tissue
     return (tissue_pixels / gray.size) >= min_tissue_fraction
-    
-
-
 
 
