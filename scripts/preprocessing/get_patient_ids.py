@@ -19,7 +19,7 @@ def list_raw_hne(bucket, prefix):
     files = []
     for page in paginator.paginate(Bucket=bucket, Prefix=full_prefix):
         for obj in page.get('Contents', []):
-            key = obj['key']
+            key = obj['Key']
             if key.endswith('.tif'):
                 files.append(key)
     return files            
