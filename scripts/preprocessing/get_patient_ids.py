@@ -2,9 +2,10 @@
 
 import re
 import pandas as pd
+from pathlib import Path
 from collections import defaultdict
 from hne.core.s3_io import S3DataLoader
-from hne.core.paths import (RAW_DATA_BUCKET, RAW_DATA_PREFIX, 
+from hne.core.paths import (RESULTS, RAW_DATA_BUCKET, RAW_DATA_PREFIX, 
                             PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX)
 
 loader = S3DataLoader()
@@ -71,15 +72,13 @@ for pid in all_ids:
         )
     })
 
+out_dir = Path(RESULTS)
 report = pd.DataFrame(rows).sort_values(["status", "patient_id"])
-report.to_csv("patient_ids_report.csv", index=False)
+report.to_csv(out_dir/"patient_ids_report.csv", index=False)
 
 print(report['status'].value_counts())
 print(f"\n{len(unmatched_hne_files)} hne filenames had no recognizable patient IDs")
 for f in unmatched_hne_files:
     print(" ", f)
-
-
-
 
 
