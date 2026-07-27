@@ -219,5 +219,6 @@ RESULTS = ROOT / "results"
 
 for path in [TILES, TILES_SIGNATURE_MATRIX, QC_REPORTS, PREPROCESSING_QC_REPORTS, 
              PREPROCESSED_SINGLE_PATIENT, PREPROCESSED_COHORT, 
-             TILES_FEATURES, PHIKON_FEATURES]:
+             TILES_FEATURES, PHIKON_FEATURES,
+             RESULTS]:
     path.mkdir(parents=True, exist_ok=True)
