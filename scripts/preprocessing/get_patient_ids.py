@@ -28,7 +28,7 @@ def list_raw_hne(bucket, prefix):
 
 def list_processed_visium(bucket, prefix):
     """List every patient folder from processed Visium data"""
-    full_prefix = f"{prefix.rstrip('/')}/v2/spaceranger_count"
+    full_prefix = f"{prefix.rstrip('/')}/v2/spaceranger_count/"
     paginator = loader.s3_client.get_paginator('list_objects_v2')
     patients = []
     for page in paginator.paginate(Bucket=bucket, Prefix=full_prefix, Delimiter='/'):
