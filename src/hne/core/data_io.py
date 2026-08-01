@@ -1,9 +1,9 @@
-"""data_io"""
+"""src/core/data_io"""
 
 import pandas as pd
 from pathlib import Path
 
-from hne.core.paths import (PatientS3Paths, RAW_DATA_BUCKET, RAW_DATA_PREFIX, TILES_SIGNATURE_MATRIX)
+from hne.core.paths import (PatientS3Paths, TIF_MAP, TILES_SIGNATURE_MATRIX)
 from hne.core.s3_io import S3DataLoader
 
 _s3_loader = None
@@ -32,19 +32,13 @@ def load_scale_factor(patient_paths: PatientS3Paths):
 def load_he_image(patient_paths: PatientS3Paths, qc_tracker=None):
     loader = get_s3_loader()
 
-    clean_id = patient_paths.patient_id.replace('_vis', '')
-    tif_key = loader.find_tif_for_patient(
-        bucket=RAW_DATA_BUCKET,
-        prefix=RAW_DATA_PREFIX,
-        patient_id=clean_id
-    )
+    filename = TIF_MAP.get(patient_paths.clean_id)
 
-    if tif_key:
-        tif_path = f"s3://{RAW_DATA_BUCKET}/{tif_key}"
+    if filename:
+        tif_path = f"{patient_paths.raw_image_prefix}/{filename}"
         return loader.read_tif(tif_path)
-
     elif qc_tracker:
-            qc_tracker.add_record(patient_paths.patient_id,
+        qc_tracker.add_record(patient_paths.patient_id,
                                   "fullresimg_load",
                                   "EXCLUDE",
                                   f"No full resolution image found found for {patient_paths.patient_id}",

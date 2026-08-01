@@ -1,7 +1,6 @@
 """
-s3_io.py - read only from S3, save results to repo
+src/core/s3_io.py 
 """
-
 import boto3
 import io
 import json
@@ -9,7 +8,7 @@ import pandas as pd
 import scanpy as sc
 from PIL import Image
 import tifffile
-from typing import Tuple, List, Optional
+from typing import Tuple
 import tempfile
 from io import BytesIO
 import openslide
@@ -18,7 +17,6 @@ import tempfile
 from hne.utils import get_logger
 
 logger = get_logger()
-
 
 class S3DataLoader:
     """Load data directly from S3 using boto3 and IAM role."""
@@ -88,93 +86,4 @@ class S3DataLoader:
         tmp.flush()
         tmp.close()
         slide = openslide.OpenSlide(tmp.name)
-        return slide, tmp.name
-    
-    def list_patients_from_processed(self, bucket: str, prefix: str) -> List[str]:
-        """
-        Discover patient IDs from PROCESSED data folders.
-        Looks for folders like CH_L_XXXa_vis/
-        """
-        logger.info(f"Discovering patients from processed data: s3://{bucket}/{prefix}")
-        
-        patients = []
-        paginator = self.s3_client.get_paginator('list_objects_v2')
-        
-        # Use delimiter to only get top-level folders
-        for page in paginator.paginate(
-            Bucket=bucket, 
-            Prefix=prefix,
-            Delimiter='/'
-        ):
-            if 'CommonPrefixes' in page:
-                for common in page['CommonPrefixes']:
-                    folder = common['Prefix']
-                    # Extract patient ID from folder name
-                    # Example: "CH_L_403a_vis/" → "CH_L_403a_vis"
-                    patient_id = folder.rstrip('/')
-                    # Keep the full folder name (with _vis)
-                    patients.append(patient_id)
-        
-        return sorted(patients)
-
-    def list_patients_from_raw(self, bucket: str, prefix: str, pattern: str = "CH_L_") -> List[str]:
-        """
-        Discover patient IDs from RAW image files.
-        Looks for TIF files and extracts patient IDs from filenames.
-        """
-        logger.info(f"Discovering patients from raw images: s3://{bucket}/{prefix}")
-        
-        patients = set()
-        paginator = self.s3_client.get_paginator('list_objects_v2')
-        
-        for page in paginator.paginate(Bucket=bucket, Prefix=prefix):
-            if 'Contents' in page:
-                for obj in page['Contents']:
-                    key = obj['Key']
-                    if key.endswith('.tif'):
-                        filename = key.split('/')[-1]
-                        parts = filename.split('_')
-                        
-                        for part in parts:
-                            if part.startswith(pattern):
-                                # clean up patient ID
-                                patient_id = part
-                                # remove any trailing stuff
-                                if patient_id.endswith('.tif'):
-                                    patient_id = patient_id[:-4]
-                                patients.add(patient_id)
-                                break
-        
-        return sorted(list(patients))
-    
-
-    def find_tif_for_patient(self, bucket: str, prefix: str, patient_id: str) -> Optional[str]:
-        """
-        Find TIF file for a patient.
-        The patient_id can be with or without _vis suffix.
-        """
-        # clean patient ID (remove _vis if present)
-        clean_id = patient_id.replace('_vis', '')
-        base_prefix = prefix.rstrip('/')
-        full_prefix = f"{base_prefix}/spatial_transcriptomics/Visium/image_files/"
-        
-        paginator = self.s3_client.get_paginator('list_objects_v2')
-        prefix = f"{prefix}/image_files/" if not prefix.endswith('image_files') else prefix
-        
-        # Search for TIF files
-        for page in paginator.paginate(Bucket=bucket, Prefix=full_prefix):
-            if 'Contents' in page:
-                for obj in page['Contents']:
-                    key = obj['Key']
-                    filename = key.split('/')[-1]
-                    
-                    # check if this TIF belongs to this patient
-                    # look for the patient ID in the filename
-                    if clean_id in filename and key.endswith('.tif'):
-                        logger.info(f"Found TIF for {patient_id}: {filename}")
-                        return key
-        
-        logger.warning(f"No TIF found for patient {patient_id}")
-        return None         
-    
-    
+        return slide, tmp.name  # return the path too, so caller can delete it when done
