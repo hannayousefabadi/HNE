@@ -1,6 +1,10 @@
-"""Main preprocessing pipeline - reusable for both single patient and cohort"""
+"""
+src/hne/preprocessing/pipeline.py
+Main preprocessing pipeline - reusable for both single patient and cohort
+"""
 
 import logging
+
 from hne.core.paths import PATIENTS
 from hne.core.data_io import *
 from hne.preprocessing.tumor_purity import *
@@ -19,17 +23,15 @@ def preprocess_patient(patient_id,
                        min_spots=40,                    # tile at least has 40 spots
                        qc_tracker=None,
                        verbose=True,                    # console output level (True=INFO, False=WARNING)
-                       run_qc_plots=True,
-                       use_s3_discovery=False           # if True, discover patient from S3 dynamically
+                       run_qc_plots=True
                        ):       
     """
     Preprocess patients and return metadata - reusable function
 
     Args:
-        patient_id: Patient ID (e.g., "CH_L_282a" or "CH_L_282a_vis")
+        patient_id: Patient IDs
         mode: 'single_patient' or 'cohort'
         target_physical_size_um: Target tile size in micrometers
-        use_s3_discovery: If True, discover patient paths from S3 dynamically
 
     Returns:
         metadata: dict with all QC info
@@ -37,13 +39,8 @@ def preprocess_patient(patient_id,
     """
     logger.info(f"Starting preprocessing patient: {patient_id}")
 
-    # load patient paths -> supports both hardcoded and dynamic discovery:
-    if use_s3_discovery or patient_id not in PATIENTS:
-        # dynamic discovery from S3
-        paths = PatientS3Paths(patient_id)
-
-    else:
-        paths = PATIENTS[patient_id]
+    # load patient paths
+    paths = PATIENTS[patient_id]
 
     patient_metadata = {"patient_id": patient_id}
     

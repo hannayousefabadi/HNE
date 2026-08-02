@@ -3,16 +3,13 @@
 import pandas as pd
 from tqdm import tqdm
 import logging
+
 from hne.utils import setup_logging, get_logger
 from hne.core.data_io import save_metadata, save_tile_features
 from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
-from hne.core.paths import PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, PREPROCESSING_QC_REPORTS
+from hne.core.paths import PATIENT_IDS, PREPROCESSING_QC_REPORTS
 from hne.preprocessing_qc.plots import cohort_tile_variation, save_cohort_spot_qc_plots
-
-from hne.core.s3_io import S3DataLoader
-
-from hne.core.paths import PATIENT_IDS
 
 setup_logging(
     log_file= PREPROCESSING_QC_REPORTS / "cohort" / "cohort.log", 
@@ -34,21 +31,9 @@ if __name__ == "__main__":
     logger.info("Starting cohort preprocessing")
     logger.info("=" * 40)
     
-
-    # dynamic patient S3 patients' name discovery
-    # loader = S3DataLoader()
-
-    # patient_ids = loader.list_patients_from_processed(
-    #     bucket=PROCESSED_VISIUM_BUCKET,
-    #     prefix=PROCESSED_VISIUM_PREFIX
-    # )
-    
-    # logger.info(f"Found {len(patient_ids)} patients in processed data")
-
-    # use the hardcoded list instead
+    # load patients from cohort_manifest.json 
     patient_ids = PATIENT_IDS
-    
-    logger.info(f"Found {len(patient_ids)} patients in hardcoded list")
+    logger.info(f"Found {len(patient_ids)} patients from cohort manifest")
 
     if not patient_ids:
         logger.error("No patients found! check S3 paths and permissions.")
@@ -77,8 +62,7 @@ if __name__ == "__main__":
                 min_spots=40,         # tile at least has 40 spots
                 qc_tracker=qc,
                 verbose=False,        # console quiet
-                run_qc_plots=False,
-                use_s3_discovery=False # finding the entire cohort dynamically   
+                run_qc_plots=False
             )
 
             all_metadata.append(metadata)

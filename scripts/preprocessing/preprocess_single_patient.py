@@ -36,8 +36,7 @@ if __name__ == "__main__":
         min_spots=40,         # tile at least has 40 spots
         qc_tracker=qc,
         verbose=True,         # console output level (True=INFO, False=WARNING)
-        run_qc_plots=True,
-        use_s3_discovery=False
+        run_qc_plots=True
     )
 
     save_metadata(metadata, qc.output_dir / "metadata.csv")

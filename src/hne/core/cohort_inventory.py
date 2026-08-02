@@ -37,7 +37,7 @@ def list_processed_visium(bucket, prefix):
     for page in paginator.paginate(Bucket=bucket, Prefix=full_prefix, Delimiter='/'):
         for common in page.get('CommonPrefixes', []):
             folder = common['Prefix'].rstrip('/').split('/')[-1]
-            patients.append(folder.replace('_vis', ''))
+            patients.append(folder.removesuffix("_vis"))
     return sorted(set(patients))
 
                 
