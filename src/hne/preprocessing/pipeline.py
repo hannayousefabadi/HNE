@@ -77,6 +77,7 @@ def preprocess_patient(patient_id,
     sig_cols, signature_genes, spots_df, meta = compute_signatures(vis, final_df, patient_id, qc_tracker)
     patient_metadata.update(meta)
     tiles_sig_tumor, meta = aggregate_signatures(spots_df, sig_cols, tile_size_px, tumor_tiles_df)
+    tiles_sig_tumor.insert(0, "patient_id", patient_id)
     patient_metadata.update(meta)
     tiles_sig_tumor = zscore_and_binary(sig_cols, tiles_sig_tumor)
     save_tile_features(tiles_sig_tumor, patient_id, mode)
