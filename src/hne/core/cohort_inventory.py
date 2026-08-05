@@ -130,3 +130,5 @@ def cohort_discovery(raw_bucket=RAW_DATA_BUCKET, raw_prefix=RAW_DATA_PREFIX,
 
     return final_ids, final_tif_map
 
+if __name__ == "__main__":
+    cohort_discovery()
