@@ -74,6 +74,7 @@ class PhikonV2Extractor:
                 patch_embeddings.append(feats.cpu().numpy())
 
             patch_embeddings = np.concatenate(patch_embeddings, axis=0) # (N_patches, 1024)
+            # average all patch vectors to create the tile vector (it can be enhanced basted on the patch cell deconvolution)
             tile_embedding = patch_embeddings.mean(axis=0) # (1024,)   
 
             out_file = output_dir / f"{patient_id}_{tile_id}_phikon_features.npy"
