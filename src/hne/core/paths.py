@@ -40,7 +40,7 @@ try:
     with open(RESULTS / "cohort_manifest.json") as f:
         _manifest = json.load(f)
 except (FileNotFoundError, json.JSONDecodeError) as e:
-    raise RuntimeError("cohort_manifest.json not found or invalid, run cohort_discovery() first!") from e       
+    raise RuntimeError("cohort_manifest.json not found or invalid, run cohort_inventory module first!") from e       
 
 PATIENT_IDS = _manifest["patient_ids"]
 TIF_MAP = _manifest["tif_map"]
