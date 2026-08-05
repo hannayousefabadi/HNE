@@ -25,3 +25,4 @@ build/
 
 # ignore env files
 .env
+nohup.out
