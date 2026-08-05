@@ -44,6 +44,21 @@ def load_he_image(patient_paths: PatientS3Paths, qc_tracker=None):
                                   f"No full resolution image found found for {patient_paths.patient_id}",
                                   metadata={})    
 
+def load_he_slide(patient_paths: PatientS3Paths, qc_tracker=None):
+    """Load H&E image with openslide.OpenSlide for patch extraction."""
+    loader = get_s3_loader()
+    filename = TIF_MAP.get(patient_paths.clean_id)
+
+    if filename:
+        tif_path = f"{patient_paths.raw_image_prefix}/{filename}"
+        return loader.read_tif_as_openslide(tif_path)
+    elif qc_tracker:
+        qc_tracker.add_record(patient_paths.patient_id, "fullresimg_load",
+                              "EXCLUDE", f"No full resolution image found for {patient_paths.patient_id}",
+                              metadata={})
+        
+    return None, None   
+
 
 def save_tile_features(tiles_sig_tumor, patient_id=None, mode='cohort'):
     """
@@ -52,7 +67,6 @@ def save_tile_features(tiles_sig_tumor, patient_id=None, mode='cohort'):
     """
     output_dir = Path(TILES_SIGNATURE_MATRIX)
     output_dir.mkdir(parents=True, exist_ok=True)
-    tiles_sig_tumor = tiles_sig_tumor.copy()
 
     # handle list of DataFrames 
     if isinstance(tiles_sig_tumor, list):
@@ -60,14 +74,10 @@ def save_tile_features(tiles_sig_tumor, patient_id=None, mode='cohort'):
         file_name = f"tiles_signature_matrix_{mode}.csv"
     # handle single patient
     else:
-        if "patient_id" not in tiles_sig_tumor.columns:
-            tiles_sig_tumor.insert(0, "patient_id", patient_id) # add patinet_id as the first col
-
         df = tiles_sig_tumor
         file_name = f"tiles_signature_matrix_{patient_id}.csv"
 
-    output_path = output_dir / file_name
-    df.to_csv(output_path, index=False)
+    df.to_csv(output_dir / file_name, index=False)
 
 
 def save_metadata(metadata, output_path):
