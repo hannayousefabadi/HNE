@@ -35,7 +35,7 @@ def extract_patches_for_tile(slide: openslide.OpenSlide,
                              ) -> list[dict]:
     """Devide one tile (in fullres pixel coords) into model-ready patches."""
     # converting a physical measurement (µm) into native pixels  for this specific patient's
-    # fullres image using the patient's own mpp (fullres_pixel_size)
+    # fullres image using the patient's o‍wn mpp (fullres_pixel_size)
     patch_px_native = round(spec.patch_fov_um / fullres_pixel_size)     # unit: pixels, how many pixels
     # wide/tall do I need to crop from this patient's tiff to capture 112 µm of real tissue
     stride_px_native = round(spec.stride_um / fullres_pixel_size)       # unit: pixels, how far to move
