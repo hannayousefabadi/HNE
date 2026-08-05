@@ -30,7 +30,6 @@ def crop_and_save_tiles(tumor_tiles, tile_size, hne_img, patient_id):
 
         # metadata
         metadata = {
-            "n_tumor_tiles_saved": len(tiles),
             "tiles_path": str(tiles_path)
         }
 
