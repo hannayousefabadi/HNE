@@ -7,8 +7,9 @@ from datetime import datetime
 from pathlib import Path
 from collections import defaultdict
 from hne.core.s3_io import S3DataLoader
-from hne.core.paths import (RESULTS, RAW_DATA_BUCKET, RAW_DATA_PREFIX, 
-                            PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX)
+from hne.core.config import (RESULTS, PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, 
+                             RAW_DATA_BUCKET, RAW_DATA_PREFIX)
+
 
 loader = S3DataLoader()
 
