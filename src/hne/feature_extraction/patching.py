@@ -22,7 +22,7 @@ PATCH_SPECS = {
     "virchow2": PatchSpec(patch_size_px=224, patch_fov_um=112.0),
     "uni2_h": PatchSpec(patch_size_px=224, patch_fov_um=112.0),
     "gigapath": PatchSpec(patch_size_px=256, patch_fov_um=128.0),
-    "conch": PatchSpec(patch_size_px=512, patch_fov_um=256.0)
+    "conch_v15": PatchSpec(patch_size_px=512, patch_fov_um=256.0)
 }
 
 def extract_patches_for_tile(slide: openslide.OpenSlide,
@@ -33,7 +33,8 @@ def extract_patches_for_tile(slide: openslide.OpenSlide,
                              spec: PatchSpec,
                              min_tissue_fraction: float = 0.5
                              ) -> list[dict]:
-    """Devide one tile (in fullres pixel coords) into model-ready patches."""
+    """Devide one tile (in fullres pixel coords) into model-ready patches. No overlap between 
+    patches by default design. but the full coverage of each tile is not guaranteed (tiny edge-loss issue)"""
     # converting a physical measurement (µm) into native pixels  for this specific patient's
     # fullres image using the patient's o‍wn mpp (fullres_pixel_size)
     patch_px_native = round(spec.patch_fov_um / fullres_pixel_size)     # unit: pixels, how many pixels
