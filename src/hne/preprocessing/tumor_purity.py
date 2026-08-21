@@ -118,6 +118,7 @@ def add_tile_coordinates(scales,
     merged["tile_id"] = merged["tile_row"].astype(str) + "-" + merged["tile_col"].astype(str)
 
     metadata = {
+        "tile_id": merged["tile_id"],
         "n_initial_tiles": len(merged['tile_id'].unique()),
         "fullres_pixel_size": fullres_pixel_size,
         "tile_size_pixels": tile_size_px
