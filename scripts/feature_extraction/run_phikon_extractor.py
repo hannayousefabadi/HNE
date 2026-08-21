@@ -11,22 +11,21 @@ from hne.core.data_io import load_he_slide
 
 def extract_features():
     phikon = PhikonV2Extractor()
-
     metadata = pd.read_csv(PREPROCESSING_QC_REPORTS / "cohort" / "metadata.csv")
     
     for patient_id in tqdm(PATIENT_IDS, desc="Extracting Phikon-v2 features"):
-        patient_tile_path = pd.read_csv(TILES_SIGNATURE_MATRIX / f"tiles_signature_matrix_{patient_id}.csv")
-        if not patient_tile_path:
+        patient_tiles = pd.read_csv(TILES_SIGNATURE_MATRIX / f"tiles_signature_matrix_{patient_id}.csv")
+        if patient_tiles.empty:
             print(f"Skipping {patient_id}: no saved tile csv for this patient")
+            continue
 
-        patient_tiles = pd.read_csv(patient_tile_path)
         patient_meta = metadata[metadata["patient_id"] == patient_id]
         if patient_meta.empty:
             print(f"Skipping {patient_id}: has no row in cohort metadata")
-            continue    
+            continue
 
         fullres_px_size = patient_meta["fullres_pixel_size"].iloc[0]
-        tile_size_px = int(patient_meta["tile_size_pixels"].iloc[0])    
+        tile_size_px = int(patient_meta["tile_size_pixels"].iloc[0])
 
         paths = PATIENTS[patient_id]
         slide, tmp_path = load_he_slide(paths)
@@ -34,12 +33,12 @@ def extract_features():
         if slide is None:
             print(f"Skipping {patient_id}: no slide found")
             continue
-        
+
         try:
             phikon.extract_patient_tiles(
                 patient_id=patient_id,
                 slide=slide,
-                tiles_df=patient_tiles,
+                tiles_df=patient_tiles,      # use the loaded DataFrame
                 fullres_pixel_size=fullres_px_size,
                 tile_size_px_fullres=tile_size_px,
                 output_dir=PHIKON_FEATURES
