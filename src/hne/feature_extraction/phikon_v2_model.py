@@ -1,5 +1,5 @@
 """
-src/hne/feature_extraction/phikon_v2.py
+src/hne/feature_extraction/phikon_v2_model.py
 """
 import numpy as np
 from PIL import Image
