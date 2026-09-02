@@ -79,7 +79,7 @@ def preprocess_patient(patient_id,
     tiles_sig_tumor, meta = aggregate_signatures(spots_df, sig_cols, tile_size_px, tumor_tiles_df)
     tiles_sig_tumor.insert(0, "patient_id", patient_id)
     patient_metadata.update(meta)
-    tiles_sig_tumor = zscore_and_binary(sig_cols, tiles_sig_tumor)
+    tiles_sig_tumor = zscore_and_binary(sig_cols, tiles_sig_tumor, patient_id)
     save_tile_features(tiles_sig_tumor, patient_id, mode)
     
     # QC plots - separate flag
