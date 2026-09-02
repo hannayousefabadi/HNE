@@ -19,7 +19,7 @@ def compute_signatures(vis, final_df, patient_id=None, qc_tracker=None):
                 "PCNA", "CLSPN", "PCLAF", "CHAF1B", "SLFN11", "DUT", "FAM111A", 
                 "UHRF1", "TYMS", "HELLS", "DHFRP1", "SIVA1", "MAP7D2"], # 20
     "YAP_signature": ["YAP1","TAZ", "TEAD4", "TEAD2", "TEAD3","TEAD1"], # 6
-    "WNT_signature": ["WNT2B","WNT5A", "ANT3A", "FZD2", "FZD3", "FZD4", "FZD8", 
+"WNT_signature": ["WNT2B","WNT5A", "WNT3A", "FZD2", "FZD3", "FZD4", "FZD8", 
                     "FZD9", "FZD10", "LRP5", "LRP6", "DVL1", "DVL3", "AXIN1", 
                     "AXIN2", "CSNK1A1", "CTNNB1"], # 17
     "EMT_signature": ["VIM","SNAI2","ZEB2","FN1", "MMP2", "AGER"] # 6
@@ -32,6 +32,10 @@ def compute_signatures(vis, final_df, patient_id=None, qc_tracker=None):
         for key, genes in signatures.items()
     }
 
+    vis = vis.copy()
+    # log_norm_count = log1p(CPM) -> total count normalized per-spot, then log-transfered
+    # corrects for: sequencing depth differences between spots (removes within-sample depth artifacts)
+    # raw counts -> CPM (per-spot)
     vis.X = vis.layers["log_norm_count"].copy()
     missing_signatures = []
 
@@ -39,8 +43,13 @@ def compute_signatures(vis, final_df, patient_id=None, qc_tracker=None):
     for sig, genes_present in signature_genes.items():
         if len(genes_present) == 0:
             logger.warning(f"No genes found for {sig} - skipping")
+            missing_signatures.append(sig)
             continue
 
+        # score_genes is a per-spot background-correction method
+        # corrects for: expression-level bias within a gene set (comparing signature genes to similarly-expressed non-signature genes)
+        # removes a within-spot, within-gene-set expression bias
+        # score = mean(expression of signature genes) - mean(expression of a matched control gene set)       
         sc.tl.score_genes(
             vis,
             gene_list=genes_present,
@@ -69,7 +78,7 @@ def compute_signatures(vis, final_df, patient_id=None, qc_tracker=None):
         if len(missing_signatures) == len(signatures):
             qc_tracker.add_record(patient_id, "signature_qc", "EXCLUDE",
                                   "Failed to compute ANY signatures", metadata)
-        elif len(missing_signatures) > 12:
+        elif len(missing_signatures) > 0:
             failed_sigs = ", ".join(missing_signatures)
             qc_tracker.add_record(patient_id, "signature_qc", "FLAG",
                                   f"Missing genes for signatures: {failed_sigs}", metadata)
