@@ -57,17 +57,19 @@ def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df):
     return tiles_sig_tumor, metadata
 
 
-def zscore_and_binary(sig_cols, tiles_sig_tumor):
+def zscore_and_binary(sig_cols, tiles_sig_tumor, patient_id="patient_id"):
     """
     Apply z-score normalization and binary calls to tile signatures
     """
     BINARY_THRESHOLD = 1.0
 
     for col in sig_cols:
+        grp = tiles_sig_tumor.groupby(patient_id)[col]
         # computing z-score
-        z = (tiles_sig_tumor[col] - tiles_sig_tumor[col].mean()) / tiles_sig_tumor[col].std()
+        # per-patient gene score normalization, across all spots/genes
+        # corrects for: batch variation between patients
+        z = (tiles_sig_tumor[col] - grp.transform("mean")) / grp.transform("std")
         tiles_sig_tumor[f"{col}_z"] = z
-
         tiles_sig_tumor[f"{col}_binary"] = (z >= BINARY_THRESHOLD).astype(int) 
 
         logger.debug(f"Z-score ranges - {col}:"
