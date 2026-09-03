@@ -16,7 +16,7 @@ def get_s3_loader():
 
 def load_visium(patient_paths: PatientS3Paths):
     loader = get_s3_loader()
-    h5ad_path = f"{patient_paths.visium_st}/{patient_paths.patient_id}_c2l_annots.h5ad"
+    h5ad_path = f"{patient_paths.visium_st}/{patient_paths.clean_id}_vis_c2l_annots.h5ad"
     return loader.read_h5ad(h5ad_path)
 
 def load_spots(patient_paths: PatientS3Paths):
