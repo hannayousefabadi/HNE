@@ -17,11 +17,11 @@ class PatientS3Paths:
         self.clean_id = patient_id.replace('_vis', '')
 
         self.processed_base = f"s3://{PROCESSED_VISIUM_BUCKET}/{PROCESSED_VISIUM_PREFIX}"
-        self.visium_st = f"{self.processed_base}/v2/without_spotclean/stLearn/{patient_id}_vis"
-        self.visium_info = f"{self.processed_base}/v2/spaceranger_count/{patient_id}_vis/outs/spatial"
+        self.visium_st = f"{self.processed_base}/v2/without_spotclean/stLearn/{patient_id}_vis/"
+        self.visium_info = f"{self.processed_base}/v2/spaceranger_count/{patient_id}_vis/outs/spatial/"
 
         self.raw_base = f"s3://{RAW_DATA_BUCKET}/{RAW_DATA_PREFIX}"
-        self.raw_image_prefix = f"{self.raw_base}/spatial_transcriptomics/Visium/image_files"
+        self.raw_image_prefix = f"{self.raw_base}/spatial_transcriptomics/Visium/image_files/"
         
 
 TILES = ROOT / "tiles"
