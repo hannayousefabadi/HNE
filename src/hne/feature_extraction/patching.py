@@ -25,6 +25,21 @@ PATCH_SPECS = {
     "conch_v15": PatchSpec(patch_size_px=512, patch_fov_um=256.0)
 }
 
+
+def _tile_positions(start: int, tile_size_px: int, patch_px: int, stride_px: int) -> list[int]:
+    """Grid positions covering [start, start+tile_size_px) with patch_px-wide windows.
+    Ensures full coverage: the final position is snapped back to the tile edge instead
+    of being dropped, at the cost of a small overlap with the previous patch."""
+    if patch_px > tile_size_px:
+        raise ValueError(f"patch size ({patch_px}px) exceeds tile size ({tile_size_px}px)")
+    positions = list(range(start, start + tile_size_px - patch_px + 1, stride_px))
+    last_valid_start = start + tile_size_px - patch_px
+    if not positions or positions[-1] != last_valid_start:
+        positions.append(last_valid_start)
+    return positions
+
+
+
 def extract_patches_for_tile(slide: openslide.OpenSlide,
                              x0: int, 
                              y0: int,
@@ -42,9 +57,12 @@ def extract_patches_for_tile(slide: openslide.OpenSlide,
     stride_px_native = round(spec.stride_um / fullres_pixel_size)       # unit: pixels, how far to move
     # between crops (overlap)
 
+    y_positions = _tile_positions(y0, tile_size_px_fullres, patch_px_native, stride_px_native)
+    x_positions = _tile_positions(x0, tile_size_px_fullres, patch_px_native, stride_px_native)
+
     patches = []
-    for py in range(y0, y0 + tile_size_px_fullres - patch_px_native + 1, stride_px_native):
-        for px in range(x0, x0 + tile_size_px_fullres - patch_px_native + 1, stride_px_native):
+    for py in y_positions: 
+        for px in x_positions:
             # cutting the right amount of real tissue
             # using the read_region to stream just the patch, without ever materializing the whole decoded image in memory,
             crop = slide.read_region((px, py), 0, (patch_px_native, patch_px_native)).convert("RGB")
