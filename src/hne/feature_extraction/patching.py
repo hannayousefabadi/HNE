@@ -27,17 +27,22 @@ PATCH_SPECS = {
 
 
 def _tile_positions(start: int, tile_size_px: int, patch_px: int, stride_px: int) -> list[int]:
-    """Grid positions covering [start, start+tile_size_px) with patch_px-wide windows.
-    Ensures full coverage: the final position is snapped back to the tile edge instead
-    of being dropped, at the cost of a small overlap with the previous patch."""
+    """
+    Ensure the tile's full coverage considering different image and patch sizes
+    the final position is snapped back to the tile edge instead
+    of being dropped, at the cost of a small overlap with the previous patch.
+    Causing small amount of double-coverage at the trailing edges only.
+    """
     if patch_px > tile_size_px:
         raise ValueError(f"patch size ({patch_px}px) exceeds tile size ({tile_size_px}px)")
+    # generate the normal grids
     positions = list(range(start, start + tile_size_px - patch_px + 1, stride_px))
+    # `last_valid_start` is that last position where a patch still fits inside the tile
     last_valid_start = start + tile_size_px - patch_px
+    # if the regular stride grid didn't exactly land on `last_valid_start`, it appends it
     if not positions or positions[-1] != last_valid_start:
         positions.append(last_valid_start)
     return positions
-
 
 
 def extract_patches_for_tile(slide: openslide.OpenSlide,
@@ -49,7 +54,8 @@ def extract_patches_for_tile(slide: openslide.OpenSlide,
                              min_tissue_fraction: float = 0.5
                              ) -> list[dict]:
     """Devide one tile (in fullres pixel coords) into model-ready patches. No overlap between 
-    patches by default design. but the full coverage of each tile is not guaranteed (tiny edge-loss issue)"""
+    patches by default design. but the full coverage of each tile is guaranteed (the remainder
+    strip is covered by one extra patch per axis, which overlaps its neighbor)"""
     # converting a physical measurement (µm) into native pixels  for this specific patient's
     # fullres image using the patient's o‍wn mpp (fullres_pixel_size)
     patch_px_native = round(spec.patch_fov_um / fullres_pixel_size)     # unit: pixels, how many pixels
@@ -86,5 +92,4 @@ def _has_enough_tissue(crop: Image.Image,
     gray = np.array(crop.convert("L"))  # converting RGB patch to grayscale
     tissue_pixels = (gray < 220).sum()  # any pixel with grayscale intensity below 220 is assumed to be tissue
     return (tissue_pixels / gray.size) >= min_tissue_fraction
-
 
