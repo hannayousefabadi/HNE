@@ -1,0 +1,4 @@
+pip install -e .
+pip install scanpy
+pip install openslide-python openslide-bin
+pip install pyvips pyvips-binary
