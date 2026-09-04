@@ -1,15 +1,15 @@
 patient_id,n_excluded,n_flags,n_ok,n_stages_evaluated,failed_stages,qc_reasons,verdict
-CH_L_300a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.21733963543107646 | Only 8 tumor tiles - insufficient for MIL training,REVIEW
-CH_L_313a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.26575144151260593 | Only 8 tumor tiles - insufficient for MIL training,REVIEW
-CH_L_333a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.25632007609517604 | Only 9 tumor tiles - insufficient for MIL training,REVIEW
-CH_L_335a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.25044135269338075 | Only 9 tumor tiles - insufficient for MIL training,REVIEW
-CH_L_388a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.2921745657729271 | Only 2 tumor tiles - insufficient for MIL training,REVIEW
-CH_L_399a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.22369001925644813 | Only 3 tumor tiles - insufficient for MIL training,REVIEW
-CH_L_306a,0,1,3,4,tile_purity,Mean tile purity is very low: 0.24431714771588398,REVIEW
-CH_L_364a,0,1,3,4,tile_purity,Mean tile purity is very low: 0.2875834279138582,REVIEW
+CH_L_313a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.26828696640049016 | Only 8 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_333a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.2580284456789697 | Only 8 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_388a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.29111120168250415 | Only 2 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_399a,0,2,2,4,tile_purity; filter_tumor_tiles,Mean tile purity is very low: 0.2278152183565533 | Only 3 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_300a,0,1,3,4,tile_purity,Mean tile purity is very low: 0.22317740288348029,REVIEW
+CH_L_306a,0,1,3,4,tile_purity,Mean tile purity is very low: 0.24738657978422407,REVIEW
+CH_L_335a,0,1,3,4,tile_purity,Mean tile purity is very low: 0.24865028897451688,REVIEW
+CH_L_364a,0,1,3,4,tile_purity,Mean tile purity is very low: 0.2831620706758991,REVIEW
 CH_L_376a,0,1,3,4,filter_tumor_tiles,Only 6 tumor tiles - insufficient for MIL training,REVIEW
-CH_L_387a,0,1,3,4,filter_tumor_tiles,Only 7 tumor tiles - insufficient for MIL training,REVIEW
-CH_L_389a,0,1,3,4,filter_tumor_tiles,Only 7 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_387a,0,1,3,4,filter_tumor_tiles,Only 6 tumor tiles - insufficient for MIL training,REVIEW
+CH_L_389a,0,1,3,4,filter_tumor_tiles,Only 6 tumor tiles - insufficient for MIL training,REVIEW
 CH_L_390a,0,1,3,4,filter_tumor_tiles,Only 7 tumor tiles - insufficient for MIL training,REVIEW
 CH_L_395a,0,1,3,4,filter_tumor_tiles,Only 9 tumor tiles - insufficient for MIL training,REVIEW
 CH_L_400a,0,1,3,4,filter_tumor_tiles,Only 6 tumor tiles - insufficient for MIL training,REVIEW
