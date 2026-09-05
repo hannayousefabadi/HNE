@@ -8,3 +8,4 @@ openslide-bin
 pyvips
 pyvips-binary
 torch
+transformers
