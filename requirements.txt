@@ -10,3 +10,4 @@ pyvips-binary
 torch
 transformers
 dotenv
+tifffile
