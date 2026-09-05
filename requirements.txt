@@ -8,6 +8,7 @@ openslide-bin
 pyvips
 pyvips-binary
 torch
+torchvision
 transformers
 dotenv
 tifffile
