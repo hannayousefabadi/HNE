@@ -1,4 +1,4 @@
 pip install -e .
-pip install scanpy
+pip install scanpy pandas numpy boto3
 pip install openslide-python openslide-bin
 pip install pyvips pyvips-binary
