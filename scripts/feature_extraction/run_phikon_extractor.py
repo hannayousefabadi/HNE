@@ -2,6 +2,7 @@
 import pandas as pd
 import os
 from tqdm import tqdm
+from pathlib import Path
 
 from hne.feature_extraction.phikon_v2_model import PhikonV2Extractor
 from hne.core.paths import (PATIENTS, PATIENT_IDS, TILES_SIGNATURE_MATRIX, 
@@ -14,9 +15,20 @@ def extract_features():
     metadata = pd.read_csv(PREPROCESSING_QC_REPORTS / "cohort" / "metadata.csv")
     
     for patient_id in tqdm(PATIENT_IDS, desc="Extracting Phikon-v2 features"):
-        patient_tiles = pd.read_csv(TILES_SIGNATURE_MATRIX / f"tiles_signature_matrix_{patient_id}.csv")
+        tiles_csv_path = TILES_SIGNATURE_MATRIX / f"tiles_signature_matrix_{patient_id}.csv" 
+        if not tiles_csv_path.exists():
+            print(f"Skipping {patient_id}: no tile signature matrix found (not preprocessed)")
+            continue
+
+        # support resuming
+        existing = list(Path(PHIKON_FEATURES).glob(f"{patient_id}_*_phikon_features.npy"))
+        if existing:
+            print(f"Skipping {patient_id}: already extracted ({len(existing)} tile features found)")
+            continue
+        
+        patient_tiles = pd.read_csv(tiles_csv_path)
         if patient_tiles.empty:
-            print(f"Skipping {patient_id}: no saved tile csv for this patient")
+            print(f"Skipping {patient_id}: tile csv is empty for this patient")
             continue
 
         patient_meta = metadata[metadata["patient_id"] == patient_id]
