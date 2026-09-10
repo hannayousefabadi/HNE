@@ -8,6 +8,7 @@ __pycache__/
 venv/
 
 # large data and img files
+review/
 data/
 tiles/
 tile_signature_matrix/
