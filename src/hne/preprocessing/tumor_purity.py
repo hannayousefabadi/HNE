@@ -18,7 +18,7 @@ logger = get_logger()
 
 def attach_tumor_fraction(spots, 
                           vis, 
-                          patient_id, 
+                          patient_id=None, 
                           qc_tracker=None):
     """
     Compute tumor fraction per spot
@@ -28,10 +28,22 @@ def attach_tumor_fraction(spots,
     """
     MEAN_TUMOR_FRACTION_THRESHOLD = 0.2  # this is tumor fraction mean in one patient (all spots)
 
+    deconv_key = "deconv_sample_level_custom1_frac"
+
+    if deconv_key not in vis.obsm:
+        if qc_tracker and patient_id:
+            qc_tracker.add_record(patient_id, "tumor_fraction", "EXCLUDE",
+                                  f"Missing '{deconv_key} in obsm - no deconvolution available",
+                                  metadata={})
+            logger.warning(f"{patient_id}: missing {deconv_key} in obsm - skipping")
+            return None, {"has_tumor_fraction": False}
+
+
+
     in_tissue_spots = spots[spots["in_tissue"] == 1].copy()
     in_tissue_spots["barcode"] = in_tissue_spots["barcode"].astype(str)
 
-    grp = vis.obsm["deconv_sample_level_custom1_frac"]
+    grp = vis.obsm[deconv_key]
     tumor_fraction = grp[[col for col in grp.columns if "Tu_" in col]].sum(axis=1)  # e.g. Tu_CH_L_282a_c01 & Tu_CH_L_282a_nos for patient "CH_L_282a" 
     tumor_df = tumor_fraction.to_frame(name="tumor_fraction")
     tumor_df.index = tumor_df.index.astype(str)

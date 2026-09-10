@@ -54,6 +54,9 @@ def preprocess_patient(patient_id,
     # compute tumor fraction and tile coords
     merged, meta = attach_tumor_fraction(spots, vis, patient_id, qc_tracker)
     patient_metadata.update(meta)
+    # check to see if the deconvolution column exist and merged df of spots and tumor fractions produced or not
+    if merged is None:
+        return patient_metadata, None, None, None, None
 
     df, meta, tile_size_px = add_tile_coordinates(scales, target_physical_size_um, merged)
     patient_metadata.update(meta)
