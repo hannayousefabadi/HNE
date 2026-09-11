@@ -1,3 +1,5 @@
+import numpy as np
+
 from hne.utils import get_logger
 
 logger = get_logger()
@@ -68,7 +70,10 @@ def zscore_and_binary(sig_cols, tiles_sig_tumor, patient_col="patient_id"):
         # computing z-score
         # per-patient gene score normalization, across all spots/genes
         # corrects for: batch variation between patients
-        z = (tiles_sig_tumor[col] - grp.transform("mean")) / grp.transform("std")
+        std = grp.transform("std")
+        mean = grp.transform("mean")
+        z = (tiles_sig_tumor[col] - mean) / std.replace(0, np.nan)  # handling std == 0
+        z = z.fillna(0.0)
         tiles_sig_tumor[f"{col}_z"] = z
         tiles_sig_tumor[f"{col}_binary"] = (z >= BINARY_THRESHOLD).astype(int) 
 
