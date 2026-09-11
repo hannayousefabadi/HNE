@@ -13,7 +13,6 @@ def crop_and_save_tiles(tumor_tiles, tile_size, hne_img, patient_id):
     tiles_path.mkdir(parents=True, exist_ok=True)
 
     for _, row in tumor_tiles.iterrows():
-
         tile_row = int(row["tile_row"])
         tile_col = int(row["tile_col"])
 
@@ -21,6 +20,11 @@ def crop_and_save_tiles(tumor_tiles, tile_size, hne_img, patient_id):
         upper = tile_row * tile_size
         right = (tile_col + 1) * tile_size
         lower = (tile_row + 1) * tile_size
+
+        # sanity check to make sure tile is not exceeding slide's boarders
+        w, h = hne_img.size
+        if right > w or lower > h:
+            logger.warning(f"Tile {tile_id} exceeds image boundries")
 
         tile_img = hne_img.crop((left, upper, right, lower))
         tiles.append(tile_img)
