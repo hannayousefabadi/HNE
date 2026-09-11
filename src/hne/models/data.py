@@ -9,9 +9,9 @@ from hne.core.paths import TILES_SIGNATURE_MATRIX
 
 
 def load_features_and_targets(features_dir: str, 
-                              patient_ids, 
+                              patient_ids: list, 
                               target_cols: list, 
-                              filename_suffix: SystemError):
+                              filename_suffix: str):
     """
     Building (X, y) training pairs by joining feature vectors and signature scores from the matched tile_id
     loading tile features from vector stored in '{patient_id}_{tile_id}_{foundationmodel}_features.npy'
@@ -38,7 +38,7 @@ def load_features_and_targets(features_dir: str,
         for _, row in tiles_df.iterrows():
             tile_id = row["tile_id"]
             target_vector = row[target_cols].to_numpy(dtype=np.float32)
-            if np.isna(target_vector).any():
+            if np.isnan(target_vector).any():
                 continue # skip the tile if any of the signatures are missing
 
             npy_path = features_dir / f"{patient_id}_{tile_id}_{filename_suffix}.npy"
@@ -48,6 +48,9 @@ def load_features_and_targets(features_dir: str,
             X.append(np.load(npy_path))
             y.append(target_vector)
             tile_meta.append((patient_id, tile_id))
+
+    if not X:
+        return np.empty((0,1024), dtype=np.float32), np.empty(0, len(target_cols), dtype=np.float32), []
 
     return np.stack(X).astype(np.float32), np.array(y, dtype=np.float32), tile_meta
 
