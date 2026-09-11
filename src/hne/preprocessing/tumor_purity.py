@@ -125,8 +125,8 @@ def add_tile_coordinates(scales,
     # use the dynamically calculated pixel size for the grid
     # hard assignment: using the floor division here to assign every single spot to exactly one tile
     # in fullres coordinates 
-    merged["tile_col"] = (merged["pxl_col_in_fullres"] // tile_size_px).astype(int)    # tile_col = index tiles (0,1,2,3,…) vertically
-    merged["tile_row"] = (merged["pxl_row_in_fullres"] // tile_size_px).astype(int)    # tile_row = index tiles (0,1,2,3,…) horizontally
+    merged["tile_col"] = (merged["pxl_col_in_fullres"] // tile_size_px).astype(int)    # tile_col = index tiles (0,1,2,3,…) horizontally -> X, image width 
+    merged["tile_row"] = (merged["pxl_row_in_fullres"] // tile_size_px).astype(int)    # tile_row = index tiles (0,1,2,3,…) vertically -> Y, image height
     merged["tile_id"] = merged["tile_row"].astype(str) + "-" + merged["tile_col"].astype(str)
 
     metadata = {
