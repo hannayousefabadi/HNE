@@ -151,11 +151,11 @@ def signature_consistency(vis,
     consistency = []
 
     # get the expression matrix
-    expr = pd.DataFrame(
-        vis.layers["log_norm_count"].toarray(),
-        index=vis.obs.index,
-        columns=vis.var_names
-    )
+    raw_layer = vis.layers["log_norm_count"]
+    data_mat = raw_layer.toarray() if hasattr(raw_layer, "toarray") else raw_layer
+    expr = pd.DataFrame(data_mat, 
+                        index=vis.obs.index, 
+                        columns=vis.var_names)
 
     expr = expr.loc[tumor_spots["barcode"]]
 
