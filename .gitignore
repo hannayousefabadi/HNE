@@ -1,5 +1,6 @@
 __pycache__/
 *.pyc
+*.cpython-310.pyc
 *.pyo
 *.pyd
 
