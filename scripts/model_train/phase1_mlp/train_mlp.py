@@ -47,8 +47,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Train distributional MLP on tile features")
     parser.add_argument("--model", choices=FEATURE_REGISTRY.keys(), default="phikon_v2",
                         help="Feature backbone to train on")
-    parser.add_argument("--target-cols", nargs="+", required=True,
-                        default=DEFAULT_TARGET_COLS,
+    parser.add_argument("--target-cols", nargs="+", default=DEFAULT_TARGET_COLS,
                         help="Signature score columns to model (e.g. FMRP_signature_score_z)")
     return parser.parse_args()
 
