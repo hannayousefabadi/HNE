@@ -15,6 +15,7 @@ from io import BytesIO
 import openslide
 import tempfile
 import pyvips
+from contextlib import contextmanager
 
 from hne.utils import get_logger
 
