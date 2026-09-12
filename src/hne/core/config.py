@@ -23,4 +23,7 @@ RAW_DATA_BUCKET = os.getenv("RAW_DATA_BUCKET")
 RAW_DATA_PREFIX = os.getenv("RAW_DATA_PREFIX")
 
 RESULTS = ROOT / "results"
-RESULTS.mkdir(parents=True, exist_ok=True)
+MODEL_RESULTS = RESULTS / "models"
+
+for path in [RESULTS, MODEL_RESULTS]:
+    path.mkdir(parents=True, exist_ok=True)
