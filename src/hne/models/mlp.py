@@ -31,7 +31,7 @@ class DistributionalMLP(nn.Module):
         # initialize the final layer thoughtfully, so log_std starts as 0 (sigma=1.0) and mu starts near 0:
         last_layer = self.network[-1]
         nn.init.zeros_(last_layer.weight)
-        nn.init.zeros_(last_layer.biases)
+        nn.init.zeros_(last_layer.bias)
 
     def forward(self, x):
         outputs = self.network(x)
