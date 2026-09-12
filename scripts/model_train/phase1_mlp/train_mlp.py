@@ -34,12 +34,21 @@ CONFIG = {
     "seed": 42,
 }
 
+DEFAULT_TARGET_COLS = [
+    "FMRP_signature_score_z",
+    "Cell_cycle_signature_score_z",
+    "YAP_signature_score_z",
+    "WNT_signature_score_z",
+    "EMT_signature_score_z",
+]
+
 # command line arguments
 def parse_args():
     parser = argparse.ArgumentParser(description="Train distributional MLP on tile features")
     parser.add_argument("--model", choices=FEATURE_REGISTRY.keys(), default="phikon_v2",
                         help="Feature backbone to train on")
     parser.add_argument("--target-cols", nargs="+", required=True,
+                        default=DEFAULT_TARGET_COLS,
                         help="Signature score columns to model (e.g. FMRP_signature_score_z)")
     return parser.parse_args()
 
