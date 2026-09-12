@@ -25,8 +25,13 @@ class DistributionalMLP(nn.Module):
             nn.Dropout(dropout_rate),
             # output layer has 2 nodes, one for Mu and one for log_std (considering gene score
             # is normally distributed)
-            nn.Linear(hidden_dim, 2 * n_targets)    #2 outputs per target (signature)
+            nn.Linear(hidden_dim, 2 * n_targets)    # 2 outputs per target (signature)
         )
+
+        # initialize the final layer thoughtfully, so log_std starts as 0 (sigma=1.0) and mu starts near 0:
+        last_layer = self.network[-1]
+        nn.init.zeros_(last_layer.weight)
+        nn.init.zeros_(last_layer.biases)
 
     def forward(self, x):
         outputs = self.network(x)
@@ -35,7 +40,7 @@ class DistributionalMLP(nn.Module):
 
         # setting bounds for std to prevent exp(log_std) blowing up or hitting zero, bc if the 
         # model starts making bad predictions log_std might drift toward extremely large positive or negative values
-        log_std = torch.clamp(log_std, min=-5.0, max=2.0)
+        log_std = torch.clamp(log_std, min=-3.0, max=0.7)
         std = torch.exp(log_std)    # std = e^s = exp(log_std) -> making sure SD is strictly positive
 
         return mu, std  # both (N, n_targets)

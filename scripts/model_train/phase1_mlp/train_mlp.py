@@ -25,7 +25,7 @@ CONFIG = {
     "output_dir": RESULTS / "mlp_phase1",
     "hidden_dim": 64,
     "dropout_rate": 0.2,
-    "lr": 1e-3,
+    "lr": 3e-4,
     "weight_decay": 1e-4,
     "epochs": 100,
     "batch_size": 64,
