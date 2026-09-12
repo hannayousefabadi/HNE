@@ -72,9 +72,14 @@ def preprocess_patient(patient_id,
         logger.warning(f"Skipping remaining steps for {patient_id} no tumor tiles!")
         return patient_metadata, None, None, None
     
-    # crop and save image tiles
-    tumor_tiles, meta = crop_and_save_tiles(tumor_tiles_df, tile_size_px, img, patient_id)
-    patient_metadata.update(meta)
+    # open slide context manager: handles pyramid creation and deletes temp files on exit
+    with load_he_slide(paths, qc_tracker) as slide:
+        if slide is None:
+            return patient_metadata, None, None, None
+
+        # crop and save image tiles directly via OpenSlide
+        tumor_tiles, meta = crop_and_save_tiles(tumor_tiles_df, tile_size_px, img, patient_id)
+        patient_metadata.update(meta)
     
     # compute signatures per spot, aggregate per tile
     sig_cols, signature_genes, spots_df, meta = compute_signatures(vis, final_df, patient_id, qc_tracker)

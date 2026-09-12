@@ -2,6 +2,7 @@
 
 import pandas as pd
 from pathlib import Path
+from contextlib import contextmanager
 
 from hne.core.paths import (PatientS3Paths, TIF_MAP, TILES_SIGNATURE_MATRIX)
 from hne.core.s3_io import S3DataLoader
@@ -44,21 +45,27 @@ def load_he_image(patient_paths: PatientS3Paths, qc_tracker=None):
                                   f"No full resolution image found found for {patient_paths.patient_id}",
                                   metadata={})    
 
+
+@contextmanager
 def load_he_slide(patient_paths: PatientS3Paths, qc_tracker=None):
-    """Load H&E image with openslide.OpenSlide for patch extraction."""
+    """Context manager yielding an OpenSlide handle and cleaning up temp files automatically"""
     loader = get_s3_loader()
     filename = TIF_MAP.get(patient_paths.clean_id)
 
     if filename:
         tif_path = f"{patient_paths.raw_image_prefix}/{filename}"
-        return loader.read_tif_as_openslide(tif_path)
-    elif qc_tracker:
-        qc_tracker.add_record(patient_paths.patient_id, "fullresimg_load",
-                              "EXCLUDE", f"No full resolution image found for {patient_paths.patient_id}",
-                              metadata={})
-        
-    return None, None   
-
+        with loader.open_tif_as_openslide(tif_path) as slide:
+            yield slide
+    else:
+        if qc_tracker:
+            qc_tracker.add_record(
+                patient_paths.patient_id, 
+                "fullresimg_load",
+                "EXCLUDE", 
+                f"No full resolution image found for {patient_paths.patient_id}",
+                metadata={})
+        yield None
+       
 
 def save_tile_features(tiles_sig_tumor, patient_id=None, mode='cohort'):
     """

@@ -3,6 +3,7 @@ src/core/s3_io.py
 """
 import boto3
 import io
+import os
 import json
 import pandas as pd
 import scanpy as sc
@@ -78,43 +79,45 @@ class S3DataLoader:
         else:
             return Image.fromarray(img_array, mode='L')
         
-
-    def read_tif_as_openslide(
-        self, s3_path: str
-    ) -> tuple[openslide.OpenSlide, str]:
+    @contextmanager
+    def open_tif_as_openslide(self, s3_path: str):
         """
-        Download tif, convert to a tiled pyramidal TIFF via pyvips (OpenSlide
-        cannot open flat/single-resolution TIFFs), then open with OpenSlide
-        for the patching module.
+        Stream TIFF from S3, convert to prymidal TIFF, and garantee cleanup of
+        temporary files the moment processing for that patient finishes
         """
         data_bytes = self._read_bytes(s3_path)
  
         # write the raw download to its own temp file first — pyvips needs
         # a source file/buffer to read from before it can re-encode it
         raw_tmp = tempfile.NamedTemporaryFile(suffix=".tif", delete=False)
-        raw_tmp.write(data_bytes)
-        raw_tmp.flush()
-        raw_tmp.close()
- 
         # this is the file we actually hand to OpenSlide
         pyramid_tmp = tempfile.NamedTemporaryFile(suffix=".tif", delete=False)
+        pyramid_tmp_path = pyramid_tmp.name
         pyramid_tmp.close()
+
+        slide = None
+        try: 
+            raw_tmp.write(data_bytes)
+            raw_tmp.flush()
+            raw_tmp.close()
  
-        try:
+            # stream conversion via pyvips
             image = pyvips.Image.new_from_file(raw_tmp.name)
             image.tiffsave(
-                pyramid_tmp.name,
+                pyramid_tmp_path,
                 tile=True,
                 pyramid=True,
                 compression="jpeg",   # matches typical Aperio/Visium H&E export
                 Q=90,
                 bigtiff=True,
             )
+            # remove the flat version right after the conversion, we don't need it
+            os.unlink(raw_tmp.name)
+            slide = openslide.OpenSlide(pyramid_tmp_path)
+            yield slide
+
         finally:
-            import os
-            os.unlink(raw_tmp.name)  # don't need the flat version anymore
- 
-        slide = openslide.OpenSlide(pyramid_tmp.name)
-        # caller is responsible for deleting pyramid_tmp.name when done,
-        # same contract as before
-        return slide, pyramid_tmp.name
+            if slide is not None:
+                slide.close()
+            if os.path.exists(pyramid_tmp_path):
+                os.unlink(pyramid_tmp_path)     # deleting pyramid_tmp_path when done 
