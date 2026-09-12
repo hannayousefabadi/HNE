@@ -48,8 +48,7 @@ def preprocess_patient(patient_id,
     vis = load_visium(paths)
     spots = load_spots(paths)
     scales = load_scale_factor(paths)
-    img = load_he_image(paths, qc_tracker)
-
+    
     
     # compute tumor fraction and tile coords
     merged, meta = attach_tumor_fraction(spots, vis, patient_id, qc_tracker)
@@ -78,7 +77,7 @@ def preprocess_patient(patient_id,
             return patient_metadata, None, None, None
 
         # crop and save image tiles directly via OpenSlide
-        tumor_tiles, meta = crop_and_save_tiles(tumor_tiles_df, tile_size_px, img, patient_id)
+        tumor_tiles, meta = crop_and_save_tiles(tumor_tiles_df, tile_size_px, slide, patient_id)
         patient_metadata.update(meta)
     
     # compute signatures per spot, aggregate per tile

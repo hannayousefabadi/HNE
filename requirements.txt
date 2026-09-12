@@ -12,3 +12,4 @@ torchvision
 transformers
 dotenv
 tifffile
+imagecodecs
