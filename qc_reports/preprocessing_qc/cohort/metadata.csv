@@ -1,1117 +1,152 @@
-patient_id,n_spots_in_tissue,n_spots_missin_tumor_fraction,mean_tumor_fraction,median_tumor_fraction,tile_id,n_initial_tiles,fullres_pixel_size,tile_size_pixels,k_value,mean_tile_purity,median_tile_purity,tile_purity_std,tiles_before_filter,n_tumor_tiles,has_tumor_tiles,tumor_threshold,min_spots,tiles_path,genes_per_signature,n_missing_signatures,n_total_tiles_aggregated,n_tumor_tiles_aggregated,avg_spots_per_tile
-CH_L_275a,4392,0,0.5259584134625154,0.5723674025726897,"1       11-11
-3       11-11
-4       11-11
-5       11-11
-6       11-11
-        ...  
-4863     6-15
-4982     6-15
-4984     6-15
-4986     6-15
-4988     6-15
-Name: tile_id, Length: 4392, dtype: object",35,0.40951207934669115,2441,2,0.5123259947227656,0.5459701297897535,0.18768643087812872,35,23,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_275a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,35,23,163.61
-CH_L_276a,4924,0,0.3922367752397717,0.35264349295101227,"4       10-8
-5       10-8
-7       10-8
-8       10-8
-9       10-8
-        ... 
-4978    5-12
-4988    5-13
-4989    5-13
-4990    5-13
-4991    5-13
-Name: tile_id, Length: 4924, dtype: object",41,0.41312746048927573,2420,2,0.3788399150792005,0.3918978791504654,0.1002364804402091,41,22,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_276a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,41,22,170.86
-CH_L_277a,2192,0,0.6369686552160477,0.6764513747699302,"128      6-6
-129      6-6
-131      6-6
-133      6-6
-135      6-6
-        ... 
-4728    1-11
-4730    1-11
-4731    1-11
-4732    1-11
-4733    1-11
-Name: tile_id, Length: 2192, dtype: object",23,0.4195781951914387,2383,2,0.6133159164888374,0.6091842807217639,0.14750085690366346,23,16,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_277a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,23,16,131.44
-CH_L_278a,4377,0,0.4045460084222129,0.342231920557574,"0         5-9
-1         5-9
-2         5-9
-3         5-9
-4         5-9
-        ...  
-4971     9-14
-4972     9-14
-4973     9-14
-4974     9-14
-4975    10-14
-Name: tile_id, Length: 4377, dtype: object",35,0.39629368932606396,2523,2,0.38188158049193394,0.42082554674770045,0.23221586922171714,35,18,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_278a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,35,18,144.11
-CH_L_279a,4744,0,0.33451603790671397,0.2281010980342959,"0       11-10
-1       11-10
-2       11-10
-3       11-10
-4       11-10
-        ...  
-4987     4-11
-4988     4-12
-4989     4-12
-4990     4-12
-4991     4-12
-Name: tile_id, Length: 4744, dtype: object",41,0.4067125957159013,2458,2,0.3199017625083135,0.2966474965297193,0.20120729194401488,41,16,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_279a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,41,16,147.62
-CH_L_280a,4992,0,0.7196719617183316,0.8720274950308011,"0        6-9
-1        6-9
-2        6-9
-3        6-9
-4        6-9
-        ... 
-4987    11-4
-4988    11-4
-4989    11-4
-4990    11-4
-4991    11-4
-Name: tile_id, Length: 4992, dtype: object",39,0.4075062489064723,2453,2,0.6998611510154337,0.7021295931551508,0.16362822148272643,39,34,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_280a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,39,34,144.59
-CH_L_281a,4545,0,0.44790833602322744,0.4830532777307527,"0        6-26
-1        6-26
-2        6-26
-3        6-26
-4        6-26
-        ...  
-4987    11-21
-4988    11-21
-4989    11-21
-4990    11-21
-4991    11-21
-Name: tile_id, Length: 4545, dtype: object",36,0.4176762775942656,2394,2,0.4221348033682787,0.46472990595479763,0.2089351535541689,36,26,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_281a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,26,137.62
-CH_L_281b,4485,0,0.3960819808828397,0.40185600797655574,"0       2-6
-1       2-6
-2       2-6
-3       2-6
-4       2-6
-       ... 
-4987    8-2
-4988    8-2
-4989    8-2
-4990    8-1
-4991    8-1
-Name: tile_id, Length: 4485, dtype: object",41,0.4185350770365593,2389,2,0.4046772465699473,0.4108450436226688,0.10428058238215476,41,22,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_281b,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,41,22,160.95
-CH_L_282a,4114,0,0.39875101998564816,0.3385270312074401,"0       7-12
-1       7-11
-2       7-11
-3       7-11
-4       7-11
-        ... 
-4987    12-7
-4988    12-7
-4989    12-6
-4990    12-6
-4991    12-6
-Name: tile_id, Length: 4114, dtype: object",37,0.37317455481171374,2679,2,0.39980236361591714,0.3741006769253389,0.19487117942498922,37,16,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_282a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,16,150.69
-CH_L_283a,4922,0,0.7432613070367493,0.9004386277633198,"0       12-6
-1       12-6
-2       12-6
-3       12-6
-4       12-6
-        ... 
-4987    7-11
-4988    7-11
-4989    7-11
-4990    7-11
-4991    7-11
-Name: tile_id, Length: 4922, dtype: object",36,0.4124793472148548,2424,2,0.7203842670976202,0.8033005172060362,0.19615222648315006,36,33,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_283a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,33,146.76
-CH_L_284a,4548,0,0.3953598029847906,0.32823818597574167,"6       6-10
-7       7-10
-8       6-10
-9       7-10
-10      6-10
-        ... 
-4936    12-8
-4937    12-8
-4938    12-8
-4940    12-8
-4942    12-8
-Name: tile_id, Length: 4548, dtype: object",39,0.41539333651762517,2407,2,0.38194630212837827,0.3722530970636418,0.14662420914252694,39,16,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_284a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,39,16,179.81
-CH_L_285a,4423,0,0.5107281689659905,0.5672811213018748,"0       10-11
-1       10-11
-2       10-11
-3       10-11
-4       10-11
-        ...  
-4987      5-6
-4988      5-6
-4989      5-6
-4990      5-6
-4991      5-6
-Name: tile_id, Length: 4423, dtype: object",36,0.39429581730082974,2536,2,0.4512308652498255,0.4299878558192305,0.20972074610118163,36,24,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_285a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,24,151.21
-CH_L_287a,4843,0,0.4355939983851749,0.476454546602399,"0        5-15
-1        5-15
-2        5-15
-3        5-15
-4        5-15
-        ...  
-4985    11-11
-4986    10-11
-4987    11-11
-4989    11-11
-4991    11-11
-Name: tile_id, Length: 4843, dtype: object",37,0.420661419339249,2377,2,0.4366768100514991,0.5007938116715015,0.19445808989763425,37,22,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_287a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,22,151.41
-CH_L_288a,4620,0,0.5582821195728297,0.584602882315076,"0       4-7
-1       4-7
-2       4-7
-3       4-7
-4       4-7
-       ... 
-4970    9-4
-4971    9-3
-4972    9-3
-4974    9-3
-4976    9-3
-Name: tile_id, Length: 4620, dtype: object",35,0.41041758332620915,2436,2,0.5064328850235723,0.39274755298014397,0.23308773948650816,35,27,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_288a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,35,27,153.0
-CH_L_289a,4825,0,0.5932695985216759,0.6484724911842368,"0        5-15
-1        5-15
-2        5-15
-3        5-15
-4        5-15
-        ...  
-4987    10-10
-4988    10-10
-4989    10-10
-4990    10-10
-4991    10-10
-Name: tile_id, Length: 4825, dtype: object",34,0.41219326296465586,2426,2,0.5800995170253986,0.6120021442954049,0.1345320535296206,34,33,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_289a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,34,33,144.61
-CH_L_290a,4712,0,0.3669710376058086,0.3497751877640012,"0       10-13
-1       10-13
-2       10-13
-3       10-13
-4       10-13
-        ...  
-4987     5-18
-4988     5-18
-4989     5-18
-4990     5-18
-4991     5-18
-Name: tile_id, Length: 4712, dtype: object",36,0.41717506360748424,2397,2,0.35869996650976543,0.33813779057170945,0.14546777068083236,36,21,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_290a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,21,142.95
-CH_L_291a,4626,0,0.7099179112522597,0.8790147584263492,"0        6-9
-1        6-9
-2        6-9
-3        6-9
-4        6-9
-        ... 
-4987    12-4
-4988    12-4
-4989    12-4
-4990    12-4
-4991    12-4
-Name: tile_id, Length: 4626, dtype: object",40,0.4094509409183674,2442,2,0.6808788342485047,0.7222867857644912,0.1970973188530679,40,29,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_291a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,40,29,150.0
-CH_L_292a,3972,0,0.5107077936363478,0.53580848283921,"0       7-16
-1       7-16
-2       7-16
-3       7-16
-4       7-16
-        ... 
-4987    2-11
-4988    2-11
-4989    2-11
-4990    2-11
-4991    2-11
-Name: tile_id, Length: 3972, dtype: object",36,0.3908529606035261,2558,2,0.49494640864543016,0.4776939808376802,0.11775038568425332,36,28,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_292a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,28,126.5
-CH_L_293a,4718,0,0.8228886699058362,0.9218965533556873,"0       10-13
-1       10-13
-2       10-13
-3       10-14
-4       10-14
-        ...  
-4987     4-18
-4988     4-18
-4989     4-18
-4990     4-18
-4991     4-18
-Name: tile_id, Length: 4718, dtype: object",40,0.40977831246463586,2440,2,0.798200386451562,0.8591729043214622,0.13770233569132037,40,29,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_293a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,40,29,153.21
-CH_L_294a,4904,0,0.46294598446467033,0.5223435088290507,"0       6-14
-1       6-14
-2       6-14
-3       6-14
-4       6-14
-        ... 
-4986    11-9
-4987    11-9
-4988    11-9
-4989    11-9
-4990    11-9
-Name: tile_id, Length: 4904, dtype: object",36,0.3967557153416217,2520,2,0.4467482409325443,0.4901929333924885,0.12921342164824132,36,25,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_294a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,25,167.36
-CH_L_295a,4350,0,0.48988545091238117,0.5210502154034715,"0        8-15
-1        8-15
-2        8-15
-3        8-15
-4        8-15
-        ...  
-4943    14-12
-4944    14-12
-4945    14-12
-4946    14-12
-4947    14-12
-Name: tile_id, Length: 4350, dtype: object",40,0.3899245344085396,2564,2,0.49203006345018796,0.5312247713150184,0.1830404188495242,40,20,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_295a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,40,20,151.5
-CH_L_296a,4344,0,0.34107381063549086,0.3325953717877492,"15      12-8
-17      12-8
-18      12-8
-20      12-8
-22      12-8
-        ... 
-4987    7-12
-4988    7-12
-4989    7-12
-4990    7-12
-4991    7-12
-Name: tile_id, Length: 4344, dtype: object",34,0.40166315408612546,2489,2,0.33963867957215477,0.3362226759785846,0.036986842867786175,34,24,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_296a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,34,24,163.75
-CH_L_298a,2107,0,0.5112816612623963,0.584386235030832,"0       14-1
-1       14-1
-2       14-1
-3       14-1
-4       14-1
-        ... 
-4987     9-5
-4988     9-5
-4989     9-5
-4990     9-5
-4991     9-5
-Name: tile_id, Length: 2107, dtype: object",35,0.40028031401776587,2498,2,0.4905469683550508,0.509248558250962,0.1770595024108255,35,15,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_298a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,35,15,103.93
-CH_L_299a,4809,0,0.5315679341291158,0.6423355329777132,"15      4-10
-16       3-9
-17       4-9
-18       3-9
-19       4-9
-        ... 
-4982     8-5
-4983     9-5
-4984     8-5
-4985     9-5
-4991     8-5
-Name: tile_id, Length: 4809, dtype: object",40,0.4153256616752174,2407,2,0.5165103768355699,0.5230611115222503,0.29252977224658183,40,23,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_299a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,40,23,156.09
-CH_L_300a,4719,0,0.20802275450222843,0.06792181584897287,"0       4-14
-27      4-13
-29      4-13
-30      4-13
-31      4-13
-        ... 
-4987    9-10
-4988    9-10
-4989    10-9
-4990     9-9
-4991    10-9
-Name: tile_id, Length: 4719, dtype: object",38,0.41292420140339686,2421,2,0.22317740288348029,0.23253494116740914,0.1489318562220055,38,10,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_300a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,38,10,138.6
-CH_L_301a,4434,0,0.5230972223332007,0.5961769546304854,"0        5-15
-1        5-15
-2        5-15
-3        5-15
-4        5-15
-        ...  
-4985    10-10
-4988    10-10
-4989    10-10
-4990    10-10
-4991    10-10
-Name: tile_id, Length: 4434, dtype: object",34,0.41919475488986147,2385,2,0.515838287954524,0.5301041478503972,0.15625726265518053,34,31,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_301a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,34,31,130.61
-CH_L_302a,4978,0,0.6284270751997288,0.7256267762854728,"0        5-20
-1        5-20
-2        5-20
-3        5-20
-4        5-20
-        ...  
-4987    10-15
-4988    10-15
-4989    10-15
-4990    10-15
-4991    10-14
-Name: tile_id, Length: 4978, dtype: object",37,0.4121490316638897,2426,2,0.6459482817361536,0.6781846632868297,0.1806440506056947,37,33,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_302a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,33,144.3
-CH_L_303a,4987,0,0.3629256236706343,0.34564017718564527,"0       5-10
-1       5-10
-2       5-10
-3        5-9
-4        5-9
-        ... 
-4987    10-5
-4988    10-5
-4989    10-4
-4990    10-4
-4991    10-4
-Name: tile_id, Length: 4987, dtype: object",37,0.4126253519331465,2423,2,0.38163352855682664,0.3822693966820472,0.12244062813062705,37,22,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_303a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,22,157.45
-CH_L_305a,4757,0,0.6112214933212545,0.673968122944004,"0       12-7
-1       12-7
-2       12-7
-3       12-7
-4       12-7
-        ... 
-4987    6-12
-4988    7-12
-4989    6-12
-4990    7-12
-4991    6-12
-Name: tile_id, Length: 4757, dtype: object",42,0.43094023176095236,2320,2,0.5685809873859987,0.5807555028296683,0.18912863682981151,42,28,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_305a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,42,28,157.36
-CH_L_306a,4673,0,0.24301308080337014,0.20502465738369977,"0       8-20
-1       8-20
-2       8-20
-3       8-20
-4       8-20
-        ... 
-4978    3-16
-4979    3-16
-4980    3-16
-4981    3-16
-4982    3-16
-Name: tile_id, Length: 4673, dtype: object",31,0.4090116607563134,2444,2,0.24738657978422407,0.2811580888704207,0.10332947585654469,31,12,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_306a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,31,12,153.67
-CH_L_306b,4388,0,0.42584575809240705,0.4353162122569806,"2        6-21
-3        6-21
-7        6-20
-8        6-20
-9        6-20
-        ...  
-4905    11-19
-4906    11-19
-4907    11-19
-4908    11-18
-4910    11-18
-Name: tile_id, Length: 4388, dtype: object",35,0.41528504098105556,2407,2,0.43280380728937323,0.4339048903642212,0.0884836564543194,35,22,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_306b,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,35,22,162.09
-CH_L_307a,4898,0,0.5579307567495363,0.6106455426382367,"0       9-14
-1       8-14
-2       9-14
-3       8-14
-4       9-14
-        ... 
-4948    3-17
-4949    3-17
-4950    3-17
-4951    3-17
-4952    3-17
-Name: tile_id, Length: 4898, dtype: object",39,0.43216472344231527,2313,2,0.5293529380927571,0.567589239472513,0.2194952390251192,39,24,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_307a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,39,24,166.42
-CH_L_308a,4905,0,0.4855798589746469,0.4846653714822973,"0       11-7
-1       11-7
-2       11-7
-3       11-7
-4       11-7
-        ... 
-4987    5-12
-4988    6-12
-4989    5-12
-4990    6-12
-4991    5-12
-Name: tile_id, Length: 4905, dtype: object",42,0.3967083027295752,2520,2,0.4874611269832411,0.43965099002686203,0.21843778083049697,42,27,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_308a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,42,27,143.81
-CH_L_309a,4796,0,0.620397663999602,0.7314332325718864,"0       5-13
-1       5-13
-2       5-13
-3       6-13
-4       6-13
-        ... 
-4987    10-8
-4988    10-8
-4989    10-8
-4990    10-8
-4991    10-8
-Name: tile_id, Length: 4796, dtype: object",35,0.37739003594826404,2649,2,0.6229891090043574,0.6985980817763828,0.19380609404313345,35,25,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_309a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,35,25,167.48
-CH_L_310a,4469,0,0.28940128203482857,0.281226773790031,"0       4-15
-1       4-14
-2       4-14
-3       4-14
-4       4-14
-        ... 
-4987     9-9
-4988     9-9
-4989     9-9
-4990     9-9
-4991     9-9
-Name: tile_id, Length: 4469, dtype: object",37,0.41558652516282535,2406,2,0.32017156473153296,0.3354724520836843,0.12583812855966212,37,15,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_310a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,15,140.27
-CH_L_311a,4789,0,0.5315597408770419,0.5707391890076137,"0        7-16
-1        7-16
-2        7-16
-3        7-16
-4        7-16
-        ...  
-4948    12-12
-4949    12-12
-4968    12-11
-4976    12-11
-4978    12-11
-Name: tile_id, Length: 4789, dtype: object",36,0.40227135325976515,2485,2,0.4843956389919679,0.5047563288945125,0.19833370976642284,36,25,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_311a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,25,169.2
-CH_L_312a,4700,0,0.3992924377619648,0.38379292721791275,"7       11-7
-8       11-7
-9       11-7
-10      11-7
-11      11-7
-        ... 
-4972    6-11
-4988    6-12
-4989    6-12
-4990    6-12
-4991    6-12
-Name: tile_id, Length: 4700, dtype: object",40,0.41708019323231593,2397,2,0.3894237759727079,0.3977443887710047,0.15794767480292185,40,19,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_312a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,40,19,170.68
-CH_L_313a,4000,0,0.2762966592276242,0.1354293823959986,"10      8-4
-11      8-4
-12      8-4
-13      8-4
-14      8-4
-       ... 
-4984    3-8
-4985    3-8
-4986    3-8
-4987    3-8
-4988    3-8
-Name: tile_id, Length: 4000, dtype: object",35,0.4124402022193532,2424,2,0.26828696640049016,0.23323124652976499,0.19412938914782424,35,8,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_313a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,35,8,156.0
-CH_L_314a,4243,0,0.4186331645224359,0.44659240808471296,"1        4-23
-3        4-23
-5        4-23
-6        4-23
-8        4-23
-        ...  
-4885    10-22
-4886    10-22
-4887    10-22
-4888    10-22
-4890    10-22
-Name: tile_id, Length: 4243, dtype: object",38,0.4138935028163829,2416,2,0.42399637051858735,0.4423581782167797,0.2307033059562247,38,22,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_314a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,38,22,124.5
-CH_L_315a,4153,0,0.4658963113978462,0.487873532082676,"0       10-5
-1       10-5
-2       10-5
-3       10-5
-4       10-5
-        ... 
-4919     4-7
-4920     4-7
-4921     4-7
-4922     4-7
-4923     4-7
-Name: tile_id, Length: 4153, dtype: object",37,0.35566890471344076,2811,2,0.4250371406488108,0.4233448714464139,0.1769823482481823,37,24,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_315a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,24,144.67
-CH_L_317a,4898,0,0.48287398309596363,0.497854000062381,"0        6-8
-1        6-8
-2        6-8
-3        6-8
-4        6-8
-        ... 
-4986    11-3
-4988    11-3
-4989    11-3
-4990    11-3
-4991    11-3
-Name: tile_id, Length: 4898, dtype: object",36,0.41464206948197946,2411,2,0.46612841493784746,0.47657387875576473,0.10728230380482956,36,34,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_317a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,34,141.44
-CH_L_318a,4947,0,0.6482364717790944,0.6911810107960723,"0        5-23
-1        5-23
-2        5-23
-3        5-23
-4        5-23
-        ...  
-4987    10-18
-4988    10-18
-4989    10-18
-4990    10-18
-4991    10-18
-Name: tile_id, Length: 4947, dtype: object",38,0.41174518789926645,2428,2,0.6351193090456836,0.6712656676524087,0.1145795134044178,38,34,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_318a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,38,34,143.44
-CH_L_319a,4736,0,0.5936929177255506,0.7579405594285249,"0       9-14
-1       9-14
-2       9-14
-3       9-14
-4       9-14
-        ... 
-4978    3-18
-4979    3-18
-4980    3-18
-4981    3-18
-4982    3-18
-Name: tile_id, Length: 4736, dtype: object",38,0.40780327574115743,2452,2,0.5116428856648415,0.5369024535023006,0.3002564874428601,38,23,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_319a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,38,23,157.0
-CH_L_320a,4157,0,0.4721292364692234,0.4714148208242754,"8        5-15
-14       5-15
-15       5-15
-16       5-15
-24       5-15
-        ...  
-4987    11-11
-4988    10-11
-4989    11-11
-4990    10-11
-4991    11-11
-Name: tile_id, Length: 4157, dtype: object",40,0.4127564524460657,2422,2,0.4643736942184177,0.47104220303001254,0.18696696589887826,40,23,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_320a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,40,23,138.43
-CH_L_321a,4963,0,0.684052324323643,0.7678058227869702,"6       5-14
-8       5-14
-9       5-14
-10      5-14
-11      5-14
-        ... 
-4987    10-9
-4988    10-9
-4989    10-9
-4990    10-9
-4991    10-9
-Name: tile_id, Length: 4963, dtype: object",36,0.42058745558017424,2377,2,0.6528057220812199,0.681858917209097,0.1731792671762837,36,34,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_321a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,34,142.62
-CH_L_322a,4387,0,0.7292176965711977,0.9027322117900755,"0       6-11
-1       6-11
-2       6-11
-3       6-11
-4       6-11
-        ... 
-4987    11-6
-4988    11-6
-4989    11-6
-4990    11-6
-4991    11-6
-Name: tile_id, Length: 4387, dtype: object",36,0.39204386675170944,2550,2,0.6839521329738124,0.7972968555606137,0.2977623787459059,36,28,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_322a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,28,131.71
-CH_L_323a,4155,0,0.6220430059073032,0.6797815047827284,"0       3-11
-1       3-11
-2       3-10
-3       3-10
-4       3-10
-        ... 
-4987     9-6
-4988     9-6
-4989     9-6
-4990     9-6
-4991     9-6
-Name: tile_id, Length: 4155, dtype: object",38,0.406873739827277,2457,2,0.6136499156845899,0.5998691348054199,0.14478951258936293,38,30,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_323a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,38,30,133.0
-CH_L_326a,4392,0,0.5708190831539027,0.6293862118823529,"38      10-9
-39      10-9
-40      10-9
-41      10-9
-42      10-9
-        ... 
-4987    7-14
-4988    7-14
-4989    7-14
-4990    7-14
-4991    7-14
-Name: tile_id, Length: 4392, dtype: object",34,0.3907352332880221,2559,2,0.5576581904266259,0.5820429614249294,0.12996848853720824,34,29,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_326a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,34,29,147.17
-CH_L_327a,4623,0,0.6768846280484044,0.7607268638524582,"7       4-6
-8       4-6
-9       4-6
-10      4-6
-11      4-6
-       ... 
-4975    9-2
-4977    9-2
-4978    9-2
-4981    9-2
-4982    9-2
-Name: tile_id, Length: 4623, dtype: object",37,0.4157470629799276,2405,2,0.6147141525080222,0.5899854289846062,0.17840761081657172,37,30,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_327a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,30,149.63
-CH_L_328a,4431,0,0.6507882651171151,0.7185734331948118,"0       6-12
-1       6-12
-2       6-12
-3       6-12
-4       6-12
-        ... 
-4987    11-7
-4988    11-7
-4989    11-7
-4990    11-7
-4991    11-7
-Name: tile_id, Length: 4431, dtype: object",36,0.4156302583394356,2405,2,0.6063926473635225,0.6406924813470877,0.1686521205463326,36,32,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_328a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,32,134.31
-CH_L_329a,3944,0,0.5411769753297435,0.559835056307128,"17       9-6
-18       9-6
-20       9-6
-26       9-7
-28       9-7
-        ... 
-4987    4-10
-4988    4-10
-4989    4-10
-4990    4-10
-4991    4-10
-Name: tile_id, Length: 3944, dtype: object",36,0.41082515487423155,2434,2,0.5293028230906776,0.5321824749250866,0.19206103985386094,36,26,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_329a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,26,129.19
-CH_L_333a,4857,0,0.25141883407747306,0.16295774463350768,"5       11-2
-6       11-2
-7       11-2
-8       11-2
-10      11-2
-        ... 
-4987     6-7
-4988     6-7
-4989     6-7
-4990     6-7
-4991     6-7
-Name: tile_id, Length: 4857, dtype: object",37,0.40926984893789486,2443,2,0.2580284456789697,0.2281245181126942,0.12012054367784142,37,8,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_333a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,8,157.38
-CH_L_334a,4402,0,0.6294448144036715,0.7261354718286208,"0        9-9
-1        9-9
-2        9-9
-3        9-9
-4        9-9
-        ... 
-4982    4-13
-4983    4-13
-4984    4-13
-4986    4-14
-4990    4-14
-Name: tile_id, Length: 4402, dtype: object",36,0.416671124611439,2399,2,0.5586155249479626,0.6341837084821581,0.2002958288650178,36,27,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_334a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,27,145.22
-CH_L_335a,4573,0,0.22547363275224502,0.03433349360549994,"0       2-9
-1       2-9
-2       2-9
-3       2-9
-4       2-9
-       ... 
-4987    7-4
-4988    7-4
-4989    7-4
-4990    7-4
-4991    7-4
-Name: tile_id, Length: 4573, dtype: object",38,0.4139017938929506,2416,2,0.24865028897451688,0.17373517331090824,0.1915742486624595,38,10,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_335a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,38,10,141.0
-CH_L_336a,4975,0,0.4269623205667467,0.4234489736757348,"0        7-9
-1        7-9
-2        7-9
-3        7-9
-4        7-9
-        ... 
-4987    12-4
-4988    12-4
-4989    12-4
-4990    12-4
-4991    12-4
-Name: tile_id, Length: 4975, dtype: object",36,0.40998791916688426,2439,2,0.42791059794710795,0.3959827918792138,0.2154644664557117,36,23,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_336a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,23,142.57
-CH_L_337a,4658,0,0.33435370575207796,0.18097451759174782,"0       10-11
-1       10-11
-2       10-12
-5       10-12
-7       10-12
-        ...  
-4987     5-16
-4988     5-16
-4989     5-16
-4990     5-16
-4991     5-16
-Name: tile_id, Length: 4658, dtype: object",36,0.3948004828431835,2532,2,0.3347367003978947,0.3304459144585782,0.19240687936763803,36,16,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_337a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,16,155.62
-CH_L_338a,4615,0,0.34977817043700976,0.34941185801810254,"0       6-13
-1       6-13
-2       6-13
-3       6-13
-4       6-13
-        ... 
-4987    11-8
-4988    11-8
-4989    11-8
-4990    11-8
-4991    11-8
-Name: tile_id, Length: 4615, dtype: object",36,0.4151881031436586,2408,2,0.3346311987422786,0.3296655204572477,0.09702605799085597,36,21,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_338a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,21,155.95
-CH_L_339a,3226,0,0.6539831577644206,0.826283110073557,"12      4-10
-13      4-10
-16      4-10
-26       4-9
-32       4-9
-        ... 
-4987     9-5
-4988     9-5
-4989     9-5
-4990     9-5
-4991     9-5
-Name: tile_id, Length: 3226, dtype: object",35,0.3707835248809304,2696,2,0.5526098806400971,0.5338854146859301,0.2183096799715757,35,23,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_339a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,35,23,128.65
-CH_L_340a,4915,0,0.6682337921122448,0.7530483169950372,"0       10-7
-1       10-8
-2       10-8
-3       10-8
-4       10-8
-        ... 
-4987    5-12
-4988    5-12
-4989    5-12
-4990    5-12
-4991    5-13
-Name: tile_id, Length: 4915, dtype: object",40,0.3953252395240161,2529,2,0.634493745120155,0.6344591349999247,0.11444691573442654,40,30,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_340a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,40,30,162.13
-CH_L_341a,4543,0,0.3121273219380528,0.31412450700473893,"0       5-13
-1       5-12
-2       5-12
-3       5-12
-4       5-12
-        ... 
-4987    10-8
-4988    10-8
-4989    10-8
-4990    10-7
-4991    10-7
-Name: tile_id, Length: 4543, dtype: object",41,0.4125950717441887,2423,2,0.3179455328649272,0.3115771655093644,0.0791615041985101,41,16,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_341a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 48/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,41,16,166.44
-CH_L_342a,4948,0,0.3693349319263544,0.19726710101148212,"0        7-9
-1        7-9
-2        7-9
-3        7-9
-4        7-9
-        ... 
-4987    12-5
-4988    12-5
-4989    12-5
-4990    12-5
-4991    12-5
-Name: tile_id, Length: 4948, dtype: object",37,0.4128433973325161,2422,2,0.33434040916542895,0.20379671459419613,0.25892402041664203,37,13,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_342a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,13,171.46
-CH_L_344a,4753,0,0.7111952862255572,0.8130571098677565,"1        5-4
-3        5-5
-15       5-5
-16       5-5
-17       5-5
-        ... 
-4987    11-9
-4988    11-9
-4989    11-9
-4990    11-9
-4991    11-9
-Name: tile_id, Length: 4753, dtype: object",42,0.40281886158042585,2482,2,0.6554602747136292,0.722997958144537,0.18625306028741956,42,24,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_344a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,42,24,177.25
-CH_L_345a,4743,0,0.7336121088795381,0.8858584883546001,"0       8-5
-1       8-5
-2       8-5
-3       8-5
-4       8-5
-       ... 
-4987    3-9
-4988    3-9
-4989    3-9
-4990    3-9
-4991    3-9
-Name: tile_id, Length: 4743, dtype: object",35,0.4051665097360857,2468,2,0.711552439141108,0.7929814923400272,0.1823003506675595,35,30,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_345a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,35,30,151.93
-CH_L_346a,4092,0,0.6884057006503241,0.7865242265284639,"0       5-13
-1       5-13
-3       5-13
-4       5-13
-5       5-13
-        ... 
-4981    10-9
-4982    10-9
-4983    10-9
-4984    10-9
-4985    10-9
-Name: tile_id, Length: 4092, dtype: object",36,0.4095116427946635,2441,2,0.6477074887436515,0.7222770224463759,0.19933268474980562,36,32,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_346a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,32,123.44
-CH_L_347a,4946,0,0.6301966800006129,0.7322987599016939,"0        9-8
-1        9-8
-2        9-9
-3        9-9
-4        9-9
-        ... 
-4987    3-13
-4988    4-13
-4989    3-13
-4990    4-13
-4991    3-13
-Name: tile_id, Length: 4946, dtype: object",42,0.4115395009675084,2429,2,0.591703112707048,0.6430969037960763,0.18761246632776699,42,29,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_347a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,42,29,159.9
-CH_L_348a,4581,0,0.47801399803762157,0.500110872489173,"0       5-11
-1       5-11
-2       5-11
-3       5-11
-4       5-11
-        ... 
-4987    10-6
-4988    10-6
-4989    10-6
-4990    10-6
-4991    10-6
-Name: tile_id, Length: 4581, dtype: object",36,0.40741237420742255,2454,2,0.47578467289270787,0.518919754613474,0.15157971151343577,36,27,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_348a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,27,140.81
-CH_L_349a,4672,0,0.4093342410617469,0.3464100031628493,"5       3-16
-8       3-16
-9       3-16
-10      3-16
-11      3-16
-        ... 
-4982    8-20
-4983    9-21
-4984    8-21
-4985    9-21
-4986    8-21
-Name: tile_id, Length: 4672, dtype: object",42,0.3917622790992778,2552,2,0.3864420620848218,0.322085971116171,0.2423337476507174,42,17,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_349a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,42,17,161.82
-CH_L_350a,3509,0,0.6661436643096985,0.7263154195201973,"11       5-8
-12       5-8
-13       5-8
-14       5-8
-15       5-8
-        ... 
-4987    10-4
-4988    10-4
-4989    10-4
-4990    10-4
-4991    10-3
-Name: tile_id, Length: 3509, dtype: object",37,0.40860641081755034,2447,2,0.6491393945291649,0.670185850634069,0.0846997113056109,37,30,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_350a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,30,115.53
-CH_L_351a,4874,0,0.3624589825913349,0.2935882618467768,"0       11-7
-1       11-7
-2       11-7
-3       11-7
-4       11-7
-        ... 
-4982    6-12
-4983    5-12
-4984    6-12
-4985    5-12
-4986    6-12
-Name: tile_id, Length: 4874, dtype: object",42,0.4126468488219614,2423,2,0.394870799680369,0.4192378668475911,0.21648955535635853,42,15,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_351a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,42,15,152.93
-CH_L_352a,4180,0,0.4020183047503026,0.39719151058676144,"0       6-10
-1       6-10
-3       6-10
-7       6-10
-9       6-10
-        ... 
-4979    11-6
-4980    11-6
-4981    11-6
-4982    11-6
-4983    11-6
-Name: tile_id, Length: 4180, dtype: object",36,0.41145365348965435,2430,2,0.4344078758758848,0.44288948799946026,0.17679775032048736,36,23,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_352a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,23,131.7
-CH_L_353a,4568,0,0.3842532228435656,0.3744428180435171,"0        5-14
-9        5-14
-11       5-14
-12       5-14
-13       5-14
-        ...  
-4985    10-10
-4987    10-10
-4989    10-10
-4990    10-10
-4991    10-10
-Name: tile_id, Length: 4568, dtype: object",37,0.39290676862416535,2545,2,0.392183188517259,0.39101364372491065,0.10358892041601181,37,26,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_353a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,26,133.42
-CH_L_356a,4297,0,0.3952537148293223,0.3589854270445667,"9       3-13
-11      3-13
-13      3-13
-19      3-13
-20      3-13
-        ... 
-4987     9-9
-4988     9-8
-4989     9-8
-4990     9-8
-4991     9-8
-Name: tile_id, Length: 4297, dtype: object",42,0.4204241819466955,2378,2,0.38840309105580173,0.3881052047380902,0.19561819659890228,42,17,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_356a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,42,17,168.82
-CH_L_359a,4522,0,0.3666932225590699,0.3059162366042685,"0       3-14
-1       3-14
-2       3-14
-3       3-14
-4       3-14
-        ... 
-4987    9-10
-4988    9-10
-4989    9-10
-4990    9-10
-4991    9-10
-Name: tile_id, Length: 4522, dtype: object",40,0.4178221964448479,2393,2,0.39033949644115723,0.4490563203648048,0.1777268498023819,40,21,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_359a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,40,21,130.19
-CH_L_360a,4491,0,0.542746707950056,0.5837817278619494,"0        9-9
-1        9-9
-2        9-9
-3        9-9
-4        9-9
-        ... 
-4987    4-14
-4988    4-14
-4989    4-14
-4990    4-14
-4991    4-14
-Name: tile_id, Length: 4491, dtype: object",36,0.3948953869965541,2532,2,0.5061144033580806,0.5108805646050247,0.22236054059975457,36,26,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_360a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,26,142.15
-CH_L_361a,4741,0,0.4387749307999028,0.4587781400967112,"0       12-6
-1       12-6
-2       12-6
-3       12-6
-4       12-6
-        ... 
-4987    7-11
-4988    7-11
-4989    7-11
-4990    7-11
-4991    7-11
-Name: tile_id, Length: 4741, dtype: object",36,0.39281093794076005,2545,2,0.43328675063615907,0.4598053672888892,0.13499068151286112,36,31,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_361a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,31,139.39
-CH_L_362a,4881,0,0.5683461004811459,0.6594577176509752,"0       6-14
-1       6-14
-2       6-14
-3       6-14
-4       6-14
-        ... 
-4985    12-9
-4988    12-9
-4989    12-9
-4990    12-9
-4991    12-9
-Name: tile_id, Length: 4881, dtype: object",40,0.4153806373604318,2407,2,0.5449257190563876,0.5968317386301821,0.18421220786696757,40,30,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_362a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,40,30,145.87
-CH_L_363a,4877,0,0.678499975658204,0.8325309109463102,"0       5-11
-1       5-11
-2       5-11
-3       6-11
-4       6-11
-        ... 
-4987    10-6
-4988    10-6
-4989    10-6
-4990    10-6
-4991    10-6
-Name: tile_id, Length: 4877, dtype: object",36,0.377641077301879,2648,2,0.6718882987924796,0.7029860077004062,0.1979742912373394,36,28,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_363a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,28,154.29
-CH_L_364a,3962,0,0.2972435606690018,0.22402696409982298,"0       2-12
-1       2-11
-2       2-12
-3       2-11
-4       2-12
-        ... 
-4987     7-6
-4988     7-6
-4989     7-6
-4990     7-6
-4991     7-6
-Name: tile_id, Length: 3962, dtype: object",42,0.39181192357050015,2552,2,0.2831620706758991,0.2732719411541572,0.18843760933505618,42,12,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_364a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,42,12,146.92
-CH_L_367a,4074,0,0.593661205885061,0.6976346568490124,"6        4-13
-27       4-12
-28       4-12
-30       4-12
-31       4-12
-        ...  
-4962    10-10
-4963     10-9
-4964     10-9
-4965     10-9
-4966     10-9
-Name: tile_id, Length: 4074, dtype: object",40,0.39376767346202884,2539,2,0.5993990433262262,0.6686417460389006,0.17791269291810247,40,22,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_367a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,40,22,160.05
-CH_L_368a,4364,0,0.5128845176282198,0.5367839248293487,"57      9-5
-59      9-5
-60      9-5
-61      9-5
-62      9-5
-       ... 
-4987    5-8
-4988    5-8
-4989    5-8
-4990    5-8
-4991    5-8
-Name: tile_id, Length: 4364, dtype: object",37,0.41348571044175103,2418,2,0.4859050642875827,0.45097748301300494,0.1918369249822379,37,26,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_368a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,37,26,148.38
-CH_L_369a,4670,0,0.5726369822794423,0.6561975070681074,"0        6-9
-1        6-9
-2        6-8
-3        6-8
-4        6-8
-        ... 
-4987    11-4
-4988    11-4
-4989    11-4
-4990    11-4
-4991    11-4
-Name: tile_id, Length: 4670, dtype: object",36,0.4122251441169234,2425,2,0.5840187386447048,0.6279279111451371,0.19247551733576637,36,25,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_369a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,36,25,152.96
-CH_L_371a,4848,0,0.6736610385360348,0.7446836861346411,"0        6-9
-1        6-9
-2        6-9
-3        6-9
-4        6-9
-        ... 
-4987    11-4
-4988    10-4
-4989    11-4
-4990    10-4
-4991    11-4
-Name: tile_id, Length: 4848, dtype: object",42,0.41049885148613896,2436,2,0.6431171067062638,0.6797678268934457,0.15546778203045894,42,30,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_371a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,42,30,151.3
-CH_L_372a,4788,0,0.6973621176392321,0.7688145393847325,"0        6-21
-2        6-21
-3        6-21
-4        6-21
-5        6-21
-        ...  
-4987    11-16
-4988    11-16
-4989    11-16
-4990    11-16
-4991    11-16
-Name: tile_id, Length: 4788, dtype: object",41,0.4124812907969669,2424,2,0.6491104615319003,0.6907294247942025,0.1586885331684518,41,31,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_372a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,41,31,147.77
-CH_L_373a,3528,0,0.37996229321283304,0.31197372336908524,"0       2-8
-1       2-8
-8       2-8
-9       2-8
-19      2-8
-       ... 
-4982    7-4
-4983    7-4
-4984    7-4
-4986    7-4
-4987    7-4
-Name: tile_id, Length: 3528, dtype: object",35,0.4079119686433004,2451,2,0.3761926386503577,0.35250893347164713,0.11645457478370873,35,19,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_373a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,35,19,143.79
-CH_L_376a,1183,0,0.42825318313930294,0.3797470407611412,"55       -2-4
-56       -2-4
-57       -2-4
-58       -2-4
-59       -2-4
-        ...  
-4942     -1-9
-4943    -1-10
-4944     -1-9
-4946     -1-9
-4950     -1-9
-Name: tile_id, Length: 1183, dtype: object",23,0.3809673806277854,2624,2,0.431456857052474,0.38674728047520196,0.2156461725925197,23,6,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_376a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,23,6,90.67
-CH_L_387a,789,0,0.5466184959266062,0.5937686405967733,"231     1-2
-233     1-2
-237     1-2
-239     1-2
-241     1-1
-       ... 
-4843    6-1
-4844    6-1
-4958    6-2
-4964    6-2
-4968    6-2
-Name: tile_id, Length: 789, dtype: object",16,0.43011070225352177,2324,2,0.540291808722108,0.570958327838514,0.15677327951722486,16,6,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_387a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,16,6,96.0
-CH_L_388a,770,0,0.28604857381533133,0.18814516649220175,"1024    1-6
-1025    1-6
-1026    1-6
-1027    1-6
-1102    1-3
-       ... 
-4429    5-3
-4430    5-3
-4434    5-3
-4436    5-3
-4438    5-3
-Name: tile_id, Length: 770, dtype: object",20,0.4194546884086197,2384,2,0.29111120168250415,0.2515638651531941,0.10155508461649848,20,2,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_388a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,20,2,121.0
-CH_L_389a,1812,0,0.28889483116874565,0.07552193242716954,"1       7-3
-2       7-3
-3       7-3
-4       7-3
-5       7-3
-       ... 
-4951    1-6
-4953    1-6
-4955    1-6
-4958    1-6
-4961    1-6
-Name: tile_id, Length: 1812, dtype: object",30,0.4170355223818206,2397,2,0.3184669714054501,0.27391395927912515,0.24380556586028096,30,6,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_389a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,30,6,101.83
-CH_L_390a,772,0,0.5063355688965212,0.5517152600628705,"90      11-8
-92      11-8
-111     11-9
-112     11-9
-113     11-9
-        ... 
-4870     6-5
-4871     6-5
-4872     6-5
-4873     6-5
-4874     6-5
-Name: tile_id, Length: 772, dtype: object",16,0.39753259855154827,2515,2,0.49318644448274795,0.5015219756596376,0.12333071325524073,16,7,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_390a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,16,7,102.14
-CH_L_395a,929,0,0.6022479001891405,0.6694451250872545,"344     6-2
-345     6-2
-346     6-2
-347     6-2
-348     6-2
-       ... 
-4858    1-3
-4859    1-3
-4860    1-3
-4861    1-3
-4862    1-3
-Name: tile_id, Length: 929, dtype: object",21,0.3891858274637742,2569,2,0.581484433473929,0.5688870786361839,0.12103111475173717,21,9,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_395a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,21,9,93.78
-CH_L_399a,2234,0,0.20573762807131998,0.12944919200076238,"23      11-2
-25      11-2
-27      11-2
-29      11-2
-30      11-2
-        ... 
-4986     6-6
-4987     6-6
-4988     6-6
-4989     6-6
-4990     6-6
-Name: tile_id, Length: 2234, dtype: object",28,0.41216219743544324,2426,2,0.2278152183565533,0.20687974601102005,0.11751628921289353,28,3,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_399a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,28,3,162.67
-CH_L_400a,628,0,0.5805933427385044,0.6883064273099464,"78      -4--1
-79      -4--1
-80      -4--1
-81      -4--1
-82      -4--1
-        ...  
-4890      1-1
-4891      1-1
-4893      1-1
-4894      1-1
-4897      1-1
-Name: tile_id, Length: 628, dtype: object",15,0.3899397466964377,2564,2,0.5599750190770557,0.5579904811826032,0.16080824190054274,15,6,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_400a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,15,6,81.17
-CH_L_403a,1467,0,0.6420521116854407,0.7770461984133488,"0       4-8
-1       4-8
-2       4-8
-3       5-8
-4       5-8
-       ... 
-4894    5-2
-4895    5-2
-4896    5-2
-4897    5-2
-4898    5-2
-Name: tile_id, Length: 1467, dtype: object",22,0.36484577168786964,2740,2,0.5950370432011637,0.6592286581929048,0.20247329113106363,22,11,True,0.3,40,/home/sagemaker-user/HNE/tiles/CH_L_403a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0,22,11,106.82
+patient_id,n_spots_in_tissue,n_spots_missin_tumor_fraction,mean_tumor_fraction,median_tumor_fraction,tile_id,n_initial_tiles,fullres_pixel_size,tile_size_pixels,k_value,mean_tile_purity,median_tile_purity,tile_purity_std,tiles_before_filter,n_tumor_tiles,has_tumor_tiles,tumor_threshold,min_spots,tiles_path,genes_per_signature,n_missing_signatures,n_total_tiles_aggregated,n_tumor_tiles_aggregated,avg_spots_per_tile,has_tumor_fraction
+CH_L_275a,4392.0,0.0,0.5259584134625154,0.5723674025726897,"['10-10', '10-11', '10-12', '10-13', '10-14', '10-15', '11-11', '11-12', '11-13', '11-14', '11-15', '6-10', '6-11', '6-12', '6-13', '6-14', '6-15', '7-10', '7-11', '7-12', '7-13', '7-14', '7-15', '8-10', '8-11', '8-12', '8-13', '8-14', '8-15', '9-10', '9-11', '9-12', '9-13', '9-14', '9-15']",35.0,0.40951207934669115,2441.0,2.0,0.5123259947227656,0.5459701297897535,0.18768643087812872,35.0,23.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_275a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,35.0,23.0,163.61,
+CH_L_276a,4924.0,0.0,0.3922367752397717,0.35264349295101227,"['10-10', '10-11', '10-12', '10-7', '10-8', '10-9', '11-10', '11-11', '11-12', '11-9', '5-10', '5-11', '5-12', '5-13', '5-8', '5-9', '6-10', '6-11', '6-12', '6-13', '6-8', '6-9', '7-10', '7-11', '7-12', '7-13', '7-8', '7-9', '8-10', '8-11', '8-12', '8-13', '8-8', '8-9', '9-10', '9-11', '9-12', '9-13', '9-7', '9-8', '9-9']",41.0,0.41312746048927573,2420.0,2.0,0.3788399150792005,0.3918978791504654,0.1002364804402091,41.0,22.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_276a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,41.0,22.0,170.86,
+CH_L_277a,2192.0,0.0,0.6369686552160477,0.6764513747699302,"['1-10', '1-11', '2-10', '2-11', '2-7', '2-8', '2-9', '3-10', '3-6', '3-7', '3-8', '3-9', '4-10', '4-6', '4-7', '4-8', '4-9', '5-6', '5-7', '5-8', '5-9', '6-6', '6-7']",23.0,0.4195781951914387,2383.0,2.0,0.6133159164888374,0.6091842807217639,0.14750085690366346,23.0,16.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_277a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,23.0,16.0,131.44,
+CH_L_278a,4377.0,0.0,0.4045460084222129,0.342231920557574,"['10-10', '10-11', '10-13', '10-14', '10-9', '5-10', '5-11', '5-12', '5-13', '5-14', '5-9', '6-10', '6-11', '6-12', '6-13', '6-14', '6-9', '7-10', '7-11', '7-12', '7-13', '7-14', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-9']",35.0,0.39629368932606396,2523.0,2.0,0.38188158049193394,0.42082554674770045,0.23221586922171714,35.0,18.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_278a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,35.0,18.0,144.11,
+CH_L_279a,4744.0,0.0,0.33451603790671397,0.2281010980342959,"['10-10', '10-11', '10-12', '10-9', '11-10', '11-11', '11-9', '4-11', '4-12', '5-10', '5-11', '5-12', '5-9', '6-10', '6-11', '6-12', '6-13', '6-7', '6-8', '6-9', '7-10', '7-11', '7-12', '7-13', '7-7', '7-8', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-8', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-8', '9-9']",41.0,0.4067125957159013,2458.0,2.0,0.3199017625083135,0.2966474965297193,0.20120729194401488,41.0,16.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_279a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,41.0,16.0,147.62,
+CH_L_280a,4992.0,0.0,0.7196719617183316,0.8720274950308011,"['10-4', '10-5', '10-6', '10-7', '10-8', '10-9', '11-4', '11-5', '11-6', '11-7', '11-8', '11-9', '5-4', '5-5', '5-6', '6-4', '6-5', '6-6', '6-7', '6-8', '6-9', '7-4', '7-5', '7-6', '7-7', '7-8', '7-9', '8-4', '8-5', '8-6', '8-7', '8-8', '8-9', '9-4', '9-5', '9-6', '9-7', '9-8', '9-9']",39.0,0.4075062489064723,2453.0,2.0,0.6998611510154337,0.7021295931551508,0.16362822148272643,39.0,34.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_280a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,39.0,34.0,144.59,
+CH_L_281a,4545.0,0.0,0.44790833602322744,0.4830532777307527,"['10-21', '10-22', '10-23', '10-24', '10-25', '10-26', '11-21', '11-22', '11-23', '11-24', '11-25', '11-26', '6-21', '6-22', '6-23', '6-24', '6-25', '6-26', '7-21', '7-22', '7-23', '7-24', '7-25', '7-26', '8-21', '8-22', '8-23', '8-24', '8-25', '8-26', '9-21', '9-22', '9-23', '9-24', '9-25', '9-26']",36.0,0.4176762775942656,2394.0,2.0,0.4221348033682787,0.46472990595479763,0.2089351535541689,36.0,26.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_281a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,26.0,137.62,
+CH_L_281b,4485.0,0.0,0.3960819808828397,0.40185600797655574,"['2-2', '2-3', '2-4', '2-5', '2-6', '3-1', '3-2', '3-3', '3-4', '3-5', '3-6', '4-1', '4-2', '4-3', '4-4', '4-5', '4-6', '5-1', '5-2', '5-3', '5-4', '5-5', '5-6', '6-1', '6-2', '6-3', '6-4', '6-5', '6-6', '7-1', '7-2', '7-3', '7-4', '7-5', '7-6', '8-1', '8-2', '8-3', '8-4', '8-5', '8-6']",41.0,0.4185350770365593,2389.0,2.0,0.4046772465699473,0.4108450436226688,0.10428058238215476,41.0,22.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_281b,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,41.0,22.0,160.95,
+CH_L_282a,4114.0,0.0,0.39875101998564816,0.3385270312074401,"['10-10', '10-11', '10-6', '10-7', '10-8', '10-9', '11-10', '11-11', '11-6', '11-7', '11-8', '11-9', '12-10', '12-11', '12-6', '12-7', '12-8', '12-9', '7-10', '7-11', '7-12', '7-7', '7-8', '7-9', '8-10', '8-11', '8-12', '8-6', '8-7', '8-8', '8-9', '9-10', '9-11', '9-6', '9-7', '9-8', '9-9']",37.0,0.37317455481171374,2679.0,2.0,0.39980236361591714,0.3741006769253389,0.19487117942498922,37.0,16.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_282a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,16.0,150.69,
+CH_L_283a,4922.0,0.0,0.7432613070367493,0.9004386277633198,"['10-10', '10-11', '10-6', '10-7', '10-8', '10-9', '11-10', '11-11', '11-6', '11-7', '11-8', '11-9', '12-10', '12-11', '12-6', '12-7', '12-8', '12-9', '7-10', '7-11', '7-6', '7-7', '7-8', '7-9', '8-10', '8-11', '8-6', '8-7', '8-8', '8-9', '9-10', '9-11', '9-6', '9-7', '9-8', '9-9']",36.0,0.4124793472148548,2424.0,2.0,0.7203842670976202,0.8033005172060362,0.19615222648315006,36.0,33.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_283a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,33.0,146.76,
+CH_L_284a,4548.0,0.0,0.3953598029847906,0.32823818597574167,"['10-10', '10-11', '10-6', '10-7', '10-8', '10-9', '11-10', '11-11', '11-6', '11-7', '11-8', '11-9', '12-10', '12-11', '12-7', '12-8', '12-9', '6-10', '6-9', '7-10', '7-5', '7-6', '7-7', '7-8', '7-9', '8-10', '8-11', '8-5', '8-6', '8-7', '8-8', '8-9', '9-10', '9-11', '9-5', '9-6', '9-7', '9-8', '9-9']",39.0,0.41539333651762517,2407.0,2.0,0.38194630212837827,0.3722530970636418,0.14662420914252694,39.0,16.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_284a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,39.0,16.0,179.81,
+CH_L_285a,4423.0,0.0,0.5107281689659905,0.5672811213018748,"['10-10', '10-11', '10-6', '10-7', '10-8', '10-9', '5-10', '5-11', '5-6', '5-7', '5-8', '5-9', '6-10', '6-11', '6-6', '6-7', '6-8', '6-9', '7-10', '7-11', '7-6', '7-7', '7-8', '7-9', '8-10', '8-11', '8-6', '8-7', '8-8', '8-9', '9-10', '9-11', '9-6', '9-7', '9-8', '9-9']",36.0,0.39429581730082974,2536.0,2.0,0.4512308652498255,0.4299878558192305,0.20972074610118163,36.0,24.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_285a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,24.0,151.21,
+CH_L_287a,4843.0,0.0,0.4355939983851749,0.476454546602399,"['10-10', '10-11', '10-12', '10-13', '10-14', '10-15', '11-11', '5-10', '5-11', '5-12', '5-13', '5-14', '5-15', '6-10', '6-11', '6-12', '6-13', '6-14', '6-15', '7-10', '7-11', '7-12', '7-13', '7-14', '7-15', '8-10', '8-11', '8-12', '8-13', '8-14', '8-15', '9-10', '9-11', '9-12', '9-13', '9-14', '9-15']",37.0,0.420661419339249,2377.0,2.0,0.4366768100514991,0.5007938116715015,0.19445808989763425,37.0,22.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_287a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,22.0,151.41,
+CH_L_288a,4620.0,0.0,0.5582821195728297,0.584602882315076,"['4-3', '4-4', '4-5', '4-6', '4-7', '5-3', '5-4', '5-5', '5-6', '5-7', '5-8', '6-3', '6-4', '6-5', '6-6', '6-7', '6-8', '7-3', '7-4', '7-5', '7-6', '7-7', '7-8', '8-3', '8-4', '8-5', '8-6', '8-7', '8-8', '9-3', '9-4', '9-5', '9-6', '9-7', '9-8']",35.0,0.41041758332620915,2436.0,2.0,0.5064328850235723,0.39274755298014397,0.23308773948650816,35.0,27.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_288a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,35.0,27.0,153.0,
+CH_L_289a,4825.0,0.0,0.5932695985216759,0.6484724911842368,"['10-10', '10-11', '10-12', '10-13', '10-14', '5-10', '5-11', '5-12', '5-13', '5-14', '5-15', '6-10', '6-11', '6-12', '6-13', '6-14', '6-15', '7-10', '7-11', '7-12', '7-13', '7-14', '7-15', '8-10', '8-11', '8-12', '8-13', '8-14', '8-15', '9-10', '9-11', '9-12', '9-13', '9-14']",34.0,0.41219326296465586,2426.0,2.0,0.5800995170253986,0.6120021442954049,0.1345320535296206,34.0,33.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_289a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,34.0,33.0,144.61,
+CH_L_290a,4712.0,0.0,0.3669710376058086,0.3497751877640012,"['10-13', '10-14', '10-15', '10-16', '10-17', '10-18', '5-13', '5-14', '5-15', '5-16', '5-17', '5-18', '6-13', '6-14', '6-15', '6-16', '6-17', '6-18', '7-13', '7-14', '7-15', '7-16', '7-17', '7-18', '8-13', '8-14', '8-15', '8-16', '8-17', '8-18', '9-13', '9-14', '9-15', '9-16', '9-17', '9-18']",36.0,0.41717506360748424,2397.0,2.0,0.35869996650976543,0.33813779057170945,0.14546777068083236,36.0,21.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_290a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,21.0,142.95,
+CH_L_291a,4626.0,0.0,0.7099179112522597,0.8790147584263492,"['10-4', '10-5', '10-6', '10-7', '10-8', '10-9', '11-4', '11-5', '11-6', '11-7', '11-8', '11-9', '12-4', '12-5', '12-6', '12-7', '6-4', '6-5', '6-6', '6-7', '6-8', '6-9', '7-4', '7-5', '7-6', '7-7', '7-8', '7-9', '8-4', '8-5', '8-6', '8-7', '8-8', '8-9', '9-4', '9-5', '9-6', '9-7', '9-8', '9-9']",40.0,0.4094509409183674,2442.0,2.0,0.6808788342485047,0.7222867857644912,0.1970973188530679,40.0,29.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_291a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,40.0,29.0,150.0,
+CH_L_292a,3972.0,0.0,0.5107077936363478,0.53580848283921,"['2-11', '2-12', '2-13', '2-14', '2-15', '2-16', '3-11', '3-12', '3-13', '3-14', '3-15', '3-16', '4-11', '4-12', '4-13', '4-14', '4-15', '4-16', '5-11', '5-12', '5-13', '5-14', '5-15', '5-16', '6-11', '6-12', '6-13', '6-14', '6-15', '6-16', '7-11', '7-12', '7-13', '7-14', '7-15', '7-16']",36.0,0.3908529606035261,2558.0,2.0,0.49494640864543016,0.4776939808376802,0.11775038568425332,36.0,28.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_292a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,28.0,126.5,
+CH_L_293a,4718.0,0.0,0.8228886699058362,0.9218965533556873,"['10-13', '10-14', '10-15', '10-16', '10-17', '10-18', '4-15', '4-16', '4-17', '4-18', '5-13', '5-14', '5-15', '5-16', '5-17', '5-18', '6-13', '6-14', '6-15', '6-16', '6-17', '6-18', '7-13', '7-14', '7-15', '7-16', '7-17', '7-18', '8-13', '8-14', '8-15', '8-16', '8-17', '8-18', '9-13', '9-14', '9-15', '9-16', '9-17', '9-18']",40.0,0.40977831246463586,2440.0,2.0,0.798200386451562,0.8591729043214622,0.13770233569132037,40.0,29.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_293a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,40.0,29.0,153.21,
+CH_L_294a,4904.0,0.0,0.46294598446467033,0.5223435088290507,"['10-10', '10-11', '10-12', '10-13', '10-14', '10-9', '11-10', '11-11', '11-12', '11-13', '11-14', '11-9', '6-10', '6-11', '6-12', '6-13', '6-14', '6-9', '7-10', '7-11', '7-12', '7-13', '7-14', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-9']",36.0,0.3967557153416217,2520.0,2.0,0.4467482409325443,0.4901929333924885,0.12921342164824132,36.0,25.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_294a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,25.0,167.36,
+CH_L_295a,4350.0,0.0,0.48988545091238117,0.5210502154034715,"['10-10', '10-11', '10-12', '10-13', '10-14', '10-15', '11-10', '11-11', '11-12', '11-13', '11-14', '11-15', '12-10', '12-11', '12-12', '12-13', '12-14', '12-15', '13-10', '13-11', '13-12', '13-13', '13-14', '13-15', '14-12', '14-13', '14-14', '14-15', '8-10', '8-11', '8-12', '8-13', '8-14', '8-15', '9-10', '9-11', '9-12', '9-13', '9-14', '9-15']",40.0,0.3899245344085396,2564.0,2.0,0.49203006345018796,0.5312247713150184,0.1830404188495242,40.0,20.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_295a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,40.0,20.0,151.5,
+CH_L_296a,4344.0,0.0,0.34107381063549086,0.3325953717877492,"['10-10', '10-11', '10-12', '10-7', '10-8', '10-9', '11-10', '11-11', '11-12', '11-7', '11-8', '11-9', '12-10', '12-11', '12-8', '12-9', '7-10', '7-11', '7-12', '7-7', '7-8', '7-9', '8-10', '8-11', '8-12', '8-7', '8-8', '8-9', '9-10', '9-11', '9-12', '9-7', '9-8', '9-9']",34.0,0.40166315408612546,2489.0,2.0,0.33963867957215477,0.3362226759785846,0.036986842867786175,34.0,24.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_296a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,34.0,24.0,163.75,
+CH_L_298a,2107.0,0.0,0.5112816612623963,0.584386235030832,"['10-0', '10-1', '10-2', '10-3', '10-4', '10-5', '11-0', '11-1', '11-2', '11-3', '11-4', '11-5', '12-0', '12-1', '12-2', '12-3', '12-4', '13-0', '13-1', '13-2', '13-3', '13-4', '13-5', '14-0', '14-1', '14-2', '14-3', '14-4', '14-5', '9-0', '9-1', '9-2', '9-3', '9-4', '9-5']",35.0,0.40028031401776587,2498.0,2.0,0.4905469683550508,0.509248558250962,0.1770595024108255,35.0,15.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_298a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,35.0,15.0,103.93,
+CH_L_299a,4809.0,0.0,0.5315679341291158,0.6423355329777132,"['3-6', '3-7', '3-8', '3-9', '4-10', '4-5', '4-6', '4-7', '4-8', '4-9', '5-10', '5-5', '5-6', '5-7', '5-8', '5-9', '6-10', '6-5', '6-6', '6-7', '6-8', '6-9', '7-10', '7-5', '7-6', '7-7', '7-8', '7-9', '8-10', '8-5', '8-6', '8-7', '8-8', '8-9', '9-10', '9-5', '9-6', '9-7', '9-8', '9-9']",40.0,0.4153256616752174,2407.0,2.0,0.5165103768355699,0.5230611115222503,0.29252977224658183,40.0,23.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_299a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,40.0,23.0,156.09,
+CH_L_300a,4719.0,0.0,0.20802275450222843,0.06792181584897287,"['10-10', '10-9', '4-10', '4-11', '4-12', '4-13', '4-14', '4-9', '5-10', '5-11', '5-12', '5-13', '5-14', '5-9', '6-10', '6-11', '6-12', '6-13', '6-14', '6-9', '7-10', '7-11', '7-12', '7-13', '7-14', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-9']",38.0,0.41292420140339686,2421.0,2.0,0.22317740288348029,0.23253494116740914,0.1489318562220055,38.0,10.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_300a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,38.0,10.0,138.6,
+CH_L_301a,4434.0,0.0,0.5230972223332007,0.5961769546304854,"['10-10', '10-11', '10-12', '10-13', '5-10', '5-11', '5-12', '5-13', '5-14', '5-15', '6-10', '6-11', '6-12', '6-13', '6-14', '6-15', '7-10', '7-11', '7-12', '7-13', '7-14', '7-15', '8-10', '8-11', '8-12', '8-13', '8-14', '8-15', '9-10', '9-11', '9-12', '9-13', '9-14', '9-15']",34.0,0.41919475488986147,2385.0,2.0,0.515838287954524,0.5301041478503972,0.15625726265518053,34.0,31.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_301a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,34.0,31.0,130.61,
+CH_L_302a,4978.0,0.0,0.6284270751997288,0.7256267762854728,"['10-14', '10-15', '10-16', '10-17', '10-18', '10-19', '10-20', '5-15', '5-16', '5-17', '5-18', '5-19', '5-20', '6-15', '6-16', '6-17', '6-18', '6-19', '6-20', '7-15', '7-16', '7-17', '7-18', '7-19', '7-20', '8-15', '8-16', '8-17', '8-18', '8-19', '8-20', '9-15', '9-16', '9-17', '9-18', '9-19', '9-20']",37.0,0.4121490316638897,2426.0,2.0,0.6459482817361536,0.6781846632868297,0.1806440506056947,37.0,33.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_302a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,33.0,144.3,
+CH_L_303a,4987.0,0.0,0.3629256236706343,0.34564017718564527,"['10-4', '10-5', '10-6', '10-7', '10-8', '10-9', '5-10', '5-5', '5-6', '5-7', '5-8', '5-9', '6-10', '6-5', '6-6', '6-7', '6-8', '6-9', '7-10', '7-4', '7-5', '7-6', '7-7', '7-8', '7-9', '8-4', '8-5', '8-6', '8-7', '8-8', '8-9', '9-4', '9-5', '9-6', '9-7', '9-8', '9-9']",37.0,0.4126253519331465,2423.0,2.0,0.38163352855682664,0.3822693966820472,0.12244062813062705,37.0,22.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_303a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,22.0,157.45,
+CH_L_305a,4757.0,0.0,0.6112214933212545,0.673968122944004,"['10-10', '10-11', '10-12', '10-7', '10-8', '10-9', '11-10', '11-11', '11-12', '11-7', '11-8', '11-9', '12-10', '12-11', '12-12', '12-7', '12-8', '12-9', '6-10', '6-11', '6-12', '6-7', '6-8', '6-9', '7-10', '7-11', '7-12', '7-7', '7-8', '7-9', '8-10', '8-11', '8-12', '8-7', '8-8', '8-9', '9-10', '9-11', '9-12', '9-7', '9-8', '9-9']",42.0,0.43094023176095236,2320.0,2.0,0.5685809873859987,0.5807555028296683,0.18912863682981151,42.0,28.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_305a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,42.0,28.0,157.36,
+CH_L_306a,4673.0,0.0,0.24301308080337014,0.20502465738369977,"['3-16', '3-17', '3-18', '3-19', '3-20', '4-15', '4-16', '4-17', '4-18', '4-19', '4-20', '5-16', '5-17', '5-18', '5-19', '5-20', '6-16', '6-17', '6-18', '6-19', '6-20', '7-16', '7-17', '7-18', '7-19', '7-20', '8-16', '8-17', '8-18', '8-19', '8-20']",31.0,0.4090116607563134,2444.0,2.0,0.24738657978422407,0.2811580888704207,0.10332947585654469,31.0,12.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_306a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,31.0,12.0,153.67,
+CH_L_306b,4388.0,0.0,0.42584575809240705,0.4353162122569806,"['10-17', '10-18', '10-19', '10-20', '11-18', '11-19', '11-20', '5-16', '5-17', '5-18', '6-16', '6-17', '6-18', '6-19', '6-20', '6-21', '7-16', '7-17', '7-18', '7-19', '7-20', '7-21', '8-15', '8-16', '8-17', '8-18', '8-19', '8-20', '8-21', '9-15', '9-16', '9-17', '9-18', '9-19', '9-20']",35.0,0.41528504098105556,2407.0,2.0,0.43280380728937323,0.4339048903642212,0.0884836564543194,35.0,22.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_306b,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,35.0,22.0,162.09,
+CH_L_307a,4898.0,0.0,0.5579307567495363,0.6106455426382367,"['3-13', '3-14', '3-15', '3-16', '3-17', '3-18', '4-13', '4-14', '4-15', '4-16', '4-17', '4-18', '4-19', '5-14', '5-15', '5-16', '5-17', '5-18', '5-19', '6-14', '6-15', '6-16', '6-17', '6-18', '6-19', '7-14', '7-15', '7-16', '7-17', '7-18', '7-19', '8-14', '8-15', '8-16', '8-17', '8-18', '8-19', '9-14', '9-15']",39.0,0.43216472344231527,2313.0,2.0,0.5293529380927571,0.567589239472513,0.2194952390251192,39.0,24.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_307a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,39.0,24.0,166.42,
+CH_L_308a,4905.0,0.0,0.4855798589746469,0.4846653714822973,"['10-10', '10-11', '10-12', '10-7', '10-8', '10-9', '11-10', '11-11', '11-12', '11-7', '11-8', '11-9', '5-10', '5-11', '5-12', '5-7', '5-8', '5-9', '6-10', '6-11', '6-12', '6-7', '6-8', '6-9', '7-10', '7-11', '7-12', '7-7', '7-8', '7-9', '8-10', '8-11', '8-12', '8-7', '8-8', '8-9', '9-10', '9-11', '9-12', '9-7', '9-8', '9-9']",42.0,0.3967083027295752,2520.0,2.0,0.4874611269832411,0.43965099002686203,0.21843778083049697,42.0,27.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_308a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,42.0,27.0,143.81,
+CH_L_309a,4796.0,0.0,0.620397663999602,0.7314332325718864,"['10-10', '10-11', '10-12', '10-8', '10-9', '5-10', '5-11', '5-12', '5-13', '5-8', '5-9', '6-10', '6-11', '6-12', '6-13', '6-8', '6-9', '7-10', '7-11', '7-12', '7-13', '7-8', '7-9', '8-10', '8-11', '8-12', '8-13', '8-8', '8-9', '9-10', '9-11', '9-12', '9-13', '9-8', '9-9']",35.0,0.37739003594826404,2649.0,2.0,0.6229891090043574,0.6985980817763828,0.19380609404313345,35.0,25.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_309a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,35.0,25.0,167.48,
+CH_L_310a,4469.0,0.0,0.28940128203482857,0.281226773790031,"['4-10', '4-11', '4-12', '4-13', '4-14', '4-15', '4-9', '5-10', '5-11', '5-12', '5-13', '5-14', '5-9', '6-10', '6-11', '6-12', '6-13', '6-14', '6-9', '7-10', '7-11', '7-12', '7-13', '7-14', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-9']",37.0,0.41558652516282535,2406.0,2.0,0.32017156473153296,0.3354724520836843,0.12583812855966212,37.0,15.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_310a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,15.0,140.27,
+CH_L_311a,4789.0,0.0,0.5315597408770419,0.5707391890076137,"['10-11', '10-12', '10-13', '10-14', '10-15', '10-16', '11-11', '11-12', '11-13', '11-14', '11-15', '11-16', '12-11', '12-12', '12-13', '12-14', '12-15', '12-16', '7-11', '7-12', '7-13', '7-14', '7-15', '7-16', '8-11', '8-12', '8-13', '8-14', '8-15', '8-16', '9-11', '9-12', '9-13', '9-14', '9-15', '9-16']",36.0,0.40227135325976515,2485.0,2.0,0.4843956389919679,0.5047563288945125,0.19833370976642284,36.0,25.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_311a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,25.0,169.2,
+CH_L_312a,4700.0,0.0,0.3992924377619648,0.38379292721791275,"['10-10', '10-11', '10-12', '10-6', '10-7', '10-8', '10-9', '11-10', '11-11', '11-7', '11-8', '11-9', '5-10', '5-7', '5-8', '5-9', '6-10', '6-11', '6-12', '6-7', '6-8', '6-9', '7-10', '7-11', '7-12', '7-7', '7-8', '7-9', '8-10', '8-11', '8-12', '8-7', '8-8', '8-9', '9-10', '9-11', '9-12', '9-7', '9-8', '9-9']",40.0,0.41708019323231593,2397.0,2.0,0.3894237759727079,0.3977443887710047,0.15794767480292185,40.0,19.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_312a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,40.0,19.0,170.68,
+CH_L_313a,4000.0,0.0,0.2762966592276242,0.1354293823959986,"['3-4', '3-5', '3-6', '3-7', '3-8', '3-9', '4-4', '4-5', '4-6', '4-7', '4-8', '4-9', '5-4', '5-5', '5-6', '5-7', '5-8', '5-9', '6-3', '6-4', '6-5', '6-6', '6-7', '6-8', '7-3', '7-4', '7-5', '7-6', '7-7', '7-8', '8-4', '8-5', '8-6', '8-7', '8-8']",35.0,0.4124402022193532,2424.0,2.0,0.26828696640049016,0.23323124652976499,0.19412938914782424,35.0,8.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_313a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,35.0,8.0,156.0,
+CH_L_314a,4243.0,0.0,0.4186331645224359,0.44659240808471296,"['10-22', '10-23', '4-18', '4-19', '4-20', '4-21', '4-22', '4-23', '5-18', '5-19', '5-20', '5-21', '5-22', '5-23', '6-18', '6-19', '6-20', '6-21', '6-22', '6-23', '7-18', '7-19', '7-20', '7-21', '7-22', '7-23', '8-18', '8-19', '8-20', '8-21', '8-22', '8-23', '9-18', '9-19', '9-20', '9-21', '9-22', '9-23']",38.0,0.4138935028163829,2416.0,2.0,0.42399637051858735,0.4423581782167797,0.2307033059562247,38.0,22.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_314a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,38.0,22.0,124.5,
+CH_L_315a,4153.0,0.0,0.4658963113978462,0.487873532082676,"['10-5', '10-6', '10-7', '10-8', '4-10', '4-5', '4-6', '4-7', '4-9', '5-10', '5-5', '5-6', '5-7', '5-8', '5-9', '6-10', '6-5', '6-6', '6-7', '6-8', '6-9', '7-10', '7-5', '7-6', '7-7', '7-8', '7-9', '8-5', '8-6', '8-7', '8-8', '8-9', '9-5', '9-6', '9-7', '9-8', '9-9']",37.0,0.35566890471344076,2811.0,2.0,0.4250371406488108,0.4233448714464139,0.1769823482481823,37.0,24.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_315a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,24.0,144.67,
+CH_L_317a,4898.0,0.0,0.48287398309596363,0.497854000062381,"['10-3', '10-4', '10-5', '10-6', '10-7', '10-8', '11-3', '11-4', '11-5', '11-6', '11-7', '11-8', '6-3', '6-4', '6-5', '6-6', '6-7', '6-8', '7-3', '7-4', '7-5', '7-6', '7-7', '7-8', '8-3', '8-4', '8-5', '8-6', '8-7', '8-8', '9-3', '9-4', '9-5', '9-6', '9-7', '9-8']",36.0,0.41464206948197946,2411.0,2.0,0.46612841493784746,0.47657387875576473,0.10728230380482956,36.0,34.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_317a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,34.0,141.44,
+CH_L_318a,4947.0,0.0,0.6482364717790944,0.6911810107960723,"['10-18', '10-19', '10-20', '10-21', '10-22', '10-23', '11-22', '11-23', '5-18', '5-19', '5-20', '5-21', '5-22', '5-23', '6-18', '6-19', '6-20', '6-21', '6-22', '6-23', '7-18', '7-19', '7-20', '7-21', '7-22', '7-23', '8-18', '8-19', '8-20', '8-21', '8-22', '8-23', '9-18', '9-19', '9-20', '9-21', '9-22', '9-23']",38.0,0.41174518789926645,2428.0,2.0,0.6351193090456836,0.6712656676524087,0.1145795134044178,38.0,34.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_318a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,38.0,34.0,143.44,
+CH_L_319a,4736.0,0.0,0.5936929177255506,0.7579405594285249,"['3-17', '3-18', '4-14', '4-15', '4-16', '4-17', '4-18', '4-19', '5-14', '5-15', '5-16', '5-17', '5-18', '5-19', '6-14', '6-15', '6-16', '6-17', '6-18', '6-19', '7-14', '7-15', '7-16', '7-17', '7-18', '7-19', '8-14', '8-15', '8-16', '8-17', '8-18', '8-19', '9-14', '9-15', '9-16', '9-17', '9-18', '9-19']",38.0,0.40780327574115743,2452.0,2.0,0.5116428856648415,0.5369024535023006,0.3002564874428601,38.0,23.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_319a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,38.0,23.0,157.0,
+CH_L_320a,4157.0,0.0,0.4721292364692234,0.4714148208242754,"['10-11', '10-12', '10-13', '10-14', '10-15', '10-16', '11-11', '11-12', '11-13', '11-14', '5-11', '5-12', '5-13', '5-14', '5-15', '5-16', '6-11', '6-12', '6-13', '6-14', '6-15', '6-16', '7-11', '7-12', '7-13', '7-14', '7-15', '7-16', '8-11', '8-12', '8-13', '8-14', '8-15', '8-16', '9-11', '9-12', '9-13', '9-14', '9-15', '9-16']",40.0,0.4127564524460657,2422.0,2.0,0.4643736942184177,0.47104220303001254,0.18696696589887826,40.0,23.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_320a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,40.0,23.0,138.43,
+CH_L_321a,4963.0,0.0,0.684052324323643,0.7678058227869702,"['10-10', '10-11', '10-12', '10-13', '10-14', '10-9', '5-10', '5-11', '5-12', '5-13', '5-14', '5-9', '6-10', '6-11', '6-12', '6-13', '6-14', '6-9', '7-10', '7-11', '7-12', '7-13', '7-14', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-9']",36.0,0.42058745558017424,2377.0,2.0,0.6528057220812199,0.681858917209097,0.1731792671762837,36.0,34.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_321a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,34.0,142.62,
+CH_L_322a,4387.0,0.0,0.7292176965711977,0.9027322117900755,"['10-10', '10-11', '10-6', '10-7', '10-8', '10-9', '11-10', '11-11', '11-6', '11-7', '11-8', '11-9', '6-10', '6-11', '6-6', '6-7', '6-8', '6-9', '7-10', '7-11', '7-6', '7-7', '7-8', '7-9', '8-10', '8-11', '8-6', '8-7', '8-8', '8-9', '9-10', '9-11', '9-6', '9-7', '9-8', '9-9']",36.0,0.39204386675170944,2550.0,2.0,0.6839521329738124,0.7972968555606137,0.2977623787459059,36.0,28.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_322a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,28.0,131.71,
+CH_L_323a,4155.0,0.0,0.6220430059073032,0.6797815047827284,"['3-10', '3-11', '3-7', '3-8', '3-9', '4-10', '4-11', '4-6', '4-7', '4-8', '4-9', '5-10', '5-11', '5-6', '5-7', '5-8', '5-9', '6-10', '6-11', '6-6', '6-7', '6-8', '6-9', '7-10', '7-11', '7-6', '7-7', '7-8', '7-9', '8-10', '8-11', '8-6', '8-7', '8-8', '8-9', '9-6', '9-7', '9-8']",38.0,0.406873739827277,2457.0,2.0,0.6136499156845899,0.5998691348054199,0.14478951258936293,38.0,30.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_323a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,38.0,30.0,133.0,
+CH_L_326a,4392.0,0.0,0.5708190831539027,0.6293862118823529,"['10-10', '10-11', '10-12', '10-13', '10-14', '10-9', '11-10', '11-11', '11-12', '11-13', '11-14', '11-9', '12-11', '12-12', '12-13', '12-14', '7-10', '7-11', '7-12', '7-13', '7-14', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-9']",34.0,0.3907352332880221,2559.0,2.0,0.5576581904266259,0.5820429614249294,0.12996848853720824,34.0,29.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_326a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,34.0,29.0,147.17,
+CH_L_327a,4623.0,0.0,0.6768846280484044,0.7607268638524582,"['4-1', '4-2', '4-3', '4-4', '4-5', '4-6', '5-1', '5-2', '5-3', '5-4', '5-5', '5-6', '5-7', '6-2', '6-3', '6-4', '6-5', '6-6', '6-7', '7-2', '7-3', '7-4', '7-5', '7-6', '7-7', '8-2', '8-3', '8-4', '8-5', '8-6', '8-7', '9-2', '9-3', '9-4', '9-5', '9-6', '9-7']",37.0,0.4157470629799276,2405.0,2.0,0.6147141525080222,0.5899854289846062,0.17840761081657172,37.0,30.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_327a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,30.0,149.63,
+CH_L_328a,4431.0,0.0,0.6507882651171151,0.7185734331948118,"['10-10', '10-11', '10-12', '10-7', '10-8', '10-9', '11-10', '11-11', '11-12', '11-7', '11-8', '11-9', '6-10', '6-11', '6-12', '6-7', '6-8', '6-9', '7-10', '7-11', '7-12', '7-7', '7-8', '7-9', '8-10', '8-11', '8-12', '8-7', '8-8', '8-9', '9-10', '9-11', '9-12', '9-7', '9-8', '9-9']",36.0,0.4156302583394356,2405.0,2.0,0.6063926473635225,0.6406924813470877,0.1686521205463326,36.0,32.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_328a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,32.0,134.31,
+CH_L_329a,3944.0,0.0,0.5411769753297435,0.559835056307128,"['4-10', '4-6', '4-7', '4-8', '4-9', '5-10', '5-11', '5-5', '5-6', '5-7', '5-8', '5-9', '6-10', '6-11', '6-6', '6-7', '6-8', '6-9', '7-10', '7-11', '7-6', '7-7', '7-8', '7-9', '8-10', '8-11', '8-6', '8-7', '8-8', '8-9', '9-10', '9-11', '9-6', '9-7', '9-8', '9-9']",36.0,0.41082515487423155,2434.0,2.0,0.5293028230906776,0.5321824749250866,0.19206103985386094,36.0,26.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_329a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,26.0,129.19,
+CH_L_330a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_333a,4857.0,0.0,0.25141883407747306,0.16295774463350768,"['10-1', '10-2', '10-3', '10-4', '10-5', '10-6', '10-7', '11-1', '11-2', '11-3', '11-4', '11-5', '11-6', '6-2', '6-3', '6-4', '6-5', '6-6', '6-7', '7-2', '7-3', '7-4', '7-5', '7-6', '7-7', '8-2', '8-3', '8-4', '8-5', '8-6', '8-7', '9-2', '9-3', '9-4', '9-5', '9-6', '9-7']",37.0,0.40926984893789486,2443.0,2.0,0.2580284456789697,0.2281245181126942,0.12012054367784142,37.0,8.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_333a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,8.0,157.38,
+CH_L_334a,4402.0,0.0,0.6294448144036715,0.7261354718286208,"['4-10', '4-11', '4-12', '4-13', '4-14', '4-9', '5-10', '5-11', '5-12', '5-13', '5-14', '5-9', '6-10', '6-11', '6-12', '6-13', '6-14', '6-9', '7-10', '7-11', '7-12', '7-13', '7-14', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-9']",36.0,0.416671124611439,2399.0,2.0,0.5586155249479626,0.6341837084821581,0.2002958288650178,36.0,27.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_334a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,27.0,145.22,
+CH_L_335a,4573.0,0.0,0.22547363275224502,0.03433349360549994,"['1-4', '1-5', '2-4', '2-5', '2-6', '2-7', '2-8', '2-9', '3-4', '3-5', '3-6', '3-7', '3-8', '3-9', '4-4', '4-5', '4-6', '4-7', '4-8', '4-9', '5-4', '5-5', '5-6', '5-7', '5-8', '5-9', '6-4', '6-5', '6-6', '6-7', '6-8', '6-9', '7-4', '7-5', '7-6', '7-7', '7-8', '7-9']",38.0,0.4139017938929506,2416.0,2.0,0.24865028897451688,0.17373517331090824,0.1915742486624595,38.0,10.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_335a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,38.0,10.0,141.0,
+CH_L_336a,4975.0,0.0,0.4269623205667467,0.4234489736757348,"['10-4', '10-5', '10-6', '10-7', '10-8', '10-9', '11-4', '11-5', '11-6', '11-7', '11-8', '11-9', '12-4', '12-5', '12-6', '12-7', '12-8', '12-9', '7-4', '7-5', '7-6', '7-7', '7-8', '7-9', '8-4', '8-5', '8-6', '8-7', '8-8', '8-9', '9-4', '9-5', '9-6', '9-7', '9-8', '9-9']",36.0,0.40998791916688426,2439.0,2.0,0.42791059794710795,0.3959827918792138,0.2154644664557117,36.0,23.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_336a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,23.0,142.57,
+CH_L_337a,4658.0,0.0,0.33435370575207796,0.18097451759174782,"['10-11', '10-12', '10-13', '10-14', '10-15', '10-16', '5-11', '5-12', '5-13', '5-14', '5-15', '5-16', '6-11', '6-12', '6-13', '6-14', '6-15', '6-16', '7-11', '7-12', '7-13', '7-14', '7-15', '7-16', '8-11', '8-12', '8-13', '8-14', '8-15', '8-16', '9-11', '9-12', '9-13', '9-14', '9-15', '9-16']",36.0,0.3948004828431835,2532.0,2.0,0.3347367003978947,0.3304459144585782,0.19240687936763803,36.0,16.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_337a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,16.0,155.62,
+CH_L_338a,4615.0,0.0,0.34977817043700976,0.34941185801810254,"['10-10', '10-11', '10-12', '10-13', '10-8', '10-9', '11-10', '11-11', '11-12', '11-13', '11-8', '11-9', '6-10', '6-11', '6-12', '6-13', '6-8', '6-9', '7-10', '7-11', '7-12', '7-13', '7-8', '7-9', '8-10', '8-11', '8-12', '8-13', '8-8', '8-9', '9-10', '9-11', '9-12', '9-13', '9-8', '9-9']",36.0,0.4151881031436586,2408.0,2.0,0.3346311987422786,0.3296655204572477,0.09702605799085597,36.0,21.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_338a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,21.0,155.95,
+CH_L_339a,3226.0,0.0,0.6539831577644206,0.826283110073557,"['4-10', '4-5', '4-6', '4-7', '4-8', '4-9', '5-10', '5-5', '5-6', '5-7', '5-8', '5-9', '6-10', '6-6', '6-7', '6-8', '6-9', '7-10', '7-5', '7-6', '7-7', '7-8', '7-9', '8-10', '8-5', '8-6', '8-7', '8-8', '8-9', '9-10', '9-5', '9-6', '9-7', '9-8', '9-9']",35.0,0.3707835248809304,2696.0,2.0,0.5526098806400971,0.5338854146859301,0.2183096799715757,35.0,23.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_339a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,35.0,23.0,128.65,
+CH_L_340a,4915.0,0.0,0.6682337921122448,0.7530483169950372,"['10-10', '10-11', '10-12', '10-13', '10-7', '10-8', '10-9', '5-10', '5-11', '5-12', '5-13', '5-8', '5-9', '6-10', '6-11', '6-12', '6-13', '6-8', '6-9', '7-10', '7-11', '7-12', '7-13', '7-7', '7-8', '7-9', '8-10', '8-11', '8-12', '8-13', '8-7', '8-8', '8-9', '9-10', '9-11', '9-12', '9-13', '9-7', '9-8', '9-9']",40.0,0.3953252395240161,2529.0,2.0,0.634493745120155,0.6344591349999247,0.11444691573442654,40.0,30.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_340a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,40.0,30.0,162.13,
+CH_L_341a,4543.0,0.0,0.3121273219380528,0.31412450700473893,"['10-10', '10-11', '10-12', '10-7', '10-8', '10-9', '4-10', '4-11', '4-8', '4-9', '5-10', '5-11', '5-12', '5-13', '5-8', '5-9', '6-10', '6-11', '6-12', '6-13', '6-7', '6-8', '6-9', '7-10', '7-11', '7-12', '7-7', '7-8', '7-9', '8-10', '8-11', '8-12', '8-7', '8-8', '8-9', '9-10', '9-11', '9-12', '9-7', '9-8', '9-9']",41.0,0.4125950717441887,2423.0,2.0,0.3179455328649272,0.3115771655093644,0.0791615041985101,41.0,16.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_341a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 48/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,41.0,16.0,166.44,
+CH_L_342a,4948.0,0.0,0.3693349319263544,0.19726710101148212,"['10-4', '10-5', '10-6', '10-7', '10-8', '10-9', '11-4', '11-5', '11-6', '11-7', '11-8', '11-9', '12-10', '12-4', '12-5', '12-6', '12-7', '12-8', '12-9', '7-4', '7-5', '7-6', '7-7', '7-8', '7-9', '8-4', '8-5', '8-6', '8-7', '8-8', '8-9', '9-4', '9-5', '9-6', '9-7', '9-8', '9-9']",37.0,0.4128433973325161,2422.0,2.0,0.33434040916542895,0.20379671459419613,0.25892402041664203,37.0,13.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_342a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,13.0,171.46,
+CH_L_344a,4753.0,0.0,0.7111952862255572,0.8130571098677565,"['10-4', '10-5', '10-6', '10-7', '10-8', '10-9', '11-4', '11-5', '11-6', '11-7', '11-8', '11-9', '5-4', '5-5', '5-6', '5-7', '5-8', '5-9', '6-4', '6-5', '6-6', '6-7', '6-8', '6-9', '7-4', '7-5', '7-6', '7-7', '7-8', '7-9', '8-4', '8-5', '8-6', '8-7', '8-8', '8-9', '9-4', '9-5', '9-6', '9-7', '9-8', '9-9']",42.0,0.40281886158042585,2482.0,2.0,0.6554602747136292,0.722997958144537,0.18625306028741956,42.0,24.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_344a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,42.0,24.0,177.25,
+CH_L_345a,4743.0,0.0,0.7336121088795381,0.8858584883546001,"['3-10', '3-5', '3-6', '3-7', '3-8', '3-9', '4-10', '4-5', '4-6', '4-7', '4-8', '4-9', '5-10', '5-5', '5-6', '5-7', '5-8', '5-9', '6-10', '6-5', '6-6', '6-7', '6-8', '6-9', '7-10', '7-5', '7-6', '7-7', '7-8', '7-9', '8-5', '8-6', '8-7', '8-8', '8-9']",35.0,0.4051665097360857,2468.0,2.0,0.711552439141108,0.7929814923400272,0.1823003506675595,35.0,30.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_345a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,35.0,30.0,151.93,
+CH_L_346a,4092.0,0.0,0.6884057006503241,0.7865242265284639,"['10-10', '10-11', '10-12', '10-13', '10-8', '10-9', '5-10', '5-11', '5-12', '5-13', '5-8', '5-9', '6-10', '6-11', '6-12', '6-13', '6-8', '6-9', '7-10', '7-11', '7-12', '7-13', '7-8', '7-9', '8-10', '8-11', '8-12', '8-13', '8-8', '8-9', '9-10', '9-11', '9-12', '9-13', '9-8', '9-9']",36.0,0.4095116427946635,2441.0,2.0,0.6477074887436515,0.7222770224463759,0.19933268474980562,36.0,32.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_346a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,32.0,123.44,
+CH_L_347a,4946.0,0.0,0.6301966800006129,0.7322987599016939,"['3-10', '3-11', '3-12', '3-13', '3-8', '3-9', '4-10', '4-11', '4-12', '4-13', '4-8', '4-9', '5-10', '5-11', '5-12', '5-13', '5-8', '5-9', '6-10', '6-11', '6-12', '6-13', '6-8', '6-9', '7-10', '7-11', '7-12', '7-13', '7-8', '7-9', '8-10', '8-11', '8-12', '8-13', '8-8', '8-9', '9-10', '9-11', '9-12', '9-13', '9-8', '9-9']",42.0,0.4115395009675084,2429.0,2.0,0.591703112707048,0.6430969037960763,0.18761246632776699,42.0,29.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_347a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,42.0,29.0,159.9,
+CH_L_348a,4581.0,0.0,0.47801399803762157,0.500110872489173,"['10-10', '10-11', '10-6', '10-7', '10-8', '10-9', '5-10', '5-11', '5-6', '5-7', '5-8', '5-9', '6-10', '6-11', '6-6', '6-7', '6-8', '6-9', '7-10', '7-11', '7-6', '7-7', '7-8', '7-9', '8-10', '8-11', '8-6', '8-7', '8-8', '8-9', '9-10', '9-11', '9-6', '9-7', '9-8', '9-9']",36.0,0.40741237420742255,2454.0,2.0,0.47578467289270787,0.518919754613474,0.15157971151343577,36.0,27.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_348a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,27.0,140.81,
+CH_L_349a,4672.0,0.0,0.4093342410617469,0.3464100031628493,"['3-16', '3-17', '3-18', '3-19', '3-20', '3-21', '4-16', '4-17', '4-18', '4-19', '4-20', '4-21', '5-16', '5-17', '5-18', '5-19', '5-20', '5-21', '6-16', '6-17', '6-18', '6-19', '6-20', '6-21', '7-16', '7-17', '7-18', '7-19', '7-20', '7-21', '8-16', '8-17', '8-18', '8-19', '8-20', '8-21', '9-16', '9-17', '9-18', '9-19', '9-20', '9-21']",42.0,0.3917622790992778,2552.0,2.0,0.3864420620848218,0.322085971116171,0.2423337476507174,42.0,17.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_349a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,42.0,17.0,161.82,
+CH_L_350a,3509.0,0.0,0.6661436643096985,0.7263154195201973,"['10-3', '10-4', '10-5', '10-6', '10-7', '10-8', '5-4', '5-5', '5-6', '5-7', '5-8', '5-9', '6-4', '6-5', '6-6', '6-7', '6-8', '6-9', '7-4', '7-5', '7-6', '7-7', '7-8', '7-9', '8-4', '8-5', '8-6', '8-7', '8-8', '8-9', '9-3', '9-4', '9-5', '9-6', '9-7', '9-8', '9-9']",37.0,0.40860641081755034,2447.0,2.0,0.6491393945291649,0.670185850634069,0.0846997113056109,37.0,30.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_350a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,30.0,115.53,
+CH_L_351a,4874.0,0.0,0.3624589825913349,0.2935882618467768,"['10-10', '10-11', '10-12', '10-7', '10-8', '10-9', '11-10', '11-11', '11-12', '11-7', '11-8', '11-9', '5-10', '5-11', '5-12', '5-7', '5-8', '5-9', '6-10', '6-11', '6-12', '6-7', '6-8', '6-9', '7-10', '7-11', '7-12', '7-7', '7-8', '7-9', '8-10', '8-11', '8-12', '8-7', '8-8', '8-9', '9-10', '9-11', '9-12', '9-7', '9-8', '9-9']",42.0,0.4126468488219614,2423.0,2.0,0.394870799680369,0.4192378668475911,0.21648955535635853,42.0,15.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_351a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,42.0,15.0,152.93,
+CH_L_352a,4180.0,0.0,0.4020183047503026,0.39719151058676144,"['10-10', '10-5', '10-6', '10-7', '10-8', '10-9', '11-10', '11-5', '11-6', '11-7', '11-8', '11-9', '6-10', '6-5', '6-6', '6-7', '6-8', '6-9', '7-10', '7-5', '7-6', '7-7', '7-8', '7-9', '8-10', '8-5', '8-6', '8-7', '8-8', '8-9', '9-10', '9-5', '9-6', '9-7', '9-8', '9-9']",36.0,0.41145365348965435,2430.0,2.0,0.4344078758758848,0.44288948799946026,0.17679775032048736,36.0,23.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_352a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,23.0,131.7,
+CH_L_353a,4568.0,0.0,0.3842532228435656,0.3744428180435171,"['10-10', '10-11', '10-12', '10-13', '10-14', '10-15', '10-9', '5-10', '5-11', '5-12', '5-13', '5-14', '5-9', '6-10', '6-11', '6-12', '6-13', '6-14', '6-9', '7-10', '7-11', '7-12', '7-13', '7-14', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-9']",37.0,0.39290676862416535,2545.0,2.0,0.392183188517259,0.39101364372491065,0.10358892041601181,37.0,26.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_353a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,26.0,133.42,
+CH_L_356a,4297.0,0.0,0.3952537148293223,0.3589854270445667,"['3-10', '3-11', '3-12', '3-13', '3-8', '3-9', '4-10', '4-11', '4-12', '4-13', '4-8', '4-9', '5-10', '5-11', '5-12', '5-13', '5-8', '5-9', '6-10', '6-11', '6-12', '6-13', '6-8', '6-9', '7-10', '7-11', '7-12', '7-13', '7-8', '7-9', '8-10', '8-11', '8-12', '8-13', '8-8', '8-9', '9-10', '9-11', '9-12', '9-13', '9-8', '9-9']",42.0,0.4204241819466955,2378.0,2.0,0.38840309105580173,0.3881052047380902,0.19561819659890228,42.0,17.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_356a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,42.0,17.0,168.82,
+CH_L_359a,4522.0,0.0,0.3666932225590699,0.3059162366042685,"['3-10', '3-11', '3-12', '3-13', '3-14', '4-10', '4-11', '4-12', '4-13', '4-14', '4-9', '5-10', '5-11', '5-12', '5-13', '5-14', '5-9', '6-10', '6-11', '6-12', '6-13', '6-14', '6-15', '6-9', '7-10', '7-11', '7-12', '7-13', '7-14', '7-15', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-15', '9-10', '9-11', '9-12']",40.0,0.4178221964448479,2393.0,2.0,0.39033949644115723,0.4490563203648048,0.1777268498023819,40.0,21.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_359a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,40.0,21.0,130.19,
+CH_L_360a,4491.0,0.0,0.542746707950056,0.5837817278619494,"['4-10', '4-11', '4-12', '4-13', '4-14', '4-9', '5-10', '5-11', '5-12', '5-13', '5-14', '5-9', '6-10', '6-11', '6-12', '6-13', '6-14', '6-9', '7-10', '7-11', '7-12', '7-13', '7-14', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-9']",36.0,0.3948953869965541,2532.0,2.0,0.5061144033580806,0.5108805646050247,0.22236054059975457,36.0,26.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_360a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,26.0,142.15,
+CH_L_361a,4741.0,0.0,0.4387749307999028,0.4587781400967112,"['10-10', '10-11', '10-6', '10-7', '10-8', '10-9', '11-10', '11-11', '11-6', '11-7', '11-8', '11-9', '12-10', '12-11', '12-6', '12-7', '12-8', '12-9', '7-10', '7-11', '7-6', '7-7', '7-8', '7-9', '8-10', '8-11', '8-6', '8-7', '8-8', '8-9', '9-10', '9-11', '9-6', '9-7', '9-8', '9-9']",36.0,0.39281093794076005,2545.0,2.0,0.43328675063615907,0.4598053672888892,0.13499068151286112,36.0,31.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_361a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,31.0,139.39,
+CH_L_362a,4881.0,0.0,0.5683461004811459,0.6594577176509752,"['10-10', '10-11', '10-12', '10-13', '10-14', '10-9', '11-10', '11-11', '11-12', '11-13', '11-14', '11-9', '12-10', '12-11', '12-12', '12-13', '12-14', '12-9', '6-11', '6-12', '6-13', '6-14', '7-10', '7-11', '7-12', '7-13', '7-14', '7-9', '8-10', '8-11', '8-12', '8-13', '8-14', '8-9', '9-10', '9-11', '9-12', '9-13', '9-14', '9-9']",40.0,0.4153806373604318,2407.0,2.0,0.5449257190563876,0.5968317386301821,0.18421220786696757,40.0,30.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_362a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,40.0,30.0,145.87,
+CH_L_363a,4877.0,0.0,0.678499975658204,0.8325309109463102,"['10-10', '10-11', '10-6', '10-7', '10-8', '10-9', '5-10', '5-11', '5-6', '5-7', '5-8', '5-9', '6-10', '6-11', '6-6', '6-7', '6-8', '6-9', '7-10', '7-11', '7-6', '7-7', '7-8', '7-9', '8-10', '8-11', '8-6', '8-7', '8-8', '8-9', '9-10', '9-11', '9-6', '9-7', '9-8', '9-9']",36.0,0.377641077301879,2648.0,2.0,0.6718882987924796,0.7029860077004062,0.1979742912373394,36.0,28.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_363a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,28.0,154.29,
+CH_L_364a,3962.0,0.0,0.2972435606690018,0.22402696409982298,"['2-10', '2-11', '2-12', '2-6', '2-7', '2-8', '2-9', '3-10', '3-11', '3-12', '3-6', '3-7', '3-8', '3-9', '4-10', '4-11', '4-12', '4-6', '4-7', '4-8', '4-9', '5-10', '5-11', '5-12', '5-6', '5-7', '5-8', '5-9', '6-10', '6-11', '6-12', '6-6', '6-7', '6-8', '6-9', '7-10', '7-11', '7-12', '7-6', '7-7', '7-8', '7-9']",42.0,0.39181192357050015,2552.0,2.0,0.2831620706758991,0.2732719411541572,0.18843760933505618,42.0,12.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_364a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,42.0,12.0,146.92,
+CH_L_367a,4074.0,0.0,0.593661205885061,0.6976346568490124,"['10-10', '10-11', '10-12', '10-13', '10-9', '4-10', '4-11', '4-12', '4-13', '4-8', '4-9', '5-10', '5-11', '5-12', '5-13', '5-8', '5-9', '6-10', '6-11', '6-12', '6-13', '6-8', '6-9', '7-10', '7-11', '7-12', '7-13', '7-8', '7-9', '8-10', '8-11', '8-12', '8-13', '8-8', '8-9', '9-10', '9-11', '9-12', '9-13', '9-9']",40.0,0.39376767346202884,2539.0,2.0,0.5993990433262262,0.6686417460389006,0.17791269291810247,40.0,22.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_367a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,40.0,22.0,160.05,
+CH_L_368a,4364.0,0.0,0.5128845176282198,0.5367839248293487,"['10-6', '10-7', '4-3', '4-4', '4-5', '4-6', '4-7', '4-8', '5-3', '5-4', '5-5', '5-6', '5-7', '5-8', '6-3', '6-4', '6-5', '6-6', '6-7', '6-8', '7-3', '7-4', '7-5', '7-6', '7-7', '7-8', '8-3', '8-4', '8-5', '8-6', '8-7', '8-8', '9-4', '9-5', '9-6', '9-7', '9-8']",37.0,0.41348571044175103,2418.0,2.0,0.4859050642875827,0.45097748301300494,0.1918369249822379,37.0,26.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_368a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,37.0,26.0,148.38,
+CH_L_369a,4670.0,0.0,0.5726369822794423,0.6561975070681074,"['10-4', '10-5', '10-6', '10-7', '10-8', '10-9', '11-4', '11-5', '11-6', '11-7', '11-8', '11-9', '6-4', '6-5', '6-6', '6-7', '6-8', '6-9', '7-4', '7-5', '7-6', '7-7', '7-8', '7-9', '8-4', '8-5', '8-6', '8-7', '8-8', '8-9', '9-4', '9-5', '9-6', '9-7', '9-8', '9-9']",36.0,0.4122251441169234,2425.0,2.0,0.5840187386447048,0.6279279111451371,0.19247551733576637,36.0,25.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_369a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,36.0,25.0,152.96,
+CH_L_371a,4848.0,0.0,0.6736610385360348,0.7446836861346411,"['10-4', '10-5', '10-6', '10-7', '10-8', '10-9', '11-4', '11-5', '11-6', '11-7', '11-8', '11-9', '5-4', '5-5', '5-6', '5-7', '5-8', '5-9', '6-4', '6-5', '6-6', '6-7', '6-8', '6-9', '7-4', '7-5', '7-6', '7-7', '7-8', '7-9', '8-4', '8-5', '8-6', '8-7', '8-8', '8-9', '9-4', '9-5', '9-6', '9-7', '9-8', '9-9']",42.0,0.41049885148613896,2436.0,2.0,0.6431171067062638,0.6797678268934457,0.15546778203045894,42.0,30.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_371a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,42.0,30.0,151.3,
+CH_L_372a,4788.0,0.0,0.6973621176392321,0.7688145393847325,"['10-16', '10-17', '10-18', '10-19', '10-20', '10-21', '11-16', '11-17', '11-18', '11-19', '11-20', '11-21', '5-16', '5-17', '5-18', '5-19', '5-20', '6-16', '6-17', '6-18', '6-19', '6-20', '6-21', '7-16', '7-17', '7-18', '7-19', '7-20', '7-21', '8-16', '8-17', '8-18', '8-19', '8-20', '8-21', '9-16', '9-17', '9-18', '9-19', '9-20', '9-21']",41.0,0.4124812907969669,2424.0,2.0,0.6491104615319003,0.6907294247942025,0.1586885331684518,41.0,31.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_372a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,41.0,31.0,147.77,
+CH_L_373a,3528.0,0.0,0.37996229321283304,0.31197372336908524,"['2-3', '2-4', '2-5', '2-6', '2-7', '2-8', '3-4', '3-5', '3-6', '3-7', '3-8', '3-9', '4-4', '4-5', '4-6', '4-7', '4-8', '4-9', '5-4', '5-5', '5-6', '5-7', '5-8', '5-9', '6-4', '6-5', '6-6', '6-7', '6-8', '6-9', '7-4', '7-5', '7-6', '7-7', '7-8']",35.0,0.4079119686433004,2451.0,2.0,0.3761926386503577,0.35250893347164713,0.11645457478370873,35.0,19.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_373a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,35.0,19.0,143.79,
+CH_L_375a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_376a,1183.0,0.0,0.42825318313930294,0.3797470407611412,"['-1-10', '-1-4', '-1-5', '-1-6', '-1-7', '-1-8', '-1-9', '-2-4', '-2-5', '-2-6', '-2-8', '-2-9', '-3-10', '-3-5', '-3-6', '-3-8', '-3-9', '0-4', '0-5', '0-6', '0-7', '0-8', '0-9']",23.0,0.3809673806277854,2624.0,2.0,0.431456857052474,0.38674728047520196,0.2156461725925197,23.0,6.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_376a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,23.0,6.0,90.67,
+CH_L_377a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_378a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_382a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_383a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_384a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_385a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_386a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_387a,789.0,0.0,0.5466184959266062,0.5937686405967733,"['1-1', '1-2', '2-1', '2-2', '2-4', '2-5', '2-6', '3-2', '3-5', '3-6', '4-5', '4-6', '5-1', '5-2', '6-1', '6-2']",16.0,0.43011070225352177,2324.0,2.0,0.540291808722108,0.570958327838514,0.15677327951722486,16.0,6.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_387a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 49/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,16.0,6.0,96.0,
+CH_L_388a,770.0,0.0,0.28604857381533133,0.18814516649220175,"['1-3', '1-4', '1-5', '1-6', '2-1', '2-2', '2-4', '2-5', '2-6', '3-1', '3-2', '3-3', '3-5', '3-6', '4-1', '4-2', '4-3', '4-4', '5-3', '5-4']",20.0,0.4194546884086197,2384.0,2.0,0.29111120168250415,0.2515638651531941,0.10155508461649848,20.0,2.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_388a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,20.0,2.0,121.0,
+CH_L_389a,1812.0,0.0,0.28889483116874565,0.07552193242716954,"['1-5', '1-6', '1-7', '2-3', '2-4', '2-5', '2-6', '2-7', '3-3', '3-4', '3-6', '3-7', '3-8', '4-3', '4-4', '4-5', '4-6', '4-7', '4-8', '5-4', '5-5', '5-6', '5-7', '6-4', '6-5', '6-6', '7-3', '7-4', '7-5', '7-6']",30.0,0.4170355223818206,2397.0,2.0,0.3184669714054501,0.27391395927912515,0.24380556586028096,30.0,6.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_389a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,30.0,6.0,101.83,
+CH_L_390a,772.0,0.0,0.5063355688965212,0.5517152600628705,"['10-10', '10-8', '10-9', '11-8', '11-9', '6-5', '6-6', '7-10', '7-5', '7-6', '8-5', '8-6', '8-7', '9-10', '9-8', '9-9']",16.0,0.39753259855154827,2515.0,2.0,0.49318644448274795,0.5015219756596376,0.12333071325524073,16.0,7.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_390a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,16.0,7.0,102.14,
+CH_L_391a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_392a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_393a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_394a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_395a,929.0,0.0,0.6022479001891405,0.6694451250872545,"['1-0', '1-2', '1-3', '2-0', '2-1', '2-2', '2-3', '3--1', '3--2', '3-2', '3-3', '4--1', '4--2', '4-1', '4-2', '5-1', '5-2', '5-3', '6-1', '6-2', '6-3']",21.0,0.3891858274637742,2569.0,2.0,0.581484433473929,0.5688870786361839,0.12103111475173717,21.0,9.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_395a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,21.0,9.0,93.78,
+CH_L_396a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_397a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_398a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_399a,2234.0,0.0,0.20573762807131998,0.12944919200076238,"['10-1', '10-2', '10-3', '10-4', '10-5', '11-1', '11-2', '11-3', '11-4', '11-5', '11-6', '6-2', '6-3', '6-4', '6-5', '6-6', '7-1', '7-2', '7-3', '7-4', '7-5', '7-6', '8-4', '8-5', '8-6', '9-3', '9-4', '9-5']",28.0,0.41216219743544324,2426.0,2.0,0.2278152183565533,0.20687974601102005,0.11751628921289353,28.0,3.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_399a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,28.0,3.0,162.67,
+CH_L_400a,628.0,0.0,0.5805933427385044,0.6883064273099464,"['-1-0', '-1-1', '-2--1', '-2-0', '-2-1', '-3--1', '-3-0', '-4--1', '-4--2', '-4-2', '0-0', '0-1', '1--2', '1-1', '1-2']",15.0,0.3899397466964377,2564.0,2.0,0.5599750190770557,0.5579904811826032,0.16080824190054274,15.0,6.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_400a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,15.0,6.0,81.17,
+CH_L_401a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_402a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_403a,1467.0,0.0,0.6420521116854407,0.7770461984133488,"['4-2', '4-3', '4-4', '4-5', '4-6', '4-7', '4-8', '5-2', '5-3', '5-4', '5-5', '5-6', '5-7', '5-8', '6-4', '6-5', '6-6', '6-7', '7-6', '7-7', '8-5', '8-7']",22.0,0.36484577168786964,2740.0,2.0,0.5950370432011637,0.6592286581929048,0.20247329113106363,22.0,11.0,True,0.3,40.0,/home/sagemaker-user/HNE/tiles/CH_L_403a,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0,22.0,11.0,106.82,
+CH_L_405a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_406a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_407a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_409a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_410a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_410b,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_411a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_412a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_413a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_414a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_414b,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_414c,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_415a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_416a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_417a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_418a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_419a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_420a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_420b,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_421a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_421b,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_422a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_423a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_424a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_425a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_426a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_427a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_428a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_429a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_430a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_431a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_432a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_433a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_437a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_437b,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_438a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_439a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_439b,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_440a,,,,,,,,,,,,,,,,,,,,,,,,False
+CH_L_442a,,,,,,,,,,,,,,,,,,,,,,,,False
