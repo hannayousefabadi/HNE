@@ -68,7 +68,7 @@ def zscore_and_binary(sig_cols, tiles_sig_tumor, patient_col="patient_id"):
     for col in sig_cols:
         grp = tiles_sig_tumor.groupby(patient_col)[col]
         # computing z-score
-        # per-patient gene score normalization, across all spots/genes
+        # per-patient gene score normalization, across tumor tiles
         # corrects for: batch variation between patients
         std = grp.transform("std")
         mean = grp.transform("mean")
