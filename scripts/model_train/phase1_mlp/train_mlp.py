@@ -35,11 +35,11 @@ CONFIG = {
 }
 
 DEFAULT_TARGET_COLS = [
-    "FMRP_signature_score_z",
-    "Cell_cycle_signature_score_z",
-    "YAP_signature_score_z",
-    "WNT_signature_score_z",
-    "EMT_signature_score_z",
+    "FMRP_signature_score",
+    "Cell_cycle_signature_score",
+    "YAP_signature_score",
+    "WNT_signature_score",
+    "EMT_signature_score",
 ]
 
 # command line arguments

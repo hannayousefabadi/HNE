@@ -1,11 +1,14 @@
+import gseapy as gp
+import pandas as pd
 from hne.utils import get_logger
-import scanpy as sc
 
 logger = get_logger()
 
 def compute_signatures(vis, final_df, patient_id=None, qc_tracker=None):
     """
-    Compute pathway signatures per spot
+    Compute pathway signatures per spot using ssGSEA.
+    Scores represent rank-based enrichment per spot, removing depth bias
+    and making raw scores directly comparable across patients.
     """
     signatures = {
     "FMRP_signature": ["MARCKSL1", "S100A16", "DDAH1", "MYCL", "SHANK2", "ITIH2", "PIK3AP1", 
@@ -27,65 +30,68 @@ def compute_signatures(vis, final_df, patient_id=None, qc_tracker=None):
 
     genes_in_data = set(vis.var_names)
 
-    signature_genes = {
-        key: [g for g in genes if g in genes_in_data]
-        for key, genes in signatures.items()
+    # filter signatures to genes actually detected in this slide
+    active_signatures = {
+        sig: [g for g in genes if g in genes_in_data]
+        for sig, genes in signatures.items()
+    }
+    missing_signatures = [sig for sig, genes in active_signatures.items() if len(genes) == 0]
+    valid_signatures = {sig: genes for sig, genes in active_signatures.items() if len(genes) > 0}
+    
+    metadata = {
+        "genes_per_signature": sorted([
+            f"{sig}: {len(v)}/{len(signatures[sig])} genes" 
+            for sig, v in active_signatures.items()
+        ]),
+        "n_missing_signatures": len(missing_signatures)
     }
 
-    vis = vis.copy()
+    if len(valid_signatures) == 0:
+        logger.error(f"No genes detected for ANY signature in patient {patient_id}")
+        if qc_tracker and patient_id:
+            qc_tracker.add_record(patient_id, "signature_qc", "EXCLUDE",
+                                  "Failed to compute ANY signatures", metadata)
+        return [], active_signatures, final_df, metadata
+    
+    # expression matrix (genes x spots)
     # log_norm_count = log1p(CPM) -> total count normalized per-spot, then log-transfered
     # corrects for: sequencing depth differences between spots (removes within-sample depth artifacts)
     # raw counts -> CPM (per-spot)
-    vis.X = vis.layers["log_norm_count"].copy()
-    missing_signatures = []
+    expr_df = pd.DataFrame(
+        vis.layers["log_norm_count"].toarray() if hasattr(vis.layers["log_norm_count"], "toarray") else vis.layers["log_norm_count"],
+        index=vis.obs_names,
+        columns=vis.var_names
+    ).T
 
-    # compute signature scores
-    for sig, genes_present in signature_genes.items():
-        if len(genes_present) == 0:
-            logger.warning(f"No genes found for {sig} - skipping")
-            missing_signatures.append(sig)
-            continue
+    # run ssGSEA
+    res = gp.ssgsea(
+        data=expr_df,
+        gene_sets=valid_signatures,
+        outdir=None,
+        permutation_num=0,
+        no_plot=True,
+        processes=4,
+        min_size=1
+    )
 
-        # score_genes is a per-spot background-correction method
-        # corrects for: expression-level bias within a gene set (comparing signature genes to similarly-expressed non-signature genes)
-        # removes a within-spot, within-gene-set expression bias
-        # score = mean(expression of signature genes) - mean(expression of a matched control gene set)       
-        sc.tl.score_genes(
-            vis,
-            gene_list=genes_present,
-            score_name=f"{sig}_score"
-        )
+    # res.res2d layout: index = (gene_set), columns = (sample / barcode) 
+    ssgsea_df = res.res2d.T
+    # format results: index = spot barcode, cols = f"{sig}_score"
+    sig_cols = [f"{sig}_score" for sig in ssgsea_df.columns]
+    ssgsea_df.columns = sig_cols
+    ssgsea_df = ssgsea_df.rename_axis("barcode").reset_index()
 
-    sig_cols = [
-        f"{sig}_score" for sig, genes in signature_genes.items()
-        if len(genes) > 0
-    ]
-    
-    # extract signatures to df
-    obs_sig = vis.obs[sig_cols].copy()
-    obs_sig = obs_sig.rename_axis("barcode").reset_index()
-    # merge with spots df
-    spots_df = final_df.merge(obs_sig, on="barcode", how="inner")
-
-    # metadata
-    metadata = {
-        "genes_per_signature": sorted([f'{sig}: {len(v)}/{len(signatures[sig])} genes' 
-                                        for sig, v in signature_genes.items()]),
-        "n_missing_signatures": len(missing_signatures)                                        
-    }
+    # merge into spots DataFrame
+    spots_df = final_df.merge(ssgsea_df, on="barcode", how="inner")
 
     if qc_tracker and patient_id:
-        if len(missing_signatures) == len(signatures):
-            qc_tracker.add_record(patient_id, "signature_qc", "EXCLUDE",
-                                  "Failed to compute ANY signatures", metadata)
-        elif len(missing_signatures) > 0:
+        if len(missing_signatures) > 0:
             failed_sigs = ", ".join(missing_signatures)
             qc_tracker.add_record(patient_id, "signature_qc", "FLAG",
                                   f"Missing genes for signatures: {failed_sigs}", metadata)
-            
         else:
-             qc_tracker.add_record(patient_id, "signature_qc", "OK",
-                                   "All 5 pathway signatures computed successfully", metadata)   
+            qc_tracker.add_record(patient_id, "signature_qc", "OK",
+                                  "All 5 ssGSEA signatures computed successfully", metadata)    
     
-    return sig_cols, signature_genes, spots_df, metadata
+    return sig_cols, active_signatures, spots_df, metadata
 

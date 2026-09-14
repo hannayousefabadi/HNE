@@ -13,3 +13,4 @@ transformers
 dotenv
 tifffile
 imagecodecs
+gseapy
