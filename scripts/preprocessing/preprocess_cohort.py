@@ -73,7 +73,7 @@ if __name__ == "__main__":
             metadata, tiles_sig, spot_df, sig_cols_patient = preprocess_patient(
                 patient_id,
                 mode='cohort',
-                cfg=cfg,
+                cfg=PREPROCESSING_QC_REPORTS,
                 qc_tracker=qc,
                 verbose=False,        # console quiet
                 run_qc_plots=True
