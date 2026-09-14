@@ -67,12 +67,20 @@ def binary_scores(sig_cols, tiles_sig_tumor, cfg=PREPROCESSING_CONFIG):
     Tiles with enrichment >= quantile_threshold (default top 25%) are flagged as 1, else 0.
     Retains raw continuous scores untouched for regression modeling.
     """
+    if len(tiles_sig_tumor) == 0:
+        return tiles_sig_tumor
+
     tiles_sig_tumor = tiles_sig_tumor.copy()
 
+    # create all binary columns in a single dict to avoid fragmentation
+    binary_data = {}
     for col in sig_cols:
         cutoff = tiles_sig_tumor[col].quantile(cfg.binary_quantile_threshold)
-        tiles_sig_tumor[f"{col}_binary"] = (tiles_sig_tumor[col] >= cutoff).astype(int)
+        binary_data[f"{col}_binary"] = (tiles_sig_tumor[col] >= cutoff).astype(int)
+        logger.debug(f"{col} binary cutoff (p{int(cfg.binary_quantile_threshold * 100)}): {cutoff:.4f}")
 
-        logger.debug(f"{col} binary cutoff (p{int(cfg.binary_quantile_threshold*100)}): {cutoff:.4f}")
+    # Assign all columns simultaneously
+    binary_df = pd.DataFrame(binary_data, index=tiles_sig_tumor.index)
+    tiles_sig_tumor = pd.concat([tiles_sig_tumor, binary_df], axis=1)
 
     return tiles_sig_tumor

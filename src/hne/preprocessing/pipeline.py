@@ -82,8 +82,15 @@ def preprocess_patient(patient_id,
     sig_cols, signature_genes, spots_df, meta = compute_signatures(vis, final_df, patient_id, qc_tracker)
     patient_metadata.update(meta)
     tiles_sig, meta = aggregate_signatures(spots_df, sig_cols, tile_size_px, tumor_tiles_df, cfg=cfg)
+
+    # check patients with zero tiles
+    if tiles_sig is None or len(tiles_sig) == 0:
+        logger.warning(f"No tumor tiles generated after aggregation for {patient_id} - skipping binarization.")
+        return patient_metadata, None, spots_df, sig_cols
+    
     tiles_sig.insert(0, "patient_id", patient_id)
     patient_metadata.update(meta)
+
     tiles_sig_tumor = binary_scores(sig_cols, tiles_sig, cfg=cfg)
     save_tile_features(tiles_sig_tumor, patient_id, mode)
     
