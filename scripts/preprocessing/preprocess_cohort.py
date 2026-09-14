@@ -3,6 +3,8 @@
 import pandas as pd
 from tqdm import tqdm
 import logging
+import json
+from dataclasses import asdict
 
 from hne.utils import setup_logging, get_logger
 from hne.core.data_io import save_metadata, save_tile_features
@@ -10,6 +12,7 @@ from hne.preprocessing.pipeline import preprocess_patient
 from hne.preprocessing_qc.tracker import QCTracker
 from hne.core.paths import PATIENT_IDS, PREPROCESSING_QC_REPORTS
 from hne.preprocessing_qc.plots import cohort_tile_variation, save_cohort_spot_qc_plots
+from hne.preprocessing.preprocessing_config import PREPROCESSING_CONFIG
 
 setup_logging(
     log_file= PREPROCESSING_QC_REPORTS / "cohort" / "cohort.log", 
@@ -31,6 +34,20 @@ if __name__ == "__main__":
     logger.info("Starting cohort preprocessing")
     logger.info("=" * 40)
     
+    # print the active central configuration
+    cohort_qc_dir = PREPROCESSING_QC_REPORTS / "cohort"
+    cohort_qc_dir.mkdir(parents=True, exist_ok=True)
+
+    config_dict = asdict(PREPROCESSING_CONFIG)
+    config_save_path = cohort_qc_dir / "run_config.json"
+    with open(config_save_path, "w") as f:
+        json.dump(config_dict, f, indent=4)
+
+    print("\n=== Preprcoessing configurations ===")
+    for key, val in config_dict.items():
+        print(f"    {key}: {val}")
+    print("=" * 40)        
+
     # load patients from cohort_manifest.json 
     patient_ids = PATIENT_IDS
     logger.info(f"Found {len(patient_ids)} patients from cohort manifest")
@@ -56,13 +73,10 @@ if __name__ == "__main__":
             metadata, tiles_sig, spot_df, sig_cols_patient = preprocess_patient(
                 patient_id,
                 mode='cohort',
-                target_physical_size_um=1000,       # <-- 1000 µm = 1 mm
-                k=2, 
-                tumor_threshold=0.3,  # tile at least has 30% tumor purity
-                min_spots=40,         # tile at least has 40 spots
+                cfg=cfg,
                 qc_tracker=qc,
                 verbose=False,        # console quiet
-                run_qc_plots=False
+                run_qc_plots=True
             )
 
             all_metadata.append(metadata)

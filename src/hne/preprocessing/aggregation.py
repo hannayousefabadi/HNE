@@ -1,8 +1,11 @@
+"""src/hne/preprocessing/aggregation.py"""
+
 from hne.utils import get_logger
+from hne.preprocessing.preprocessing_config import PREPROCESSING_CONFIG
 
 logger = get_logger()
 
-def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df):
+def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df, cfg=PREPROCESSING_CONFIG):
     """
     Aggregate spot-level ssGSEA signatures to tile-level by taking the mean.
     Tile scores maintain their raw enrichment scale across all patients.
@@ -51,14 +54,14 @@ def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df):
         pct_tumor = (metadata["n_tumor_tiles_aggregated"] / metadata["n_total_tiles_aggregated"]) * 100
         logger.debug(f"{pct_tumor:.2f}% of tiles are tumor tiles")
 
-    if metadata["n_tumor_tiles_aggregated"] < 10:
+    if metadata["n_tumor_tiles_aggregated"] < cfg.min_final_tumor_tiles:
         logger.warning(f"Very few tumor tiles after aggregation: "
                        f"{metadata['n_tumor_tiles_aggregated']} tiles")  
 
     return tiles_sig_tumor, metadata
 
 
-def binary_scores(sig_cols, tiles_sig_tumor, quantile_threshold=0.75):
+def binary_scores(sig_cols, tiles_sig_tumor, cfg=PREPROCESSING_CONFIG):
     """
     Generate binary signature calls directly from raw ssGSEA scores.
     Tiles with enrichment >= quantile_threshold (default top 25%) are flagged as 1, else 0.
@@ -67,9 +70,9 @@ def binary_scores(sig_cols, tiles_sig_tumor, quantile_threshold=0.75):
     tiles_sig_tumor = tiles_sig_tumor.copy()
 
     for col in sig_cols:
-        cutoff = tiles_sig_tumor[col].quantile(quantile_threshold)
+        cutoff = tiles_sig_tumor[col].quantile(cfg.binary_quantile_threshold)
         tiles_sig_tumor[f"{col}_binary"] = (tiles_sig_tumor[col] >= cutoff).astype(int)
 
-        logger.debug(f"{col} binary cutoff (p{int(quantile_threshold*100)}): {cutoff:.4f}")
+        logger.debug(f"{col} binary cutoff (p{int(cfg.binary_quantile_threshold*100)}): {cutoff:.4f}")
 
     return tiles_sig_tumor

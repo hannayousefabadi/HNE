@@ -12,15 +12,13 @@ from hne.preprocessing.tiling import crop_and_save_tiles
 from hne.preprocessing.spot_signatures import compute_signatures
 from hne.preprocessing.aggregation import aggregate_signatures, binary_scores
 from hne.preprocessing_qc.plots import *
+from hne.preprocessing.preprocessing_config import PREPROCESSING_CONFIG
 
 logger = logging.getLogger(__name__)
 
 def preprocess_patient(patient_id, 
                        mode='single_patient',           # or 'cohort'
-                       target_physical_size_um=1000,    # <-- 1000 µm = 1 mm
-                       k=2, 
-                       tumor_threshold=0.3,             # tile at least has 30% tumor purity
-                       min_spots=40,                    # tile at least has 40 spots
+                       cfg=PREPROCESSING_CONFIG,
                        qc_tracker=None,
                        verbose=True,                    # console output level (True=INFO, False=WARNING)
                        run_qc_plots=True
@@ -51,19 +49,19 @@ def preprocess_patient(patient_id,
     
     
     # compute tumor fraction and tile coords
-    merged, meta = attach_tumor_fraction(spots, vis, patient_id, qc_tracker)
+    merged, meta = attach_tumor_fraction(spots, vis, patient_id, qc_tracker, cfg)
     patient_metadata.update(meta)
     # check to see if the deconvolution column exist and merged df of spots and tumor fractions produced or not
     if merged is None:
         return patient_metadata, None, None, None
 
-    df, meta, tile_size_px = add_tile_coordinates(scales, target_physical_size_um, merged)
+    df, meta, tile_size_px = add_tile_coordinates(scales, merged, cfg)
     patient_metadata.update(meta)
     
-    final_df, meta = compute_tile_purity(df, k, patient_id, qc_tracker)
+    final_df, meta = compute_tile_purity(df, patient_id, qc_tracker, cfg)
     patient_metadata.update(meta)
     
-    tumor_tiles_df, meta = filter_tumor_tiles(final_df, tumor_threshold, min_spots, patient_id, qc_tracker)
+    tumor_tiles_df, meta = filter_tumor_tiles(final_df, patient_id, qc_tracker, cfg)
     patient_metadata.update(meta)
     
     # check if we have tiles BEFORE proceeding
@@ -83,10 +81,10 @@ def preprocess_patient(patient_id,
     # compute signatures per spot, aggregate per tile
     sig_cols, signature_genes, spots_df, meta = compute_signatures(vis, final_df, patient_id, qc_tracker)
     patient_metadata.update(meta)
-    tiles_sig, meta = aggregate_signatures(spots_df, sig_cols, tile_size_px, tumor_tiles_df)
+    tiles_sig, meta = aggregate_signatures(spots_df, sig_cols, tile_size_px, tumor_tiles_df, cfg)
     tiles_sig.insert(0, "patient_id", patient_id)
     patient_metadata.update(meta)
-    tiles_sig_tumor = binary_scores(sig_cols, tiles_sig_tumor, quantile_threshold=0.75)
+    tiles_sig_tumor = binary_scores(sig_cols, tiles_sig, cfg)
     save_tile_features(tiles_sig_tumor, patient_id, mode)
     
     # QC plots - separate flag
