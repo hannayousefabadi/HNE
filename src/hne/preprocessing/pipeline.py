@@ -49,7 +49,7 @@ def preprocess_patient(patient_id,
     
     
     # compute tumor fraction and tile coords
-    merged, meta = attach_tumor_fraction(spots, vis, patient_id, qc_tracker, cfg=cfg)
+    merged, meta = attach_tumor_fraction(spots=spots, vis=vis, patient_id=patient_id, qc_tracker=qc_tracker, cfg=cfg)
     patient_metadata.update(meta)
     # check to see if the deconvolution column exist and merged df of spots and tumor fractions produced or not
     if merged is None:
