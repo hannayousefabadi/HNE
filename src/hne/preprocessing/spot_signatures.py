@@ -42,7 +42,8 @@ def compute_signatures(vis,
     }
     missing_signatures = [sig for sig, genes in active_signatures.items() if len(genes) == 0]
     valid_signatures = {sig: genes for sig, genes in active_signatures.items() if len(genes) > 0}
-    
+    all_signature_names = list(signatures.keys())
+
     metadata = {
         "genes_per_signature": sorted([
             f"{sig}: {len(v)}/{len(signatures[sig])} genes" 
@@ -75,14 +76,23 @@ def compute_signatures(vis,
         outdir=None,
         permutation_num=0,
         no_plot=True,
-        process=cfg.ssgsea_processes,
+        processes=cfg.ssgsea_processes,
         min_size=cfg.ssgsea_min_size
     )
 
     # res.res2d layout: index = (gene_set), columns = (sample / barcode) 
-    ssgsea_df = res.res2d.T.copy()
-    ssgsea_df.index = vis.obs_names   # guarantees 1:1 barcode match
-     
+    raw_df = res.res2d.copy() 
+    if raw_df.shape[1] == len(vis.obs_names):
+        # transpose shape (n_signatures, n_spots) to (n_spots, n_sigantures)
+        ssgsea_df = raw_df.T
+    else:
+        # already (n_spots, n_sigantures)
+        ssgsea_df = raw_df
+
+    # align index with the exact spots barcode
+    ssgsea_df.index = vis.obs_names  
+    ssgsea_df = ssgsea_df.reindex(columns=all_signature_names, fill_value=0.0)
+
     # format results: index = spot barcode, cols = f"{sig}_score"
     sig_cols = [f"{sig}_score" for sig in ssgsea_df.columns]
     ssgsea_df.columns = sig_cols
