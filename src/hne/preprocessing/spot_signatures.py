@@ -80,25 +80,36 @@ def compute_signatures(vis,
         min_size=cfg.ssgsea_min_size
     )
 
-    # res.res2d layout: index = (gene_set), columns = (sample / barcode) 
-    raw_df = res.res2d.copy() 
-    if raw_df.shape[1] == len(vis.obs_names):
-        # transpose shape (n_signatures, n_spots) to (n_spots, n_sigantures)
-        ssgsea_df = raw_df.T
+    raw_df = res.res2d.copy()
+
+    # Case A: res.res2d is already wide (n_spots x terms or terms x n_spots)
+    if raw_df.shape == (len(vis.obs_names), len(valid_signatures)):
+        pivot_df = raw_df
+    elif raw_df.shape == (len(valid_signatures), len(vis.obs_names)):
+        pivot_df = raw_df.T
+    # Case B: res.res2d is long format (n_spots * 5 signatures)
+    elif "Term" in raw_df.columns and ("Name" in raw_df.columns or "Sample" in raw_df.columns):
+        sample_col = "Name" if "Name" in raw_df.columns else "Sample"
+        val_col = "NES" if "NES" in raw_df.columns else ("ES" if "ES" in raw_df.columns else raw_df.columns[-1])
+        pivot_df = raw_df.pivot(index=sample_col, columns="Term", values=val_col)
+    # Case C: res.res2d has MultiIndex (Sample, Term)
+    elif isinstance(raw_df.index, pd.MultiIndex):
+        pivot_df = raw_df.iloc[:, 0].unstack(level=-1)
     else:
-        # already (n_spots, n_sigantures)
-        ssgsea_df = raw_df
+        # fallback: check if pivot table can be constructed
+        pivot_df = raw_df.reset_index().pivot(index=raw_df.reset_index().columns[0], columns=raw_df.reset_index().columns[1])
 
-    # align index with the exact spots barcode
-    ssgsea_df.index = vis.obs_names  
-    ssgsea_df = ssgsea_df.reindex(columns=all_signature_names, fill_value=0.0)
+    # reindex rows strictly to vis.obs_names (guarantees spot alignment)
+    pivot_df = pivot_df.reindex(index=vis.obs_names)
 
-    # format results: index = spot barcode, cols = f"{sig}_score"
-    sig_cols = [f"{sig}_score" for sig in ssgsea_df.columns]
-    ssgsea_df.columns = sig_cols
-    ssgsea_df = ssgsea_df.rename_axis("barcode").reset_index()
+    pivot_df = pivot_df.reindex(columns=all_signature_names, fill_value=0.0)
 
-    # merge into spots DataFrame
+    # set column names: f"{sig}_score"
+    sig_cols = [f"{sig}_score" for sig in all_signature_names]
+    pivot_df.columns = sig_cols
+    ssgsea_df = pivot_df.rename_axis("barcode").reset_index()
+
+    # inner merge with final_df
     spots_df = final_df.merge(ssgsea_df, on="barcode", how="inner")
 
     if qc_tracker and patient_id:
