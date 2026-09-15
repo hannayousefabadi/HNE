@@ -1,10 +1,15 @@
 import gseapy as gp
 import pandas as pd
 from hne.utils import get_logger
+from hne.preprocessing.preprocessing_config import PREPROCESSING_CONFIG
 
 logger = get_logger()
 
-def compute_signatures(vis, final_df, patient_id=None, qc_tracker=None):
+def compute_signatures(vis, 
+                       final_df, 
+                       patient_id=None, 
+                       qc_tracker=None, 
+                       cfg=PREPROCESSING_CONFIG):
     """
     Compute pathway signatures per spot using ssGSEA.
     Scores represent rank-based enrichment per spot, removing depth bias
@@ -70,12 +75,14 @@ def compute_signatures(vis, final_df, patient_id=None, qc_tracker=None):
         outdir=None,
         permutation_num=0,
         no_plot=True,
-        processes=4,
-        min_size=1
+        process=cfg.ssgsea_processes,
+        min_size=cfg.ssgsea_min_size
     )
 
     # res.res2d layout: index = (gene_set), columns = (sample / barcode) 
-    ssgsea_df = res.res2d.T
+    ssgsea_df = res.res2d.T.copy()
+    ssgsea_df.index = vis.obs_names   # guarantees 1:1 barcode match
+     
     # format results: index = spot barcode, cols = f"{sig}_score"
     sig_cols = [f"{sig}_score" for sig in ssgsea_df.columns]
     ssgsea_df.columns = sig_cols

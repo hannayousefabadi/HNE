@@ -55,13 +55,13 @@ def preprocess_patient(patient_id,
     if merged is None:
         return patient_metadata, None, None, None
 
-    df, meta, tile_size_px = add_tile_coordinates(scales, merged, cfg=cfg)
+    df, meta, tile_size_px = add_tile_coordinates(scales, merged, cfg)
     patient_metadata.update(meta)
     
-    final_df, meta = compute_tile_purity(df, patient_id, qc_tracker, cfg=cfg)
+    final_df, meta = compute_tile_purity(df, patient_id, qc_tracker, cfg)
     patient_metadata.update(meta)
     
-    tumor_tiles_df, meta = filter_tumor_tiles(final_df, patient_id, qc_tracker, cfg=cfg)
+    tumor_tiles_df, meta = filter_tumor_tiles(final_df, patient_id, qc_tracker, cfg)
     patient_metadata.update(meta)
     
     # check if we have tiles BEFORE proceeding
@@ -79,9 +79,9 @@ def preprocess_patient(patient_id,
         patient_metadata.update(meta)
     
     # compute signatures per spot, aggregate per tile
-    sig_cols, signature_genes, spots_df, meta = compute_signatures(vis, final_df, patient_id, qc_tracker)
+    sig_cols, signature_genes, spots_df, meta = compute_signatures(vis, final_df, patient_id, qc_tracker, cfg)
     patient_metadata.update(meta)
-    tiles_sig, meta = aggregate_signatures(spots_df, sig_cols, tile_size_px, tumor_tiles_df, cfg=cfg)
+    tiles_sig, meta = aggregate_signatures(spots_df, sig_cols, tile_size_px, tumor_tiles_df, cfg)
 
     # check patients with zero tiles
     if tiles_sig is None or len(tiles_sig) == 0:
@@ -91,7 +91,7 @@ def preprocess_patient(patient_id,
     tiles_sig.insert(0, "patient_id", patient_id)
     patient_metadata.update(meta)
 
-    tiles_sig_tumor = binary_scores(sig_cols, tiles_sig, cfg=cfg)
+    tiles_sig_tumor = binary_scores(sig_cols, tiles_sig, cfg)
     save_tile_features(tiles_sig_tumor, patient_id, mode)
     
     # QC plots - separate flag

@@ -84,7 +84,10 @@ def add_tile_coordinates(scales,
     tile_size_px = int(cfg.target_physical_size_um / fullres_pixel_size)
     
     # drop spots with negative pixel coordinates before tiling
-    merged = merged[(merged["pxl_col_in_fullres"] >= 0) & merged["pxl_row_in_fullres"] >= 0].copy()
+    merged = merged[
+        (merged["pxl_col_in_fullres"] >= 0) &
+        (merged["pxl_row_in_fullres"] >= 0)
+    ].copy()
     # use the dynamically calculated pixel size for the grid
     # hard assignment: using the floor division here to assign every single spot to exactly one tile
     # in fullres coordinates 
