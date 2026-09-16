@@ -1,6 +1,7 @@
 """src/hne/preprocessing/aggregation.py"""
 
 import pandas as pd
+import numpy as np
 
 from hne.utils import get_logger
 from hne.preprocessing.preprocessing_config import PREPROCESSING_CONFIG
