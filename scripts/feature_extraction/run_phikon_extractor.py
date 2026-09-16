@@ -42,9 +42,11 @@ def extract_features():
         paths = PATIENTS[patient_id]
         slide, tmp_path = load_he_slide(paths)
 
-        if slide is None:
-            print(f"Skipping {patient_id}: no slide found")
-            continue
+        
+        with load_he_slide(paths) as slide:
+            if slide is None:
+                print(f"Skipping {patient_id}: no slide found")
+                continue
 
         try:
             phikon.extract_patient_tiles(
