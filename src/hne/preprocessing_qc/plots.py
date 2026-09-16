@@ -333,11 +333,9 @@ def cohort_tile_variation(cohort_tiles_df, sig_cols, save_dir=PREPROCESSING_QC_R
     save_dir = Path(save_dir) / 'cohort'
     save_dir.mkdir(parents=True, exist_ok=True)
 
-    # A) plot z-score distribution (Violin plot)
-    z_cols = [f"{col}_z" for col in sig_cols]
-
+    # A) plot gene score distribution (Violin plot)
     # melt df for seaborn plotting
-    melted_z = cohort_tiles_df.melt(value_vars=z_cols, var_name='Signature', value_name="Z-Score")
+    melted_z = cohort_tiles_df.melt(value_vars=sig_cols, var_name='Signature', value_name="Z-Score")
 
     plt.figure(figsize=(10, 6))
     sns.violinplot(data=melted_z, x='Signature', y='Z-Score', palette="muted")
