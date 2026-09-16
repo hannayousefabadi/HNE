@@ -76,7 +76,7 @@ if __name__ == "__main__":
                 cfg=PREPROCESSING_CONFIG,
                 qc_tracker=qc,
                 verbose=False,        # console quiet
-                run_qc_plots=True
+                run_qc_plots=False    # this is per-patient plots
             )
 
             all_metadata.append(metadata)

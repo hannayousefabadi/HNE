@@ -21,7 +21,7 @@ def preprocess_patient(patient_id,
                        cfg=PREPROCESSING_CONFIG,
                        qc_tracker=None,
                        verbose=True,                    # console output level (True=INFO, False=WARNING)
-                       run_qc_plots=True
+                       run_qc_plots=False               # per patient
                        ):       
     """
     Preprocess patients and return metadata - reusable function
