@@ -1,6 +1,5 @@
 """scripts/feature_extraction/phikon_extractor.py"""
 import pandas as pd
-import os
 from tqdm import tqdm
 from pathlib import Path
 
@@ -40,26 +39,23 @@ def extract_features():
         tile_size_px = int(patient_meta["tile_size_pixels"].iloc[0])
 
         paths = PATIENTS[patient_id]
-        slide, tmp_path = load_he_slide(paths)
 
-        
         with load_he_slide(paths) as slide:
             if slide is None:
                 print(f"Skipping {patient_id}: no slide found")
                 continue
 
-        try:
-            phikon.extract_patient_tiles(
-                patient_id=patient_id,
-                slide=slide,
-                tiles_df=patient_tiles,      # use the loaded DataFrame
-                fullres_pixel_size=fullres_px_size,
-                tile_size_px_fullres=tile_size_px,
-                output_dir=PHIKON_FEATURES
-            )
-        finally:
-            slide.close()
-            os.remove(tmp_path)    
+            try:
+                phikon.extract_patient_tiles(
+                    patient_id=patient_id,
+                    slide=slide,
+                    tiles_df=patient_tiles,      # use the loaded DataFrame
+                    fullres_pixel_size=fullres_px_size,
+                    tile_size_px_fullres=tile_size_px,
+                    output_dir=PHIKON_FEATURES
+                )
+            finally:
+                slide.close()   
 
     print("\nFeature extraction with Phikon-v2 compeleted!")
 
