@@ -1,5 +1,6 @@
 import gseapy as gp
 import pandas as pd
+import numpy as np
 from hne.utils import get_logger
 from hne.preprocessing.preprocessing_config import PREPROCESSING_CONFIG
 
@@ -102,7 +103,7 @@ def compute_signatures(vis,
     # reindex rows strictly to vis.obs_names (guarantees spot alignment)
     pivot_df = pivot_df.reindex(index=vis.obs_names)
 
-    pivot_df = pivot_df.reindex(columns=all_signature_names, fill_value=0.0)
+    pivot_df = pivot_df.reindex(columns=all_signature_names, fill_value=np.nan)
 
     # set column names: f"{sig}_score"
     sig_cols = [f"{sig}_score" for sig in all_signature_names]

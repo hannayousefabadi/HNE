@@ -66,22 +66,36 @@ def aggregate_signatures(spots_df, sig_cols, tile_size, tumor_tiles_df, cfg=PREP
 def binary_scores(sig_cols, tiles_sig_tumor, cfg=PREPROCESSING_CONFIG):
     """
     Generate binary signature calls directly from raw ssGSEA scores.
-    Tiles with enrichment >= quantile_threshold (default top 25%) are flagged as 1, else 0.
-    Retains raw continuous scores untouched for regression modeling.
+    Tiles with enrichment >= quantile_threshold (default top 25%) are flagged as 1.0, else 0.0.
+    Retains NaN for missing signatures to allow loss masking downstream.
     """
     if len(tiles_sig_tumor) == 0:
         return tiles_sig_tumor
 
     tiles_sig_tumor = tiles_sig_tumor.copy()
-
-    # create all binary columns in a single dict to avoid fragmentation
     binary_data = {}
+
     for col in sig_cols:
-        cutoff = tiles_sig_tumor[col].quantile(cfg.binary_quantile_threshold)
-        binary_data[f"{col}_binary"] = (tiles_sig_tumor[col] >= cutoff).astype(int)
+        series = tiles_sig_tumor[col]
+
+        # handle columns that are completely missing (all NaN)
+        if series.isna().all():
+            binary_data[f"{col}_binary"] = np.nan
+            logger.debug(f"{col} is entirely NaN - preserving NaN across all binary calls")
+            continue
+
+        cutoff = series.quantile(cfg.binary_quantile_threshold)
+        
+        # populate dict: 1.0 if >= cutoff, 0.0 if < cutoff, NaN if missing
+        binary_data[f"{col}_binary"] = np.where(
+            series.isna(),
+            np.nan,
+            (series >= cutoff).astype(float)
+        )
+
         logger.debug(f"{col} binary cutoff (p{int(cfg.binary_quantile_threshold * 100)}): {cutoff:.4f}")
 
-    # Assign all columns simultaneously
+    # concat all binary columns at once to avoid DataFrame fragmentation
     binary_df = pd.DataFrame(binary_data, index=tiles_sig_tumor.index)
     tiles_sig_tumor = pd.concat([tiles_sig_tumor, binary_df], axis=1)
 
