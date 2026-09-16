@@ -1,0 +1,17 @@
+{
+    "target_physical_size_um": 1000.0,
+    "spot_diameter_um": 55.0,
+    "min_initial_tiles": 30,
+    "k_prior": 2.0,
+    "mean_tumor_fraction_threshold": 0.2,
+    "missing_tumor_fraction_tolerance": 0.1,
+    "mean_purity_threshold": 0.3,
+    "tumor_purity_threshold": 0.3,
+    "min_spots_per_tile": 40,
+    "min_final_tumor_tiles": 10,
+    "ssgsea_processes": 4,
+    "ssgsea_min_size": 1,
+    "binary_quantile_threshold": 0.75,
+    "sparse_threshold": 1e-06,
+    "min_tissue_fraction": 0.5
+}
