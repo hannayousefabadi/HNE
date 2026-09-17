@@ -45,18 +45,15 @@ def extract_features():
                 print(f"Skipping {patient_id}: no slide found")
                 continue
 
-            try:
-                phikon.extract_patient_tiles(
-                    patient_id=patient_id,
-                    slide=slide,
-                    tiles_df=patient_tiles,      # use the loaded DataFrame
-                    fullres_pixel_size=fullres_px_size,
-                    tile_size_px_fullres=tile_size_px,
-                    output_dir=PHIKON_FEATURES
-                )
-            finally:
-                slide.close()   
-
+            phikon.extract_patient_tiles(
+                patient_id=patient_id,
+                slide=slide,
+                tiles_df=patient_tiles,      # use the loaded DataFrame
+                fullres_pixel_size=fullres_px_size,
+                tile_size_px_fullres=tile_size_px,
+                output_dir=PHIKON_FEATURES
+            )
+            
     print("\nFeature extraction with Phikon-v2 compeleted!")
 
 
