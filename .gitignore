@@ -12,7 +12,6 @@ venv/
 review/
 data/
 tiles/
-tile_signature_matrix/
 
 *.h5ad
 
