@@ -3,18 +3,20 @@ scripts/model_train/phase1_mlp/train_mlp.py
 """
 import argparse
 from pathlib import Path
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+from scipy.stats import ConstantInputWarning, pearsonr
 import seaborn as sns
-from scipy.stats import pearsonr
-import torch
-from torch.utils.data import DataLoader, TensorDataset
 from sklearn.model_selection import train_test_split
+import torch
+import torch.nn as nn
+from torch.utils.data import DataLoader, TensorDataset
+import warnings
 
+from hne.core.paths import PATIENT_IDS, PHIKON_FEATURES, RESULTS
+from hne.models.data import get_cohort_statistics, load_features_and_targets
 from hne.models.mlp import DistributionalMLP
-from hne.models.data import load_features_and_targets
-from hne.core.paths import PHIKON_FEATURES, PATIENT_IDS, RESULTS
 
 FEATURE_REGISTRY = {
     "phikon_v2": {"dir": PHIKON_FEATURES, "suffix": "phikon_features", "dim": 1024},
@@ -28,18 +30,20 @@ CONFIG = {
     "lr": 3e-4,
     "weight_decay": 1e-4,
     "epochs": 100,
+    "warmup_epochs": 10,       # Pure MSE loss warm-up for mu before engaging NLL
     "batch_size": 64,
     "val_split": 0.2,
     "patience": 15,
     "seed": 42,
 }
 
+# Uses the dynamically calculated cohort z-scores by default
 DEFAULT_TARGET_COLS = [
-    "FMRP_signature_score",
-    "Cell_cycle_signature_score",
-    "YAP_signature_score",
-    "WNT_signature_score",
-    "EMT_signature_score",
+    "FMRP_signature_score_cohort_z",
+    "Cell_cycle_signature_score_cohort_z",
+    "YAP_signature_score_cohort_z",
+    "WNT_signature_score_cohort_z",
+    "EMT_signature_score_cohort_z",
 ]
 
 # command line arguments
@@ -48,7 +52,9 @@ def parse_args():
     parser.add_argument("--model", choices=FEATURE_REGISTRY.keys(), default="phikon_v2",
                         help="Feature backbone to train on")
     parser.add_argument("--target-cols", nargs="+", default=DEFAULT_TARGET_COLS,
-                        help="Signature score columns to model (e.g. FMRP_signature_score_z)")
+                        help="Signature score columns to model (e.g., Cell_cycle_signature_score_cohort_z)")
+    parser.add_argument("--warmup-epochs", type=int, default=CONFIG["warmup_epochs"],
+                        help="Number of epochs to pre-train mu with pure MSE")
     return parser.parse_args()
 
 
@@ -57,22 +63,30 @@ def generate_evaluation_plots(val_df: pd.DataFrame, target_cols: list, output_di
     
     for col in target_cols:
         sub = val_df[val_df["target"] == col]
-        r, _ = pearsonr(sub["y_true"], sub["mu_pred"])
         
-        # 1. Predicted Mean vs True Target
+        # guard against zero-variance constant predictions during evaluation
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", category=ConstantInputWarning)
+            if np.std(sub["mu_pred"]) > 1e-6 and np.std(sub["y_true"]) > 1e-6:
+                r, _ = pearsonr(sub["y_true"], sub["mu_pred"])
+            else:
+                r = 0.0
+
+        # 1. predicted Mean vs True Target
         plt.figure(figsize=(6, 5))
         sns.scatterplot(data=sub, x="y_true", y="mu_pred", alpha=0.6, edgecolor=None)
-        plt.plot([sub["y_true"].min(), sub["y_true"].max()],
-                 [sub["y_true"].min(), sub["y_true"].max()],
-                 "r--", lw=1.5, label="Identity")
+        y_min = min(sub["y_true"].min(), sub["mu_pred"].min())
+        y_max = max(sub["y_true"].max(), sub["mu_pred"].max())
+        plt.plot([y_min, y_max], [y_min, y_max], "r--", lw=1.5, label="Identity")
         plt.title(f"{col} (Val Set)\nPearson r = {r:.3f}")
         plt.xlabel("True Signature Score")
         plt.ylabel("Predicted Mean (μ)")
+        plt.legend()
         plt.tight_layout()
         plt.savefig(output_dir / f"pred_vs_true_{col}.png", dpi=300)
         plt.close()
 
-        # 2. Calibration Check: Absolute Error vs Predicted Uncertainty (std)
+        # 2. calibration Check: Absolute Error vs Predicted Uncertainty (std)
         sub = sub.copy()
         sub["abs_error"] = (sub["y_true"] - sub["mu_pred"]).abs()
         plt.figure(figsize=(6, 5))
@@ -87,11 +101,12 @@ def generate_evaluation_plots(val_df: pd.DataFrame, target_cols: list, output_di
 
 def plot_loss_curves(metrics_df: pd.DataFrame, output_dir: Path):
     plt.figure(figsize=(7, 4))
-    plt.plot(metrics_df["epoch"], metrics_df["train_nll"], label="Train NLL", lw=2)
-    plt.plot(metrics_df["epoch"], metrics_df["val_nll"], label="Val NLL", lw=2)
+    plt.plot(metrics_df["epoch"], metrics_df["train_loss"], label="Train Loss", lw=2)
+    plt.plot(metrics_df["epoch"], metrics_df["val_loss"], label="Val Loss", lw=2)
+    plt.axvline(x=CONFIG["warmup_epochs"], color="gray", linestyle=":", label="Warmup End (NLL start)")
     plt.xlabel("Epoch")
-    plt.ylabel("Negative Log-Likelihood")
-    plt.title("Distributional MLP Convergence")
+    plt.ylabel("Loss (MSE then NLL)")
+    plt.title("Distributional MLP Convergence (Two-Stage Warmup)")
     plt.legend()
     plt.tight_layout()
     plt.savefig(output_dir / "loss_curves.png", dpi=300)
@@ -109,12 +124,14 @@ def train():
 
     feature_spec = FEATURE_REGISTRY[args.model]
 
-    print(f"\n{'='*50}")
+    print(f"\n{'='*60}")
     print(f"Starting Phase 1 MLP Training | Device: {device}")
-    print(f"Model: {args.model} | Targets: {args.target_cols}")
-    print(f"{'='*50}")
+    print(f"Model: {args.model}")
+    print(f"Targets: {args.target_cols}")
+    print(f"Warmup: {args.warmup_epochs} epochs with MSE Loss")
+    print(f"{'='*60}")
 
-    # ===== 1) patient-level split =====
+    # 1. patient-level split
     train_patients, val_patients = train_test_split(
         PATIENT_IDS, 
         test_size=CONFIG["val_split"], 
@@ -122,19 +139,25 @@ def train():
     )
     print(f"Cohort split: {len(train_patients)} train patients | {len(val_patients)} val patients")
 
-    # ===== 2) load data =====
+    # 2. leak-free cohort stats calculated from train set only
+    z_targets = [col for col in args.target_cols if col.endswith("_cohort_z")]
+    cohort_stats = get_cohort_statistics(train_patients, z_targets) if z_targets else None
+
+    # 3. load data
     X_train, y_train, _ = load_features_and_targets(
         features_dir=feature_spec["dir"],
         patient_ids=train_patients,
         target_cols=args.target_cols,
-        filename_suffix=feature_spec["suffix"]
+        filename_suffix=feature_spec["suffix"],
+        cohort_stats=cohort_stats,
     )
 
     X_val, y_val, meta_val = load_features_and_targets(
         features_dir=feature_spec["dir"],
         patient_ids=val_patients,
         target_cols=args.target_cols,
-        filename_suffix=feature_spec["suffix"]
+        filename_suffix=feature_spec["suffix"],
+        cohort_stats=cohort_stats,
     )
 
     if len(X_train) == 0 or len(X_val) == 0:
@@ -155,7 +178,7 @@ def train():
         pin_memory=torch.cuda.is_available()
     )
 
-    # ===== 3) model setup =====
+    # 4. model setup
     input_dim = X_train.shape[-1]
     n_targets = len(args.target_cols)
     model = DistributionalMLP(
@@ -165,60 +188,94 @@ def train():
         dropout_rate=CONFIG["dropout_rate"]
     ).to(device)
 
+    mse_loss_fn = nn.MSELoss()
     optimizer = torch.optim.AdamW(model.parameters(), lr=CONFIG["lr"], weight_decay=CONFIG["weight_decay"])
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode="min", factor=0.5, patience=5)
 
-    # ===== 4) training loop =====
+    # 5. training loop
     best_val_loss = float("inf")
     patience_counter = 0
     history = []
 
     print("\nTraining progress:")
     for epoch in range(1, CONFIG["epochs"] + 1):
+        is_warmup = epoch <= args.warmup_epochs
+        stage_name = "MSE (Warmup)" if is_warmup else "NLL"
+
         model.train()
         train_loss = 0.0
         for bx, by in train_loader:
             bx, by = bx.to(device), by.to(device)
             optimizer.zero_grad()
             mu, std = model(bx)
-            loss = model.distributional_nll_loss(mu, std, by)
+
+            if is_warmup:
+                loss = mse_loss_fn(mu, by)
+            else:
+                loss = model.distributional_nll_loss(mu, std, by)
+
             loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             optimizer.step()
             train_loss += loss.item() * len(bx)
         train_loss /= len(train_loader.dataset)
 
         model.eval()
         val_loss = 0.0
+        val_mu_list = []
         with torch.no_grad():
             for bx, by in val_loader:
                 bx, by = bx.to(device), by.to(device)
                 mu, std = model(bx)
-                loss = model.distributional_nll_loss(mu, std, by)
+
+                if is_warmup:
+                    loss = mse_loss_fn(mu, by)
+                else:
+                    loss = model.distributional_nll_loss(mu, std, by)
+
                 val_loss += loss.item() * len(bx)
-        val_loss /= len(val_loader.dataset)
-        scheduler.step(val_loss)
+                val_mu_list.append(mu.cpu().numpy())
+            val_loss /= len(val_loader.dataset)
 
-        history.append({"epoch": epoch, "train_nll": train_loss, "val_nll": val_loss})
+        if not is_warmup:
+            scheduler.step(val_loss)
 
-        if epoch % 5 == 0 or epoch == 1:
-            print(f"Epoch {epoch:03d} | Train NLL: {train_loss:.4f} | Val NLL: {val_loss:.4f}")
+        # monitor standard deviation of predictions to ensure variance is present
+        all_val_mu = np.concatenate(val_mu_list, axis=0)
+        mean_mu_sd = float(np.std(all_val_mu, axis=0).mean())
 
-        if val_loss < best_val_loss:
-            best_val_loss = val_loss
-            patience_counter = 0
-            torch.save(model.state_dict(), output_dir / "best_mlp_distributional.pt")
+        history.append({
+            "epoch": epoch,
+            "train_loss": train_loss,
+            "val_loss": val_loss,
+            "stage": stage_name,
+            "mean_pred_sd": mean_mu_sd
+        })
+
+        if epoch % 5 == 0 or epoch == 1 or epoch == args.warmup_epochs + 1:
+            print(f"Epoch {epoch:03d} [{stage_name:<12}] | Train: {train_loss:7.4f} | Val: {val_loss:7.4f} | Pred μ SD: {mean_mu_sd:.4f}")
+
+        # track best loss exclusively after warm-up finishes
+        if not is_warmup:
+            if val_loss < best_val_loss:
+                best_val_loss = val_loss
+                patience_counter = 0
+                torch.save(model.state_dict(), output_dir / "best_mlp_distributional.pt")
+            else:
+                patience_counter += 1
+                if patience_counter >= CONFIG["patience"]:
+                    print(f"Early stopping triggered at epoch {epoch}")
+                    break
         else:
-            patience_counter += 1
-            if patience_counter >= CONFIG["patience"]:
-                print(f"Early stopping triggered at epoch {epoch}")
-                break
+            # save latest warm-up state so the best weights carry over into NLL stage
+            torch.save(model.state_dict(), output_dir / "best_mlp_distributional.pt")
 
-    # ===== 5) save convergence metrics & curves =====
+    # 6. save metrics and curves
     metrics_df = pd.DataFrame(history)
     metrics_df.to_csv(output_dir / "training_metrics.csv", index=False)
     plot_loss_curves(metrics_df, output_dir)
 
-    # ===== 6) generate validation predictions & evaluation plots =====
+    # 7. evaluate best model
     model.load_state_dict(torch.load(output_dir / "best_mlp_distributional.pt"))
     model.eval()
 
