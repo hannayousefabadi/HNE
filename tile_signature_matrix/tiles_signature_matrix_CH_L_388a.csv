@@ -1,0 +1,3 @@
+patient_id,tile_id,tile_row,tile_col,tile_purity,n_spots,FMRP_signature_score,Cell_cycle_signature_score,YAP_signature_score,WNT_signature_score,EMT_signature_score,x_min_fullres,y_min_fullres,x_max_fullres,y_max_fullres,FMRP_signature_score_binary,Cell_cycle_signature_score_binary,YAP_signature_score_binary,WNT_signature_score_binary,EMT_signature_score_binary
+CH_L_388a,2-5,2,5,0.38072962312444336,105,-0.027676496882675573,0.12689356836061058,0.3215176506996946,0.021187478742295037,0.3320609527959372,11920,4768,14304,7152,1.0,0.0,0.0,1.0,1.0
+CH_L_388a,2-6,2,6,0.43301551586079035,137,-0.048244290922072795,0.12957512605046195,0.39532617252284113,-0.039300179566980745,0.33049387969038146,14304,4768,16688,7152,0.0,1.0,1.0,0.0,0.0
