@@ -1,5 +1,5 @@
 
-"""scripts/feature_extraction/phikon_extractor.py"""
+"""scripts/feature_extraction/run_phikon_extractor.py"""
 import gc
 import pandas as pd
 from tqdm import tqdm
