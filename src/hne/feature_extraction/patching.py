@@ -53,8 +53,8 @@ def _has_enough_tissue(crop: Image.Image, min_tissue_fraction: float = 0.5) -> b
     Filters out both white/glass background (>220) AND out-of-bounds/black areas (<15).
     """
     gray = np.array(crop.convert("L"))  # converting RGB to grayscale
-    valid_tissue = (gray >= 15) & (gray <= 220)
-    return float(valid_tissue.sum() / gray.size) >= min_tissue_fraction
+    valid_tissue = (gray <= 220).sum()
+    return float(valid_tissue / gray.size) >= min_tissue_fraction
 
 
 def stream_patches_for_tile(
