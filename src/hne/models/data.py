@@ -31,7 +31,7 @@ def get_cohort_statistics(
     means = {}
     stds = {}
     for col in target_cols:
-        # Base column if a '_cohort_z' name was requested
+        # base column if a '_cohort_z' name was requested
         base_col = col[:-9] if col.endswith("_cohort_z") else col
         if base_col not in combined.columns:
             raise KeyError(f"Column '{base_col}' not found in signature files.")
