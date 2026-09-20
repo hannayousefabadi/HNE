@@ -27,7 +27,7 @@ CONFIG = {
     "output_dir": RESULTS / "mlp_phase1",
     "hidden_dim": 64,
     "dropout_rate": 0.2,
-    "lr": 3e-4,
+    "lr": 1e-3,
     "weight_decay": 1e-4,
     "epochs": 100,
     "warmup_epochs": 10,       # Pure MSE loss warm-up for mu before engaging NLL
@@ -180,6 +180,13 @@ def train():
 
     # 4. model setup
     input_dim = X_train.shape[-1]
+    # verify loaded features match the registered dim
+    if feature_spec.get("dim") and input_dim != feature_spec["dim"]:
+        raise ValueError(
+            f"Feature dimension mismatch for {args.model}: expected {feature_spec['dim']}, "
+            f"but loaded array has shape {X_train.shape}"
+        )
+
     n_targets = len(args.target_cols)
     model = DistributionalMLP(
         input_dim=input_dim,
@@ -196,6 +203,56 @@ def train():
     best_val_loss = float("inf")
     patience_counter = 0
     history = []
+
+
+
+    # ==========================================
+    # SANITY TEST: Can the MLP overfit a single batch?
+    # ==========================================
+    sanity_bx, sanity_by = next(iter(train_loader))
+
+    print("\n=== INPUT TENSOR (sanity_bx) ===")
+    print("Shape:", sanity_bx.shape)
+    print("Min / Max:", sanity_bx.min().item(), sanity_bx.max().item())
+    print("Mean / Std:", sanity_bx.mean().item(), sanity_bx.std().item())
+    print("Per-tile stds across batch (first 5 tiles):", sanity_bx.std(dim=-1)[:5])
+    print("Across-tile variation (std across rows):", sanity_bx.std(dim=0).mean().item())
+
+    print("\n=== TARGET TENSOR (sanity_by) ===")
+    print("Shape:", sanity_by.shape)
+    print("Min / Max:", sanity_by.min().item(), sanity_by.max().item())
+    print("Mean / Std per target column:", sanity_by.mean(dim=0), sanity_by.std(dim=0))
+    print("Any NaN in x?", torch.isnan(sanity_bx).any().item())
+    print("Any NaN in y?", torch.isnan(sanity_by).any().item())
+    import sys; sys.exit(0)
+    
+    print("\n>>> Running 1-Batch Overfit Sanity Check...")
+    sanity_model = DistributionalMLP(
+        input_dim=input_dim,
+        n_targets=n_targets,
+        hidden_dim=256,        # wider capacity
+        dropout_rate=0.0       # disable dropout for fitting
+    ).to(device)
+
+    sanity_opt = torch.optim.AdamW(sanity_model.parameters(), lr=1e-3, weight_decay=0.0)
+    sanity_bx, sanity_by = next(iter(train_loader))
+    sanity_bx, sanity_by = sanity_bx.to(device), sanity_by.to(device)
+
+    for step in range(101):
+        sanity_opt.zero_grad()
+        s_mu, _ = sanity_model(sanity_bx)
+        s_loss = nn.MSELoss()(s_mu, sanity_by)
+        s_loss.backward()
+        sanity_opt.step()
+        if step % 20 == 0:
+            print(f"Step {step:03d} | MSE: {s_loss.item():.4f} | Pred SD: {s_mu.std().item():.4f}")
+
+    import sys; sys.exit(0)
+    # ==========================================
+
+
+
+
 
     print("\nTraining progress:")
     for epoch in range(1, CONFIG["epochs"] + 1):
