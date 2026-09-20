@@ -83,14 +83,18 @@ def stream_patches_for_tile(
 
     for py in y_positions:
         for px in x_positions:
-            # Ensure coordinates fit strictly inside the WSI canvas
-            if px < 0 or py < 0 or (px + patch_px_native) > slide_w or (py + patch_px_native) > slide_h:
+            # 1. clamp top-left coordinates to stay strictly inside the slide canvas
+            read_x = max(0, min(px, slide_w - patch_px_native))
+            read_y = max(0, min(py, slide_h - patch_px_native))
+
+            # 2. safely read the native crop
+            try:
+                crop = slide.read_region((read_x, read_y), 0, (patch_px_native, patch_px_native)).convert("RGB")
+            except Exception:
                 continue
 
-            # using the read_region to stream just the patch, without ever materializing the whole decoded image in memory,
-            crop = slide.read_region((px, py), 0, (patch_px_native, patch_px_native)).convert("RGB")
-
-            if not _has_enough_tissue(crop, min_tissue_fraction):   # True
+            # 3. check tissue content
+            if not _has_enough_tissue(crop, min_tissue_fraction):
                 crop.close()
                 continue
                 
