@@ -22,11 +22,11 @@ def extract_features():
             continue
 
         # support resuming        
-        # existing = list(Path(PHIKON_FEATURES).glob(f"{patient_id}_*_phikon_features.npy"))
+        existing = list(Path(PHIKON_FEATURES).glob(f"{patient_id}_*_phikon_features.npy"))
         patient_tiles = pd.read_csv(tiles_csv_path)
         
-        # if existing and len(existing) >= len(patient_tiles):
-            # continue
+        if existing and len(existing) >= len(patient_tiles):
+            continue
         
         if patient_tiles.empty:
             continue
