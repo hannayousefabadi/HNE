@@ -1,4 +1,5 @@
 __pycache__/
+src/hne/__pycache__/
 *.pyc
 *.cpython-310.pyc
 *.pyo
