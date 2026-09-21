@@ -83,42 +83,55 @@ class S3DataLoader:
     @contextmanager
     def open_tif_as_openslide(self, s3_path: str):
         """
-        Stream TIFF from S3, convert to prymidal TIFF, and garantee cleanup of
-        temporary files the moment processing for that patient finishes
+        Stream TIFF from S3 directly to disk, convert to pyramidal TIFF, 
+        and strictly clean up all temporary files on completion.
         """
-        data_bytes = self._read_bytes(s3_path)
- 
-        # write the raw download to its own temp file first — pyvips needs
-        # a source file/buffer to read from before it can re-encode it
+        bucket, prefix = self._parse_s3_path(s3_path)
+        
+        # Suppress pyvips internal memory caching to prevent RAM leaks across slides
+        pyvips.cache_set_max(0)
+        pyvips.cache_set_max_mem(0)
+
+        # Allocate file paths for streaming
         raw_tmp = tempfile.NamedTemporaryFile(suffix=".tif", delete=False)
-        # this is the file we actually hand to OpenSlide
+        raw_tmp_path = raw_tmp.name
+        raw_tmp.close()
+
         pyramid_tmp = tempfile.NamedTemporaryFile(suffix=".tif", delete=False)
         pyramid_tmp_path = pyramid_tmp.name
         pyramid_tmp.close()
 
         slide = None
-        try: 
-            raw_tmp.write(data_bytes)
-            raw_tmp.flush()
-            raw_tmp.close()
- 
-            # stream conversion via pyvips
-            image = pyvips.Image.new_from_file(raw_tmp.name)
+        try:
+            # Stream directly to disk: ZERO memory allocation in Python RAM
+            self.s3_client.download_file(bucket, prefix, raw_tmp_path)
+
+            # Pyramidal conversion via pyvips
+            image = pyvips.Image.new_from_file(raw_tmp_path, access="sequential")
             image.tiffsave(
                 pyramid_tmp_path,
                 tile=True,
                 pyramid=True,
-                compression="jpeg",   # matches typical Aperio/Visium H&E export
+                compression="jpeg",
                 Q=90,
                 bigtiff=True,
+                tile_width=256,
+                tile_height=256,
             )
-            # remove the flat version right after the conversion, we don't need it
-            os.unlink(raw_tmp.name)
+            del image
+
+            # Remove raw flat file immediately to free disk space
+            if os.path.exists(raw_tmp_path):
+                os.unlink(raw_tmp_path)
+
             slide = openslide.OpenSlide(pyramid_tmp_path)
             yield slide
 
         finally:
             if slide is not None:
                 slide.close()
+                del slide
+            if os.path.exists(raw_tmp_path):
+                os.unlink(raw_tmp_path)
             if os.path.exists(pyramid_tmp_path):
-                os.unlink(pyramid_tmp_path)     # deleting pyramid_tmp_path when done 
+                os.unlink(pyramid_tmp_path)
