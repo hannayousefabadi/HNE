@@ -28,8 +28,9 @@ class PhikonV2Extractor:
         tiles_df,
         fullres_pixel_size: float,
         tile_size_px_fullres: int,
+        coord_scale_factor: float = 1.0,
         output_dir: Path = PHIKON_FEATURES,
-        batch_size: int = 32,  # 32 reduces peak VRAM
+        batch_size: int = 16, 
     ):
         """
         Turning patient tiles to model-requirement patches ready for feature extraction
@@ -49,13 +50,14 @@ class PhikonV2Extractor:
             if out_file.exists():
                 continue
 
-            # prefer exact pixel coordinates from preprocessing if present
+            # scale fullres pixel coordinates to the actual slide canvas
             if "x_min_fullres" in row and "y_min_fullres" in row:
-                x0 = int(row["x_min_fullres"])
-                y0 = int(row["y_min_fullres"])
+                x0 = int(round(float(row["x_min_fullres"]) * coord_scale_factor))
+                y0 = int(round(float(row["y_min_fullres"]) * coord_scale_factor))
             else:
-                x0 = int(row["tile_col"]) * tile_size_px_fullres
-                y0 = int(row["tile_row"]) * tile_size_px_fullres
+                x0 = int(round(float(row["tile_col"]) * tile_size_px_fullres))
+                y0 = int(round(float(row["tile_row"]) * tile_size_px_fullres))
+
 
             patch_generator = stream_patches_for_tile(
                 slide=slide,
@@ -64,7 +66,7 @@ class PhikonV2Extractor:
                 tile_size_px_fullres=tile_size_px_fullres,
                 fullres_pixel_size=fullres_pixel_size,
                 spec=spec,
-                min_tissue_fraction=0.5,
+                min_tissue_fraction=0.3,    # 0.3 allows realistic biopsy edge coverage
             )
 
             patch_embeddings = []
