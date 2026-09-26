@@ -60,8 +60,7 @@ class DistributionalMLP(nn.Module):
         # setting bounds for std to prevent exp(log_std) blowing up or hitting zero, bc if the 
         # model starts making bad predictions log_std might drift toward extremely large positive or negative values
         log_std = torch.clamp(log_std, min=-3.0, max=0.7)
-        std = torch.exp(log_std)    # std = e^s = exp(log_std) -> making sure SD is strictly positive
-
+        std = torch.exp(torch.clamp(log_std, min=-1.5, max=2.0)) + 0.1    # ensure std >= ~0.32
         return mu, std  # both (N, n_targets)
 
     @staticmethod
