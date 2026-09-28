@@ -39,7 +39,7 @@ PLOTS = ROOT / "plots"
 
 # cohort inventory list
 try: 
-    with open(RESULTS / "cohort_manifest.json") as f:
+    with open(RESULTS / "cohort_metadata" / "cohort_manifest.json") as f:
         _manifest = json.load(f)
 except (FileNotFoundError, json.JSONDecodeError) as e:
     raise RuntimeError("cohort_manifest.json not found or invalid, run cohort_inventory module first!") from e       

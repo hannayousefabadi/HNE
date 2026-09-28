@@ -12,6 +12,7 @@ from hne.core.config import (RESULTS, PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_
 
 
 loader = S3DataLoader()
+output_dir = RESULTS / "cohort_metadata"
 
 # CH_L_<digits><optional letter>
 PATIENT_ID_PATTERN = re.compile(r"CH_L_\d+[a-z]?")
@@ -66,7 +67,7 @@ def tie_break_resolver(filenames: list[str]) -> str:
 
 def cohort_discovery(raw_bucket=RAW_DATA_BUCKET, raw_prefix=RAW_DATA_PREFIX, 
                      processed_bucket=PROCESSED_VISIUM_BUCKET, processed_prefix=PROCESSED_VISIUM_PREFIX,
-                     out_dir=RESULTS):
+                     out_dir=output_dir):
     """
     Cohort patient name discovery
     """
