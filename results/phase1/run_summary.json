@@ -1,0 +1,9 @@
+{
+  "model": "phikon_v2",
+  "n_preprocessed_patients_total": 93,
+  "n_train_patients": 74,
+  "n_val_patients": 19,
+  "n_train_tiles": 1522,
+  "n_val_tiles": 430,
+  "best_val_pearson_r": 0.21971625909209253
+}

@@ -35,6 +35,8 @@ PREPROCESSED_SINGLE_PATIENT = PREPROCESSING_QC_REPORTS / "single_patient"
 TILES_FEATURES = ROOT / "feature_sets"
 PHIKON_FEATURES = TILES_FEATURES / "phikon_v2_features"
 
+PLOTS = ROOT / "plots"
+
 # cohort inventory list
 try: 
     with open(RESULTS / "cohort_manifest.json") as f:
@@ -50,5 +52,5 @@ PATIENTS = {p: PatientS3Paths(p) for p in PATIENT_IDS}
 for path in [TILES, TILES_SIGNATURE_MATRIX, QC_REPORTS, PREPROCESSING_QC_REPORTS, 
              PREPROCESSED_SINGLE_PATIENT, PREPROCESSED_COHORT, 
              TILES_FEATURES, PHIKON_FEATURES,
-             RESULTS]:
+             RESULTS, PLOTS]:
     path.mkdir(parents=True, exist_ok=True)
