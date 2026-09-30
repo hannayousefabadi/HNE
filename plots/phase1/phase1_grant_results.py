@@ -65,7 +65,7 @@ ax1.axhline(0.5, color="#666666", linestyle="--", linewidth=1.1, label="Chance L
 ax1.set_ylabel("Validation Metric Score")
 
 # Pad=32 elevates both titles equally so they align along the same baseline
-ax1.set_title("A   Cross-Patient Generalization (Held-out Test Cohort)", weight="bold", loc="left", pad=32)
+ax1.set_title(r"$\mathbf{B.}$" +   "Cross-Patient Generalization (Held-out Test Cohort)", weight="bold", loc="left", pad=32)
 ax1.set_xticks(x)
 ax1.set_xticklabels(plot_df["display_name"], weight="bold")
 ax1.set_ylim(0, 1.0)
@@ -119,7 +119,7 @@ ax2.set_xlabel("False Positive Rate (1 - Specificity)")
 ax2.set_ylabel("True Positive Rate (Sensitivity)")
 
 # Matches ax1 pad=32 so both titles align at the exact same vertical baseline
-ax2.set_title("B   Stratification Accuracy (ROC Curves)", weight="bold", loc="left", pad=32)
+ax2.set_title(r"$\mathbf{C.}$" +   "Stratification Accuracy (ROC Curves)", weight="bold", loc="left", pad=32)
 ax2.set_xlim([0.0, 1.0])
 ax2.set_ylim([0.0, 1.03])
 ax2.legend(frameon=True, facecolor="white", edgecolor="#cccccc", loc="lower right")
@@ -132,6 +132,6 @@ for ax in (ax1, ax2):
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
-out_file = output_dir / "phase1.png"
+out_file = output_dir / "phase1_panelB_C.png"
 plt.savefig(out_file, bbox_inches="tight", dpi=300)
 print(f"Saved aligned figure to: {out_file}")
