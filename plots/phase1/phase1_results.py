@@ -86,12 +86,6 @@ for rect in rects2:
     ax1.annotate(f"{h:.2f}", xy=(rect.get_x() + rect.get_width()/2, h),
                  xytext=(0, 4), textcoords="offset points", ha="center", va="bottom", fontsize=9.5, weight="bold")
 
-# Cohort badge sits inside top-left with no competing elements
-cohort_text = "Cohort Split: 74 Train vs. 19 Validation Patients"
-ax1.text(0.04, 0.94, cohort_text,
-         transform=ax1.transAxes, fontsize=9.0, weight="bold", color="#111111", va="top",
-         bbox=dict(boxstyle="round,pad=0.45", fc="#f0f4f8", ec="#8faec4", lw=1.1))
-
 # ==============================================================
 # PANEL B: Empirical ROC Curves
 # ==============================================================
