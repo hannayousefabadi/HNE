@@ -15,6 +15,7 @@ data/
 tiles/
 
 *.h5ad
+*.pptx
 
 .ipynb_checkpoints/
 
