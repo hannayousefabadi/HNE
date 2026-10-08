@@ -14,13 +14,10 @@ from torch.utils.data import DataLoader, TensorDataset
 from scipy.stats import ConstantInputWarning, pearsonr, spearmanr
 from sklearn.metrics import roc_auc_score
 
-from hne.core.paths import PATIENT_IDS, PHIKON_FEATURES, RESULTS, TILES_SIGNATURE_MATRIX
-from hne.models.data import get_cohort_statistics, load_features_and_targets
+from hne.core.paths import PATIENT_IDS, RESULTS
+from hne.models.data import (FEATURE_REGISTRY, get_available_patient_ids, get_cohort_statistics,
+                             load_features_and_targets)
 from hne.models.mlp import DistributionalMLP
-
-FEATURE_REGISTRY = {
-    "phikon_v2": {"dir": PHIKON_FEATURES, "suffix": "phikon_features", "dim": 1024},
-}
 
 CONFIG = {
     "model_name": "phikon_v2",
@@ -46,22 +43,6 @@ DEFAULT_TARGET_COLS = [
 ]
 
 # ==== Helpers ====
-def get_available_patient_ids(patient_ids: list[str], feature_spec: dict) -> list[str]:
-    """Filter patient IDs to those with preprocessed tiles and extracted features."""
-    valid_ids = []
-    features_dir = Path(feature_spec["dir"])
-    suffix = feature_spec["suffix"]
-
-    for pid in patient_ids:
-        tiles_csv = TILES_SIGNATURE_MATRIX / f"tiles_signature_matrix_{pid}.csv"
-        if tiles_csv.exists():
-            feature_files = list(features_dir.glob(f"{pid}_*_{suffix}.npy"))
-            if len(feature_files) > 0:
-                valid_ids.append(pid)
-
-    return sorted(valid_ids)
-
-
 def compute_cohort_pearson(y_true: np.ndarray, mu_pred: np.ndarray) -> tuple[float, list[float]]:
     rs = []
     for k in range(y_true.shape[1]):

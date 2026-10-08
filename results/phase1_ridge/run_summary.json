@@ -1,0 +1,57 @@
+{
+  "analysis_finished_at": "2026-10-07T19:08:55+03:30",
+  "analysis_started_at": "2026-10-07T19:07:58+03:30",
+  "git": {
+    "branch": "phase1-ridge-baseline",
+    "commit": "c1636ae",
+    "uncommitted_changes": true
+  },
+  "model": "ridge",
+  "features": "phikon_v2",
+  "targets": [
+    "FMRP",
+    "Cell_cycle",
+    "YAP",
+    "WNT",
+    "EMT"
+  ],
+  "n_patients": 93,
+  "n_tiles": 1952,
+  "config": {
+    "model_name": "phikon_v2",
+    "output_dir": "/home/hany/projects/hne/HNE_repo/results/phase1_ridge",
+    "n_outer_folds": 5,
+    "n_inner_folds": 5,
+    "alphas": [
+      0.1,
+      0.31622776601683794,
+      1.0,
+      3.1622776601683795,
+      10.0,
+      31.622776601683793,
+      100.0,
+      316.2277660168379,
+      1000.0,
+      3162.2776601683795,
+      10000.0,
+      31622.776601683792,
+      100000.0,
+      316227.7660168379,
+      1000000.0
+    ],
+    "seed": 42,
+    "min_tiles_within_patient": 5,
+    "n_bootstrap": 2000,
+    "n_permutations": 10000
+  },
+  "alpha_selection": "per signature, lowest inner-CV mean squared error on z-scored targets",
+  "scaling": "features standardized and targets z-scored with training-fold statistics only",
+  "prediction_units": "raw tile signature score (back-transformed from the fold's z-scale)",
+  "ci_method": "percentile 95% CI, patient-level bootstrap",
+  "p_value_method": {
+    "within_patient_p": "two-sided sign-flip permutation over per-patient r",
+    "between_patient_p": "two-sided permutation of patient mean predictions across patients",
+    "pooled_r": "no p-value: tiles are not independent; see the bootstrap CI"
+  },
+  "auc_definition": "ROC-AUC separating the top third of tiles from the bottom third by true score (thresholds at the 33rd and 67th percentiles of all evaluated tiles). The middle third is excluded, so this is easier than an all-tiles AUC."
+}

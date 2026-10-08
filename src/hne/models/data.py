@@ -6,7 +6,28 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
-from hne.core.paths import TILES_SIGNATURE_MATRIX
+from hne.core.paths import PHIKON_FEATURES, TILES_SIGNATURE_MATRIX
+
+# feature sets available for modeling; add an entry once a model's features are extracted
+FEATURE_REGISTRY = {
+    "phikon_v2": {"dir": PHIKON_FEATURES, "suffix": "phikon_features", "dim": 1024},
+}
+
+
+def get_available_patient_ids(patient_ids: List[str], feature_spec: dict) -> List[str]:
+    """Filter patient IDs to those with preprocessed tiles and extracted features."""
+    valid_ids = []
+    features_dir = Path(feature_spec["dir"])
+    suffix = feature_spec["suffix"]
+
+    for pid in patient_ids:
+        tiles_csv = TILES_SIGNATURE_MATRIX / f"tiles_signature_matrix_{pid}.csv"
+        if tiles_csv.exists():
+            feature_files = list(features_dir.glob(f"{pid}_*_{suffix}.npy"))
+            if len(feature_files) > 0:
+                valid_ids.append(pid)
+
+    return sorted(valid_ids)
 
 
 def get_cohort_statistics(
@@ -109,7 +130,10 @@ def load_features_and_targets(
             tile_meta.append((patient_id, tile_id))
 
     if not X:
-        return np.empty((0, 1024), dtype=np.float32), np.empty((0, len(target_cols)), dtype=np.float32), []
+        raise RuntimeError(
+            f"No (feature, target) pairs loaded from {features_dir} for {len(patient_ids)} patients "
+            f"with suffix '{filename_suffix}' and targets {target_cols}."
+        )
 
     return np.stack(X).astype(np.float32), np.array(y, dtype=np.float32), tile_meta
 
