@@ -31,11 +31,13 @@ PREPROCESSING_QC_REPORTS = ROOT / "qc_reports" / "preprocessing_qc"
 
 PREPROCESSED_COHORT = PREPROCESSING_QC_REPORTS / "cohort"
 PREPROCESSED_SINGLE_PATIENT = PREPROCESSING_QC_REPORTS / "single_patient"
+FEATURE_EXTRACTION_QC_REPORTS = ROOT / "qc_reports" / "feature_extraction_qc"
 
 TILES_FEATURES = ROOT / "feature_sets"
 PHIKON_FEATURES = TILES_FEATURES / "phikon_v2_features"
 
 PLOTS = ROOT / "plots"
+REGISTRATION_AUDIT = RESULTS / "registration_audit"
 
 # cohort inventory list
 try: 

@@ -57,6 +57,28 @@ def _has_enough_tissue(crop: Image.Image, min_tissue_fraction: float = 0.5) -> b
     return float(valid_tissue / gray.size) >= min_tissue_fraction
 
 
+def require_fullres_slide(patient_id: str, slide_width: int, slide_height: int, tiles_df) -> None:
+    """
+    Tile coordinates (`x_min_fullres` ...) are pixels of the full-resolution H&E that Space
+    Ranger registered the spots to. The slide opened for extraction must be that image.
+    Raises if the tiles do not fit inside it, which is what happens when a CytAssist image
+    or any downscaled image is opened instead. Coordinates are never rescaled to make them fit.
+    """
+    need_w = float(tiles_df["x_max_fullres"].max())
+    need_h = float(tiles_df["y_max_fullres"].max())
+    if need_w > slide_width or need_h > slide_height:
+        raise ValueError(
+            f"{patient_id}: the opened slide is {slide_width}x{slide_height} px but the tiles extend to "
+            f"{need_w:.0f}x{need_h:.0f} px. This is not the full-resolution H&E the coordinates refer to "
+            f"(a 3000x3000 slide is the CytAssist image). Fix the image in the cohort manifest."
+        )
+
+
+def new_patch_stats() -> dict:
+    """Counters filled in by stream_patches_for_tile for one tile."""
+    return {"n_positions": 0, "n_out_of_bounds": 0, "n_read_error": 0, "n_low_tissue": 0, "n_patches_used": 0}
+
+
 def stream_patches_for_tile(
     slide: openslide.OpenSlide,
     x0: int,
@@ -65,12 +87,18 @@ def stream_patches_for_tile(
     fullres_pixel_size: float,
     spec: PatchSpec,
     min_tissue_fraction: float = 0.5,
+    stats: dict = None,
 ) -> Generator[Image.Image, None, None]:
     """
     Streams model-ready patches one by one without accumulating PIL objects in memory.
     No overlap between patches by default design. but the full coverage of each tile is 
     guaranteed (the remainder strip is covered by one extra patch per axis, which overlaps its neighbor)
+
+    A patch whose window is not fully inside the slide is skipped and counted, never moved
+    to the slide edge. Pass `stats` (from new_patch_stats) to get the per-tile counts.
     """
+    if stats is None:
+        stats = new_patch_stats()
     slide_w, slide_h = slide.dimensions
     # converting a physical measurement (µm) into native pixels  for this specific patient's
     # fullres image using the patient's o‍wn mpp (fullres_pixel_size)
@@ -83,23 +111,28 @@ def stream_patches_for_tile(
 
     for py in y_positions:
         for px in x_positions:
-            # 1. clamp top-left coordinates to stay strictly inside the slide canvas
-            read_x = max(0, min(px, slide_w - patch_px_native))
-            read_y = max(0, min(py, slide_h - patch_px_native))
+            stats["n_positions"] += 1
 
-            # 2. safely read the native crop
+            # 1. a window outside the slide means the coordinates are wrong: skip and count
+            if px < 0 or py < 0 or px + patch_px_native > slide_w or py + patch_px_native > slide_h:
+                stats["n_out_of_bounds"] += 1
+                continue
+
+            # 2. read the native crop
             try:
-                crop = slide.read_region((read_x, read_y), 0, (patch_px_native, patch_px_native)).convert("RGB")
+                crop = slide.read_region((px, py), 0, (patch_px_native, patch_px_native)).convert("RGB")
             except Exception:
+                stats["n_read_error"] += 1
                 continue
 
             # 3. check tissue content
             if not _has_enough_tissue(crop, min_tissue_fraction):
+                stats["n_low_tissue"] += 1
                 crop.close()
                 continue
                 
             # resize patches to models' expected pixel size    
             resized = crop.resize((spec.patch_size_px, spec.patch_size_px), Image.BICUBIC)
             crop.close()
+            stats["n_patches_used"] += 1
             yield resized
-

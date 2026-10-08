@@ -8,7 +8,7 @@ import torch
 from transformers import AutoImageProcessor, AutoModel
 
 from hne.core.paths import PHIKON_FEATURES
-from hne.feature_extraction.patching import PATCH_SPECS, stream_patches_for_tile
+from hne.feature_extraction.patching import PATCH_SPECS, new_patch_stats, stream_patches_for_tile
 
 
 class PhikonV2Extractor:
@@ -28,7 +28,6 @@ class PhikonV2Extractor:
         tiles_df,
         fullres_pixel_size: float,
         tile_size_px_fullres: int,
-        coord_scale_factor: float = 1.0,
         output_dir: Path = PHIKON_FEATURES,
         batch_size: int = 16, 
     ):
@@ -39,25 +38,27 @@ class PhikonV2Extractor:
             tiles_df: patient's tumor tiles (from cohort preprocessing step), must have
             tile_row, tile_col, tile_id.
             slide: openslide.OpenSlide handle for this patient's fullres tiff.
+
+        Returns:
+            One record per tile: patch counts (positions, out of bounds, read errors,
+            low tissue, used) and whether an embedding was written.
         """
         spec = PATCH_SPECS["phikon_v2"]
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
+
+        tile_records = []
 
         for tile_idx, (_, row) in enumerate(tiles_df.iterrows()):
             tile_id = row["tile_id"]
             out_file = output_dir / f"{patient_id}_{tile_id}_phikon_features.npy"
             if out_file.exists():
                 continue
+            stats = new_patch_stats()
 
-            # scale fullres pixel coordinates to the actual slide canvas
-            if "x_min_fullres" in row and "y_min_fullres" in row:
-                x0 = int(round(float(row["x_min_fullres"]) * coord_scale_factor))
-                y0 = int(round(float(row["y_min_fullres"]) * coord_scale_factor))
-            else:
-                x0 = int(round(float(row["tile_col"]) * tile_size_px_fullres))
-                y0 = int(round(float(row["tile_row"]) * tile_size_px_fullres))
-
+            # tile origin in full-resolution pixels, used as it is
+            x0 = int(round(float(row["x_min_fullres"])))
+            y0 = int(round(float(row["y_min_fullres"])))
 
             patch_generator = stream_patches_for_tile(
                 slide=slide,
@@ -67,6 +68,7 @@ class PhikonV2Extractor:
                 fullres_pixel_size=fullres_pixel_size,
                 spec=spec,
                 min_tissue_fraction=0.3,    # 0.3 allows realistic biopsy edge coverage
+                stats=stats,
             )
 
             patch_embeddings = []
@@ -89,6 +91,8 @@ class PhikonV2Extractor:
                     img.close()
                 current_batch = []
 
+            tile_records.append({"patient_id": patient_id, "tile_id": tile_id, "x0": x0, "y0": y0,
+                                 **stats, "embedding_written": bool(patch_embeddings)})
             if not patch_embeddings:
                 continue
 
@@ -103,6 +107,8 @@ class PhikonV2Extractor:
                 if torch.cuda.is_available():
                     torch.cuda.empty_cache()
                 gc.collect()
+
+        return tile_records
 
     def _process_batch(self, batch: list[Image.Image]) -> np.ndarray:
         inputs = self.processor(batch, return_tensors="pt")
