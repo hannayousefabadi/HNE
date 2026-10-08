@@ -10,7 +10,9 @@ from dataclasses import dataclass
 class PreprocessingConfig:
     # tile geometry & resolution
     target_physical_size_um: float = 1000.0  # 1 mm tile edge length
-    spot_diameter_um: float = 55.0           # standard 10x Visium spot diameter
+    spot_diameter_um: float = 55.0           # standard 10x Visium spot diameter (not used for pixel size)
+    spot_pitch_um: float = 100.0             # centre-to-centre distance of Visium spots
+    spot_pitch_tolerance: float = 0.15       # warn if the registered spot pitch is off by more than this
     min_initial_tiles: int = 30              # minimum tiles before layout warning
 
     # tumor purity & filtering

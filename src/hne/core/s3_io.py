@@ -2,6 +2,7 @@
 src/core/s3_io.py 
 """
 import boto3
+from pathlib import Path
 import io
 import os
 import json
@@ -20,6 +21,21 @@ from contextlib import contextmanager
 from hne.utils import get_logger
 
 logger = get_logger()
+
+def temp_dir_is_in_ram() -> bool:
+    """True if temp files live on a RAM-backed filesystem (tmpfs), where a downloaded slide counts as memory."""
+    tmp = os.path.realpath(tempfile.gettempdir())
+    best, fstype = "", ""
+    try:
+        with open("/proc/mounts") as f:
+            for line in f:
+                _, mount, kind = line.split()[:3]
+                if (tmp == mount or tmp.startswith(mount.rstrip("/") + "/")) and len(mount) > len(best):
+                    best, fstype = mount, kind
+    except OSError:
+        return False
+    return fstype in ("tmpfs", "ramfs")
+
 
 class S3DataLoader:
     """Load data directly from S3 using boto3 and IAM role."""
@@ -81,10 +97,37 @@ class S3DataLoader:
             return Image.fromarray(img_array, mode='L')
         
     @contextmanager
+    def open_slide(self, s3_path: str):
+        """
+        Download a pyramidal whole-slide image from S3 to a temp file and open it with OpenSlide
+        as it is: no conversion, no re-encoding. Temp file is removed on exit.
+        Raises if OpenSlide cannot read the file.
+        """
+        bucket, prefix = self._parse_s3_path(s3_path)
+        if temp_dir_is_in_ram():
+            logger.warning(f"Temp directory {tempfile.gettempdir()} is RAM-backed (tmpfs): the downloaded slide will "
+                           f"use memory. Set TMPDIR to a directory on disk.")
+        tmp = tempfile.NamedTemporaryFile(suffix=Path(prefix).suffix or ".tif", delete=False)
+        tmp_path = tmp.name
+        tmp.close()
+
+        slide = None
+        try:
+            self.s3_client.download_file(bucket, prefix, tmp_path)
+            slide = openslide.OpenSlide(tmp_path)
+            yield slide
+        finally:
+            if slide is not None:
+                slide.close()
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
+
+    @contextmanager
     def open_tif_as_openslide(self, s3_path: str):
         """
-        Stream TIFF from S3 directly to disk, convert to pyramidal TIFF, 
-        and strictly clean up all temporary files on completion.
+        Stream a flat TIFF from S3 to disk, convert it to a pyramidal TIFF so OpenSlide can
+        read it, and clean up all temporary files on completion. Needed for the CytAssist
+        images only; full-resolution H&E scans are opened with open_slide().
         """
         bucket, prefix = self._parse_s3_path(s3_path)
         

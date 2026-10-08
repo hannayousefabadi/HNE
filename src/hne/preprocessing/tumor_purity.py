@@ -4,6 +4,8 @@ src/hne/preprocessing/tumor_purity.py
 import pandas as pd
 from hne.utils import get_logger
 from hne.preprocessing.preprocessing_config import PREPROCESSING_CONFIG
+import numpy as np
+from scipy.spatial import cKDTree
 
 logger = get_logger()
 
@@ -71,17 +73,18 @@ def attach_tumor_fraction(spots,
     return merged, metadata
 
 
-def add_tile_coordinates(scales,
-                         merged,
+def add_tile_coordinates(merged,
+                         fullres_pixel_size: float,
                          cfg=PREPROCESSING_CONFIG
                          ):
     """
-    Derive tile coordinates from spot positions based on slide's physical size
+    Derive tile coordinates from spot positions based on slide's physical size.
+
+    `fullres_pixel_size` is the µm per pixel of the full-resolution H&E scan, read from the
+    scan itself (data_io.slide_um_per_px). Spot coordinates are pixels of that scan.
     """
-    spot_diameter_fullres = scales["spot_diameter_fullres"]
-    fullres_pixel_size = cfg.spot_diameter_um / spot_diameter_fullres
     # dynamic calculation: how many fullres pixels are needed to reach the target physical size
-    tile_size_px = int(cfg.target_physical_size_um / fullres_pixel_size)
+    tile_size_px = int(round(cfg.target_physical_size_um / fullres_pixel_size))
     
     # drop spots with negative pixel coordinates before tiling
     merged = merged[
@@ -99,8 +102,21 @@ def add_tile_coordinates(scales,
         "tile_id": sorted(merged["tile_id"].unique().tolist()),
         "n_initial_tiles": len(merged['tile_id'].unique()),
         "fullres_pixel_size": fullres_pixel_size,
-        "tile_size_pixels": tile_size_px
+        "tile_size_pixels": tile_size_px,
+        "tile_size_um": tile_size_px * fullres_pixel_size,
     }
+
+    # independent check of scale: Visium spots are a fixed distance apart, so the registered
+    # spot pitch times the scan's pixel size should come out near that distance
+    xy = merged[["pxl_col_in_fullres", "pxl_row_in_fullres"]].to_numpy(dtype=float)
+    if len(xy) >= 2:
+        pitch_px = float(np.median(cKDTree(xy).query(xy, k=2)[0][:, 1]))
+        metadata["spot_pitch_px"] = pitch_px
+        metadata["spot_pitch_um_measured"] = pitch_px * fullres_pixel_size
+        deviation = abs(metadata["spot_pitch_um_measured"] - cfg.spot_pitch_um) / cfg.spot_pitch_um
+        if deviation > cfg.spot_pitch_tolerance:
+            logger.warning(f"Registered spot pitch is {metadata['spot_pitch_um_measured']:.1f} um "
+                           f"(expected {cfg.spot_pitch_um:.0f}): check the H&E registration or pixel size")
     
     logger.info(f"Created {metadata['n_initial_tiles']} initial tiles")
 

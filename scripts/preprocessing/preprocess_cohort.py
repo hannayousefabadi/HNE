@@ -1,5 +1,6 @@
 """Preprocess cohort"""
 
+import gc
 import pandas as pd
 from tqdm import tqdm
 import logging
@@ -96,7 +97,9 @@ if __name__ == "__main__":
                 f"Failed preprocessing patient {patient_id}"
             )
             failed_patients.append(patient_id)
-            continue         
+        finally:
+            # AnnData objects hold reference cycles: release the patient's data before loading the next
+            gc.collect()
 
     qc.save_qc_records()
     summary = qc.save_summary()

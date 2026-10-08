@@ -14,9 +14,12 @@ def crop_and_save_tiles(tumor_tiles,
                         patient_id: str):
     """
     Generate & save image tiles (H&E crops). stream tile crops directly from OpenSlide
-    without loading the full slide into the RAM.
+    without loading the full slide into the RAM. Each tile is written to disk and released
+    before the next one is read, so memory use does not grow with the number of tiles.
+
+    Returns the number of tiles saved and the metadata.
     """
-    tiles = []
+    n_saved = 0
     tiles_path = Path(TILES) / patient_id
     tiles_path.mkdir(parents=True, exist_ok=True)
 
@@ -49,12 +52,12 @@ def crop_and_save_tiles(tumor_tiles,
             padded_img.paste(tile_img, (0, 0))
             tile_img = padded_img
 
-        tiles.append(tile_img)
-
         tile_id = f"tile_r{tile_row}_c{tile_col}"
         tile_img.save(tiles_path / f"{tile_id}.png")
+        tile_img.close()
+        n_saved += 1
 
-    metadata = {"tiles_path": str(tiles_path)}
-    logger.info(f"Saved {len(tiles)} tumor tiles for patient {patient_id}")
-    return tiles, metadata
+    metadata = {"tiles_path": str(tiles_path), "n_tile_images_saved": n_saved}
+    logger.info(f"Saved {n_saved} tumor tiles for patient {patient_id}")
+    return n_saved, metadata
 

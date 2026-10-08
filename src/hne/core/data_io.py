@@ -1,5 +1,6 @@
 """src/core/data_io"""
 
+import gc
 import pandas as pd
 from pathlib import Path
 from contextlib import contextmanager
@@ -15,10 +16,22 @@ def get_s3_loader():
         _s3_loader = S3DataLoader()
     return _s3_loader        
 
-def load_visium(patient_paths: PatientS3Paths):
+def load_visium(patient_paths: PatientS3Paths, keep_layers=None):
+    """
+    Load the patient's AnnData. `keep_layers` lists the layers to keep; every other layer is
+    dropped right after loading to free memory. None keeps them all.
+    """
     loader = get_s3_loader()
     h5ad_path = f"{patient_paths.visium_st}/{patient_paths.clean_id}_vis_c2l_annots.h5ad"
-    return loader.read_h5ad(h5ad_path)
+    vis = loader.read_h5ad(h5ad_path)
+    if keep_layers is not None:
+        missing = [name for name in keep_layers if name not in vis.layers]
+        if missing:
+            raise KeyError(f"{patient_paths.patient_id}: h5ad has no layer(s) {missing}")
+        for name in [name for name in vis.layers if name not in keep_layers]:
+            del vis.layers[name]
+        gc.collect()
+    return vis
 
 def load_spots(patient_paths: PatientS3Paths):
     loader = get_s3_loader()
@@ -46,7 +59,7 @@ def load_he_slide(patient_paths: PatientS3Paths, qc_tracker=None):
 
     if filename:
         tif_path = f"{patient_paths.he_image_prefix}/{filename}"
-        with loader.open_tif_as_openslide(tif_path) as slide:
+        with loader.open_slide(tif_path) as slide:
             yield slide
     else:
         if qc_tracker:
@@ -57,6 +70,21 @@ def load_he_slide(patient_paths: PatientS3Paths, qc_tracker=None):
                 f"No full resolution image found for {patient_paths.patient_id}",
                 metadata={})
         yield None
+
+
+def slide_um_per_px(slide, patient_id: str) -> float:
+    """
+    Pixel size of the opened H&E scan in µm, read from the slide's own metadata. This is the
+    only source of physical scale in the pipeline: tile size and patch size both derive from it.
+    """
+    mpp_x = slide.properties.get("openslide.mpp-x")
+    mpp_y = slide.properties.get("openslide.mpp-y")
+    if mpp_x is None or mpp_y is None:
+        raise ValueError(f"{patient_id}: the H&E scan has no pixel size in its metadata (openslide.mpp-x/y).")
+    mpp_x, mpp_y = float(mpp_x), float(mpp_y)
+    if not (0.1 <= mpp_x <= 2.0) or abs(mpp_x - mpp_y) / mpp_x > 0.01:
+        raise ValueError(f"{patient_id}: implausible pixel size in the H&E metadata: x={mpp_x}, y={mpp_y} µm/px.")
+    return mpp_x
 
 
 @contextmanager

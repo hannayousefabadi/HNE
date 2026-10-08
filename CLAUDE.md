@@ -30,11 +30,11 @@ Each stage reads the previous stage's outputs from disk.
 
 ## Things that bite
 
-- **The stored Phikon-v2 features are invalid.** They were extracted from 3000 px CytAssist images, not the full-resolution H&E that all coordinates refer to. Do not interpret any model result on them. Re-extraction is blocked on the steps in `review/06_registration_audit.md`.
+- **The stored features, tile matrices and Phase 1 results are stale.** `feature_sets/`, `tile_signature_matrix/` and `qc_reports/preprocessing_qc/` come from runs on CytAssist images with 1.4 mm tiles. Do not interpret any model result on them. They are replaced by rerunning preprocessing, then extraction, on the cluster (`review/06_registration_audit.md`).
 - Images come from `load_he_slide()` only (`{processed}/{PROCESSED_VERSION}/converted_he/`, filenames in the manifest's `he_map`). `load_cytassist_slide()` and `cytassist_image_prefix` are for the audit; never crop tiles or patches from a CytAssist image.
 - The H&E image and the Space Ranger output must come from the same pipeline version folder. `PROCESSED_VERSION` in `src/hne/core/config.py` is the one place it is set.
 - Fullres coordinates are never rescaled to fit an image. If tiles do not fit inside the opened slide, the image is wrong.
-- `fullres_pixel_size` (`55 / spot_diameter_fullres`) is about 30 to 40% too small. Do not build on it; see `review/06_registration_audit.md`.
+- Physical scale comes from the H&E scan's own metadata (`slide_um_per_px`), nowhere else. Never derive pixel size from `spot_diameter_fullres`, and never use a Space Ranger scale factor to place tiles or patches.
 - A tile is `tile_id = "{row}-{col}"` in CSVs and feature filenames, but its PNG is named `tile_r{row}_c{col}.png`.
 - A signature that could not be scored is `NaN`, never `0.0`. The Phase 1 loader drops any tile with a `NaN` target.
 - Splits and CV folds are by `patient_id`. Never split by tile. Feature and target scaling statistics come from training folds only.

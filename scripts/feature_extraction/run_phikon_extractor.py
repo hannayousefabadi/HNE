@@ -10,7 +10,7 @@ from hne.feature_extraction.phikon_v2_model import PhikonV2Extractor
 from hne.feature_extraction.patching import require_fullres_slide
 from hne.core.paths import (PATIENTS, PATIENT_IDS, TILES_SIGNATURE_MATRIX, 
                             PREPROCESSING_QC_REPORTS, PHIKON_FEATURES, FEATURE_EXTRACTION_QC_REPORTS)
-from hne.core.data_io import load_he_slide
+from hne.core.data_io import load_he_slide, slide_um_per_px
 
 
 def append_rows(rows: list[dict], path: Path):
@@ -24,6 +24,14 @@ def extract_features():
     metadata = pd.read_csv(PREPROCESSING_QC_REPORTS / "cohort" / "metadata.csv")
     log_dir = FEATURE_EXTRACTION_QC_REPORTS / "phikon_v2"
     log_dir.mkdir(parents=True, exist_ok=True)
+
+    # features with no extraction log were made before the image source was fixed. The resume
+    # logic would keep them, because tile IDs repeat across tile grids.
+    if any(Path(PHIKON_FEATURES).glob("*_phikon_features.npy")) and not (log_dir / "patient_log.csv").exists():
+        raise RuntimeError(
+            f"{PHIKON_FEATURES} holds features but {log_dir / 'patient_log.csv'} does not exist: they come from "
+            f"an extraction on the CytAssist images. Delete the folder's .npy files, then run again."
+        )
     
     for patient_id in tqdm(PATIENT_IDS, desc="Extracting Phikon-v2 features"):
         tiles_csv_path = TILES_SIGNATURE_MATRIX / f"tiles_signature_matrix_{patient_id}.csv" 
@@ -55,6 +63,14 @@ def extract_features():
             # the slide must be the full-resolution H&E: tile coordinates are used as they are
             slide_w, slide_h = slide.dimensions
             require_fullres_slide(patient_id, slide_w, slide_h, patient_tiles)
+
+            # tiles were laid out by preprocessing with a pixel size; it must be this scan's
+            slide_px_size = slide_um_per_px(slide, patient_id)
+            if abs(slide_px_size - fullres_px_size) / slide_px_size > 0.01:
+                raise ValueError(
+                    f"{patient_id}: preprocessing used {fullres_px_size:.4f} um/px but the H&E scan is "
+                    f"{slide_px_size:.4f} um/px. The tile matrix is from an older preprocessing run; rerun preprocessing."
+                )
 
             tile_records = phikon.extract_patient_tiles(
                 patient_id=patient_id,

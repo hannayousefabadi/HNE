@@ -7,6 +7,7 @@ import logging
 
 from hne.core.paths import PATIENTS
 from hne.core.data_io import *
+from hne.core.data_io import load_he_slide, slide_um_per_px
 from hne.preprocessing.tumor_purity import *
 from hne.preprocessing.tiling import crop_and_save_tiles
 from hne.preprocessing.spot_signatures import compute_signatures
@@ -29,7 +30,6 @@ def preprocess_patient(patient_id,
     Args:
         patient_id: Patient IDs
         mode: 'single_patient' or 'cohort'
-        target_physical_size_um: Target tile size in micrometers
 
     Returns:
         metadata: dict with all QC info
@@ -43,39 +43,44 @@ def preprocess_patient(patient_id,
     patient_metadata = {"patient_id": patient_id}
     
     # load data
-    vis = load_visium(paths)
+    # only the layer the pipeline scores from is kept; the dense SCTransform layer alone is ~0.6 GB
+    vis = load_visium(paths, keep_layers=["log_norm_count"])
     spots = load_spots(paths)
-    scales = load_scale_factor(paths)
     
     
-    # compute tumor fraction and tile coords
+    # compute tumor fraction
     merged, meta = attach_tumor_fraction(spots, vis, patient_id, qc_tracker, cfg)
     patient_metadata.update(meta)
     # check to see if the deconvolution column exist and merged df of spots and tumor fractions produced or not
     if merged is None:
         return patient_metadata, None, None, None
 
-    df, meta, tile_size_px = add_tile_coordinates(scales, merged, cfg)
-    patient_metadata.update(meta)
-    
-    final_df, meta = compute_tile_purity(df, patient_id, qc_tracker, cfg)
-    patient_metadata.update(meta)
-    
-    tumor_tiles_df, meta = filter_tumor_tiles(final_df, patient_id, qc_tracker, cfg)
-    patient_metadata.update(meta)
-    
-    # check if we have tiles BEFORE proceeding
-    if not meta.get('has_tumor_tiles', False):
-        logger.warning(f"Skipping remaining steps for {patient_id} no tumor tiles!")
-        return patient_metadata, None, None, None
-    
-    # open slide context manager: handles pyramid creation and deletes temp files on exit
+    # open the full-resolution H&E scan: spot coordinates are its pixels, and its pixel size
+    # sets the tile size. The context manager deletes the temp file on exit.
     with load_he_slide(paths, qc_tracker) as slide:
         if slide is None:
             return patient_metadata, None, None, None
 
+        fullres_pixel_size = slide_um_per_px(slide, patient_id)
+        slide_w, slide_h = slide.dimensions
+        patient_metadata.update({"slide_width": slide_w, "slide_height": slide_h})
+
+        df, meta, tile_size_px = add_tile_coordinates(merged, fullres_pixel_size, cfg)
+        patient_metadata.update(meta)
+
+        final_df, meta = compute_tile_purity(df, patient_id, qc_tracker, cfg)
+        patient_metadata.update(meta)
+
+        tumor_tiles_df, meta = filter_tumor_tiles(final_df, patient_id, qc_tracker, cfg)
+        patient_metadata.update(meta)
+
+        # check if we have tiles BEFORE proceeding
+        if not meta.get('has_tumor_tiles', False):
+            logger.warning(f"Skipping remaining steps for {patient_id} no tumor tiles!")
+            return patient_metadata, None, None, None
+
         # crop and save image tiles directly via OpenSlide
-        tumor_tiles, meta = crop_and_save_tiles(tumor_tiles_df, tile_size_px, slide, patient_id)
+        _, meta = crop_and_save_tiles(tumor_tiles_df, tile_size_px, slide, patient_id)
         patient_metadata.update(meta)
     
     # compute signatures per spot, aggregate per tile

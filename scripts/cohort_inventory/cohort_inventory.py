@@ -20,8 +20,10 @@ output_dir = RESULTS / "cohort_metadata"
 
 # CH_L_<digits><optional letter>
 PATIENT_ID_PATTERN = re.compile(r"CH_L_\d+[a-z]?")
-# a full-resolution scan is hundreds of MB; a 3000x3000 CytAssist image is under 30 MB
-MIN_HE_SIZE_BYTES = 100 * 1024 ** 2
+# a 3000x3000 CytAssist image is at most 30 MB; the smallest genuine scan in this cohort is 48 MB
+# (a 17,600 x 14,400 px frame). This only catches a CytAssist image placed in the H&E folder:
+# the real check is at open time, where a slide that does not contain the tiles is refused.
+MIN_HE_SIZE_BYTES = 35 * 1024 ** 2
 
 
 def list_fullres_he(bucket, prefix):
