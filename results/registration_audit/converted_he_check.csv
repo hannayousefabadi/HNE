@@ -1,0 +1,4 @@
+patient_id,key,error
+CH_L_275a,73b9c29a-c63b-4f76-a79c-a7babd70c02b/converted_he/CH_L_275a_vis.tif,ClientError('An error occurred (404) when calling the HeadObject operation: Not Found')
+CH_L_276a,73b9c29a-c63b-4f76-a79c-a7babd70c02b/converted_he/CH_L_276a_vis.tif,ClientError('An error occurred (404) when calling the HeadObject operation: Not Found')
+CH_L_277a,73b9c29a-c63b-4f76-a79c-a7babd70c02b/converted_he/CH_L_277a_vis.tif,ClientError('An error occurred (404) when calling the HeadObject operation: Not Found')
