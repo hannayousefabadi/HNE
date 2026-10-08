@@ -29,12 +29,16 @@ def crop_and_save_tiles(tumor_tiles,
         left = tile_col * tile_size
         upper = tile_row * tile_size
 
-        # clamp boundaries to prevent out-of-bounds artifact creation
+        # a tile on the slide border may extend past it: crop what exists and pad the rest
         actual_w = min(tile_size, max(0, slide_w - left))
         actual_h = min(tile_size, max(0, slide_h - upper))
 
+        # a tile that starts outside the slide means this is not the full-resolution H&E
         if actual_w == 0 or actual_h == 0:
-            continue
+            raise ValueError(
+                f"{patient_id}: tile {tile_row}-{tile_col} starts at ({left}, {upper}) px, outside the "
+                f"{slide_w}x{slide_h} slide. The opened image is not the one the fullres coordinates refer to."
+            )
 
         # OpenSlide.read_region reads (left, top) at level 0 (full resolution)
         tile_img = slide.read_region((left, upper), 0, (actual_w, actual_h)).convert("RGB")

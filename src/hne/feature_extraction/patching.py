@@ -61,16 +61,17 @@ def require_fullres_slide(patient_id: str, slide_width: int, slide_height: int, 
     """
     Tile coordinates (`x_min_fullres` ...) are pixels of the full-resolution H&E that Space
     Ranger registered the spots to. The slide opened for extraction must be that image.
-    Raises if the tiles do not fit inside it, which is what happens when a CytAssist image
-    or any downscaled image is opened instead. Coordinates are never rescaled to make them fit.
+    Raises if any tile starts outside it, which is what happens when a CytAssist image or
+    any downscaled image is opened instead. Coordinates are never rescaled to make them fit.
+    A tile on the slide border may extend past it; its outside patches are skipped and counted.
     """
-    need_w = float(tiles_df["x_max_fullres"].max())
-    need_h = float(tiles_df["y_max_fullres"].max())
-    if need_w > slide_width or need_h > slide_height:
+    far_x = float(tiles_df["x_min_fullres"].max())
+    far_y = float(tiles_df["y_min_fullres"].max())
+    if far_x >= slide_width or far_y >= slide_height:
         raise ValueError(
-            f"{patient_id}: the opened slide is {slide_width}x{slide_height} px but the tiles extend to "
-            f"{need_w:.0f}x{need_h:.0f} px. This is not the full-resolution H&E the coordinates refer to "
-            f"(a 3000x3000 slide is the CytAssist image). Fix the image in the cohort manifest."
+            f"{patient_id}: the opened slide is {slide_width}x{slide_height} px but tiles start as far as "
+            f"({far_x:.0f}, {far_y:.0f}) px. This is not the full-resolution H&E the coordinates refer to "
+            f"(a 3000x3000 slide is the CytAssist image). Check the cohort manifest."
         )
 
 

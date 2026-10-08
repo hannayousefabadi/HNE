@@ -8,7 +8,7 @@ Each stage reads the previous stage's outputs from disk.
 
 | Stage | Run | Logic | Output |
 |---|---|---|---|
-| Cohort inventory | `scripts/cohort_inventory/cohort_inventory.py` | — | `results/cohort_metadata/cohort_manifest.json` (patient IDs + TIF map) |
+| Cohort inventory | `scripts/cohort_inventory/cohort_inventory.py` | — | `results/cohort_metadata/cohort_manifest.json` (patient IDs, H&E map, CytAssist map) |
 | Preprocessing | `scripts/preprocessing/preprocess_cohort.py` | `src/hne/preprocessing/`, `src/hne/preprocessing_qc/` | `tiles/`, `tile_signature_matrix/`, `qc_reports/preprocessing_qc/` |
 | Feature extraction | `scripts/feature_extraction/run_phikon_extractor.py` | `src/hne/feature_extraction/` | `feature_sets/phikon_v2_features/*.npy` |
 | Phase 1 baseline | `scripts/model_train/phase1/train_phase1_ridge.py` | `src/hne/models/` | `results/phase1_ridge/` |
@@ -30,7 +30,9 @@ Each stage reads the previous stage's outputs from disk.
 
 ## Things that bite
 
-- **The current Phikon-v2 features are invalid.** The manifest's TIFFs are 3000 px CytAssist images, not the full-resolution H&E that all coordinates refer to (`converted_he/{patient_id}_vis.tif` in MOSAIC's pipeline). Do not rerun extraction or Phase 1, and do not interpret any model result, until `review/06_registration_audit.md` is resolved.
+- **The stored Phikon-v2 features are invalid.** They were extracted from 3000 px CytAssist images, not the full-resolution H&E that all coordinates refer to. Do not interpret any model result on them. Re-extraction is blocked on the steps in `review/06_registration_audit.md`.
+- Images come from `load_he_slide()` only (`{processed}/{PROCESSED_VERSION}/converted_he/`, filenames in the manifest's `he_map`). `load_cytassist_slide()` and `cytassist_image_prefix` are for the audit; never crop tiles or patches from a CytAssist image.
+- The H&E image and the Space Ranger output must come from the same pipeline version folder. `PROCESSED_VERSION` in `src/hne/core/config.py` is the one place it is set.
 - Fullres coordinates are never rescaled to fit an image. If tiles do not fit inside the opened slide, the image is wrong.
 - `fullres_pixel_size` (`55 / spot_diameter_fullres`) is about 30 to 40% too small. Do not build on it; see `review/06_registration_audit.md`.
 - A tile is `tile_id = "{row}-{col}"` in CSVs and feature filenames, but its PNG is named `tile_r{row}_c{col}.png`.

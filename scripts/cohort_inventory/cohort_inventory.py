@@ -1,4 +1,8 @@
-"""src/core/cohort_inventory.py"""
+"""scripts/cohort_inventory/cohort_inventory.py
+
+Builds the cohort manifest: which patients have Space Ranger output and a full-resolution
+H&E scan, both from the same version folder of the processed dataset.
+"""
 
 import re
 import pandas as pd
@@ -7,7 +11,7 @@ from datetime import datetime
 from pathlib import Path
 from collections import defaultdict
 from hne.core.s3_io import S3DataLoader
-from hne.core.config import (RESULTS, PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, 
+from hne.core.config import (RESULTS, PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, PROCESSED_VERSION,
                              RAW_DATA_BUCKET, RAW_DATA_PREFIX)
 
 
@@ -16,9 +20,33 @@ output_dir = RESULTS / "cohort_metadata"
 
 # CH_L_<digits><optional letter>
 PATIENT_ID_PATTERN = re.compile(r"CH_L_\d+[a-z]?")
+# a full-resolution scan is hundreds of MB; a 3000x3000 CytAssist image is under 30 MB
+MIN_HE_SIZE_BYTES = 100 * 1024 ** 2
 
-def list_raw_hne(bucket, prefix):
-    """List every .tiff of H&E images"""
+
+def list_fullres_he(bucket, prefix):
+    """
+    List the full-resolution H&E scans: {version}/converted_he/{patient_id}_vis.tif in the
+    processed dataset. These are the images Space Ranger registered the spots to.
+    Returns {patient_id: (filename, size_bytes)}.
+    """
+    full_prefix = f"{prefix.rstrip('/')}/{PROCESSED_VERSION}/converted_he/"
+    paginator = loader.s3_client.get_paginator('list_objects_v2')
+    files = {}
+    for page in paginator.paginate(Bucket=bucket, Prefix=full_prefix, Delimiter='/'):
+        for obj in page.get('Contents', []):
+            filename = obj['Key'].split('/')[-1]
+            # PatientS3Paths reads the *_vis sample of each patient, so only its scan is matched
+            if filename.endswith('_vis.tif'):
+                files[filename[:-len('_vis.tif')]] = (filename, obj['Size'])
+    return files
+
+
+def list_cytassist_images(bucket, prefix):
+    """
+    List the CytAssist instrument images (3000x3000 px, named CAVG...). They are not H&E
+    scans and nothing is cropped from them; the manifest keeps them for the registration audit.
+    """
     full_prefix = f"{prefix.rstrip('/')}/spatial_transcriptomics/Visium/image_files/"
     paginator = loader.s3_client.get_paginator('list_objects_v2')
     files = []
@@ -33,7 +61,7 @@ def list_raw_hne(bucket, prefix):
 
 def list_processed_visium(bucket, prefix):
     """List every patient folder from processed Visium data"""
-    full_prefix = f"{prefix.rstrip('/')}/v2/spaceranger_count/"
+    full_prefix = f"{prefix.rstrip('/')}/{PROCESSED_VERSION}/spaceranger_count/"
     paginator = loader.s3_client.get_paginator('list_objects_v2')
     patients = []
     for page in paginator.paginate(Bucket=bucket, Prefix=full_prefix, Delimiter='/'):
@@ -54,7 +82,7 @@ def extract_datetime(filename: str) -> datetime | None:
 
 
 def tie_break_resolver(filenames: list[str]) -> str:
-    """Tie breaker rule for patients with multiple .tif images"""
+    """Tie breaker rule for patients with multiple CytAssist images: the latest capture wins"""
     dated = [(extract_datetime(f), f) for f in filenames]
     dated = [(dt, f) for dt, f in dated if dt is not None]
 
@@ -71,67 +99,63 @@ def cohort_discovery(raw_bucket=RAW_DATA_BUCKET, raw_prefix=RAW_DATA_PREFIX,
     """
     Cohort patient name discovery
     """
-    # building the H&E image inventory
-    hne_files = list_raw_hne(raw_bucket, raw_prefix)
-    hne_map = defaultdict(list)
-    unmatched_hne_files = []
+    # full-resolution H&E scans and Space Ranger output, same version folder
+    he_files = list_fullres_he(processed_bucket, processed_prefix)
+    visium_patients = list_processed_visium(processed_bucket, processed_prefix)
 
-    for key in hne_files:
+    # CytAssist images, for the audit only
+    cytassist_by_patient = defaultdict(list)
+    for key in list_cytassist_images(raw_bucket, raw_prefix):
         filename = key.split('/')[-1]
         match = PATIENT_ID_PATTERN.search(filename)
         if match:
-            hne_map[match.group()].append(filename)
-        else:
-            unmatched_hne_files.append(filename)     # filenames with no recognizable patient ID
+            cytassist_by_patient[match.group()].append(filename)
+    cytassist_map = {pid: tie_break_resolver(names) if len(names) > 1 else names[0]
+                     for pid, names in cytassist_by_patient.items()}
 
-    resolved_hne_map = {}
-    for pid, filenames in hne_map.items():
-        if len(filenames) > 1:
-            resolved_hne_map[pid] = tie_break_resolver(filenames)    # pick the latest H&E tif for each patient
-        else:
-            resolved_hne_map[pid] = filenames[0]    
-
-    # building the Visium inventory
-    visium_patients = list_processed_visium(processed_bucket, processed_prefix)
-
-    # unifying these two inventories
+    # unifying the two inventories
     report_rows = []
-    all_ids = sorted(set(visium_patients) | set(resolved_hne_map.keys()))
-
-    for pid in all_ids:
-        has_tif = pid in resolved_hne_map
-        n_tifs = 1 if has_tif else 0
+    for pid in sorted(set(visium_patients) | set(he_files)):
+        filename, size = he_files.get(pid, ("", 0))
         report_rows.append({
             "patient_id": pid,
             "in_visium": pid in visium_patients,
-            "n_hne_tifs_found": n_tifs,
-            "in_hne": resolved_hne_map.get(pid, ""),
+            "he_file": filename,
+            "he_size_mb": round(size / 1024 ** 2, 1),
+            "cytassist_file": cytassist_map.get(pid, ""),
             "status": (
-                "MATCHED" if pid in visium_patients and n_tifs == 1 else
-                "MISSING_TIFF" if pid in visium_patients and n_tifs == 0 else
-                "TIFF_HAS_NO_VISIUM_MATCH"  # tif exist but no processed visium folder
+                "HE_HAS_NO_VISIUM_MATCH" if pid not in visium_patients else   # scan exists but no Space Ranger folder
+                "MISSING_HE" if not filename else
+                "HE_TOO_SMALL" if size < MIN_HE_SIZE_BYTES else                # not a full-resolution scan
+                "MATCHED"
             )
         })
 
     final_ids = [row["patient_id"] for row in report_rows if row["status"] == "MATCHED"]
-    final_tif_map = {pid: resolved_hne_map[pid] for pid in final_ids}
+    he_map = {pid: he_files[pid][0] for pid in final_ids}
 
     # human-readable report for the cohort inventory
     out_dir = Path(out_dir)
     report = pd.DataFrame(report_rows).sort_values(["status", "patient_id"])
     report.to_csv(out_dir/"cohort_inventory_report.csv", index=False)
+    print(f"Processed dataset version: {PROCESSED_VERSION}")
     print(report['status'].value_counts())
-    print(f"\n{len(unmatched_hne_files)} hne filenames had no recognizable patient IDs")
-    for f in unmatched_hne_files:
-        print(" ", f)
+    matched = report[report["status"] == "MATCHED"]
+    if not matched.empty:
+        print(f"\nH&E scan size (MB): median {matched['he_size_mb'].median():.0f}, "
+              f"min {matched['he_size_mb'].min():.0f}, max {matched['he_size_mb'].max():.0f}")
 
-    # machine-readable manifest (to import into src/core/paths.py)
-    manifest = {"patient_ids": final_ids, "tif_map": final_tif_map}
+    # machine-readable manifest (imported by src/hne/core/paths.py)
+    manifest = {
+        "processed_version": PROCESSED_VERSION,
+        "patient_ids": final_ids,
+        "he_map": he_map,
+        "cytassist_map": {pid: cytassist_map[pid] for pid in final_ids if pid in cytassist_map},
+    }
     with open(out_dir / "cohort_manifest.json", "w") as f:
         json.dump(manifest, f, indent=2)
 
-
-    return final_ids, final_tif_map
+    return final_ids, he_map
 
 if __name__ == "__main__":
     cohort_discovery()

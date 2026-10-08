@@ -67,7 +67,7 @@ Each file should cover, where relevant:
 
 **It is not a changelog.** A bug that was found and fixed is not mentioned. The one exception: when the fix leaves behind something the user still needs to know, such as a constraint, an invariant, or an input format that will break again if ignored. In that case write it as a present-tense rule, not as a story.
 
-- Keep: "`TIF_MAP` entries must be bare filenames. A full `s3://` path gets double-prefixed."
+- Keep: "`HE_MAP` entries must be bare filenames. A full `s3://` path gets double-prefixed."
 - Drop: "Previously the parser crashed with `NoSuchBucket`; this was fixed by switching to `urlsplit`."
 
 Words such as "previously", "now", "was fixed", "no longer" are a sign that history is leaking in. Rewrite the sentence to state the current behaviour, or delete it.

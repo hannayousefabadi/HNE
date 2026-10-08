@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 from hne.core.paths import PATIENTS, TILES_SIGNATURE_MATRIX
-from hne.core.data_io import load_he_slide
+from hne.core.data_io import load_cytassist_slide as load_he_slide   # obsolete test: it scaled coordinates onto the CytAssist image
 
 pid = "CH_L_275a"
 scale = 0.0811897

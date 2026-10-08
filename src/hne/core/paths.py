@@ -1,8 +1,8 @@
 """src/core/paths.py"""
 import json
 
-from hne.core.config import (ROOT, RESULTS, PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, 
-                             RAW_DATA_BUCKET, RAW_DATA_PREFIX)
+from hne.core.config import (ROOT, RESULTS, PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX,
+                             PROCESSED_VERSION, RAW_DATA_BUCKET, RAW_DATA_PREFIX)
 
 # s3 paths
 class PatientS3Paths:
@@ -16,12 +16,15 @@ class PatientS3Paths:
         # clean patient_id:
         self.clean_id = patient_id.replace('_vis', '')
 
-        self.processed_base = f"s3://{PROCESSED_VISIUM_BUCKET}/{PROCESSED_VISIUM_PREFIX}"
-        self.visium_st = f"{self.processed_base}/v2/without_spotclean/stLearn/{patient_id}_vis"
-        self.visium_info = f"{self.processed_base}/v2/spaceranger_count/{patient_id}_vis/outs/spatial"
+        self.processed_base = f"s3://{PROCESSED_VISIUM_BUCKET}/{PROCESSED_VISIUM_PREFIX}/{PROCESSED_VERSION}"
+        self.visium_st = f"{self.processed_base}/without_spotclean/stLearn/{patient_id}_vis"
+        self.visium_info = f"{self.processed_base}/spaceranger_count/{patient_id}_vis/outs/spatial"
+        # full-resolution H&E scans: the images Space Ranger registered the spots to
+        self.he_image_prefix = f"{self.processed_base}/converted_he"
 
         self.raw_base = f"s3://{RAW_DATA_BUCKET}/{RAW_DATA_PREFIX}"
-        self.raw_image_prefix = f"{self.raw_base}/spatial_transcriptomics/Visium/image_files"
+        # 3000x3000 px CytAssist instrument images. Not H&E scans; kept for the registration audit only
+        self.cytassist_image_prefix = f"{self.raw_base}/spatial_transcriptomics/Visium/image_files"
         
 
 TILES = ROOT / "tiles"
@@ -47,7 +50,11 @@ except (FileNotFoundError, json.JSONDecodeError) as e:
     raise RuntimeError("cohort_manifest.json not found or invalid, run cohort_inventory module first!") from e       
 
 PATIENT_IDS = _manifest["patient_ids"]
-TIF_MAP = _manifest["tif_map"]
+# patient -> full-resolution H&E filename. Empty until cohort_inventory.py has been rerun since
+# the switch away from the CytAssist images; load_he_slide() raises in that case.
+HE_MAP = _manifest.get("he_map", {})
+# patient -> CytAssist filename, for the registration audit only
+CYTASSIST_MAP = _manifest.get("cytassist_map", {})
 
 PATIENTS = {p: PatientS3Paths(p) for p in PATIENT_IDS}
 

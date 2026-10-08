@@ -4,7 +4,7 @@ import pandas as pd
 from pathlib import Path
 from contextlib import contextmanager
 
-from hne.core.paths import (PatientS3Paths, TIF_MAP, TILES_SIGNATURE_MATRIX)
+from hne.core.paths import (PatientS3Paths, HE_MAP, CYTASSIST_MAP, TILES_SIGNATURE_MATRIX)
 from hne.core.s3_io import S3DataLoader
 
 _s3_loader = None
@@ -30,30 +30,22 @@ def load_scale_factor(patient_paths: PatientS3Paths):
     scale_path = f"{patient_paths.visium_info}/scalefactors_json.json"
     return loader.read_json(scale_path)
 
-def load_he_image(patient_paths: PatientS3Paths, qc_tracker=None):
-    loader = get_s3_loader()
-
-    filename = TIF_MAP.get(patient_paths.clean_id)
-
-    if filename:
-        tif_path = f"{patient_paths.raw_image_prefix}/{filename}"
-        return loader.read_tif(tif_path)
-    elif qc_tracker:
-        qc_tracker.add_record(patient_paths.patient_id,
-                                  "fullresimg_load",
-                                  "EXCLUDE",
-                                  f"No full resolution image found found for {patient_paths.patient_id}",
-                                  metadata={})    
-
-
 @contextmanager
 def load_he_slide(patient_paths: PatientS3Paths, qc_tracker=None):
-    """Context manager yielding an OpenSlide handle and cleaning up temp files automatically"""
+    """
+    Context manager yielding an OpenSlide handle on the patient's full-resolution H&E scan,
+    the image all fullres coordinates refer to. Cleans up temp files automatically.
+    """
+    if not HE_MAP:
+        raise RuntimeError(
+            "cohort_manifest.json has no 'he_map'. It was written when the pipeline still read the "
+            "CytAssist images. Rerun scripts/cohort_inventory/cohort_inventory.py."
+        )
     loader = get_s3_loader()
-    filename = TIF_MAP.get(patient_paths.clean_id)
+    filename = HE_MAP.get(patient_paths.clean_id)
 
     if filename:
-        tif_path = f"{patient_paths.raw_image_prefix}/{filename}"
+        tif_path = f"{patient_paths.he_image_prefix}/{filename}"
         with loader.open_tif_as_openslide(tif_path) as slide:
             yield slide
     else:
@@ -65,6 +57,19 @@ def load_he_slide(patient_paths: PatientS3Paths, qc_tracker=None):
                 f"No full resolution image found for {patient_paths.patient_id}",
                 metadata={})
         yield None
+
+
+@contextmanager
+def load_cytassist_slide(patient_paths: PatientS3Paths):
+    """
+    OpenSlide handle on the patient's CytAssist instrument image (3000x3000 px). For the
+    registration audit and debugging only: tiles and patches are never cropped from it.
+    """
+    filename = CYTASSIST_MAP.get(patient_paths.clean_id)
+    if not filename:
+        raise FileNotFoundError(f"{patient_paths.patient_id}: no CytAssist image in the manifest")
+    with get_s3_loader().open_tif_as_openslide(f"{patient_paths.cytassist_image_prefix}/{filename}") as slide:
+        yield slide
        
 
 def save_tile_features(tiles_sig_tumor, patient_id=None, mode='cohort'):

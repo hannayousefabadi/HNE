@@ -18,6 +18,9 @@ ROOT = _find_repo_root(Path(__file__))
 # s3 configuration
 PROCESSED_VISIUM_BUCKET = os.getenv("PROCESSED_VISIUM_BUCKET")
 PROCESSED_VISIUM_PREFIX = os.getenv("PROCESSED_VISIUM_PREFIX")
+# version folder of the MOSAIC Visium pipeline output. The H&E image, the Space Ranger
+# coordinates and the h5ad must all come from the same one.
+PROCESSED_VERSION = "v2"
 
 RAW_DATA_BUCKET = os.getenv("RAW_DATA_BUCKET")
 RAW_DATA_PREFIX = os.getenv("RAW_DATA_PREFIX")

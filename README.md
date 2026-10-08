@@ -4,7 +4,7 @@ A pipeline for lung cancer that learns to read pathway activity from routine H&E
 
 ## How it works
 
-1. **Cohort inventory.** Lists the patients and H&E images available on S3 and writes a manifest.
+1. **Cohort inventory.** Lists the patients that have both Space Ranger output and a full-resolution H&E scan on S3, and writes a manifest.
 2. **Preprocessing.** Per patient: estimates tumor purity, tiles the slide, keeps tumor-rich tiles, scores each Visium spot with ssGSEA, and averages spot scores to tile level. Every patient gets a QC verdict.
 3. **Feature extraction.** Embeds each tile with the Phikon-v2 pathology foundation model.
 4. **Phase 1 baseline.** Fits a ridge regression from tile embeddings to signature scores and evaluates it with nested cross-validation grouped by patient.
@@ -91,4 +91,4 @@ HNE_repo/
 
 ## Status
 
-The current cohort has 151 patients, of which 93 pass preprocessing QC. **The extracted features are not usable yet**: the image files in the cohort manifest are low-resolution CytAssist images, not the full-resolution H&E scans that the spot and tile coordinates refer to. Model results on these features are not meaningful, and feature extraction now refuses to run on those images. Current work: pointing the manifest at the full-resolution H&E, correcting the pixel size, then re-extracting features and rerunning the Phase 1 baseline. The audit scripts are in `scripts/audit/`.
+The current cohort has 151 patients, of which 93 pass preprocessing QC. **The stored features are not usable**: they were extracted from low-resolution CytAssist images, not from the full-resolution H&E scans that the spot and tile coordinates refer to, and model results on them are not meaningful. The pipeline now reads the full-resolution scans. Before features can be re-extracted, the cohort inventory has to be rerun, the pixel size corrected, and preprocessing rerun. The audit that found this is in `scripts/audit/`.

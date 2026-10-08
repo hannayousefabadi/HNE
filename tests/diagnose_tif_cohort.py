@@ -16,7 +16,7 @@ import pandas as pd
 import tifffile
 import openslide
 
-from hne.core.paths import PatientS3Paths, TIF_MAP
+from hne.core.paths import PatientS3Paths, CYTASSIST_MAP as TIF_MAP   # these are the CytAssist images, not H&E scans
 from hne.core.config import RESULTS
 
 s3 = boto3.client("s3")
@@ -37,7 +37,7 @@ def check_patient(patient_id: str, filename: str):
 
     try:
         patient_paths = PatientS3Paths(patient_id)
-        tif_path = f"{patient_paths.raw_image_prefix}/{filename}"
+        tif_path = f"{patient_paths.cytassist_image_prefix}/{filename}"
         row["s3_key"] = tif_path
 
         # parse s3://bucket/key

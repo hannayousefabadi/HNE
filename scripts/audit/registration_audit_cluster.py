@@ -1,10 +1,11 @@
 """scripts/audit/registration_audit_cluster.py
 
-Registration audit, part B (cluster, CPU only): for every patient, open the same TIFF that
-feature extraction opened and record what it is and where the tiles landed on it.
+Registration audit, part B (cluster, CPU only): for every patient, open the CytAssist image that
+feature extraction opened before the fix, and record what it is and where the tiles landed on it.
 
     python scripts/audit/registration_audit_cluster.py
     python scripts/audit/registration_audit_cluster.py --patients CH_L_275a CH_L_282a
+    python scripts/audit/registration_audit_cluster.py --only-he-check   # just verify the full-resolution H&E files (fast)
     python scripts/audit/registration_audit_cluster.py --spot-purity   # colour spots by their own tumor fraction (loads each h5ad; slower)
 
 Resumable: patients already in slide_inventory.csv are skipped. A failing patient is
@@ -16,7 +17,7 @@ Outputs (in results/registration_audit/ by default):
                                right: Space Ranger's hires image with the same spots and tiles where they truly are
     sample_crops/{patient}_{tile}.png   patches exactly as fed to Phikon-v2
     bucket_census.csv          every folder of the raw and processed datasets: files, sizes, extensions
-    converted_he_check.csv     a few full-resolution H&E slides opened: size, levels, mpp, match with Space Ranger
+    converted_he_check.csv     full-resolution H&E per patient: exists, size; a few opened: dimensions, mpp, match with Space Ranger
     audit_failures.csv         patients that raised, with the error
 """
 import argparse
@@ -30,8 +31,8 @@ import tifffile
 from PIL import Image
 
 from hne.core.config import PROCESSED_VISIUM_BUCKET, PROCESSED_VISIUM_PREFIX, RAW_DATA_BUCKET, RAW_DATA_PREFIX, ROOT
-from hne.core.data_io import get_s3_loader, load_he_slide, load_spots, load_visium
-from hne.core.paths import (PATIENT_IDS, PATIENTS, PREPROCESSING_QC_REPORTS, REGISTRATION_AUDIT, TIF_MAP,
+from hne.core.data_io import get_s3_loader, load_cytassist_slide, load_spots, load_visium
+from hne.core.paths import (CYTASSIST_MAP, HE_MAP, PATIENT_IDS, PATIENTS, PREPROCESSING_QC_REPORTS, REGISTRATION_AUDIT,
                             TILES_SIGNATURE_MATRIX)
 from hne.feature_extraction.registration_audit import audit_patient
 from hne.preprocessing.preprocessing_config import PREPROCESSING_CONFIG
@@ -48,11 +49,12 @@ def append_row(row: dict, path: Path):
 def audit_one(patient_id: str, metadata: pd.DataFrame, output_dir: Path, spot_purity: bool) -> dict:
     loader = get_s3_loader()
     paths = PATIENTS[patient_id]
-    filename = TIF_MAP.get(paths.clean_id)
+    # the image the audited extraction opened: the CytAssist image
+    filename = CYTASSIST_MAP.get(paths.clean_id)
     if not filename:
-        raise FileNotFoundError(f"{patient_id}: no TIFF in the manifest")
+        raise FileNotFoundError(f"{patient_id}: no CytAssist image in the manifest")
 
-    bucket, key = loader._parse_s3_path(f"{paths.raw_image_prefix}/{filename}")
+    bucket, key = loader._parse_s3_path(f"{paths.cytassist_image_prefix}/{filename}")
     tif_size = loader.s3_client.head_object(Bucket=bucket, Key=key)["ContentLength"]
 
     # scale factors: an unreadable file is recorded as the fallback the old extractor took
@@ -88,7 +90,7 @@ def audit_one(patient_id: str, metadata: pd.DataFrame, output_dir: Path, spot_pu
     except Exception:
         pass   # the reference panel is optional
 
-    with load_he_slide(paths) as slide:
+    with load_cytassist_slide(paths) as slide:
         row = audit_patient(
             patient_id=patient_id, slide=slide, scale_json=scale_json, spots=spots, tiles_df=tiles_df,
             fullres_pixel_size=fullres_px, tile_size_px=tile_px, output_dir=output_dir, hires_image=hires_image,
@@ -146,41 +148,60 @@ def locate_fullres_he(output_dir: Path, verify_n: int):
     print("\nFolders named converted_he or image_features:")
     print(he[["dataset", "folder", "n_files", "largest_file_mb"]].head(60).to_string(index=False) if not he.empty else "  none found")
 
-    # open a few candidate slides and compare their size with what Space Ranger's coordinates imply
-    candidates = census[census["folder"].str.rstrip("/").str.endswith("converted_he")]
-    if candidates.empty or verify_n <= 0:
-        return
+    check_fullres_he(output_dir, verify_n)
+
+
+def check_fullres_he(output_dir: Path, verify_n: int):
+    """
+    For every patient: does the full-resolution H&E exist under PatientS3Paths.he_image_prefix, and how big is it?
+    For the first `verify_n` patients with tiles: download it, open it, and compare its size with the
+    frame Space Ranger's coordinates imply.
+    """
     loader = get_s3_loader()
-    folder = candidates.iloc[0]
-    bucket = RAW_DATA_BUCKET if folder["dataset"] == "raw" else PROCESSED_VISIUM_BUCKET
-    inventory = pd.read_csv(output_dir / "slide_inventory.csv") if (output_dir / "slide_inventory.csv").exists() else pd.DataFrame()
+    inventory = pd.read_csv(output_dir / "slide_inventory.csv").set_index("patient_id") if (output_dir / "slide_inventory.csv").exists() else pd.DataFrame()
+    to_open = [p for p in PATIENT_IDS if (TILES_SIGNATURE_MATRIX / f"tiles_signature_matrix_{p}.csv").exists()][:max(verify_n, 0)]
     checks = []
-    for patient_id in [p for p in PATIENT_IDS if (TILES_SIGNATURE_MATRIX / f"tiles_signature_matrix_{p}.csv").exists()][:verify_n]:
-        key = f"{folder['folder']}{patient_id}_vis.tif"
-        record = {"patient_id": patient_id, "key": key}
+    for patient_id in PATIENT_IDS:
+        # the manifest's filename once the inventory has been rerun, else the pipeline's naming
+        filename = HE_MAP.get(patient_id, f"{patient_id}_vis.tif")
+        bucket, key = loader._parse_s3_path(f"{PATIENTS[patient_id].he_image_prefix}/{filename}")
+        record = {"patient_id": patient_id, "key": key, "exists": False}
         try:
-            with tempfile.NamedTemporaryFile(suffix=".tif") as tmp:
-                loader.s3_client.download_file(bucket, key, tmp.name)
-                record["size_mb"] = round(Path(tmp.name).stat().st_size / 1024 ** 2, 1)
-                try:
-                    slide = openslide.OpenSlide(tmp.name)
-                    record.update(opens_with_openslide=True, width=slide.dimensions[0], height=slide.dimensions[1],
-                                  levels=slide.level_count, mpp_x=slide.properties.get("openslide.mpp-x"))
-                    slide.close()
-                except Exception as e:
-                    with tifffile.TiffFile(tmp.name) as tif:
-                        page = tif.pages[0]
-                        record.update(opens_with_openslide=False, openslide_error=repr(e), width=page.imagewidth,
-                                      height=page.imagelength, levels=len(tif.series[0].levels))
-            match = inventory[inventory["patient_id"] == patient_id] if not inventory.empty else inventory
-            if len(match) and pd.notna(match["implied_fullres_width"].iloc[0]):
-                record["implied_fullres_width"] = float(match["implied_fullres_width"].iloc[0])
-                record["matches_fullres_frame"] = abs(record["width"] - record["implied_fullres_width"]) / record["implied_fullres_width"] < 0.01
+            record["size_mb"] = round(loader.s3_client.head_object(Bucket=bucket, Key=key)["ContentLength"] / 1024 ** 2, 1)
+            record["exists"] = True
         except Exception as e:
             record["error"] = repr(e)
+        if record["exists"] and patient_id in to_open:
+            try:
+                with tempfile.NamedTemporaryFile(suffix=".tif") as tmp:
+                    loader.s3_client.download_file(bucket, key, tmp.name)
+                    try:
+                        slide = openslide.OpenSlide(tmp.name)
+                        record.update(opens_with_openslide=True, width=slide.dimensions[0], height=slide.dimensions[1],
+                                      levels=slide.level_count, mpp_x=slide.properties.get("openslide.mpp-x"))
+                        slide.close()
+                    except Exception as e:
+                        with tifffile.TiffFile(tmp.name) as tif:
+                            page = tif.pages[0]
+                            record.update(opens_with_openslide=False, openslide_error=repr(e), width=page.imagewidth,
+                                          height=page.imagelength, levels=len(tif.series[0].levels),
+                                          tiff_resolution=str(page.tags["XResolution"].value) if "XResolution" in page.tags else None)
+                if patient_id in inventory.index and pd.notna(inventory.loc[patient_id, "implied_fullres_width"]):
+                    implied = float(inventory.loc[patient_id, "implied_fullres_width"])
+                    record["implied_fullres_width"] = implied
+                    record["matches_fullres_frame"] = abs(record["width"] - implied) / implied < 0.01
+            except Exception as e:
+                record["error"] = repr(e)
+            print(f"  opened {patient_id}: {record}", flush=True)
         checks.append(record)
-        print(f"  {patient_id}: {record}")
-    pd.DataFrame(checks).to_csv(output_dir / "converted_he_check.csv", index=False)
+
+    df = pd.DataFrame(checks)
+    df.to_csv(output_dir / "converted_he_check.csv", index=False)
+    print(f"\nFull-resolution H&E found for {int(df['exists'].sum())} of {len(df)} patients "
+          f"(median {df['size_mb'].median():.0f} MB)." if df["exists"].any() else "\nNo full-resolution H&E found at the expected path.")
+    missing = df.loc[~df["exists"], "patient_id"].tolist()
+    if missing:
+        print(f"Missing: {missing}")
 
 
 def main():
@@ -190,12 +211,19 @@ def main():
     parser.add_argument("--spot-purity", action="store_true",
                         help="colour spots by their own tumor fraction instead of their tile's purity")
     parser.add_argument("--skip-s3-listing", action="store_true", help="do not survey the buckets for the full-resolution H&E")
+    parser.add_argument("--only-he-check", action="store_true",
+                        help="skip the per-patient audit and the bucket survey; only check the full-resolution H&E files")
     parser.add_argument("--verify-he", type=int, default=3,
                         help="number of converted_he slides to download and open (0 to skip)")
     args = parser.parse_args()
 
     output_dir = args.output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
+    if args.only_he_check:
+        check_fullres_he(output_dir, args.verify_he)
+        print(f"\nTo send the result back:\n  git add {output_dir / 'converted_he_check.csv'}\n"
+              '  git commit -m "chore(audit): full-resolution H&E check"\n  git push')
+        return
     inventory_csv = output_dir / "slide_inventory.csv"
     failures_csv = output_dir / "audit_failures.csv"
 
