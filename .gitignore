@@ -29,3 +29,6 @@ build/
 # ignore env files
 .env
 nohup.out
+
+# graphify output (regenerated locally, never committed)
+graphify-out/

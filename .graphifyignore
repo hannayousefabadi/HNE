@@ -1,0 +1,9 @@
+feature_sets/
+tile_signature_matrix/
+tiles/
+data/
+results/
+qc_reports/
+plots/**/*.png
+.history/
+*.egg-info/
