@@ -5,6 +5,7 @@ import boto3
 from pathlib import Path
 import io
 import os
+import shutil
 import json
 import pandas as pd
 import scanpy as sc
@@ -21,6 +22,49 @@ from contextlib import contextmanager
 from hne.utils import get_logger
 
 logger = get_logger()
+
+def slide_temp_dir() -> Path:
+    """Folder that holds downloaded slides while they are open. One file per open slide."""
+    folder = Path(tempfile.gettempdir()) / "hne_slides"
+    folder.mkdir(parents=True, exist_ok=True)
+    return folder
+
+
+def _process_is_alive(pid: int) -> bool:
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def remove_orphan_slides() -> tuple[int, float]:
+    """
+    Delete slides left in slide_temp_dir() by processes that no longer exist (a killed run
+    cannot clean up after itself). Files of running processes are left alone.
+    Returns (files removed, GB freed).
+    """
+    removed, freed = 0, 0
+    for path in slide_temp_dir().glob("slide_*"):
+        try:
+            pid = int(path.name.split("_")[1])
+        except (IndexError, ValueError):
+            continue
+        if not _process_is_alive(pid):
+            freed += path.stat().st_size
+            path.unlink()
+            removed += 1
+    return removed, freed / 1024 ** 3
+
+
+def temp_dir_usage() -> dict:
+    """Free space where slides are downloaded, and whether that place is RAM."""
+    usage = shutil.disk_usage(slide_temp_dir())
+    return {"temp_dir": str(slide_temp_dir()), "temp_free_gb": round(usage.free / 1024 ** 3, 1),
+            "temp_dir_in_ram": temp_dir_is_in_ram()}
+
 
 def temp_dir_is_in_ram() -> bool:
     """True if temp files live on a RAM-backed filesystem (tmpfs), where a downloaded slide counts as memory."""
@@ -107,7 +151,9 @@ class S3DataLoader:
         if temp_dir_is_in_ram():
             logger.warning(f"Temp directory {tempfile.gettempdir()} is RAM-backed (tmpfs): the downloaded slide will "
                            f"use memory. Set TMPDIR to a directory on disk.")
-        tmp = tempfile.NamedTemporaryFile(suffix=Path(prefix).suffix or ".tif", delete=False)
+        # named after this process, so a later run can tell which leftovers are orphans
+        tmp = tempfile.NamedTemporaryFile(prefix=f"slide_{os.getpid()}_", suffix=Path(prefix).suffix or ".tif",
+                                          dir=slide_temp_dir(), delete=False)
         tmp_path = tmp.name
         tmp.close()
 

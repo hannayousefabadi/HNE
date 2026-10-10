@@ -8,6 +8,28 @@ from hne.core.paths import TILES
 
 logger = get_logger()
 
+def drop_tiles_outside_slide(tumor_tiles, tile_size: int, slide_width: int, slide_height: int, patient_id: str):
+    """
+    Keep only the tiles that lie fully inside the H&E scan. The Visium capture area can reach
+    past the edge of the scan, so a few spots, and the tiles built on them, have no image under
+    them. If most tiles are outside, the wrong image was opened and this raises.
+
+    Returns the kept tiles and the metadata.
+    """
+    inside = (((tumor_tiles["tile_col"] + 1) * tile_size <= slide_width) &
+              ((tumor_tiles["tile_row"] + 1) * tile_size <= slide_height))
+    n_outside = int((~inside).sum())
+    if n_outside > 0.5 * len(tumor_tiles):
+        raise ValueError(
+            f"{patient_id}: {n_outside} of {len(tumor_tiles)} tumor tiles are not inside the "
+            f"{slide_width}x{slide_height} slide. The opened image is not the one the fullres coordinates refer to."
+        )
+    if n_outside:
+        logger.warning(f"{patient_id}: dropped {n_outside} tumor tile(s) that reach past the edge of the H&E scan")
+    kept = tumor_tiles[inside].copy()
+    return kept, {"n_tiles_outside_slide": n_outside, "n_tumor_tiles": len(kept), "has_tumor_tiles": len(kept) > 0}
+
+
 def crop_and_save_tiles(tumor_tiles, 
                         tile_size: int, 
                         slide: openslide.OpenSlide, 

@@ -16,7 +16,7 @@ Each stage reads the previous stage's outputs from disk.
 | Early Phase 1 MLP | `scripts/model_train/phase1/train_phase1.py` | `src/hne/models/` | `results/phase1/` |
 
 - **Preprocessing**: tumor fraction from deconvolution, Bayesian tile purity, tumor-tile filter, per-spot ssGSEA scores, tile-level means, top-quartile binary calls. Every patient gets a QC verdict (`OK` / `REVIEW` / `EXCLUDE`).
-- **Feature extraction**: each tile is split into 112 µm sub-patches, embedded with Phikon-v2 (1024-d CLS token), and mean-pooled to one vector per tile.
+- **Feature extraction**: each tile is split into 112 µm sub-patches, embedded with Phikon-v2 (1024-d CLS token), and mean-pooled to one vector per tile. Runs in a fresh worker process per group of patients and resumes per tile.
 - **Phase 1 baseline**: ridge regression per signature, evaluated with nested grouped (by patient) cross-validation and patient-level statistics (`src/hne/models/ridge_cv.py`, `src/hne/models/evaluation.py`).
 - **Early Phase 1 MLP**: a distributional MLP with a single train/validation split. Its results are superseded and kept only for comparison.
 
@@ -30,7 +30,7 @@ Each stage reads the previous stage's outputs from disk.
 
 ## Things that bite
 
-- **The stored features, tile matrices and Phase 1 results are stale.** `feature_sets/`, `tile_signature_matrix/` and `qc_reports/preprocessing_qc/` come from runs on CytAssist images with 1.4 mm tiles. Do not interpret any model result on them. They are replaced by rerunning preprocessing, then extraction, on the cluster (`review/06_registration_audit.md`).
+- **Feature extraction is incomplete and the Phase 1 results are stale.** `tile_signature_matrix/` is current (full-resolution H&E, 1 mm tiles). `feature_sets/phikon_v2_features/` covers 58 of 91 patients. `results/phase1_ridge/` and `results/phase1/` were computed on the old CytAssist features: do not interpret them. Phase 1 is rerun, unchanged, once extraction is complete (`review/06_registration_audit.md`).
 - Images come from `load_he_slide()` only (`{processed}/{PROCESSED_VERSION}/converted_he/`, filenames in the manifest's `he_map`). `load_cytassist_slide()` and `cytassist_image_prefix` are for the audit; never crop tiles or patches from a CytAssist image.
 - The H&E image and the Space Ranger output must come from the same pipeline version folder. `PROCESSED_VERSION` in `src/hne/core/config.py` is the one place it is set.
 - Fullres coordinates are never rescaled to fit an image. If tiles do not fit inside the opened slide, the image is wrong.

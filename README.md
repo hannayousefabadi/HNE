@@ -43,7 +43,7 @@ python scripts/cohort_inventory/cohort_inventory.py
 # 2. Preprocess every patient in the manifest
 python scripts/preprocessing/preprocess_cohort.py
 
-# 3. Extract Phikon-v2 features (GPU recommended; resumes where it stopped)
+# 3. Extract Phikon-v2 features (GPU recommended; rerun to resume; progress in qc_reports/feature_extraction_qc/)
 python scripts/feature_extraction/run_phikon_extractor.py
 
 # 4. Fit and evaluate the Phase 1 ridge baseline
@@ -91,4 +91,4 @@ HNE_repo/
 
 ## Status
 
-The current cohort has 151 patients, of which 93 pass preprocessing QC. **The stored features are not usable**: they were extracted from low-resolution CytAssist images, not from the full-resolution H&E scans that the spot and tile coordinates refer to, and model results on them are not meaningful. The pipeline now reads the full-resolution scans. Before features can be re-extracted, the cohort inventory has to be rerun, the pixel size corrected, and preprocessing rerun. The audit that found this is in `scripts/audit/`.
+The cohort has 151 patients, of which 93 pass preprocessing QC. The pipeline reads the full-resolution H&E scans and cuts true 1 mm tiles. Preprocessing has been rerun on that basis (91 patients, 2,989 tumor tiles; 2 patients to redo). Feature extraction is partly done (58 patients). The Phase 1 results in `results/` predate these fixes and are not meaningful; they are regenerated once extraction is complete.

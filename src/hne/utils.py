@@ -93,3 +93,22 @@ class LoggerMixin:
             )
         return self._logger        
  
+
+
+def memory_snapshot() -> dict:
+    """Memory of this process and of the machine, in MB, read from /proc (Linux)."""
+    snap = {"process_rss_mb": None, "system_available_mb": None, "system_total_mb": None}
+    try:
+        with open("/proc/self/status") as f:
+            for line in f:
+                if line.startswith("VmRSS:"):
+                    snap["process_rss_mb"] = round(int(line.split()[1]) / 1024)
+        with open("/proc/meminfo") as f:
+            for line in f:
+                if line.startswith("MemAvailable:"):
+                    snap["system_available_mb"] = round(int(line.split()[1]) / 1024)
+                elif line.startswith("MemTotal:"):
+                    snap["system_total_mb"] = round(int(line.split()[1]) / 1024)
+    except OSError:
+        pass
+    return snap

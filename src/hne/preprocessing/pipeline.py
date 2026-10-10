@@ -9,7 +9,7 @@ from hne.core.paths import PATIENTS
 from hne.core.data_io import *
 from hne.core.data_io import load_he_slide, slide_um_per_px
 from hne.preprocessing.tumor_purity import *
-from hne.preprocessing.tiling import crop_and_save_tiles
+from hne.preprocessing.tiling import crop_and_save_tiles, drop_tiles_outside_slide
 from hne.preprocessing.spot_signatures import compute_signatures
 from hne.preprocessing.aggregation import aggregate_signatures, binary_scores
 from hne.preprocessing_qc.plots import *
@@ -77,6 +77,13 @@ def preprocess_patient(patient_id,
         # check if we have tiles BEFORE proceeding
         if not meta.get('has_tumor_tiles', False):
             logger.warning(f"Skipping remaining steps for {patient_id} no tumor tiles!")
+            return patient_metadata, None, None, None
+
+        # tiles the scan does not fully cover have no image to learn from
+        tumor_tiles_df, meta = drop_tiles_outside_slide(tumor_tiles_df, tile_size_px, slide_w, slide_h, patient_id)
+        patient_metadata.update(meta)
+        if not meta["has_tumor_tiles"]:
+            logger.warning(f"Skipping remaining steps for {patient_id}: no tumor tile inside the H&E scan")
             return patient_metadata, None, None, None
 
         # crop and save image tiles directly via OpenSlide
