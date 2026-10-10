@@ -1,6 +1,8 @@
 {
     "target_physical_size_um": 1000.0,
     "spot_diameter_um": 55.0,
+    "spot_pitch_um": 100.0,
+    "spot_pitch_tolerance": 0.15,
     "min_initial_tiles": 30,
     "k_prior": 2.0,
     "mean_tumor_fraction_threshold": 0.2,
