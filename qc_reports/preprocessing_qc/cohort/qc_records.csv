@@ -90,6 +90,7 @@ CH_L_296a,signature_qc,OK,All 5 ssGSEA signatures computed successfully,,,,,,,,,
 CH_L_298a,tumor_fraction,OK,Tumor fraction attached successfully,2107.0,0.0,0.5112816612623963,,,,,,,,
 CH_L_298a,tile_purity,OK,Mean tile purity is above 30.0%,,,,0.48418930642252567,0.4843047302714258,0.17941513668557618,,,,,
 CH_L_298a,filter_tumor_tiles,OK,Found 25 tumor tiles,,,,,,,43.0,25.0,True,,
+CH_L_298a,signature_qc,OK,All 5 ssGSEA signatures computed successfully,,,,,,,,,,"['Cell_cycle_signature: 19/20 genes', 'EMT_signature: 6/6 genes', 'FMRP_signature: 50/50 genes', 'WNT_signature: 17/17 genes', 'YAP_signature: 6/6 genes']",0.0
 CH_L_299a,tumor_fraction,OK,Tumor fraction attached successfully,4809.0,0.0,0.5315679341291158,,,,,,,,
 CH_L_299a,tile_purity,OK,Mean tile purity is above 30.0%,,,,0.5043701580686888,0.5546765927524311,0.29483978805917693,,,,,
 CH_L_299a,filter_tumor_tiles,OK,Found 32 tumor tiles,,,,,,,60.0,32.0,True,,
