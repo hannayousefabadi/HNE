@@ -30,7 +30,7 @@ Each stage reads the previous stage's outputs from disk.
 
 ## Things that bite
 
-- **Feature extraction is incomplete and the Phase 1 results are stale.** `tile_signature_matrix/` is current (full-resolution H&E, 1 mm tiles). `feature_sets/phikon_v2_features/` covers 58 of 91 patients. `results/phase1_ridge/` and `results/phase1/` were computed on the old CytAssist features: do not interpret them. Phase 1 is rerun, unchanged, once extraction is complete (`review/06_registration_audit.md`).
+- **Current data**: `tile_signature_matrix/` (92 patients, 3,005 tiles of 1 mm) and `feature_sets/phikon_v2_features/` (2,993 files) come from the full-resolution H&E. `results/phase1_ridge/` is the Phase 1 baseline on them. `results/phase1/` (early MLP) was computed on features from the wrong images and is void.
 - Images come from `load_he_slide()` only (`{processed}/{PROCESSED_VERSION}/converted_he/`, filenames in the manifest's `he_map`). `load_cytassist_slide()` and `cytassist_image_prefix` are for the audit; never crop tiles or patches from a CytAssist image.
 - The H&E image and the Space Ranger output must come from the same pipeline version folder. `PROCESSED_VERSION` in `src/hne/core/config.py` is the one place it is set.
 - Fullres coordinates are never rescaled to fit an image. If tiles do not fit inside the opened slide, the image is wrong.

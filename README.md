@@ -91,4 +91,4 @@ HNE_repo/
 
 ## Status
 
-The cohort has 151 patients, of which 93 pass preprocessing QC. The pipeline reads the full-resolution H&E scans and cuts true 1 mm tiles. Preprocessing has been rerun on that basis (91 patients, 2,989 tumor tiles; 2 patients to redo). Feature extraction is partly done (58 patients). The Phase 1 results in `results/` predate these fixes and are not meaningful; they are regenerated once extraction is complete.
+The cohort has 151 patients; 92 pass preprocessing QC and have features (3,005 tumor tiles of 1 mm, cut from the full-resolution H&E scans). The Phase 1 ridge baseline predicts all five signatures within held-out patients (within-patient r 0.29 to 0.39 under nested cross-validation grouped by patient). Tumor purity explains part of that and is the next thing to control for. `results/phase1/` holds an earlier experiment on invalid features and is kept only for the record.
