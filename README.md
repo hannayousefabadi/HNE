@@ -62,7 +62,6 @@ To try preprocessing on one patient first, set the patient ID inside `scripts/pr
 | `qc_reports/preprocessing_qc/` | QC records, per-patient verdicts, logs, and QC plots |
 | `feature_sets/phikon_v2_features/` | One 1024-d embedding per tile (`.npy`) |
 | `results/phase1_ridge/` | Phase 1 baseline: cross-validated predictions, metrics, and run summary |
-| `results/phase1/` | Earlier MLP experiment, kept for comparison |
 | `results/registration_audit/` | Image-input audit: slide inventory, overlays, sample patches |
 | `qc_reports/feature_extraction_qc/` | Feature extraction logs per patient and per tile |
 | `plots/` | Figure scripts and figures |
@@ -82,7 +81,7 @@ HNE_repo/
 │   ├── preprocessing/       # Purity, tiling, signatures, aggregation
 │   ├── preprocessing_qc/    # QC tracker and QC plots
 │   ├── feature_extraction/  # Patching and Phikon-v2 extractor
-│   └── models/              # Data loading, evaluation, and the MLP
+│   └── models/              # Data loading, evaluation, ridge CV harness, and modeling
 ├── plots/                   # Figure scripts
 ├── tests/                   # Debugging and diagnostic scripts
 ├── requirements.txt
@@ -91,4 +90,4 @@ HNE_repo/
 
 ## Status
 
-The cohort has 151 patients; 92 pass preprocessing QC and have features (3,005 tumor tiles of 1 mm, cut from the full-resolution H&E scans). The Phase 1 ridge baseline predicts all five signatures within held-out patients (within-patient r 0.29 to 0.39 under nested cross-validation grouped by patient). Tumor purity explains part of that and is the next thing to control for. `results/phase1/` holds an earlier experiment on invalid features and is kept only for the record.
+The cohort has 151 patients; 92 pass preprocessing QC and have features (3,005 tumor tiles of 1 mm, cut from the full-resolution H&E scans). The Phase 1 ridge baseline predicts all five signatures within held-out patients (within-patient r 0.29 to 0.39 under nested cross-validation grouped by patient). Tumor purity explains part of that and is the next thing to control for.

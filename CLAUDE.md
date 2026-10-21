@@ -13,12 +13,10 @@ Each stage reads the previous stage's outputs from disk.
 | Feature extraction | `scripts/feature_extraction/run_phikon_extractor.py` | `src/hne/feature_extraction/` | `feature_sets/phikon_v2_features/*.npy` |
 | Phase 1 baseline | `scripts/model_train/phase1/train_phase1_ridge.py` | `src/hne/models/` | `results/phase1_ridge/` |
 | Registration audit | `scripts/audit/` | `src/hne/feature_extraction/registration_audit.py` | `results/registration_audit/` |
-| Early Phase 1 MLP | `scripts/model_train/phase1/train_phase1.py` | `src/hne/models/` | `results/phase1/` |
 
 - **Preprocessing**: tumor fraction from deconvolution, Bayesian tile purity, tumor-tile filter, per-spot ssGSEA scores, tile-level means, top-quartile binary calls. Every patient gets a QC verdict (`OK` / `REVIEW` / `EXCLUDE`).
 - **Feature extraction**: each tile is split into 112 µm sub-patches, embedded with Phikon-v2 (1024-d CLS token), and mean-pooled to one vector per tile. Runs in a fresh worker process per group of patients and resumes per tile.
 - **Phase 1 baseline**: ridge regression per signature, evaluated with nested grouped (by patient) cross-validation and patient-level statistics (`src/hne/models/ridge_cv.py`, `src/hne/models/evaluation.py`).
-- **Early Phase 1 MLP**: a distributional MLP with a single train/validation split. Its results are superseded and kept only for comparison.
 
 ## Conventions
 
@@ -30,7 +28,7 @@ Each stage reads the previous stage's outputs from disk.
 
 ## Things that bite
 
-- **Current data**: `tile_signature_matrix/` (92 patients, 3,005 tiles of 1 mm) and `feature_sets/phikon_v2_features/` (2,993 files) come from the full-resolution H&E. `results/phase1_ridge/` is the Phase 1 baseline on them. `results/phase1/` (early MLP) was computed on features from the wrong images and is void.
+- **Current data**: `tile_signature_matrix/` (92 patients, 3,005 tiles of 1 mm) and `feature_sets/phikon_v2_features/` (2,993 files) come from the full-resolution H&E. `results/phase1_ridge/` is the Phase 1 baseline on them.
 - Images come from `load_he_slide()` only (`{processed}/{PROCESSED_VERSION}/converted_he/`, filenames in the manifest's `he_map`). `load_cytassist_slide()` and `cytassist_image_prefix` are for the audit; never crop tiles or patches from a CytAssist image.
 - The H&E image and the Space Ranger output must come from the same pipeline version folder. `PROCESSED_VERSION` in `src/hne/core/config.py` is the one place it is set.
 - Fullres coordinates are never rescaled to fit an image. If tiles do not fit inside the opened slide, the image is wrong.
@@ -40,7 +38,6 @@ Each stage reads the previous stage's outputs from disk.
 - Splits and CV folds are by `patient_id`. Never split by tile. Feature and target scaling statistics come from training folds only.
 - Statistics count patients, not tiles: CIs from a patient-level bootstrap, p-values from patient-level permutation. Never report a tile-level p-value.
 - Data that influenced a choice (epoch, hyperparameter, model) cannot report that choice's result. Do not edit a `CONFIG` and rerun to improve a reported number.
-- The early MLP outputs a standard deviation, but no loss trains it. Do not treat `std_pred` as meaningful.
 - Scripts fail loudly on a missing input. No fallback values.
 - Patients lost in preprocessing are the `EXCLUDE` verdicts in `qc_summary.csv` plus the `Failed patients` list in the cohort log. Patients that crash never reach the QC summary.
 
@@ -57,7 +54,6 @@ Each stage reads the previous stage's outputs from disk.
 
 - `review/00_preprocessing_pipeline.md`
 - `review/01_feature_extraction_pipeline.md`
-- `review/02_early_phase1_modeling_pipeline.md`
 - `review/04_phase1_ridge_baseline.md`
 - `review/06_registration_audit.md`
 - `review/plan_decisions.md` (decisions and evaluation rules for all phases)
