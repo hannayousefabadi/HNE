@@ -44,9 +44,21 @@ def log(message: str):
 
 
 def append_rows(rows: list[dict], path: Path):
-    """Append records to a CSV log, writing the header only once."""
-    if rows:
-        pd.DataFrame(rows).to_csv(path, mode="a", header=not path.exists(), index=False)
+    """
+    Append records to a CSV log. If the file was written with other columns (an older version
+    of this script), it is rewritten with the union of both, so the file always parses.
+    """
+    if not rows:
+        return
+    new = pd.DataFrame(rows)
+    if not path.exists():
+        new.to_csv(path, index=False)
+        return
+    existing_columns = pd.read_csv(path, nrows=0).columns.tolist()
+    if existing_columns == new.columns.tolist():
+        new.to_csv(path, mode="a", header=False, index=False)
+    else:
+        pd.concat([pd.read_csv(path), new], ignore_index=True).to_csv(path, index=False)
 
 
 def resources() -> dict:
