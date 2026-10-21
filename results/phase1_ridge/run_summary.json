@@ -1,9 +1,9 @@
 {
-  "analysis_finished_at": "2026-10-07T19:08:55+03:30",
-  "analysis_started_at": "2026-10-07T19:07:58+03:30",
+  "analysis_finished_at": "2026-10-11T09:52:04+03:30",
+  "analysis_started_at": "2026-10-11T09:51:03+03:30",
   "git": {
     "branch": "phase1-ridge-baseline",
-    "commit": "c1636ae",
+    "commit": "a248db3",
     "uncommitted_changes": true
   },
   "model": "ridge",
@@ -15,8 +15,8 @@
     "WNT",
     "EMT"
   ],
-  "n_patients": 93,
-  "n_tiles": 1952,
+  "n_patients": 92,
+  "n_tiles": 2993,
   "config": {
     "model_name": "phikon_v2",
     "output_dir": "/home/hany/projects/hne/HNE_repo/results/phase1_ridge",
