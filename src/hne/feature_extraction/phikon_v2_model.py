@@ -29,7 +29,8 @@ class PhikonV2Extractor:
         fullres_pixel_size: float,
         tile_size_px_fullres: int,
         output_dir: Path = PHIKON_FEATURES,
-        batch_size: int = 16, 
+        batch_size: int = 16,
+        unpooled: bool = False,
     ):
         """
         Turning patient tiles to model-requirement patches ready for feature extraction
@@ -38,6 +39,8 @@ class PhikonV2Extractor:
             tiles_df: patient's tumor tiles (from cohort preprocessing step), must have
             tile_row, tile_col, tile_id.
             slide: openslide.OpenSlide handle for this patient's fullres tiff.
+            unpooled: If True, saves unpooled patch embeddings (N_patches, 1024) for Phase 2 ABMIL.
+                      If False, averages patch embeddings to a single tile vector (1024,) for Phase 1.
 
         Returns:
             One record per tile: patch counts (positions, out of bounds, read errors,
@@ -46,12 +49,13 @@ class PhikonV2Extractor:
         spec = PATCH_SPECS["phikon_v2"]
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
+        suffix = "phikon_patch_features" if unpooled else "phikon_features"
 
         tile_records = []
 
         for tile_idx, (_, row) in enumerate(tiles_df.iterrows()):
             tile_id = row["tile_id"]
-            out_file = output_dir / f"{patient_id}_{tile_id}_phikon_features.npy"
+            out_file = output_dir / f"{patient_id}_{tile_id}_{suffix}.npy"
             if out_file.exists():
                 continue
             stats = new_patch_stats()
@@ -97,10 +101,13 @@ class PhikonV2Extractor:
                 continue
 
             patch_embeddings = np.concatenate(patch_embeddings, axis=0)  # (N_patches, 1024)
-            # average all patch vectors to create the tile vector (it can be enhanced basted on the patch cell deconvolution)
-            tile_embedding = patch_embeddings.mean(axis=0).astype(np.float32)  # (1024,)
-
-            np.save(out_file, tile_embedding)
+            if unpooled:
+                # Save full unpooled patch array for Phase 2 ABMIL
+                np.save(out_file, patch_embeddings.astype(np.float32))
+            else:
+                # Average all patch vectors to create the tile vector for Phase 1
+                tile_embedding = patch_embeddings.mean(axis=0).astype(np.float32)  # (1024,)
+                np.save(out_file, tile_embedding)
 
             # prevent memory bloat every 50 tiles
             if tile_idx % 50 == 0:

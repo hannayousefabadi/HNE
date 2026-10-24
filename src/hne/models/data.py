@@ -6,11 +6,12 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
-from hne.core.paths import PHIKON_FEATURES, TILES_SIGNATURE_MATRIX
+from hne.core.paths import PHIKON_FEATURES, PHIKON_PATCH_FEATURES, TILES_SIGNATURE_MATRIX
 
 # feature sets available for modeling; add an entry once a model's features are extracted
 FEATURE_REGISTRY = {
     "phikon_v2": {"dir": PHIKON_FEATURES, "suffix": "phikon_features", "dim": 1024},
+    "phikon_v2_unpooled": {"dir": PHIKON_PATCH_FEATURES, "suffix": "phikon_patch_features", "dim": 1024},
 }
 
 
