@@ -26,6 +26,9 @@ Each stage reads the previous stage's outputs from disk.
 - Raw data is read from S3 through `S3DataLoader` (`src/hne/core/s3_io.py`). Bucket names and prefixes come from `.env`.
 - `tests/` contains ad-hoc debug scripts, not a test suite.
 
+#### Git Commit Guidelines
+- Never add "Co-Authored-By" lines to commits.
+
 ## Things that bite
 
 - **Current data**: `tile_signature_matrix/` (92 patients, 3,005 tiles of 1 mm) and `feature_sets/phikon_v2_features/` (2,993 files) come from the full-resolution H&E. `results/phase1_ridge/` is the Phase 1 baseline on them.

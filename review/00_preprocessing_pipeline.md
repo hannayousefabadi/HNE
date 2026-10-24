@@ -231,5 +231,20 @@ All pipeline thresholds, geometric settings, and QC tolerances are managed throu
 | `binary_quantile_threshold` | `0.75` (p75) | Quantile cutoff for binary classification (`1` if score $\ge$ 75th percentile) |
 | `sparse_threshold` | `1e-6` | Value below which spot scores are treated as zero in sparsity QC plots |
 | `min_tissue_fraction` | `0.5` (50%) | Minimum non-glass tissue area (`gray < 220`) required to accept an FM sub-patch |
+
 ---
+
+## 9. Appendix: Historical Image Registration Audit Summary
+
+*(Consolidated from legacy audit documents `05_registration_audit_note.md` and `06_registration_audit.md`)*
+
+During initial baseline development (October 2026), the linear baseline initially yielded zero correlation and failed the tumor purity positive control. A comprehensive cohort audit identified the root cause:
+
+1. **Root Cause:** The cohort inventory manifest initially pointed to `spatial_transcriptomics/Visium/image_files/`, which contained low-resolution CytAssist preview images (`~3000 × 3000` px) rather than the actual microscope scans. Space Ranger spot coordinates (which reach up to ~34,000 px) fell outside the image, causing edge-clamping, black crops, and duplicate feature vectors.
+2. **Permanent Fixes:**
+   - Switched slide loading strictly to the full-resolution scans at `s3://.../{PROCESSED_VERSION}/converted_he/{patient_id}_vis.tif` (mapped via `HE_MAP` in `src/hne/core/paths.py`).
+   - Read native slide pixel size directly from slide metadata (`~0.525 µm/px`) rather than estimating from spot diameter.
+   - Removed all silent coordinate clamping; out-of-bounds patches now fail loudly or are explicitly counted in QC logs.
+3. **Outcome:** Rerunning Phase 1 Ridge on the corrected full-resolution H&E scans completely restored the biological signal across the cohort ($r_{\text{within}} \approx 0.29\text{--}0.39, p = 10^{-4}$) and the purity positive control ($r = 0.79$).
+
 

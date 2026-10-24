@@ -1,21 +1,41 @@
-"""src/hne/models/mlp.py"""
+"""
+/src/hne/models/mlp.py
+
+Distributional Multi-Layer Perceptron (MLP) for predicting conditional mean (mu)
+and uncertainty (sigma) per pathway signature score.
+"""
+from typing import Tuple
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 
 class DistributionalMLP(nn.Module):
+    """
+    Predicts both the expected score (mu) and the uncertainty (sigma) for each target.
+    
+    Given an input embedding (e.g. 1024-d Phikon-v2), passes through a shared trunk
+    with LayerNorm and GELU activations, branching into two heads:
+      - mu: unbounded continuous prediction
+      - sigma: strictly positive standard deviation via clamped exp(log_sigma)
+    """
+
     def __init__(
         self,
         input_dim: int,
         n_targets: int,
         hidden_dim: int = 128,
         dropout_rate: float = 0.2,
+        min_std: float = 1e-3,
+        max_std: float = 10.0,
     ):
         super().__init__()
         self.input_dim = input_dim
         self.n_targets = n_targets
+        self.min_std = min_std
+        self.max_std = max_std
 
-        self.network = nn.Sequential(
+        self.trunk = nn.Sequential(
             nn.LayerNorm(input_dim),
             nn.Linear(input_dim, hidden_dim),
             nn.GELU(),
@@ -23,54 +43,58 @@ class DistributionalMLP(nn.Module):
             nn.Linear(hidden_dim, hidden_dim),
             nn.GELU(),
             nn.Dropout(dropout_rate),
-            nn.Linear(hidden_dim, 2 * n_targets),
         )
 
-        last_layer = self.network[-1]
-        nn.init.normal_(last_layer.weight, mean=0.0, std=1e-3)
-        nn.init.zeros_(last_layer.bias)
+        self.mu_head = nn.Linear(hidden_dim, n_targets)
+        self.log_std_head = nn.Linear(hidden_dim, n_targets)
 
-    def forward(self, x: torch.Tensor):
-        outputs = self.network(x)
-        mu = outputs[:, :self.n_targets]
-        log_std = outputs[:, self.n_targets:]
-        # Bounded std strictly between 0.35 and 2.5
-        std = torch.exp(torch.clamp(log_std, min=-1.5, max=0.8)) + 0.1
+        # Initialize heads: mu predicts ~0 initially (for z-scored targets),
+        # log_std predicts ~0 so initial sigma is ~1.0
+        nn.init.normal_(self.mu_head.weight, mean=0.0, std=1e-3)
+        nn.init.zeros_(self.mu_head.bias)
+        nn.init.normal_(self.log_std_head.weight, mean=0.0, std=1e-3)
+        nn.init.zeros_(self.log_std_head.bias)
+
+    def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        features = self.trunk(x)
+        mu = self.mu_head(features)
+        log_std = self.log_std_head(features)
+
+        # Stable, bounded standard deviation
+        # exp(0) = 1.0 (unit variance on z-scored targets)
+        std = torch.exp(torch.clamp(log_std, min=-4.0, max=2.5))
+        std = torch.clamp(std, min=self.min_std, max=self.max_std)
         return mu, std
 
-    @staticmethod
-    def pearson_huber_loss(
-        mu: torch.Tensor, 
-        targets: torch.Tensor, 
-        huber_weight: float = 0.5
-    ) -> torch.Tensor:
-        """
-        Differentiable multi-target Pearson Correlation Loss + Huber regularization.
-        """
-        eps = 1e-6
-        total_loss = 0.0
-        n_targets = targets.shape[1]
 
-        # Centered variables
-        mu_centered = mu - mu.mean(dim=0, keepdim=True)
-        targets_centered = targets - targets.mean(dim=0, keepdim=True)
+class GaussianBetaNLLLoss(nn.Module):
+    """
+    Gaussian Negative Log-Likelihood with beta-weighting for stabilized heteroscedastic regression.
+    
+    Reference: Seitzer et al., "On the Pitfalls of Heteroscedastic Uncertainty Estimation
+    with Probabilistic Neural Networks", ICLR 2022.
+    
+    Standard Gaussian NLL (beta=0):
+      L = 0.5 * [(y - mu)^2 / sigma^2 + log(sigma^2)]
+      
+    Beta-NLL (beta > 0, default 0.5):
+      Down-weights the loss of high-uncertainty outliers using (sigma^2)^beta,
+      preventing the network from ignoring hard samples by inflating sigma to infinity.
+    """
 
-        for k in range(n_targets):
-            pred_k = mu_centered[:, k]
-            true_k = targets_centered[:, k]
+    def __init__(self, beta: float = 0.5, eps: float = 1e-6):
+        super().__init__()
+        self.beta = beta
+        self.eps = eps
 
-            # Pearson correlation computation
-            cov = torch.sum(pred_k * true_k)
-            var_pred = torch.sum(pred_k ** 2)
-            var_true = torch.sum(true_k ** 2)
-            denom = torch.sqrt(var_pred * var_true) + eps
+    def forward(self, mu: torch.Tensor, sigma: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
+        var = sigma ** 2
+        # Base Gaussian NLL
+        sq_err = (target - mu) ** 2
+        loss = 0.5 * (sq_err / (var + self.eps) + torch.log(var + self.eps))
 
-            r = cov / denom
-            pearson_loss = 1.0 - r
+        # Beta-weighting factor: detached so gradient is not distorted through the weights
+        if self.beta > 0:
+            loss = loss * (var.detach() ** self.beta)
 
-            # Huber/SmoothL1 component to prevent unbounded scale drift
-            huber = nn.functional.smooth_l1_loss(mu[:, k], targets[:, k])
-
-            total_loss += (pearson_loss + huber_weight * huber)
-
-        return total_loss / n_targets
+        return loss.mean()
