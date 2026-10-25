@@ -240,7 +240,8 @@ def nested_cv_torch(
     n_bootstrap: int = 2000,
     n_permutations: int = 10000,
     grad_clip_norm: float = 1.0,
-) -> Dict[str, Union[pd.DataFrame, Dict]]:
+    return_attention: bool = False,
+) -> Dict[str, Union[pd.DataFrame, Dict, List]]:
     """
     Executes leak-free nested grouped cross-validation for a PyTorch model.
     """
@@ -254,6 +255,7 @@ def nested_cv_torch(
     y_pred_std = np.full_like(y, np.nan, dtype=np.float64) if is_distributional else None
     fold_of_tile = np.full(n_samples, -1)
     selected_epochs = {}
+    all_attentions = [None] * n_samples if return_attention else None
 
     indices = np.arange(n_samples)
 
@@ -333,6 +335,7 @@ def nested_cv_torch(
 
         fold_preds_mu = []
         fold_preds_std = []
+        fold_attns = []
         with torch.no_grad():
             for vx, _ in te_loader:
                 if isinstance(vx, torch.Tensor):
@@ -340,19 +343,34 @@ def nested_cv_torch(
                 elif isinstance(vx, list):
                     vx = [x.to(device) for x in vx]
 
-                if is_distributional:
-                    mu_norm, std_norm = final_model(vx)
-                    fold_preds_mu.append(mu_norm.cpu().numpy())
-                    fold_preds_std.append(std_norm.cpu().numpy())
+                if return_attention:
+                    if is_distributional:
+                        mu_norm, std_norm, attns = final_model(vx, return_attention=True)
+                        fold_preds_mu.append(mu_norm.cpu().numpy())
+                        fold_preds_std.append(std_norm.cpu().numpy())
+                        fold_attns.extend(attns)
+                    else:
+                        mu_norm, attns = final_model(vx, return_attention=True)
+                        fold_preds_mu.append(mu_norm.cpu().numpy())
+                        fold_attns.extend(attns)
                 else:
-                    mu_norm = final_model(vx)
-                    fold_preds_mu.append(mu_norm.cpu().numpy())
+                    if is_distributional:
+                        mu_norm, std_norm = final_model(vx)
+                        fold_preds_mu.append(mu_norm.cpu().numpy())
+                        fold_preds_std.append(std_norm.cpu().numpy())
+                    else:
+                        mu_norm = final_model(vx)
+                        fold_preds_mu.append(mu_norm.cpu().numpy())
 
         mu_norm_all = np.concatenate(fold_preds_mu, axis=0)
         y_pred_mu[te] = mu_norm_all * y_std_out + y_mean_out
         if is_distributional:
             std_norm_all = np.concatenate(fold_preds_std, axis=0)
             y_pred_std[te] = std_norm_all * y_std_out
+
+        if return_attention:
+            for idx_in_te, sample_idx in enumerate(te):
+                all_attentions[sample_idx] = fold_attns[idx_in_te]
 
         fold_of_tile[te] = outer_fold
 
@@ -410,5 +428,6 @@ def nested_cv_torch(
         "fold_assignments": fold_df,
         "calibration_summary": calibration_df,
         "selected_epochs": selected_epochs,
+        "attention_weights": all_attentions,
     }
 

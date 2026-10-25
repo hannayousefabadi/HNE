@@ -70,6 +70,7 @@ def load_features_and_targets(
     target_cols: List[str],
     filename_suffix: str,
     cohort_stats: Optional[Tuple[Dict[str, float], Dict[str, float]]] = None,
+    as_bags: bool = False,
 ):
     """
     Building (X, y) training pairs by joining feature vectors and signature scores from the matched tile_id.
@@ -84,9 +85,11 @@ def load_features_and_targets(
         filename_suffix: Suffix for feature npy files
         cohort_stats: Optional tuple of (means_dict, stds_dict). If provided, scales
                       using these stats; otherwise computes from current patient subset.
+        as_bags: If True, returns X as a List[np.ndarray] (for variable-sized patch bags).
+                 If False, stacks X into a 2D np.ndarray.
 
     Returns:
-        X: (N_tiles, D) feature array
+        X: (N_tiles, D) feature array or List of (M_i, D) patch arrays
         y: (N_tiles, len(target_cols)) target array
         tile_meta: list of (patient_id, tile_id) tuples matching rows of X and y
     """
@@ -136,5 +139,7 @@ def load_features_and_targets(
             f"with suffix '{filename_suffix}' and targets {target_cols}."
         )
 
+    if as_bags:
+        return [x.astype(np.float32) for x in X], np.array(y, dtype=np.float32), tile_meta
     return np.stack(X).astype(np.float32), np.array(y, dtype=np.float32), tile_meta
 

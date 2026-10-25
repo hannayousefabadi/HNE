@@ -12,11 +12,13 @@ Each stage reads the previous stage's outputs from disk.
 | Preprocessing | `scripts/preprocessing/preprocess_cohort.py` | `src/hne/preprocessing/`, `src/hne/preprocessing_qc/` | `tiles/`, `tile_signature_matrix/`, `qc_reports/preprocessing_qc/` |
 | Feature extraction | `scripts/feature_extraction/run_phikon_extractor.py` | `src/hne/feature_extraction/` | `feature_sets/phikon_v2_features/*.npy` |
 | Phase 1 baseline | `scripts/model_train/phase1/train_phase1_ridge.py` | `src/hne/models/` | `results/phase1_ridge/` |
+| Phase 2 ABMIL | `scripts/model_train/phase2/train_phase2_abmil.py` | `src/hne/models/abmil.py`, `src/hne/models/torch_cv.py` | `results/phase2_abmil/` |
 | Registration audit | `scripts/audit/` | `src/hne/feature_extraction/registration_audit.py` | `results/registration_audit/` |
 
 - **Preprocessing**: tumor fraction from deconvolution, Bayesian tile purity, tumor-tile filter, per-spot ssGSEA scores, tile-level means, top-quartile binary calls. Every patient gets a QC verdict (`OK` / `REVIEW` / `EXCLUDE`).
 - **Feature extraction**: each tile is split into 112 µm sub-patches, embedded with Phikon-v2 (1024-d CLS token), and mean-pooled to one vector per tile. Runs in a fresh worker process per group of patients and resumes per tile.
 - **Phase 1 baseline**: ridge regression per signature, evaluated with nested grouped (by patient) cross-validation and patient-level statistics (`src/hne/models/ridge_cv.py`, `src/hne/models/evaluation.py`).
+- **Phase 2 ABMIL**: gated attention multiple instance learning over unpooled patch bags with distributional head (mu, sigma), evaluated via modular grouped nested CV (`src/hne/models/torch_cv.py`).
 
 ## Conventions
 
@@ -58,6 +60,7 @@ Each stage reads the previous stage's outputs from disk.
 - `review/00_preprocessing_pipeline.md`
 - `review/01_feature_extraction_pipeline.md`
 - `review/04_phase1_ridge_baseline.md`
+- `review/04_phase2_abmil.md`
 - `review/06_registration_audit.md`
 - `review/plan_decisions.md` (decisions and evaluation rules for all phases)
 - `review/00_glossary.md` (project vocabulary)
