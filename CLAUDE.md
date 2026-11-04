@@ -28,6 +28,20 @@ Each stage reads the previous stage's outputs from disk.
 - Raw data is read from S3 through `S3DataLoader` (`src/hne/core/s3_io.py`). Bucket names and prefixes come from `.env`.
 - `tests/` contains ad-hoc debug scripts, not a test suite.
 
+- Commit messages: `type(scope): short summary`, e.g. `fix(patent-triage): ...`.
+  - commit structure:
+    <type>(<scope>): <description>
+
+    Types:
+    - feat: new feature
+    - fix: bug fix
+    - docs: documentation only
+    - style: formatting, missing semicolons, etc (no code change)
+    - refactor: code change that neither fixes bug nor adds feature
+    - test: adding tests
+    - chore: maintenance (dependencies, config, etc)
+    
+
 #### Git Commit Guidelines
 - Never add "Co-Authored-By" lines to commits.
 

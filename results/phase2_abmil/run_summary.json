@@ -1,0 +1,60 @@
+{
+  "analysis_finished_at": "2026-10-25T16:38:07+03:30",
+  "analysis_started_at": "2026-10-25T15:57:55+03:30",
+  "git": {
+    "branch": "master",
+    "commit": "8a36322",
+    "uncommitted_changes": false
+  },
+  "phase": "phase2_abmil",
+  "model": "abmil_distributional",
+  "loss": "gaussian_beta_nll (beta=0.5)",
+  "features": "phikon_v2_unpooled",
+  "targets": [
+    "FMRP",
+    "Cell_cycle",
+    "YAP",
+    "WNT",
+    "EMT"
+  ],
+  "n_patients": 92,
+  "n_tiles": 2993,
+  "selected_epochs_per_outer_fold": {
+    "0": 1,
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1
+  },
+  "config": {
+    "model_name": "phikon_v2_unpooled",
+    "output_dir": "/home/hany/projects/hne/HNE_repo/results/phase2_abmil",
+    "n_outer_folds": 5,
+    "n_inner_folds": 5,
+    "input_dim": 1024,
+    "attention_dim": 128,
+    "head_hidden_dim": 128,
+    "dropout_rate": 0.25,
+    "lr": 0.0005,
+    "weight_decay": 0.001,
+    "epochs": 70,
+    "batch_size": 32,
+    "patience": 15,
+    "beta": 0.5,
+    "seed": 42,
+    "min_tiles_within_patient": 5,
+    "n_bootstrap": 2000,
+    "n_permutations": 10000,
+    "grad_clip_norm": 1.0,
+    "top_k_attention": 5
+  },
+  "scaling": "features standardized across training patches and targets z-scored with training-fold statistics only",
+  "prediction_units": "raw tile signature score (back-transformed from the fold's z-scale)",
+  "ci_method": "percentile 95% CI, patient-level bootstrap",
+  "p_value_method": {
+    "within_patient_p": "two-sided sign-flip permutation over per-patient r",
+    "between_patient_p": "two-sided permutation of patient mean predictions across patients",
+    "pooled_r": "no p-value: tiles are not independent; see the bootstrap CI"
+  },
+  "auc_definition": "ROC-AUC separating the top third of tiles from the bottom third by true score (thresholds at the 33rd and 67th percentiles of all evaluated tiles). The middle third is excluded, so this is easier than an all-tiles AUC."
+}
