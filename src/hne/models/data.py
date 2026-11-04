@@ -6,12 +6,21 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
-from hne.core.paths import PHIKON_FEATURES, PHIKON_PATCH_FEATURES, TILES_SIGNATURE_MATRIX
+from hne.core.paths import (
+    PHIKON_FEATURES, PHIKON_PATCH_FEATURES,
+    VIRCHOW2_FEATURES, VIRCHOW2_PATCH_FEATURES,
+    CONCH_FEATURES, CONCH_PATCH_FEATURES,
+    TILES_SIGNATURE_MATRIX,
+)
 
 # feature sets available for modeling; add an entry once a model's features are extracted
 FEATURE_REGISTRY = {
     "phikon_v2": {"dir": PHIKON_FEATURES, "suffix": "phikon_features", "dim": 1024},
     "phikon_v2_unpooled": {"dir": PHIKON_PATCH_FEATURES, "suffix": "phikon_patch_features", "dim": 1024},
+    "virchow2": {"dir": VIRCHOW2_FEATURES, "suffix": "virchow2_features", "dim": 2560},
+    "virchow2_unpooled": {"dir": VIRCHOW2_PATCH_FEATURES, "suffix": "virchow2_patch_features", "dim": 2560},
+    "conch_v15": {"dir": CONCH_FEATURES, "suffix": "conch_v15_features", "dim": 768},
+    "conch_v15_unpooled": {"dir": CONCH_PATCH_FEATURES, "suffix": "conch_v15_patch_features", "dim": 768},
 }
 
 
