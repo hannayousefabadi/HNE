@@ -14,3 +14,7 @@ dotenv
 tifffile
 imagecodecs
 gseapy
+timm
+huggingface_hub
+python-dotenv
+git+https://github.com/mahmoodlab/TRIDENT.git

@@ -28,13 +28,16 @@ PROCESSED_VISIUM_BUCKET=...
 PROCESSED_VISIUM_PREFIX=...
 RAW_DATA_BUCKET=...
 RAW_DATA_PREFIX=...
+HF_TOKEN=hf_...
 ```
 
 AWS credentials are picked up the usual way (environment variables, `~/.aws`, or an instance role).
+AWS credentials are picked up the usual way (environment variables, `~/.aws`, or an instance role). `HF_TOKEN` is required to download gated pathology foundation models (Virchow2 and CONCH v1.5) from Hugging Face.
 
 ## Run
 
 Run the stages in order. Each one reads what the previous one wrote. Settings are edited at the top of each script; there are no command-line flags.
+Run the stages in order. Each one reads what the previous one wrote. Settings are edited at the top of each script; there are no command-line flags (except `--mean-pooled` when extracting Phase 1 ridge vectors).
 
 ```bash
 # 1. Build the cohort manifest (required before anything else)
@@ -44,7 +47,13 @@ python scripts/cohort_inventory/cohort_inventory.py
 python scripts/preprocessing/preprocess_cohort.py
 
 # 3. Extract Phikon-v2 features (GPU recommended; rerun to resume; progress in qc_reports/feature_extraction_qc/)
+# 3. Extract foundation model features (GPU recommended; rerun to resume; progress in qc_reports/feature_extraction_qc/)
+# Phikon-v2 (1024-d):
 python scripts/feature_extraction/run_phikon_extractor.py
+# Virchow2 (2560-d, ViT-H/14):
+python scripts/feature_extraction/run_virchow2_extractor.py
+# CONCH v1.5 (768-d, ViT-L/16):
+python scripts/feature_extraction/run_conch_v15_extractor.py
 
 # 4. Fit and evaluate the Phase 1 ridge baseline
 python scripts/model_train/phase1/train_phase1_ridge.py

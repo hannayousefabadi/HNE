@@ -8,6 +8,7 @@ from PIL import Image
 import torch
 from torchvision import transforms
 
+from hne.core.config import login_huggingface
 from hne.core.paths import CONCH_FEATURES, CONCH_PATCH_FEATURES
 from hne.feature_extraction.patching import PATCH_SPECS, new_patch_stats, stream_patches_for_tile
 
@@ -33,6 +34,9 @@ class ConchV15Extractor:
     def __init__(self, device: Optional[str] = None):
         self.device = torch.device(device if device else ("cuda" if torch.cuda.is_available() else "cpu"))
         print(f"\nLoading CONCH v1.5 on {self.device}...")
+
+        # Ensure Hugging Face authentication is active for gated weights access
+        login_huggingface()
 
         try:
             from trident.patch_encoder_models import encoder_factory

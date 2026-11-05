@@ -12,6 +12,7 @@ from timm.data import resolve_data_config
 from timm.data.transforms_factory import create_transform
 from timm.layers import SwiGLUPacked
 
+from hne.core.config import login_huggingface
 from hne.core.paths import VIRCHOW2_FEATURES, VIRCHOW2_PATCH_FEATURES
 from hne.feature_extraction.patching import PATCH_SPECS, new_patch_stats, stream_patches_for_tile
 
@@ -26,6 +27,9 @@ class Virchow2Extractor:
     def __init__(self, device: Optional[str] = None):
         self.device = torch.device(device if device else ("cuda" if torch.cuda.is_available() else "cpu"))
         print(f"\nLoading Virchow2 on {self.device}...")
+
+        # Ensure Hugging Face authentication is active for gated weights access
+        login_huggingface()
 
         # Load ViT-H/14 backbone with Paige-specific SwiGLU MLP and SiLU activation
         self.model = timm.create_model(
