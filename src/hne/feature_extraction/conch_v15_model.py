@@ -45,12 +45,12 @@ class ConchV15Extractor:
             self.transform = self.encoder.eval_transforms
             self._use_trident = True
             print("Successfully loaded CONCH v1.5 via TRIDENT encoder_factory.")
-        except ImportError:
-            # Fallback if trident package is not yet installed in the environment
+        except Exception as e:
+            # Fallback if trident is missing, is the unrelated PyPI astrophysics library, or fails to load
             import timm
             from huggingface_hub import hf_hub_download
 
-            print("TRIDENT package not found. Attempting direct timm + Hugging Face Hub load...")
+            print(f"TRIDENT loader unavailable ({type(e).__name__}: {e}). Falling back to direct timm + Hugging Face Hub load...")
             self.encoder = timm.create_model(
                 "vit_large_patch16_224",
                 img_size=448,
