@@ -1,8 +1,4 @@
 patient_id,slide_width,slide_height,um_per_px,tile_size_px,unpooled,n_tiles_processed,n_tiles_written,n_tiles_with_out_of_bounds,n_patches_out_of_bounds,finished_at,process_rss_mb,system_available_mb,system_total_mb,temp_dir,temp_free_gb,temp_dir_in_ram,gpu_allocated_mb
-CH_L_275a,73901,44111,0.5251273433807698,1904,True,40,40,0,0,2026-11-18T17:22:13+00:00,1523,11430,15786,/tmp/hne_slides,36.0,False,1169
-CH_L_276a,54408,43611,0.5251273433807698,1904,True,38,38,0,0,2026-11-18T17:23:52+00:00,1545,11395,15786,/tmp/hne_slides,36.2,False,1169
-CH_L_277a,30715,24917,0.5251273433807698,1904,True,21,20,0,0,2026-11-18T17:24:34+00:00,1558,11389,15786,/tmp/hne_slides,36.6,False,1169
-CH_L_278a,58007,44111,0.5251273433807698,1904,True,28,28,0,0,2026-11-18T17:25:47+00:00,1557,11391,15786,/tmp/hne_slides,35.7,False,1169
 CH_L_279a,54408,43111,0.5251273433807698,1904,True,2,2,0,0,2026-11-18T18:06:43+00:00,1548,11410,15786,/tmp/hne_slides,36.2,False,1177
 CH_L_280a,38113,37613,0.5251273433807698,1904,True,47,47,0,0,2026-11-18T18:08:42+00:00,1617,11369,15786,/tmp/hne_slides,36.3,False,1177
 CH_L_281a,72902,44111,0.5251273433807698,1904,True,27,27,0,0,2026-11-18T18:09:54+00:00,1636,11387,15786,/tmp/hne_slides,35.6,False,1177
