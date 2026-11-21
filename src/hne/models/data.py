@@ -80,6 +80,8 @@ def load_features_and_targets(
     filename_suffix: str,
     cohort_stats: Optional[Tuple[Dict[str, float], Dict[str, float]]] = None,
     as_bags: bool = False,
+    expected_dim: Optional[int] = None,
+    restrict_to: Optional[set] = None,
 ):
     """
     Building (X, y) training pairs by joining feature vectors and signature scores from the matched tile_id.
@@ -96,6 +98,9 @@ def load_features_and_targets(
                       using these stats; otherwise computes from current patient subset.
         as_bags: If True, returns X as a List[np.ndarray] (for variable-sized patch bags).
                  If False, stacks X into a 2D np.ndarray.
+        expected_dim: If given, every loaded file must have this many feature columns, otherwise
+                      the load raises (guards against mixed feature spaces in one folder).
+        restrict_to: If given, a set of (patient_id, tile_id) pairs; all other tiles are skipped.
 
     Returns:
         X: (N_tiles, D) feature array or List of (M_i, D) patch arrays
@@ -134,11 +139,17 @@ def load_features_and_targets(
             if np.isnan(target_vector).any():
                 continue  # skip tile if any signature is missing
 
+            if restrict_to is not None and (patient_id, tile_id) not in restrict_to:
+                continue
+
             npy_path = features_dir / f"{patient_id}_{tile_id}_{filename_suffix}.npy"
             if not npy_path.exists():
                 continue
 
-            X.append(np.load(npy_path))
+            x = np.load(npy_path)
+            if expected_dim is not None and x.shape[-1] != expected_dim:
+                raise ValueError(f"{npy_path.name} has {x.shape[-1]} feature columns, expected {expected_dim}")
+            X.append(x)
             y.append(target_vector)
             tile_meta.append((patient_id, tile_id))
 
