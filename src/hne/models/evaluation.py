@@ -195,3 +195,47 @@ def evaluate_target(
     per_patient = stats[["n", "mean_true", "mean_pred"]].rename(columns={"n": "n_tiles"}).copy()
     per_patient["r_within"] = r_within
     return metrics, per_patient.reset_index()
+
+
+def paired_within_r_difference(
+    per_patient_a: pd.DataFrame,
+    per_patient_b: pd.DataFrame,
+    n_bootstrap: int = 2000,
+    n_permutations: int = 10000,
+    seed: int = 42,
+) -> pd.DataFrame:
+    """
+    Paired patient-level comparison of within-patient r between two models scored on the same
+    patients (inputs are the `cv_per_patient_metrics` frames: target, patient_id, r_within).
+
+    Returns one row per signature plus `MEAN_ALL_SIGNATURES` (each patient's difference averaged
+    over the signatures it has): mean of (a - b) over patients, 95% CI from a patient-level
+    bootstrap, and a two-sided sign-flip permutation p-value over per-patient differences.
+    """
+    wide_a = per_patient_a.pivot(index="patient_id", columns="target", values="r_within")
+    wide_b = per_patient_b.pivot(index="patient_id", columns="target", values="r_within")
+    if not wide_a.index.equals(wide_b.index) or list(wide_a.columns) != list(wide_b.columns):
+        raise ValueError("paired comparison needs the same patients and signatures in both models")
+
+    diff = wide_a - wide_b
+    diff["MEAN_ALL_SIGNATURES"] = diff.mean(axis=1, skipna=True)
+    rng = np.random.default_rng(seed)
+
+    rows = []
+    for name in diff.columns:
+        d = diff[name].dropna().values
+        boot = d[rng.integers(0, len(d), size=(n_bootstrap, len(d)))].mean(axis=1)
+        signs = rng.choice([-1.0, 1.0], size=(n_permutations, len(d)))
+        null = (signs * d).mean(axis=1)
+        low, high = _percentile_ci(boot)
+        rows.append({
+            "target": name,
+            "n_patients": len(d),
+            "mean_within_r_a": float(wide_a[name].mean()) if name in wide_a else float(wide_a.mean(axis=1).mean()),
+            "mean_within_r_b": float(wide_b[name].mean()) if name in wide_b else float(wide_b.mean(axis=1).mean()),
+            "mean_diff_a_minus_b": float(d.mean()),
+            "diff_ci_low": low,
+            "diff_ci_high": high,
+            "p_value": float((1 + np.sum(np.abs(null) >= abs(d.mean()))) / (1 + n_permutations)),
+        })
+    return pd.DataFrame(rows)
