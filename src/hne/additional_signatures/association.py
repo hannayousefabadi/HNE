@@ -57,9 +57,11 @@ def patient_level_summary(rho: pd.Series, n_boot: int, seed: int) -> dict:
             "p_perm": (np.sum(np.abs(null) >= abs(values.mean())) + 1) / (n_boot + 1)}
 
 
-def binned_trend(spots: pd.DataFrame, score: str, n_bins: int, n_boot: int, seed: int) -> pd.DataFrame:
-    """Mean score per immune-count quantile bin, with a patient-bootstrap CI (patients resampled, then spots pooled)."""
-    spots = spots.assign(bin=pd.qcut(spots["immune_count"], n_bins, labels=False, duplicates="drop"))
+def binned_trend(spots: pd.DataFrame, score: str, n_bins: int, n_boot: int, seed: int, bins=None) -> pd.DataFrame:
+    """Mean score per immune-count quantile bin, with a patient-bootstrap CI (patients resampled, then spots pooled).
+    `bins` (one bin number per row of spots) replaces the quantile bins when given."""
+    bins = pd.qcut(spots["immune_count"], n_bins, labels=False, duplicates="drop") if bins is None else bins
+    spots = spots.assign(bin=bins)
     patients = spots["patient_id"].unique()
     per_patient = {p: g.groupby("bin")[score].agg(["sum", "count"]) for p, g in spots.groupby("patient_id")}
     bins = sorted(spots["bin"].unique())
@@ -136,6 +138,28 @@ def plot_trends(trends: dict, summaries: dict, path):
         ax.set_xlabel("Immune cell count (200 µm)", color=INK)
         ax.set_ylabel("expression (log1p CPM)" if score in SINGLE_GENES else "score (ssGSEA)", color=INK)
         _style(ax)
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)
+
+
+def plot_split_by_detection(spots, score, label, gene_column, gene, path, n_bins, n_boot, seed):
+    """`score` against immune count in spots where `gene` has no count vs at least one count.
+    Both groups use the same immune-count bins; each band is a patient bootstrap."""
+    bins = pd.qcut(spots["immune_count"], n_bins, labels=False, duplicates="drop")
+    detected = spots[gene_column] > 0
+    fig, ax = plt.subplots(figsize=(6, 4.2))
+    for mask, name, color in [(~detected, f"{gene} not detected", "#7f7f7f"), (detected, f"{gene} detected", "#08519c")]:
+        trend = binned_trend(spots[mask], score, n_bins, n_boot, seed, bins=bins[mask])
+        ax.fill_between(trend["immune_count"], trend["ci_low"], trend["ci_high"], color=color, alpha=0.2, linewidth=0)
+        ax.plot(trend["immune_count"], trend["mean"], color=color, linewidth=2, marker="o", markersize=5,
+                label=f"{name} ({int(mask.sum()):,} spots)")
+    ax.set_xscale("log")
+    ax.set_xlabel("Immune cell count (200 µm)", color=INK)
+    ax.set_ylabel(f"{label} (ssGSEA)", color=INK)
+    ax.set_title(f"{label} vs immune count by {gene} detection", color=INK, fontsize=11)
+    ax.legend(frameon=False, fontsize=9)
+    _style(ax)
     fig.tight_layout()
     fig.savefig(path, dpi=200)
     plt.close(fig)

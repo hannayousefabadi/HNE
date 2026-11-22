@@ -4,7 +4,7 @@ Step 4. Keeps the cancer-dominant spots of the selected naive patients and plots
 APM12 against the immune count within 200 um.
 
   plots/surface_APM4.png, plots/surface_APM12.png   reference-style: colour = APM score over FMRP x immune count
-  plots/surface_APM4_FMR1.png, plots/surface_APM12_FMR1.png   the same with FMR1 expression on the x axis
+  plots/split_APM4_by_FMR1.png, plots/split_APM12_by_FMR1.png   APM against immune count in spots with vs without an FMR1 count (FMR1 is too sparse for a surface)
   plots/trend_vs_immune_count.png                   FMRP, APM4, APM12 each against immune count, patient-bootstrap band
   patient_level_summary.csv                         mean per-patient Spearman rho, 95% bootstrap CI, permutation p
 
@@ -63,8 +63,8 @@ print(summary.round(3).to_string(index=False))
 for apm in ("APM4", "APM12"):
     association.plot_surface(dominant, f"{apm}_score", f"{apm} score",
                              ADDITIONAL_SIGNATURES_PLOTS / f"surface_{apm}.png", CONFIG)
-    association.plot_surface(dominant, f"{apm}_score", f"{apm} score",
-                             ADDITIONAL_SIGNATURES_PLOTS / f"surface_{apm}_FMR1.png", CONFIG,
-                             x_score="FMR1_expression", x_label="FMR1")
+    association.plot_split_by_detection(dominant, f"{apm}_score", f"{apm} score", "FMR1_expression", "FMR1",
+                                        ADDITIONAL_SIGNATURES_PLOTS / f"split_{apm}_by_FMR1.png",
+                                        CONFIG["n_bins"], CONFIG["n_boot"], CONFIG["seed"])
 association.plot_trends(trends, summaries, ADDITIONAL_SIGNATURES_PLOTS / "trend_vs_immune_count.png")
 print("plots in", ADDITIONAL_SIGNATURES_PLOTS)
