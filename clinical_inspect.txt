@@ -1,0 +1,2752 @@
+manifest ids, for comparison: ['CH_L_275a', 'CH_L_276a', 'CH_L_277a', 'CH_L_278a'] (151 patients)
+
+--- DM.csv: 173 rows x 46 columns
+  Site sequence number                          object     n_unique=2     n_null=0
+       {'5': 172, 'SiteSeq': 1}
+  Site name                                     object     n_unique=2     n_null=0
+       {'Centre Hospitalier Universitaire Vaudois': 172, 'SiteName': 1}
+  Site code                                     object     n_unique=2     n_null=0
+       {'CH': 172, 'SiteCode': 1}
+  Subject sequence number                       object     n_unique=173   n_null=0
+       examples: ['SubjectSeq', '275', '276', '277']
+  Subject Id                                    object     n_unique=173   n_null=0
+       examples: ['SubjectId', 'CH_L_275', 'CH_L_276', 'CH_L_277']
+  Event sequence number                         object     n_unique=2     n_null=0
+       {'1': 172, 'EventSeq': 1}
+  Event Id                                      object     n_unique=2     n_null=0
+       {'E00_DM': 172, 'EventId': 1}
+  Event name                                    object     n_unique=2     n_null=0
+       {'Study Start': 172, 'EventName': 1}
+  Event date                                    object     n_unique=29    n_null=0
+  Activity Id                                   object     n_unique=2     n_null=0
+       {'START_DM': 172, 'ActivityId': 1}
+  Activity name                                 object     n_unique=1     n_null=172
+       {nan: 172, 'ActivityName': 1}
+  Form sequence number                          object     n_unique=2     n_null=0
+       {'1': 172, 'FormSeq': 1}
+  Subject form sequence number                  object     n_unique=2     n_null=0
+       {'1': 172, 'SubjectFormSeq': 1}
+  Origin Subject form sequence number           object     n_unique=2     n_null=0
+       {'1': 172, 'OriginSubjectFormSeq': 1}
+  Source Subject form sequence number           object     n_unique=1     n_null=172
+       {nan: 172, 'SourceSubjectFormSeq': 1}
+  Design version                                object     n_unique=3     n_null=0
+       {'9.23': 101, '12.2': 71, 'DesignVersion': 1}
+  Date of cancer diagnosis                      object     n_unique=168   n_null=0
+  Cancer indication                             object     n_unique=2     n_null=0
+       {'L: NSCLC': 172, 'CANCERINDC': 1}
+  Cancer indication - Code                      object     n_unique=2     n_null=0
+       {'4': 172, 'CANCERINDCCD': 1}
+  Vital status at inclusion                     object     n_unique=3     n_null=0
+       {'Alive': 87, 'Dead': 85, 'DM_SUBSTATUS': 1}
+  Vital status at inclusion - Code              object     n_unique=3     n_null=0
+       {'2': 87, '1': 85, 'DM_SUBSTATUSCD': 1}
+  Date of last follow-up before inclusion       object     n_unique=74    n_null=85
+  Date of death                                 object     n_unique=86    n_null=87
+  Cause of death                                object     n_unique=21    n_null=87
+  Death related to cancer                       object     n_unique=4     n_null=87
+       {nan: 87, 'Yes': 46, 'Unknown': 37, 'No': 2, 'DM_DSDTHREL': 1}
+  Death related to cancer - Code                object     n_unique=4     n_null=87
+       {nan: 87, '1': 46, '98': 37, '0': 2, 'DM_DSDTHRELCD': 1}
+  Hidden_subject ID                             object     n_unique=2     n_null=0
+       {'L': 172, 'DM_HIDDEN1': 1}
+  Administrative gender                         object     n_unique=3     n_null=0
+       {'Male': 115, 'Female': 57, 'SEX': 1}
+  Administrative gender - Code                  object     n_unique=3     n_null=0
+       {'1': 115, '2': 57, 'SEXCD': 1}
+  Performance status (ECOG) at cancer diagnosis object     n_unique=5     n_null=0
+       {'Unknown': 168, '0': 2, 'DM_ECOGORRES': 1, '1': 1, '4': 1}
+  Performance status (ECOG) at cancer diagnosis - Code object     n_unique=5     n_null=0
+       {'98': 168, '1': 2, 'DM_ECOGORRESCD': 1, '2': 1, '5': 1}
+  Weight loss before cancer diagnosis           object     n_unique=3     n_null=0
+       {'Unknown': 170, 'Yes': 2, 'DM_LOSWEIGHT': 1}
+  Weight loss before cancer diagnosis - Code    object     n_unique=3     n_null=0
+       {'98': 170, '1': 2, 'DM_LOSWEIGHTCD': 1}
+  Year of birth                                 object     n_unique=42    n_null=0
+  Month of birth                                object     n_unique=1     n_null=172
+       {nan: 172, 'BRTHMO': 1}
+  Month of birth - Code                         object     n_unique=1     n_null=172
+       {nan: 172, 'BRTHMOCD': 1}
+  Date of birth (MM/YYYY)                       object     n_unique=1     n_null=172
+       {nan: 172, 'BRTHDAT': 1}
+  Age (years)                                   object     n_unique=39    n_null=0
+  Ethnicity                                     object     n_unique=2     n_null=0
+       {'Unknown': 172, 'CETHNIC': 1}
+  Ethnicity - Code                              object     n_unique=2     n_null=0
+       {'98': 172, 'CETHNICCD': 1}
+  Specify minority - Asian                      object     n_unique=1     n_null=172
+       {nan: 172, 'CETHNIC_ASIAN': 1}
+  Specify minority - Asian - Code               object     n_unique=1     n_null=172
+       {nan: 172, 'CETHNIC_ASIANCD': 1}
+  Specify minority - White                      object     n_unique=1     n_null=172
+       {nan: 172, 'CETHNIC_WHITE': 1}
+  Specify minority - White - Code               object     n_unique=1     n_null=172
+       {nan: 172, 'CETHNIC_WHITECD': 1}
+  Specify other minority                        object     n_unique=1     n_null=172
+       {nan: 172, 'CETHNIC_OTH': 1}
+  General comments                              object     n_unique=6     n_null=167
+       {nan: 167, 'DM_COVAL': 1, 'ECOG:"Bon état général"': 1, 'melanoma in situ lentigo interscapular left diagnosed on 07.08.2019, excision on 09.10.2019 Carcinoma spinocellular right tibia diagnosed on 03.06.2019, excision on 07.08.2019': 1, 'Adjuvant chemotherapy by cisplatin 75 mg/m2 and pemetrexed 500 mg/m2 refused by the patient in 08/20218.': 1, 'ECOG at diagnosis: "Bon état général"': 1, 'At diagnosis: "Bon état général"': 1}
+
+--- CANTRT.csv: 912 rows x 134 columns
+  Site sequence number                          object     n_unique=2     n_null=0
+       {'5': 911, 'SiteSeq': 1}
+  Site name                                     object     n_unique=2     n_null=0
+       {'Centre Hospitalier Universitaire Vaudois': 911, 'SiteName': 1}
+  Site code                                     object     n_unique=2     n_null=0
+       {'CH': 911, 'SiteCode': 1}
+  Subject sequence number                       object     n_unique=173   n_null=0
+       examples: ['SubjectSeq', '275', '276', '277']
+  Subject Id                                    object     n_unique=173   n_null=0
+       examples: ['SubjectId', 'CH_L_275', 'CH_L_276', 'CH_L_277']
+  Event sequence number                         object     n_unique=28    n_null=0
+  Event Id                                      object     n_unique=2     n_null=0
+       {'COMMON_CANTRT': 911, 'EventId': 1}
+  Event name                                    object     n_unique=2     n_null=0
+       {'Cancer Treatment': 911, 'EventName': 1}
+  Event date                                    object     n_unique=71    n_null=0
+  Activity Id                                   object     n_unique=2     n_null=0
+       {'LOG_CANTRT': 911, 'ActivityId': 1}
+  Activity name                                 object     n_unique=1     n_null=911
+       {nan: 911, 'ActivityName': 1}
+  Form sequence number                          object     n_unique=2     n_null=0
+       {'1': 911, 'FormSeq': 1}
+  Subject form sequence number                  object     n_unique=28    n_null=0
+       examples: ['SubjectFormSeq', '1', '2', '3']
+  Origin Subject form sequence number           object     n_unique=28    n_null=0
+       examples: ['OriginSubjectFormSeq', '1', '2', '3']
+  Source Subject form sequence number           object     n_unique=1     n_null=911
+       {nan: 911, 'SourceSubjectFormSeq': 1}
+  Design version                                object     n_unique=3     n_null=0
+       {'13.8': 910, 'DesignVersion': 1, '9.23': 1}
+  Sequence number                               object     n_unique=28    n_null=0
+  Treatment type                                object     n_unique=7     n_null=0
+       {'Chemotherapy': 349, 'Immunotherapy': 185, 'Surgery': 179, 'Radiotherapy': 162, 'Targeted therapy': 23, 'Other': 13, 'TRTTYP': 1}
+  Treatment type - Code                         object     n_unique=7     n_null=0
+       {'3': 349, '5': 185, '1': 179, '2': 162, '6': 23, '99': 13, 'TRTTYPCD': 1}
+  Term for medical coding                       object     n_unique=75    n_null=343
+  Surgery date                                  object     n_unique=174   n_null=732
+  Surgery specify                               object     n_unique=128   n_null=732
+  Surgery indication                            object     n_unique=3     n_null=732
+       {nan: 732, 'Initial treatment': 153, 'Recurrence': 26, 'SRGINDC': 1}
+  Surgery indication - Code                     object     n_unique=3     n_null=732
+       {nan: 732, '1': 153, '2': 26, 'SRGINDCCD': 1}
+  Surgery on primary tumour                     object     n_unique=3     n_null=732
+       {nan: 732, 'Yes': 155, 'No': 24, 'SRGTUYN': 1}
+  Surgery on primary tumour - Code              object     n_unique=3     n_null=732
+       {nan: 732, '1': 155, '0': 24, 'SRGTUYNCD': 1}
+  Surgery on primary tumour type                object     n_unique=2     n_null=756
+       {nan: 756, 'Resection': 155, 'SRGTUTYP': 1}
+  Surgery on primary tumour type - Code         object     n_unique=2     n_null=756
+       {nan: 756, '2': 155, 'SRGTUTYPCD': 1}
+  Was surgery stopped or incomplete?            object     n_unique=3     n_null=756
+       {nan: 756, 'No': 153, 'Yes': 2, 'SRGTUCMP': 1}
+  Was surgery stopped or incomplete? - Code     object     n_unique=3     n_null=756
+       {nan: 756, '0': 153, '1': 2, 'SRGTUCMPCD': 1}
+  Margin status                                 object     n_unique=3     n_null=756
+       {nan: 756, 'Unknown': 110, 'Clear margins': 45, 'SRGTUSTAT': 1}
+  Margin status - Code                          object     n_unique=3     n_null=756
+       {nan: 756, '98': 110, '1': 45, 'SRGTUSTATCD': 1}
+  Surgery on lymph node                         object     n_unique=3     n_null=732
+       {nan: 732, 'Yes': 156, 'No': 23, 'SRGTULYN': 1}
+  Surgery on lymph node - Code                  object     n_unique=3     n_null=732
+       {nan: 732, '1': 156, '0': 23, 'SRGTULYNCD': 1}
+  Surgery on lymph node type                    object     n_unique=3     n_null=755
+       {nan: 755, 'Resection': 153, 'Biopsy': 3, 'SRGTULTYP': 1}
+  Surgery on lymph node type - Code             object     n_unique=3     n_null=755
+       {nan: 755, '2': 153, '1': 3, 'SRGTULTYPCD': 1}
+  Number of resected lymph node                 object     n_unique=40    n_null=757
+  Number of invaded lymph node                  object     n_unique=15    n_null=757
+       {nan: 757, '0': 112, '1': 9, '2': 7, '4': 6, '3': 4, '7': 3, '9': 3, '13': 2, '12': 2, '5': 2, 'SRGTUL_IORRES': 1, '15': 1, '16': 1, '8': 1, '6': 1}
+  Extranodal extension                          object     n_unique=4     n_null=869
+       {nan: 869, 'Unknown': 33, 'No': 5, 'Yes': 4, 'SRGTULIEXT': 1}
+  Extranodal extension - Code                   object     n_unique=4     n_null=869
+       {nan: 869, '98': 33, '0': 5, '1': 4, 'SRGTULIEXTCD': 1}
+  Surgery on metastasis                         object     n_unique=3     n_null=732
+       {nan: 732, 'No': 159, 'Yes': 20, 'SRGMETYN': 1}
+  Surgery on metastasis - Code                  object     n_unique=3     n_null=732
+       {nan: 732, '0': 159, '1': 20, 'SRGMETYNCD': 1}
+  Surgery on metastasis type                    object     n_unique=3     n_null=894
+       {nan: 894, 'Resection': 16, 'SRGMETTYP': 1, 'Biopsy': 1}
+  Surgery on metastasis type - Code             object     n_unique=3     n_null=894
+       {nan: 894, '2': 16, 'SRGMETTYPCD': 1, '1': 1}
+  Metastasis margin status                      object     n_unique=2     n_null=895
+       {nan: 895, 'Unknown': 16, 'SRGMETSTAT': 1}
+  Metastasis margin status - Code               object     n_unique=2     n_null=895
+       {nan: 895, '98': 16, 'SRGMETSTATCD': 1}
+  Radiotherapy chronology with surgery          object     n_unique=4     n_null=749
+       {nan: 749, 'Post-operative': 106, 'No surgery': 48, 'Pre-operative': 8, 'RADCRN': 1}
+  Radiotherapy chronology with surgery - Code   object     n_unique=4     n_null=749
+       {nan: 749, '2': 106, '3': 48, '1': 8, 'RADCRNCD': 1}
+  Radiotherapy start date                       object     n_unique=136   n_null=749
+  Radiotherapy: ongoing?                        object     n_unique=2     n_null=749
+       {nan: 749, 'No': 162, 'RADONG': 1}
+  Radiotherapy: ongoing? - Code                 object     n_unique=2     n_null=749
+       {nan: 749, '0': 162, 'RADONGCD': 1}
+  Radiotherapy end date                         object     n_unique=141   n_null=750
+  Radiotherapy total dose (Gy)                  object     n_unique=29    n_null=752
+  Radiotherapy type                             object     n_unique=7     n_null=753
+       {nan: 753, 'Unknown': 42, 'Stereotactic radiosurgery (SRS)': 40, 'Volumetric modulated radiation therapy (VMAT)': 39, 'Intensity-modulated radiation therapy (IMRT)': 26, 'Other': 8, '3D conformal': 3, 'RADTYP': 1}
+  Radiotherapy type - Code                      object     n_unique=7     n_null=753
+       {nan: 753, '98': 42, '5': 40, '3': 39, '2': 26, '99': 8, '1': 3, 'RADTYPCD': 1}
+  Radiotherapy type specify                     object     n_unique=7     n_null=903
+       {nan: 903, 'stereotaxic radiotherapy': 3, 'RADTYPOTH': 1, 'Dermax device in direct field': 1, 'Tomotherapy': 1, 'Brain SBRT': 1, 'SBRT (cyberknife)': 1, 'Stereotactic radiotherapy': 1}
+  Radiation particle beams                      object     n_unique=4     n_null=753
+       {nan: 753, 'Photon (X-Ray)': 111, 'Unknown': 46, 'RADPBMS': 1, 'Other': 1}
+  Radiation particle beams - Code               object     n_unique=4     n_null=753
+       {nan: 753, '1': 111, '98': 46, 'RADPBMSCD': 1, '99': 1}
+  Other radiation particle beams specify        object     n_unique=2     n_null=910
+       {nan: 910, 'RADPBMSOTH': 1, 'Photon 100 kV': 1}
+  Radiotherapy site 1                           object     n_unique=2     n_null=867
+       {nan: 867, 'Primary tumour': 44, 'RADSITE1': 1}
+  Radiotherapy site 1 - Code                    object     n_unique=2     n_null=867
+       {nan: 867, '1': 44, 'RADSITE1CD': 1}
+  Radiotherapy site 2                           object     n_unique=2     n_null=893
+       {nan: 893, 'Lymph node': 18, 'RADSITE2': 1}
+  Radiotherapy site 2 - Code                    object     n_unique=2     n_null=893
+       {nan: 893, '2': 18, 'RADSITE2CD': 1}
+  Radiotherapy site 3                           object     n_unique=2     n_null=803
+       {nan: 803, 'Metastatic': 108, 'RADSITE3': 1}
+  Radiotherapy site 3 - Code                    object     n_unique=2     n_null=803
+       {nan: 803, '3': 108, 'RADSITE3CD': 1}
+  Specify site                                  object     n_unique=83    n_null=803
+  Nb of sessions                                object     n_unique=21    n_null=758
+  Chemotherapy chronology                       object     n_unique=5     n_null=562
+       {nan: 562, 'Systemic therapy': 187, 'Neo-adjuvant': 99, 'Adjuvant': 52, 'Maintenance': 11, 'CHMTCRN': 1}
+  Chemotherapy chronology - Code                object     n_unique=5     n_null=562
+       {nan: 562, '8': 187, '1': 99, '3': 52, '7': 11, 'CHMTCRNCD': 1}
+  Treatment line - Chemotherapy                 object     n_unique=10    n_null=564
+       {nan: 564, '1': 203, '2': 58, '3': 34, '4': 23, '5': 14, '7': 5, '6': 5, '8': 3, '9': 2, 'CHM_TRTLN': 1}
+  Chemotherapy start date                       object     n_unique=191   n_null=562
+  Chemotherapy: ongoing?                        object     n_unique=3     n_null=562
+       {nan: 562, 'No': 347, 'Yes': 2, 'CHMONG': 1}
+  Chemotherapy: ongoing? - Code                 object     n_unique=3     n_null=562
+       {nan: 562, '0': 347, '1': 2, 'CHMONGCD': 1}
+  Chemotherapy end date                         object     n_unique=205   n_null=568
+  Number of chemotherapy cycles planned         object     n_unique=7     n_null=775
+       {nan: 775, '4': 75, '3': 31, '2': 16, '1': 11, '5': 2, 'CHMCYCNOPL': 1, '6': 1}
+  Number of chemotherapy cycles received        object     n_unique=15    n_null=588
+       {nan: 588, '4': 101, '3': 99, '2': 52, '1': 45, '6': 6, '5': 4, '9': 3, '10': 3, '7': 3, '16': 2, '17': 2, 'CHMCYCNORV': 1, '61': 1, '13': 1, '21': 1}
+  Chemotherapy: drug name (INN)                 object     n_unique=37    n_null=562
+  Hormonal therapy chronology                   object     n_unique=1     n_null=911
+       {nan: 911, 'HRMCRN': 1}
+  Hormonal therapy chronology - Code            object     n_unique=1     n_null=911
+       {nan: 911, 'HRMCRNCD': 1}
+  Treatment line - Hormonal therapy             object     n_unique=1     n_null=911
+       {nan: 911, 'HRM_TRTLN': 1}
+  Hormonal therapy start date                   object     n_unique=1     n_null=911
+       {nan: 911, 'HRMSTDAT': 1}
+  Hormonal therapy: ongoing?                    object     n_unique=1     n_null=911
+       {nan: 911, 'HRMONG': 1}
+  Hormonal therapy: ongoing? - Code             object     n_unique=1     n_null=911
+       {nan: 911, 'HRMONGCD': 1}
+  Hormonal therapy end date                     object     n_unique=1     n_null=911
+       {nan: 911, 'HRMENDAT': 1}
+  Hormonal therapy: drug name (INN)             object     n_unique=1     n_null=911
+       {nan: 911, 'HRMEXOTH': 1}
+  Immunotherapy chronology                      object     n_unique=6     n_null=726
+       {nan: 726, 'Systemic therapy': 133, 'Neo-adjuvant': 23, 'Adjuvant': 19, 'Maintenance': 8, 'Concurrent': 2, 'IMNCRN': 1}
+  Immunotherapy chronology - Code               object     n_unique=6     n_null=726
+       {nan: 726, '8': 133, '1': 23, '3': 19, '7': 8, '2': 2, 'IMNCRNCD': 1}
+  Treatment line - Immunotherapy                object     n_unique=10    n_null=726
+       {nan: 726, '1': 76, '2': 47, '3': 36, '4': 11, '5': 7, '9': 2, '7': 2, '6': 2, '8': 2, 'IMNTRTLN': 1}
+  Immunotherapy start date                      object     n_unique=141   n_null=726
+  Immunotherapy: ongoing?                       object     n_unique=3     n_null=726
+       {nan: 726, 'No': 175, 'Yes': 10, 'IMNONG': 1}
+  Immunotherapy: ongoing? - Code                object     n_unique=3     n_null=726
+       {nan: 726, '0': 175, '1': 10, 'IMNONGCD': 1}
+  Immunotherapy end date                        object     n_unique=136   n_null=737
+  Immunotherapy: drug name (INN)                object     n_unique=21    n_null=726
+  Targeted therapy chronology                   object     n_unique=5     n_null=888
+       {nan: 888, 'Systemic therapy': 19, 'Maintenance': 2, 'TRGCRN': 1, 'Adjuvant': 1, 'Neo-adjuvant': 1}
+  Targeted therapy chronology - Code            object     n_unique=5     n_null=888
+       {nan: 888, '8': 19, '7': 2, 'TRGCRNCD': 1, '3': 1, '1': 1}
+  Treatment line - Targeted therapy             object     n_unique=6     n_null=888
+       {nan: 888, '1': 6, '4': 6, '2': 5, '3': 5, 'TRGTRTLN': 1, '5': 1}
+  Targeted therapy start date                   object     n_unique=24    n_null=888
+  Targeted therapy: ongoing?                    object     n_unique=3     n_null=888
+       {nan: 888, 'No': 21, 'Yes': 2, 'TRGONG': 1}
+  Targeted therapy: ongoing? - Code             object     n_unique=3     n_null=888
+       {nan: 888, '0': 21, '1': 2, 'TRGONGCD': 1}
+  Targeted therapy end date                     object     n_unique=21    n_null=891
+  Targeted therapy: drug name (INN)             object     n_unique=15    n_null=888
+       {nan: 888, 'Bevacizumab ': 7, 'Ramucirumab': 3, 'Bevacizumab': 2, 'Osimertinib ': 1, 'TRGEXOTH': 1, 'Gefitinib': 1, 'Osimertinib': 1, 'erlotinib': 1, 'carboplatin': 1, 'Alectinib': 1, 'Cetuximab': 1, 'SGN-B6A ': 1, 'Atezolizumab': 1, 'Avelumab': 1, 'Sotorasib': 1}
+  Other treatment: type                         object     n_unique=3     n_null=898
+       {nan: 898, 'Other': 12, 'OTHTRTTYP': 1, 'Cellular therapy': 1}
+  Other treatment: type - Code                  object     n_unique=3     n_null=898
+       {nan: 898, '99': 12, 'OTHTRTTYPCD': 1, '1': 1}
+  Other treatment (specify)                     object     n_unique=13    n_null=899
+       {nan: 899, 'OTHTRTTERM': 1, 'Radiotherapy of the right lower lobular lesion': 1, 'Radiotherapy of left lower lobe: lesion not selected for MOSAIC': 1, 'Palliative radiotherapy for pain': 1, 'Radiotherapy on the Pulmonary adenocarcinoma of the right lower lobe': 1, 'Osimertinib for Pulmonary adenocarcinoma of the right lower lobe': 1, 'Arterial embolization with Lipiodol® and Gelfoam® of the suspected metastatic lesion in segment V, followed by percutaneous biopsy, then microwave thermoablation.': 1, 'Thermo-ablation by micro-waves': 1, 'Right lower lobe segmentectomy': 1, 'Phosplatin Therapeutics PT-112': 1, 'LAG-3': 1, 'SGN-B6A': 1, 'Sivatrinib ': 1}
+  Other treatment chronology                    object     n_unique=4     n_null=900
+       {nan: 900, 'Systemic therapy': 5, 'Adjuvant': 4, 'Concurrent': 2, 'OTHTRTCRN': 1}
+  Other treatment chronology - Code             object     n_unique=4     n_null=900
+       {nan: 900, '8': 5, '3': 4, '2': 2, 'OTHTRTCRNCD': 1}
+  Treatment line - Other treatment              object     n_unique=7     n_null=900
+       {nan: 900, '1': 5, '2': 2, 'OTHTRTLN': 1, '5': 1, '4': 1, '6': 1, '3': 1}
+  Other treatment start date                    object     n_unique=14    n_null=898
+       {nan: 898, 'OTHTRTSTDAT': 1, '2015-12-15': 1, '2016-08-08': 1, '2019-01-22': 1, '2017-05-16': 1, '2019-12-NK': 1, '2021-12-13': 1, '2022-11-08': 1, '2024-11-13': 1, '2021-09-15': 1, '2021-10-05': 1, '2017-01-31': 1, '2022-10-31': 1, '2021-07-14': 1}
+  Other treatment: ongoing?                     object     n_unique=2     n_null=898
+       {nan: 898, 'No': 13, 'OTHTRTONG': 1}
+  Other treatment: ongoing? - Code              object     n_unique=2     n_null=898
+       {nan: 898, '0': 13, 'OTHTRTONGCD': 1}
+  Other treatment end date                      object     n_unique=14    n_null=898
+       {nan: 898, 'OTHTRTENDAT': 1, '2015-12-23': 1, '2016-09-16': 1, '2019-02-01': 1, '2017-05-26': 1, '2021-11-NK': 1, '2021-12-13': 1, '2022-11-08': 1, '2024-11-13': 1, '2021-09-15': 1, '2021-11-02': 1, '2017-03-14': 1, '2022-11-28': 1, '2022-01-26': 1}
+  Other treatment: drug name (INN)              object     n_unique=12    n_null=900
+       {nan: 900, 'OTHTRTEXOTH': 1, 'Rdiotherapy stereotaxique': 1, 'Radiotherapy 60 Gy': 1, '10 fractions 36 Gy': 1, 'Radiotherapy on the Pulmonary adenocarcinoma of the right lower lobe': 1, 'osimertinib ': 1, 'Right lower lobe segmentectomy': 1, 'tumor-infiltrating lymphocytes': 1, 'Phosplatin Therapeutics PT-112': 1, 'LAG-3': 1, 'SGN-B6A': 1, 'Sivatrinib ': 1}
+  Treatment route                               object     n_unique=4     n_null=353
+       {'Intravenous': 534, nan: 353, 'Oral': 22, 'Other': 2, 'TRTROUTE': 1}
+  Treatment route - Code                        object     n_unique=4     n_null=353
+       {'2': 534, nan: 353, '1': 22, '99': 2, 'TRTROUTECD': 1}
+  Other route specify                           object     n_unique=3     n_null=909
+       {nan: 909, 'TRTROUTEOTH': 1, 'Not applicable': 1, 'Stereotactic Body Radiation Therapy - SBRT ': 1}
+  Dosage type                                   object     n_unique=4     n_null=428
+       {nan: 428, 'Total': 404, 'Relative': 72, 'Not applicable': 7, 'TRTDOSTYP': 1}
+  Dosage type - Code                            object     n_unique=4     n_null=428
+       {nan: 428, '2': 404, '1': 72, '97': 7, 'TRTDOSTYPCD': 1}
+  Dosage                                        object     n_unique=100   n_null=436
+  Dosage unit                                   object     n_unique=5     n_null=431
+       {nan: 431, 'mg': 275, 'mg/m²': 142, 'mg/kg': 55, 'Not applicable': 8, 'TRTDOSU': 1}
+  Dosage unit - Code                            object     n_unique=5     n_null=431
+       {nan: 431, '1': 275, '3': 142, '2': 55, '97': 8, 'TRTDOSUCD': 1}
+  Other treatment dosage (specify)              object     n_unique=5     n_null=905
+       {nan: 905, 'Not applicable': 2, 'AUC5': 2, 'TRTDOSUOTH': 1, 'AUC 5': 1, 'Tablet': 1}
+  Dosage frequency                              object     n_unique=7     n_null=401
+       {nan: 401, 'Once every 3 weeks': 334, 'Other': 80, 'Every 2 weeks': 49, 'Weekly': 20, 'Once daily': 15, 'Not applicable': 12, 'TRTDOSFRQ': 1}
+  Dosage frequency - Code                       object     n_unique=7     n_null=401
+       {nan: 401, '6': 334, '99': 80, '5': 49, '4': 20, '1': 15, '97': 12, 'TRTDOSFRQCD': 1}
+  Specify dosage frequency                      object     n_unique=20    n_null=831
+  Toxicity event                                object     n_unique=4     n_null=2
+       {'No': 605, 'Yes': 186, 'Unknown': 118, nan: 2, 'TRT_TOX': 1}
+  Toxicity event - Code                         object     n_unique=4     n_null=2
+       {'0': 605, '1': 186, '98': 118, nan: 2, 'TRT_TOXCD': 1}
+  Describe toxicity(ies)                        object     n_unique=104   n_null=727
+  Highest toxicity grade                        object     n_unique=5     n_null=816
+       {nan: 816, '3': 35, '2': 35, '1': 17, '4': 8, 'TRT_TOXGR': 1}
+  Highest toxicity grade - Code                 object     n_unique=5     n_null=816
+       {nan: 816, '4': 35, '3': 35, '2': 17, '5': 8, 'TRT_TOXGRCD': 1}
+  Reason for treatment end                      object     n_unique=7     n_null=194
+       {'Scheduled treatment end': 430, nan: 194, 'Progressive disease': 117, 'Toxicity': 82, 'Other': 45, 'Unknown': 26, 'Death': 17, 'TRTRSDISC': 1}
+  Reason for treatment end - Code               object     n_unique=7     n_null=194
+       {'4': 430, nan: 194, '2': 117, '1': 82, '99': 45, '98': 26, '3': 17, 'TRTRSDISCCD': 1}
+  Other reason for treatment end: specify       object     n_unique=19    n_null=866
+  Best response during treatment                object     n_unique=7     n_null=180
+       {'Progressive disease': 271, 'Partial response': 192, nan: 180, 'Unknown': 109, 'Stable disease': 91, 'Complete response': 35, 'Not evaluable': 33, 'BSTRESTRT': 1}
+  Best response during treatment - Code         object     n_unique=7     n_null=180
+       {'4': 271, '2': 192, nan: 180, '98': 109, '3': 91, '1': 35, '96': 33, 'BSTRESTRTCD': 1}
+
+--- TU_TRT.csv: 173 rows x 164 columns
+  Site sequence number                          object     n_unique=2     n_null=0
+       {'5': 172, 'SiteSeq': 1}
+  Site name                                     object     n_unique=2     n_null=0
+       {'Centre Hospitalier Universitaire Vaudois': 172, 'SiteName': 1}
+  Site code                                     object     n_unique=2     n_null=0
+       {'CH': 172, 'SiteCode': 1}
+  Subject sequence number                       object     n_unique=173   n_null=0
+       examples: ['SubjectSeq', '275', '276', '277']
+  Subject Id                                    object     n_unique=173   n_null=0
+       examples: ['SubjectId', 'CH_L_275', 'CH_L_276', 'CH_L_277']
+  Event sequence number                         object     n_unique=2     n_null=0
+       {'1': 172, 'EventSeq': 1}
+  Event Id                                      object     n_unique=2     n_null=0
+       {'E01_V1': 172, 'EventId': 1}
+  Event name                                    object     n_unique=2     n_null=0
+       {'Baseline': 172, 'EventName': 1}
+  Event date                                    object     n_unique=29    n_null=0
+  Activity Id                                   object     n_unique=2     n_null=0
+       {'E01_TU_TRT': 172, 'ActivityId': 1}
+  Activity name                                 object     n_unique=2     n_null=0
+       {'Please fill this form to have full access to the Tumour Pathology form.': 172, 'ActivityName': 1}
+  Form sequence number                          object     n_unique=2     n_null=0
+       {'1': 172, 'FormSeq': 1}
+  Subject form sequence number                  object     n_unique=2     n_null=0
+       {'1': 172, 'SubjectFormSeq': 1}
+  Origin Subject form sequence number           object     n_unique=2     n_null=0
+       {'1': 172, 'OriginSubjectFormSeq': 1}
+  Source Subject form sequence number           object     n_unique=1     n_null=172
+       {nan: 172, 'SourceSubjectFormSeq': 1}
+  Design version                                object     n_unique=3     n_null=0
+       {'9.23': 101, '12.2': 71, 'DesignVersion': 1}
+  MS - tumour resection chronology              object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_RESCHRN': 1}
+  MS - tumour resection chronology - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_RESCHRNCD': 1}
+  Lymph node surgery type                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSLYMTYP': 1}
+  Lymph node surgery type - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSLYMTYPCD': 1}
+  Lymph node surgery type other: specify        object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSLYMTYPOTH': 1}
+  MS - surgery type                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSSURGTYP': 1}
+  MS - surgery type - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSSURGTYPCD': 1}
+  MS - biopsy type                              object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSBIOPTYP': 1}
+  MS - biopsy type - Code                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSBIOPTYPCD': 1}
+  Biopsy type other: specify                    object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSBIOPTYPOTH': 1}
+  Radiotherapy type 1                           object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSRADTYP1': 1}
+  Radiotherapy type 1 - Code                    object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSRADTYP1CD': 1}
+  Radiotherapy type 2                           object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSRADTYP2': 1}
+  Radiotherapy type 2 - Code                    object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSRADTYP2CD': 1}
+  Radiotherapy type 99                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSRADTYP99': 1}
+  Radiotherapy type 99 - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSRADTYP99CD': 1}
+  Radiotherapy type other: specify              object     n_unique=1     n_null=172
+       {nan: 172, 'TUI_MSRADTYPOTH': 1}
+  1L treatment regimen short name               object     n_unique=1     n_null=172
+       {nan: 172, 'TU_TRTNAM': 1}
+  R-CHOP full dose first line                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLRCDOSYN': 1}
+  R-CHOP full dose first line - Code            object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLRCDOSYNCD': 1}
+  R-CHOP timing                                 object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLRCTIM': 1}
+  R-CHOP timing - Code                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLRCTIMCD': 1}
+  DL - radiotherapy                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLRADYN': 1}
+  DL - radiotherapy - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLRADYNCD': 1}
+  1L treatment regimen short name.1             object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_TRTNAM': 1}
+  BL - tumour resection chronology              object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCHRN': 1}
+  BL - tumour resection chronology - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCHRNCD': 1}
+  BL - Lymph node surgery type for pTNM or ypTNM object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLLYMPSURTYP': 1}
+  BL - Lymph node surgery type for pTNM or ypTNM - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLLYMPSURTYPCD': 1}
+  Postoperative single instillation of MMC      object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLMMCYN': 1}
+  Postoperative single instillation of MMC - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLMMCYNCD': 1}
+  TURBT (Transurethral Resection of Bladder Tumour) object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTURBTYN': 1}
+  TURBT (Transurethral Resection of Bladder Tumour) - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTURBTYNCD': 1}
+  2nd Look TURBT                                object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTURBT02YN': 1}
+  2nd Look TURBT - Code                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTURBT02YNCD': 1}
+  Result of 2nd look TURBT                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTURBT02ORRES': 1}
+  Result of 2nd look TURBT - Code               object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTURBT02ORRESCD': 1}
+  BCG therapy                                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLBCGYN': 1}
+  BCG therapy - Code                            object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLBCGYNCD': 1}
+  First local recurrence                        object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLFLRYN': 1}
+  First local recurrence - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLFLRYNCD': 1}
+  Date first local recurrence                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLFLRDAT': 1}
+  Tumour size at first local recurrence (mm)    object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTUSIZE_ORRES': 1}
+  Tumour size at first local recurrence (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTUSIZE_NA97': 1}
+  Tumour size at first local recurrence (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTUSIZE_NA97CD': 1}
+  BCG-unresponsiveness during follow-up         object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLBCGURYN': 1}
+  BCG-unresponsiveness during follow-up - Code  object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLBCGURYNCD': 1}
+  Date of BCG-unresponsiveness                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLBCGURDAT': 1}
+  Cystectomy during follow up                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCYSYN': 1}
+  Cystectomy during follow up - Code            object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCYSYNCD': 1}
+  NS - tumour resection chronology              object     n_unique=4     n_null=0
+       {'Upfront surgery': 100, 'Surgery after neoadjuvant therapy': 49, 'No tumour resection (only biopsy is available)': 23, 'TU4_NSRESCHRN': 1}
+  NS - tumour resection chronology - Code       object     n_unique=4     n_null=0
+       {'2': 100, '3': 49, '1': 23, 'TU4_NSRESCHRNCD': 1}
+  NS - Lymph node surgery type for pTNM or ypTNM object     n_unique=4     n_null=0
+       {'Mediastinal lymph node dissection': 141, 'No lymph node surgery': 23, 'Mediastinal node sampling only': 8, 'TU4_NSPTNMSURTYP': 1}
+  NS - Lymph node surgery type for pTNM or ypTNM - Code object     n_unique=4     n_null=0
+       {'3': 141, '1': 23, '2': 8, 'TU4_NSPTNMSURTYPCD': 1}
+  Radiotherapy                                  object     n_unique=4     n_null=104
+       {nan: 104, 'After surgery': 35, 'Other': 17, 'Upfront': 16, 'TU4_NSRAD': 1}
+  Radiotherapy  - Code                          object     n_unique=5     n_null=0
+       {'0': 104, '2': 35, '99': 17, '1': 16, 'TU4_NSRADCD': 1}
+  Neoadjuvant immunotherapy                     object     n_unique=3     n_null=0
+       {'No': 149, 'Yes': 23, 'TU4_NSNADJYN': 1}
+  Neoadjuvant immunotherapy - Code              object     n_unique=3     n_null=0
+       {'0': 149, '1': 23, 'TU4_NSNADJYNCD': 1}
+  Adjuvant immunotherapy                        object     n_unique=4     n_null=0
+       {'No': 132, 'Yes': 38, 'Unknown': 2, 'TU4_NSADJYN': 1}
+  Adjuvant immunotherapy - Code                 object     n_unique=4     n_null=0
+       {'0': 132, '1': 38, '98': 2, 'TU4_NSADJYNCD': 1}
+  Targeted therapy (at any time)                object     n_unique=4     n_null=0
+       {'No': 147, 'Yes': 24, 'TU4_NSTRGYN': 1, 'Unknown': 1}
+  Targeted therapy (at any time) - Code         object     n_unique=4     n_null=0
+       {'0': 147, '1': 24, 'TU4_NSTRGYNCD': 1, '98': 1}
+  Initial treatment                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVINITRT': 1}
+  Initial treatment - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVINITRTCD': 1}
+  Initial treatment specify                     object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVINITRTOTH': 1}
+  Residual disease after surgical cytoreduction object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVRDSCYTR': 1}
+  Residual disease after surgical cytoreduction - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVRDSCYTRCD': 1}
+  Residual disease at debulking surgery size    object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVMRDDSSIZE': 1}
+  Residual disease at debulking surgery size - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVMRDDSSIZECD': 1}
+  Platinum-sensitivity status                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVPLTSTATUS': 1}
+  Platinum-sensitivity status - Code            object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVPLTSTATUSCD': 1}
+  PARP inhibitor in first line maintenance      object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVPARP': 1}
+  PARP inhibitor in first line maintenance - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVPARPCD': 1}
+  Bevacizumab in first line treatment           object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVBZFRSTTRT': 1}
+  Bevacizumab in first line treatment - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVBZFRSTTRTCD': 1}
+  GB - tumour resection chronology              object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBRESCHRN': 1}
+  GB - tumour resection chronology - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBRESCHRNCD': 1}
+  GB - biopsy type                              object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBBIOPTYP': 1}
+  GB - biopsy type - Code                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBBIOPTYPCD': 1}
+  GB - surgery type                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGTYP': 1}
+  GB - surgery type - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGTYPCD': 1}
+  Surgery adjunct 1                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ1': 1}
+  Surgery adjunct 1 - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ1CD': 1}
+  Surgery adjunct 2                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ2': 1}
+  Surgery adjunct 2 - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ2CD': 1}
+  Surgery adjunct 3                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ3': 1}
+  Surgery adjunct 3 - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ3CD': 1}
+  Surgery adjunct 4                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ4': 1}
+  Surgery adjunct 4 - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ4CD': 1}
+  Surgery adjunct 5                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ5': 1}
+  Surgery adjunct 5 - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ5CD': 1}
+  Surgery adjunct 6                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ6': 1}
+  Surgery adjunct 6 - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ6CD': 1}
+  Surgery adjunct 7                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ7': 1}
+  Surgery adjunct 7 - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ7CD': 1}
+  Surgery adjunct 8                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ8': 1}
+  Surgery adjunct 8 - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSRGADJ8CD': 1}
+  Systemic therapy implant                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSTIMPYN': 1}
+  Systemic therapy implant - Code               object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSTIMPYNCD': 1}
+  GB - radiotherapy                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBRADYN': 1}
+  GB - radiotherapy - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBRADYNCD': 1}
+  Alternating electric field therapy            object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBALTELECTYN': 1}
+  Alternating electric field therapy - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBALTELECTYNCD': 1}
+  Temozolomide                                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBTZMYN': 1}
+  Temozolomide - Code                           object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBTZMYNCD': 1}
+  Lomustine                                     object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBLMTYN': 1}
+  Lomustine - Code                              object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBLMTYNCD': 1}
+  BC - tumour resection chronology              object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCRESCHRN': 1}
+  BC - tumour resection chronology - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCRESCHRNCD': 1}
+  Lymph node surgery type.1                     object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCLYMNSURTYP': 1}
+  Lymph node surgery type - Code.1              object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCLYMNSURTYPCD': 1}
+  NS - tumour resection chronology.1            object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSRESCHRN': 1}
+  NS - tumour resection chronology - Code.1     object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSRESCHRNCD': 1}
+  NS - Lymph node surgery type for pTNM or ypTNM.1 object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSPTNMSURTYP': 1}
+  NS - Lymph node surgery type for pTNM or ypTNM - Code.1 object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSPTNMSURTYPCD': 1}
+  Radiotherapy .1                               object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSRAD': 1}
+  Radiotherapy  - Code.1                        object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSRADCD': 1}
+  Radiotherapy type other: specify.1            object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSRADOTHER': 1}
+  Adjuvant immunotherapy.1                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSADJYN': 1}
+  Adjuvant immunotherapy - Code.1               object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSADJYNCD': 1}
+  Targeted therapy (at any time).1              object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSTRGYN': 1}
+  Targeted therapy (at any time) - Code.1       object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_NSTRGYNCD': 1}
+  NS - tumour resection chronology.2            object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCRESCHRN': 1}
+  NS - tumour resection chronology - Code.2     object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCRESCHRNCD': 1}
+  NS - Lymph node surgery type for pTNM or ypTNM.2 object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCPTNMSURTYP': 1}
+  NS - Lymph node surgery type for pTNM or ypTNM - Code.2 object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCPTNMSURTYPCD': 1}
+  Radiotherapy .2                               object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCRAD': 1}
+  Radiotherapy  - Code.2                        object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCRADCD': 1}
+  Neoadjuvant immunotherapy.1                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCNADJYN': 1}
+  Neoadjuvant immunotherapy - Code.1            object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCNADJYNCD': 1}
+  Adjuvant immunotherapy.2                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCADJYN': 1}
+  Adjuvant immunotherapy - Code.2               object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCADJYNCD': 1}
+  Targeted therapy (at any time).2              object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCTRGYN': 1}
+  Targeted therapy (at any time) - Code.2       object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCTRGYNCD': 1}
+  Stent placement                               object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCSTENT': 1}
+  Stent placement - Code                        object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCSTENTCD': 1}
+  CRC - tumour resection chronology             object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCRESCHRN': 1}
+  CRC - tumour resection chronology - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCRESCHRNCD': 1}
+  CRC - Lymph node surgery type for pTNM or ypTNM object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCPTNMSURTYP': 1}
+  CRC - Lymph node surgery type for pTNM or ypTNM - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCPTNMSURTYPCD': 1}
+  Radiotherapy .3                               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCRAD': 1}
+  Radiotherapy  - Code.3                        object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCRADCD': 1}
+  Radiotherapy type other: specify.2            object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCRADOTHER': 1}
+  Adjuvant immunotherapy.3                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCADJYN': 1}
+  Adjuvant immunotherapy - Code.3               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCADJYNCD': 1}
+  Targeted therapy (at any time).3              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCTRGYN': 1}
+  Targeted therapy (at any time) - Code.3       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCTRGYNCD': 1}
+  General comments                              object     n_unique=6     n_null=167
+       {nan: 167, 'TRT_TUCOVAL': 1, 'RTH was not done on primary tumor': 1, 'radiotherapy for adrenal gland cancer': 1, 'Selective sampling of hilar, inter-scissural, aorto-pulmonary, and inter-tracheobronchial lymph nodes was performed during surgery.': 1, 'No adjuvant chemotherapy due to post-operative complications and poor general patient condition.': 1, 'Patient underwent segmentectomy of the left upper lobe on 02 Jun 2021 for a confirmed adenocarcinoma staged as IA1 (pT1a pN0 R0). Mediastinal lymph node dissection was performed intraoperatively. No neoadjuvant or adjuvant immunotherapy was given. No targeted therapy administered.': 1}
+
+--- CM.csv: 190 rows x 40 columns
+  Site sequence number                          object     n_unique=2     n_null=0
+       {'5': 189, 'SiteSeq': 1}
+  Site name                                     object     n_unique=2     n_null=0
+       {'Centre Hospitalier Universitaire Vaudois': 189, 'SiteName': 1}
+  Site code                                     object     n_unique=2     n_null=0
+       {'CH': 189, 'SiteCode': 1}
+  Subject sequence number                       object     n_unique=169   n_null=0
+       examples: ['SubjectSeq', '275', '276', '277']
+  Subject Id                                    object     n_unique=169   n_null=0
+       examples: ['SubjectId', 'CH_L_275', 'CH_L_276', 'CH_L_277']
+  Event sequence number                         object     n_unique=7     n_null=0
+       {'1': 168, '2': 11, '3': 4, '4': 3, '5': 2, 'EventSeq': 1, '6': 1}
+  Event Id                                      object     n_unique=2     n_null=0
+       {'COMMON_CONTRT': 189, 'EventId': 1}
+  Event name                                    object     n_unique=2     n_null=0
+       {'Concurrent Treatment': 189, 'EventName': 1}
+  Event date                                    object     n_unique=58    n_null=0
+  Activity Id                                   object     n_unique=2     n_null=0
+       {'LOG_CONTRT': 189, 'ActivityId': 1}
+  Activity name                                 object     n_unique=1     n_null=189
+       {nan: 189, 'ActivityName': 1}
+  Form sequence number                          object     n_unique=2     n_null=0
+       {'1': 189, 'FormSeq': 1}
+  Subject form sequence number                  object     n_unique=7     n_null=0
+       {'1': 168, '2': 11, '3': 4, '4': 3, '5': 2, 'SubjectFormSeq': 1, '6': 1}
+  Origin Subject form sequence number           object     n_unique=7     n_null=0
+       {'1': 168, '2': 11, '3': 4, '4': 3, '5': 2, 'OriginSubjectFormSeq': 1, '6': 1}
+  Source Subject form sequence number           object     n_unique=1     n_null=189
+       {nan: 189, 'SourceSubjectFormSeq': 1}
+  Design version                                object     n_unique=3     n_null=0
+       {'13.8': 186, '9.23': 3, 'DesignVersion': 1}
+  Sequence number                               object     n_unique=7     n_null=0
+       {'1': 168, '2': 11, '3': 4, '4': 3, '5': 2, 'CMSPID': 1, '6': 1}
+  Concurrent treatment: drug name (INN)         object     n_unique=168   n_null=18
+  Concurrent treatment: indication              object     n_unique=40    n_null=83
+  Dosage type                                   object     n_unique=4     n_null=153
+       {nan: 153, 'Not applicable': 21, 'Total': 10, 'Relative': 5, 'CMDOSTYP': 1}
+  Dosage type - Code                            object     n_unique=4     n_null=153
+       {nan: 153, '97': 21, '2': 10, '1': 5, 'CMDOSTYPCD': 1}
+  Dosage                                        object     n_unique=12    n_null=174
+       {nan: 174, '2.5': 2, '20': 2, '500': 2, '5': 2, 'CMDOSE': 1, '125': 1, '240': 1, '50': 1, '160': 1, '490': 1, '400': 1, '150': 1}
+  Dosage unit                                   object     n_unique=5     n_null=153
+       {nan: 153, 'Not applicable': 20, 'mg': 14, 'CMDOSU': 1, 'mg/m²': 1, 'mg/kg': 1}
+  Dosage unit - Code                            object     n_unique=5     n_null=153
+       {nan: 153, '97': 20, '1': 14, 'CMDOSUCD': 1, '3': 1, '2': 1}
+  Other treatment dosage (specify)              object     n_unique=4     n_null=170
+       {nan: 170, 'None.': 17, 'CMDOSOTH': 1, '11.25': 1, '74 Gy in 40 session': 1}
+  Dosage frequency                              object     n_unique=6     n_null=156
+       {nan: 156, 'Not applicable': 18, 'Once daily': 9, 'Other': 3, 'Twice daily': 2, 'CMDOSFRQ': 1, 'Once every 3 weeks': 1}
+  Dosage frequency - Code                       object     n_unique=6     n_null=156
+       {nan: 156, '97': 18, '1': 9, '99': 3, '2': 2, 'CMDOSFRQCD': 1, '6': 1}
+  Specify dosage frequency                      object     n_unique=4     n_null=186
+       {nan: 186, 'CMDOSFRQOTH': 1, 'every 4 weeks': 1, 'daily 3 weeks/4 weeks': 1, 'every 3 months': 1}
+  Start date                                    object     n_unique=34    n_null=155
+  Concurrent treatment: ongoing?                object     n_unique=3     n_null=156
+       {nan: 156, 'No': 25, 'Yes': 8, 'CMONGO': 1}
+  Concurrent treatment: ongoing? - Code         object     n_unique=3     n_null=156
+       {nan: 156, '0': 25, '1': 8, 'CMONGOCD': 1}
+  End date                                      object     n_unique=25    n_null=164
+  Toxicity event                                object     n_unique=4     n_null=157
+       {nan: 157, 'No': 27, 'Yes': 3, 'Unknown': 2, 'CMTOX': 1}
+  Toxicity event - Code                         object     n_unique=4     n_null=157
+       {nan: 157, '0': 27, '1': 3, '98': 2, 'CMTOXCD': 1}
+  Describe toxicity(ies)                        object     n_unique=4     n_null=186
+       {nan: 186, 'CMTOXTYPSP': 1, 'rash ': 1, 'Lipase increase and diarrhea': 1, 'diarrhea and pancreas toxicity': 1}
+  Highest toxicity grade                        object     n_unique=1     n_null=189
+       {nan: 189, 'CMTOXGR': 1}
+  Highest toxicity grade - Code                 object     n_unique=1     n_null=189
+       {nan: 189, 'CMTOXGRCD': 1}
+  Reason for treatment end                      object     n_unique=6     n_null=165
+       {nan: 165, 'Death': 12, 'Other': 5, 'Scheduled treatment end': 3, 'Toxicity': 2, 'Unknown': 2, 'CMRSDISC': 1}
+  Reason for treatment end - Code               object     n_unique=6     n_null=165
+       {nan: 165, '2': 12, '99': 5, '3': 3, '1': 2, '98': 2, 'CMRSDISCCD': 1}
+  Other reason for treatment end: specify       object     n_unique=4     n_null=184
+       {nan: 184, 'progression': 3, 'CMRSDISCOTH': 1, 'stopped due to lung progression': 1, 'comfort care ': 1}
+
+--- SAMPBLK.csv: 184 rows x 59 columns
+  Site sequence number                          object     n_unique=2     n_null=0
+       {'5': 183, 'SiteSeq': 1}
+  Site name                                     object     n_unique=2     n_null=0
+       {'Centre Hospitalier Universitaire Vaudois': 183, 'SiteName': 1}
+  Site code                                     object     n_unique=2     n_null=0
+       {'CH': 183, 'SiteCode': 1}
+  Subject sequence number                       object     n_unique=173   n_null=0
+       examples: ['SubjectSeq', '275', '276', '277']
+  Subject Id                                    object     n_unique=173   n_null=0
+       examples: ['SubjectId', 'CH_L_275', 'CH_L_276', 'CH_L_277']
+  Event sequence number                         object     n_unique=4     n_null=0
+       {'1': 169, '2': 12, '3': 2, 'EventSeq': 1}
+  Event Id                                      object     n_unique=2     n_null=0
+       {'COMMON_SAMPBLK': 183, 'EventId': 1}
+  Event name                                    object     n_unique=2     n_null=0
+       {'Sample Block': 183, 'EventName': 1}
+  Event date                                    object     n_unique=27    n_null=0
+  Activity Id                                   object     n_unique=2     n_null=0
+       {'LOG_SAMPBLK': 183, 'ActivityId': 1}
+  Activity name                                 object     n_unique=1     n_null=183
+       {nan: 183, 'ActivityName': 1}
+  Form sequence number                          object     n_unique=2     n_null=0
+       {'1': 183, 'FormSeq': 1}
+  Subject form sequence number                  object     n_unique=4     n_null=0
+       {'1': 169, '2': 12, '3': 2, 'SubjectFormSeq': 1}
+  Origin Subject form sequence number           object     n_unique=4     n_null=0
+       {'1': 169, '2': 12, '3': 2, 'OriginSubjectFormSeq': 1}
+  Source Subject form sequence number           object     n_unique=1     n_null=183
+       {nan: 183, 'SourceSubjectFormSeq': 1}
+  Design version                                object     n_unique=4     n_null=0
+       {'12.2': 112, '9.23': 68, '13.8': 3, 'DesignVersion': 1}
+  Block sequence number per subject for MOSAIC  object     n_unique=4     n_null=0
+       {'a': 172, 'b': 10, 'SAMPBLKNO': 1, 'c': 1}
+  Tumour block ID for MOSAIC                    object     n_unique=184   n_null=0
+       examples: ['TUBLKID', 'CH_L_275a', 'CH_L_276a', 'CH_L_277a']
+  Shipping code                                 object     n_unique=1     n_null=183
+       {nan: 183, 'SHIP': 1}
+  Cohort code                                   object     n_unique=5     n_null=0
+       {'CH_NSCLC_#6': 102, 'CH_NSCLC_#3': 30, 'CH_NSCLC_#2': 27, 'CH_NSCLC_#1': 24, 'COHORT': 1}
+  Date of sample harvest                        object     n_unique=180   n_null=0
+  Sample origin                                 object     n_unique=5     n_null=0
+       {'Primary tumour': 177, 'Metastatic site': 4, 'SAMPORG': 1, 'Local recurrence (primary tumour site)': 1, 'Regional recurrence (draining lymph node site)': 1}
+  Sample origin - Code                          object     n_unique=5     n_null=0
+       {'1': 177, '7': 4, 'SAMPORGCD': 1, '5': 1, '6': 1}
+  Metastatic site (organ)                       object     n_unique=5     n_null=179
+       {nan: 179, 'SAMPMTSP': 1, 'Left lung': 1, 'Adrenal gland': 1, 'lymph node': 1, 'bone': 1}
+  Sample collection chronology                  object     n_unique=4     n_null=0
+       {'Baseline': 136, 'After neoadjuvant chemotherapy': 42, 'At recurrence': 5, 'SAMPCRN': 1}
+  Sample collection chronology - Code           object     n_unique=4     n_null=0
+       {'1': 136, '2': 42, '3': 5, 'SAMPCRNCD': 1}
+  Sample source                                 object     n_unique=3     n_null=0
+       {'Surgical specimen': 147, 'Biopsy': 36, 'SAMPSRC': 1}
+  Sample source - Code                          object     n_unique=3     n_null=0
+       {'2': 147, '1': 36, 'SAMPSRCCD': 1}
+  Archival H&E available                        object     n_unique=2     n_null=0
+       {'Yes': 183, 'ARCAVB': 1}
+  Archival H&E available - Code                 object     n_unique=2     n_null=0
+       {'1': 183, 'ARCAVBCD': 1}
+  Type of staining (archival slide)             object     n_unique=2     n_null=0
+       {'HE': 183, 'STAINTYP': 1}
+  Type of staining (archival slide) - Code      object     n_unique=2     n_null=0
+       {'1': 183, 'STAINTYPCD': 1}
+  Qualification of tumour block                 object     n_unique=2     n_null=0
+       {'Qualified': 183, 'TUBLKQ': 1}
+  Qualification of tumour block - Code          object     n_unique=2     n_null=0
+       {'1': 183, 'TUBLKQCD': 1}
+  Comments                                      object     n_unique=36    n_null=114
+  RNA sequencing done before MOSAIC             object     n_unique=3     n_null=0
+       {'No': 174, 'Yes': 9, 'RNASQYN': 1}
+  RNA sequencing done before MOSAIC - Code      object     n_unique=3     n_null=0
+       {'0': 174, '1': 9, 'RNASQYNCD': 1}
+  DNA sequencing done before MOSAIC             object     n_unique=3     n_null=0
+       {'No': 99, 'Yes': 84, 'DNASQYN': 1}
+  DNA sequencing done before MOSAIC - Code      object     n_unique=3     n_null=0
+       {'0': 99, '1': 84, 'DNASQYNCD': 1}
+  TLS observed from same date / same site       object     n_unique=3     n_null=10
+       {'No': 136, 'Yes': 37, nan: 10, 'TLSTUYN': 1}
+  TLS observed from same date / same site - Code object     n_unique=3     n_null=10
+       {'0': 136, '1': 37, nan: 10, 'TLSTUYNCD': 1}
+  Tumour percentage at MOSAIC (%)               object     n_unique=1     n_null=183
+       {nan: 183, 'TUPMP': 1}
+  Tumour area more than 20% of the Visium frame ? object     n_unique=3     n_null=0
+       {'Yes': 181, 'No': 2, 'TAVF': 1}
+  Tumour area more than 20% of the Visium frame ? - Code object     n_unique=3     n_null=0
+       {'1': 181, '2': 2, 'TAVFCD': 1}
+  Size (mm) at tumor size 1                     object     n_unique=1     n_null=183
+       {nan: 183, 'SIZE1_TUORRES': 1}
+  Tumour burden between 40-80%?                 object     n_unique=2     n_null=0
+       {'Yes': 183, 'TUB4080': 1}
+  Tumour burden between 40-80%? - Code          object     n_unique=2     n_null=0
+       {'1': 183, 'TUB4080CD': 1}
+  Size (mm) at tumor size 2                     object     n_unique=1     n_null=183
+       {nan: 183, 'SIZE2_TUORRES': 1}
+  Is there more than 80% high grade component?  object     n_unique=1     n_null=183
+       {nan: 183, 'TUH80DLBCL': 1}
+  Is there more than 80% high grade component? - Code object     n_unique=1     n_null=183
+       {nan: 183, 'TUH80DLBCLCD': 1}
+  Area (mm x mm)                                object     n_unique=1     n_null=183
+       {nan: 183, 'AREA_TUORRES': 1}
+  True tumour burden percentage in the area left after macrodissection or the whole slide if no macrodissection object     n_unique=10    n_null=5
+       {'60': 28, '70': 27, '50': 26, '40': 24, '80': 20, '55': 17, '45': 14, '75': 12, '65': 10, nan: 5, 'TUBPCTG': 1}
+  Date of sample de-archival                    object     n_unique=15    n_null=0
+       {'2024-08-05': 95, '2024-11-15': 13, '2024-11-08': 12, '2024-10-07': 12, '2024-12-06': 12, '2024-11-30': 10, '2024-11-22': 9, '2024-11-29': 7, '2024-09-23': 6, '2024-10-21': 3, 'SAMPSTDAT': 1, '2024-10-11': 1, '2024-10-04': 1, '2025-01-03': 1, '2024-02-02': 1}
+  Data generation lab validate sample           object     n_unique=2     n_null=0
+       {'Yes': 183, 'VALSAMPYN': 1}
+  Data generation lab validate sample - Code    object     n_unique=2     n_null=0
+       {'1': 183, 'VALSAMPYNCD': 1}
+  Reason why the sample has not been validated by the lab object     n_unique=1     n_null=183
+       {nan: 183, 'VALSAMPYNREAS': 1}
+  Reason tissue could not be qualified          object     n_unique=1     n_null=183
+       {nan: 183, 'TUBLKQREAS': 1}
+  Reason tissue could not be qualified - Code   object     n_unique=1     n_null=183
+       {nan: 183, 'TUBLKQREASCD': 1}
+  Other reason: specify                         object     n_unique=1     n_null=183
+       {nan: 183, 'TUBLKQREASOTH': 1}
+
+--- ONCE.csv: 682 rows x 106 columns
+  Site sequence number                          object     n_unique=2     n_null=0
+       {'5': 681, 'SiteSeq': 1}
+  Site name                                     object     n_unique=2     n_null=0
+       {'Centre Hospitalier Universitaire Vaudois': 681, 'SiteName': 1}
+  Site code                                     object     n_unique=2     n_null=0
+       {'CH': 681, 'SiteCode': 1}
+  Subject sequence number                       object     n_unique=173   n_null=0
+       examples: ['SubjectSeq', '275', '276', '277']
+  Subject Id                                    object     n_unique=173   n_null=0
+       examples: ['SubjectId', 'CH_L_275', 'CH_L_276', 'CH_L_277']
+  Event sequence number                         object     n_unique=14    n_null=0
+       {'1': 168, '2': 138, '3': 113, '4': 79, '5': 60, '6': 40, '7': 31, '8': 17, '9': 13, '10': 9, '11': 7, '12': 4, '13': 2, 'EventSeq': 1}
+  Event Id                                      object     n_unique=2     n_null=0
+       {'COMMON_ONCE': 681, 'EventId': 1}
+  Event name                                    object     n_unique=2     n_null=0
+       {'Oncologic Events': 681, 'EventName': 1}
+  Event date                                    object     n_unique=82    n_null=0
+  Activity Id                                   object     n_unique=2     n_null=0
+       {'LOG_ONCE': 681, 'ActivityId': 1}
+  Activity name                                 object     n_unique=1     n_null=681
+       {nan: 681, 'ActivityName': 1}
+  Form sequence number                          object     n_unique=2     n_null=0
+       {'1': 681, 'FormSeq': 1}
+  Subject form sequence number                  object     n_unique=14    n_null=0
+       {'1': 168, '2': 138, '3': 113, '4': 79, '5': 60, '6': 40, '7': 31, '8': 17, '9': 13, '10': 9, '11': 7, '12': 4, '13': 2, 'SubjectFormSeq': 1}
+  Origin Subject form sequence number           object     n_unique=14    n_null=0
+       {'1': 168, '2': 138, '3': 113, '4': 79, '5': 60, '6': 40, '7': 31, '8': 17, '9': 13, '10': 9, '11': 7, '12': 4, '13': 2, 'OriginSubjectFormSeq': 1}
+  Source Subject form sequence number           object     n_unique=1     n_null=681
+       {nan: 681, 'SourceSubjectFormSeq': 1}
+  Design version                                object     n_unique=3     n_null=0
+       {'13.8': 680, 'DesignVersion': 1, '9.23': 1}
+  Sequence number                               object     n_unique=14    n_null=0
+       {'1': 168, '2': 138, '3': 113, '4': 79, '5': 60, '6': 40, '7': 31, '8': 17, '9': 13, '10': 9, '11': 7, '12': 4, '13': 2, 'ONCESPID': 1}
+  Summary format_hidden                         object     n_unique=308   n_null=1
+       examples: ['ONCE_HIDDEN', 'Progression: No', 'Progression: Yes - Date: 13-Feb-2015', 'Progression: Yes - Date: 14-Jun-2016']
+  Oncologic event type                          object     n_unique=3     n_null=0
+       {'Before MOSAIC': 568, 'After the last visit': 113, 'ONCETYP': 1}
+  Oncologic event type - Code                   object     n_unique=3     n_null=0
+       {'1': 568, '2': 113, 'ONCETYPCD': 1}
+  CT scan available                             object     n_unique=3     n_null=0
+       {'Yes': 675, 'No': 6, 'CT_PRYN': 1}
+  CT scan available - Code                      object     n_unique=3     n_null=0
+       {'1': 675, '0': 6, 'CT_PRYNCD': 1}
+  Deauville score                               object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEDEVSCORE': 1}
+  Deauville score - Code                        object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEDEVSCORECD': 1}
+  Date of CT scan                               object     n_unique=605   n_null=6
+  Sum of largest diameter for all tumour (mm)   object     n_unique=13    n_null=665
+       {nan: 665, '10': 3, '7': 2, '61': 2, 'ONCECTLDIAM': 1, '41': 1, '57': 1, '5': 1, '11': 1, '6': 1, '9': 1, '13': 1, '28': 1, '34': 1}
+  Sum of largest diameter for all tumour (NA) 97 object     n_unique=1     n_null=681
+       {nan: 681, 'ONCECTLDIAMNA97': 1}
+  Sum of largest diameter for all tumour (NA) 97 - Code object     n_unique=2     n_null=22
+       {'97': 659, nan: 22, 'ONCECTLDIAMNA97CD': 1}
+  Response                                      object     n_unique=7     n_null=6
+       {'Progressive disease': 315, 'Stable disease': 171, 'Complete response/no recurrence': 109, 'Partial response': 75, nan: 6, 'Unknown': 3, 'Not evaluable': 2, 'ONCECTRES': 1}
+  Response - Code                               object     n_unique=7     n_null=6
+       {'4': 315, '3': 171, '1': 109, '2': 75, nan: 6, '98': 3, '96': 2, 'ONCECTRESCD': 1}
+  Progression/Recurrence                        object     n_unique=3     n_null=1
+       {'No': 355, 'Yes': 325, 'ONCEPYN': 1, nan: 1}
+  Progression/Recurrence - Code                 object     n_unique=3     n_null=1
+       {'0': 355, '1': 325, 'ONCEPYNCD': 1, nan: 1}
+  Date when progression/recurrence was checked  object     n_unique=333   n_null=326
+  Type of progression/recurrence(Please check all that apply) 1 object     n_unique=2     n_null=571
+       {nan: 571, 'Locoregional': 110, 'ONCEPTYP1': 1}
+  Type of progression/recurrence(Please check all that apply) 1 - Code object     n_unique=2     n_null=571
+       {nan: 571, '1': 110, 'ONCEPTYP1CD': 1}
+  Type of progression/recurrence(Please check all that apply) 2 object     n_unique=2     n_null=407
+       {nan: 407, 'Metastatic': 274, 'ONCEPTYP2': 1}
+  Type of progression/recurrence(Please check all that apply) 2 - Code object     n_unique=2     n_null=407
+       {nan: 407, '2': 274, 'ONCEPTYP2CD': 1}
+  Date of progression/recurrence                object     n_unique=307   n_null=356
+  Date of progression/recurrence_hidden         object     n_unique=307   n_null=356
+       examples: ['ONCE_HIDDEN1', '13-Feb-2015', '14-Jun-2016', '04-Apr-2017']
+  Location(s) of metastases 1                   object     n_unique=2     n_null=661
+       {nan: 661, 'Adrenal gland': 20, 'ONCEP_MTLOC1': 1}
+  Location(s) of metastases 1 - Code            object     n_unique=2     n_null=661
+       {nan: 661, '1': 20, 'ONCEP_MTLOC1CD': 1}
+  Location(s) of metastases 2                   object     n_unique=2     n_null=620
+       {nan: 620, 'Bone': 61, 'ONCEP_MTLOC2': 1}
+  Location(s) of metastases 2 - Code            object     n_unique=2     n_null=620
+       {nan: 620, '2': 61, 'ONCEP_MTLOC2CD': 1}
+  Location(s) of metastases 3                   object     n_unique=2     n_null=625
+       {nan: 625, 'Brain': 56, 'ONCEP_MTLOC3': 1}
+  Location(s) of metastases 3 - Code            object     n_unique=2     n_null=625
+       {nan: 625, '3': 56, 'ONCEP_MTLOC3CD': 1}
+  Location(s) of metastases 4                   object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC4': 1}
+  Location(s) of metastases 4 - Code            object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC4CD': 1}
+  Location(s) of metastases 5                   object     n_unique=2     n_null=680
+       {nan: 680, 'ONCEP_MTLOC5': 1, 'Nervous system other than brain': 1}
+  Location(s) of metastases 5 - Code            object     n_unique=2     n_null=680
+       {nan: 680, 'ONCEP_MTLOC5CD': 1, '5': 1}
+  Location(s) of metastases 6                   object     n_unique=2     n_null=593
+       {nan: 593, 'Lung': 88, 'ONCEP_MTLOC6': 1}
+  Location(s) of metastases 6 - Code            object     n_unique=2     n_null=593
+       {nan: 593, '6': 88, 'ONCEP_MTLOC6CD': 1}
+  Location(s) of metastases 7                   object     n_unique=2     n_null=680
+       {nan: 680, 'ONCEP_MTLOC7': 1, 'Contralateral lung (for NSCLC)': 1}
+  Location(s) of metastases 7 - Code            object     n_unique=2     n_null=680
+       {nan: 680, 'ONCEP_MTLOC7CD': 1, '7': 1}
+  Location(s) of metastases 8                   object     n_unique=2     n_null=671
+       {nan: 671, 'Diaphragm': 10, 'ONCEP_MTLOC8': 1}
+  Location(s) of metastases 8 - Code            object     n_unique=2     n_null=671
+       {nan: 671, '8': 10, 'ONCEP_MTLOC8CD': 1}
+  Location(s) of metastases 9                   object     n_unique=2     n_null=638
+       {nan: 638, 'Pleura': 43, 'ONCEP_MTLOC9': 1}
+  Location(s) of metastases 9 - Code            object     n_unique=2     n_null=638
+       {nan: 638, '9': 43, 'ONCEP_MTLOC9CD': 1}
+  Location(s) of metastases 10                  object     n_unique=2     n_null=679
+       {nan: 679, 'Heart': 2, 'ONCEP_MTLOC10': 1}
+  Location(s) of metastases 10 - Code           object     n_unique=2     n_null=679
+       {nan: 679, '10': 2, 'ONCEP_MTLOC10CD': 1}
+  Location(s) of metastases 11                  object     n_unique=2     n_null=671
+       {nan: 671, 'Mediastinum': 10, 'ONCEP_MTLOC11': 1}
+  Location(s) of metastases 11 - Code           object     n_unique=2     n_null=671
+       {nan: 671, '11': 10, 'ONCEP_MTLOC11CD': 1}
+  Location(s) of metastases 12                  object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC12': 1}
+  Location(s) of metastases 12 - Code           object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC12CD': 1}
+  Location(s) of metastases 13                  object     n_unique=2     n_null=662
+       {nan: 662, 'Liver': 19, 'ONCEP_MTLOC13': 1}
+  Location(s) of metastases 13 - Code           object     n_unique=2     n_null=662
+       {nan: 662, '13': 19, 'ONCEP_MTLOC13CD': 1}
+  Location(s) of metastases 14                  object     n_unique=2     n_null=678
+       {nan: 678, 'Pancreas': 3, 'ONCEP_MTLOC14': 1}
+  Location(s) of metastases 14 - Code           object     n_unique=2     n_null=678
+       {nan: 678, '14': 3, 'ONCEP_MTLOC14CD': 1}
+  Location(s) of metastases 15                  object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC15': 1}
+  Location(s) of metastases 15 - Code           object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC15CD': 1}
+  Location(s) of metastases 16                  object     n_unique=2     n_null=667
+       {nan: 667, 'Peritoneum': 14, 'ONCEP_MTLOC16': 1}
+  Location(s) of metastases 16 - Code           object     n_unique=2     n_null=667
+       {nan: 667, '16': 14, 'ONCEP_MTLOC16CD': 1}
+  Location(s) of metastases 17                  object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC17': 1}
+  Location(s) of metastases 17 - Code           object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC17CD': 1}
+  Location(s) of metastases 18                  object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC18': 1}
+  Location(s) of metastases 18 - Code           object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC18CD': 1}
+  Location(s) of metastases 19                  object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC19': 1}
+  Location(s) of metastases 19 - Code           object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC19CD': 1}
+  Location(s) of metastases 20                  object     n_unique=2     n_null=680
+       {nan: 680, 'ONCEP_MTLOC20': 1, 'Other gastro-intestinal': 1}
+  Location(s) of metastases 20 - Code           object     n_unique=2     n_null=680
+       {nan: 680, 'ONCEP_MTLOC20CD': 1, '20': 1}
+  Location(s) of metastases 21                  object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC21': 1}
+  Location(s) of metastases 21 - Code           object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC21CD': 1}
+  Location(s) of metastases 22                  object     n_unique=2     n_null=678
+       {nan: 678, 'Kidney': 3, 'ONCEP_MTLOC22': 1}
+  Location(s) of metastases 22 - Code           object     n_unique=2     n_null=678
+       {nan: 678, '22': 3, 'ONCEP_MTLOC22CD': 1}
+  Location(s) of metastases 23                  object     n_unique=2     n_null=680
+       {nan: 680, 'ONCEP_MTLOC23': 1, 'Prostate': 1}
+  Location(s) of metastases 23 - Code           object     n_unique=2     n_null=680
+       {nan: 680, 'ONCEP_MTLOC23CD': 1, '23': 1}
+  Location(s) of metastases 24                  object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC24': 1}
+  Location(s) of metastases 24 - Code           object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC24CD': 1}
+  Location(s) of metastases 25                  object     n_unique=2     n_null=675
+       {nan: 675, 'Skin': 6, 'ONCEP_MTLOC25': 1}
+  Location(s) of metastases 25 - Code           object     n_unique=2     n_null=675
+       {nan: 675, '25': 6, 'ONCEP_MTLOC25CD': 1}
+  Location(s) of metastases 26                  object     n_unique=2     n_null=677
+       {nan: 677, 'Muscle': 4, 'ONCEP_MTLOC26': 1}
+  Location(s) of metastases 26 - Code           object     n_unique=2     n_null=677
+       {nan: 677, '26': 4, 'ONCEP_MTLOC26CD': 1}
+  Location(s) of metastases 27                  object     n_unique=2     n_null=607
+       {nan: 607, 'Distant lymph node': 74, 'ONCEP_MTLOC27': 1}
+  Location(s) of metastases 27 - Code           object     n_unique=2     n_null=607
+       {nan: 607, '27': 74, 'ONCEP_MTLOC27CD': 1}
+  Location(s) of metastases 28                  object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC28': 1}
+  Location(s) of metastases 28 - Code           object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC28CD': 1}
+  Location(s) of metastases 29                  object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC29': 1}
+  Location(s) of metastases 29 - Code           object     n_unique=1     n_null=681
+       {nan: 681, 'ONCEP_MTLOC29CD': 1}
+  Location(s) of metastases 99                  object     n_unique=2     n_null=620
+       {nan: 620, 'Other': 61, 'ONCEP_MTLOC99': 1}
+  Location(s) of metastases 99 - Code           object     n_unique=2     n_null=620
+       {nan: 620, '99': 61, 'ONCEP_MTLOC99CD': 1}
+  Specify location(s) of metastases             object     n_unique=54    n_null=611
+  Other cancer                                  object     n_unique=3     n_null=568
+       {nan: 568, 'No': 103, 'Yes': 10, 'ONCE_OTHCAN': 1}
+  Other cancer - Code                           object     n_unique=3     n_null=568
+       {nan: 568, '0': 103, '1': 10, 'ONCE_OTHCANCD': 1}
+  Specify cancer type / organ                   object     n_unique=10    n_null=671
+       {nan: 671, 'Second primary adenocarcinoma of the right upper lobe, classified as cT1a (0.9 cm), cN0, cM0, corresponding to stage IA1 according to the 9th edition of the TNM classification. EGFR, ALK, and ROS1 were negative by IHC. KRAS exon 2 c.34G>T (p.Gly12Cys) and PIK3CA exon 10 c.1633G>A mutations were identified. PD-L1 expression was positive, with a tumor proportion score (TPS) of 30%': 2, 'ONCE_OTHCANSP': 1, 'prostate': 1, 'gastrointestinal': 1, 'Small-cell neuroendocrine carcinoma of unknown primary, most likely of head and neck (ENT) origin (DDx: salivary glands, lung), with a MIB-1 proliferation index >90%, stage IV (extensive disease), with lymph node, bone, and liver involvement': 1, 'Left periventricular trigonal glioblastoma': 1, 'Right lower breast nodule': 1, 'Non-small cell lung carcinoma, NOS, cTx, cN3, cN0, stage IIIB (according to the 9th edition of the TNM classification), PD-L1 status pending': 1, 'Pancreatic adenocarcinoma': 1, 'In situ adenocarcinoma of the cecum': 1}
+  Date of diagnosis                             object     n_unique=10    n_null=671
+       {nan: 671, '2026-03-26': 2, 'ONCE_OTHCANDAT': 1, '2025-07-17': 1, '2025-02-24': 1, '2026-04-09': 1, '2026-05-26': 1, '2024-10-11': 1, '2025-10-17': 1, '2024-11-28': 1, '2025-08-14': 1}
+  Other cancer stage                            object     n_unique=6     n_null=675
+       {nan: 675, 'IA1': 2, 'ONCE_OTHCANSTAGE': 1, 'pT1 pNx R1 ': 1, 'IV': 1, 'grade 4': 1, 'IIIB': 1}
+  General comments                              object     n_unique=49    n_null=628
+
+--- TU_CLN.csv: 173 rows x 794 columns
+  Site sequence number                          object     n_unique=2     n_null=0
+       {'5': 172, 'SiteSeq': 1}
+  Site name                                     object     n_unique=2     n_null=0
+       {'Centre Hospitalier Universitaire Vaudois': 172, 'SiteName': 1}
+  Site code                                     object     n_unique=2     n_null=0
+       {'CH': 172, 'SiteCode': 1}
+  Subject sequence number                       object     n_unique=173   n_null=0
+       examples: ['SubjectSeq', '275', '276', '277']
+  Subject Id                                    object     n_unique=173   n_null=0
+       examples: ['SubjectId', 'CH_L_275', 'CH_L_276', 'CH_L_277']
+  Event sequence number                         object     n_unique=2     n_null=0
+       {'1': 172, 'EventSeq': 1}
+  Event Id                                      object     n_unique=2     n_null=0
+       {'E01_V1': 172, 'EventId': 1}
+  Event name                                    object     n_unique=2     n_null=0
+       {'Baseline': 172, 'EventName': 1}
+  Event date                                    object     n_unique=29    n_null=0
+  Activity Id                                   object     n_unique=2     n_null=0
+       {'E01_TU_CLN': 172, 'ActivityId': 1}
+  Activity name                                 object     n_unique=1     n_null=172
+       {nan: 172, 'ActivityName': 1}
+  Form sequence number                          object     n_unique=2     n_null=0
+       {'1': 172, 'FormSeq': 1}
+  Subject form sequence number                  object     n_unique=2     n_null=0
+       {'1': 172, 'SubjectFormSeq': 1}
+  Origin Subject form sequence number           object     n_unique=2     n_null=0
+       {'1': 172, 'OriginSubjectFormSeq': 1}
+  Source Subject form sequence number           object     n_unique=1     n_null=172
+       {nan: 172, 'SourceSubjectFormSeq': 1}
+  Design version                                object     n_unique=3     n_null=0
+       {'9.23': 101, '12.2': 71, 'DesignVersion': 1}
+  Term for medical coding                       object     n_unique=22    n_null=145
+  Date of diagnosis                             object     n_unique=168   n_null=0
+  Weight at diagnosis (kg)                      object     n_unique=93    n_null=25
+  Weight at diagnosis (NA) 97                   object     n_unique=1     n_null=172
+       {nan: 172, 'DIAG_WEIGHT_VSNA97': 1}
+  Weight at diagnosis (NA) 97 - Code            object     n_unique=2     n_null=147
+       {nan: 147, '97': 25, 'DIAG_WEIGHT_VSNA97CD': 1}
+  Height at diagnosis (cm)                      object     n_unique=38    n_null=19
+  Height at diagnosis (NA) 97                   object     n_unique=1     n_null=172
+       {nan: 172, 'DIAG_HEIGHT_VSNA97': 1}
+  Height at diagnosis (NA) 97 - Code            object     n_unique=2     n_null=153
+       {nan: 153, '97': 19, 'DIAG_HEIGHT_VSNA97CD': 1}
+  BMI at diagnosis (kg/m2)                      object     n_unique=135   n_null=27
+  Date of sample harvest                        object     n_unique=170   n_null=0
+  Weight at sampling (kg)                       object     n_unique=104   n_null=5
+  Weight at sampling (NA) 97                    object     n_unique=1     n_null=172
+       {nan: 172, 'SAMP_WEIGHT_VSNA97': 1}
+  Weight at sampling (NA) 97 - Code             object     n_unique=2     n_null=167
+       {nan: 167, '97': 5, 'SAMP_WEIGHT_VSNA97CD': 1}
+  Height at sampling (cm)                       object     n_unique=39    n_null=4
+  Height at sampling (NA) 97                    object     n_unique=1     n_null=172
+       {nan: 172, 'SAMP_HEIGHT_VSNA97': 1}
+  Height at sampling (NA) 97 - Code             object     n_unique=2     n_null=168
+       {nan: 168, '97': 4, 'SAMP_HEIGHT_VSNA97CD': 1}
+  BMI at sampling (kg/m2)                       object     n_unique=153   n_null=7
+  Localized or diffuse mesothelioma             object     n_unique=1     n_null=172
+       {nan: 172, 'MS_TU1DIR': 1}
+  Localized or diffuse mesothelioma - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'MS_TU1DIRCD': 1}
+  Asbestos exposure                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSASEXPYN': 1}
+  Asbestos exposure - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSASEXPYNCD': 1}
+  Other risk factors                            object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSRSKFCT': 1}
+  Pleural sampling zone                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSPLSAMPZN': 1}
+  Pleural sampling zone - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSPLSAMPZNCD': 1}
+  Sampling site                                 object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSSMPSITE': 1}
+  Sampling site - Code                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSSMPSITECD': 1}
+  Mesothelioma - cT at diagnosis                object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSCT': 1}
+  Mesothelioma - cT at diagnosis - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSCTCD': 1}
+  Mesothelioma - cN at diagnosis                object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSCN': 1}
+  Mesothelioma - cN at diagnosis - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSCNCD': 1}
+  Mesothelioma - cM at diagnosis                object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSCM': 1}
+  Mesothelioma - cM at diagnosis - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSCMCD': 1}
+  Mesothelioma - cTNM stage at diagnosis        object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSCTNM': 1}
+  Stage                                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSSTAGE': 1}
+  Stage - Code                                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSSTAGECD': 1}
+  Mesothelioma - Metastasis localisation 1      object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC1': 1}
+  Mesothelioma - Metastasis localisation 1 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC1CD': 1}
+  Mesothelioma - Metastasis localisation 2      object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC2': 1}
+  Mesothelioma - Metastasis localisation 2 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC2CD': 1}
+  Mesothelioma - Metastasis localisation 3      object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC3': 1}
+  Mesothelioma - Metastasis localisation 3 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC3CD': 1}
+  Mesothelioma - Metastasis localisation 4      object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC4': 1}
+  Mesothelioma - Metastasis localisation 4 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC4CD': 1}
+  Mesothelioma - Metastasis localisation 5      object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC5': 1}
+  Mesothelioma - Metastasis localisation 5 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC5CD': 1}
+  Mesothelioma - Metastasis localisation 6      object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC6': 1}
+  Mesothelioma - Metastasis localisation 6 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC6CD': 1}
+  Mesothelioma - Metastasis localisation 7      object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC7': 1}
+  Mesothelioma - Metastasis localisation 7 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC7CD': 1}
+  Mesothelioma - Metastasis localisation 8      object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC8': 1}
+  Mesothelioma - Metastasis localisation 8 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC8CD': 1}
+  Mesothelioma - Metastasis localisation 9      object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC9': 1}
+  Mesothelioma - Metastasis localisation 9 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC9CD': 1}
+  Mesothelioma - Metastasis localisation 10     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC10': 1}
+  Mesothelioma - Metastasis localisation 10 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC10CD': 1}
+  Mesothelioma - Metastasis localisation 11     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC11': 1}
+  Mesothelioma - Metastasis localisation 11 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC11CD': 1}
+  Mesothelioma - Metastasis localisation 12     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC12': 1}
+  Mesothelioma - Metastasis localisation 12 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC12CD': 1}
+  Mesothelioma - Metastasis localisation 13     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC13': 1}
+  Mesothelioma - Metastasis localisation 13 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC13CD': 1}
+  Mesothelioma - Metastasis localisation 14     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC14': 1}
+  Mesothelioma - Metastasis localisation 14 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC14CD': 1}
+  Mesothelioma - Metastasis localisation 15     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC15': 1}
+  Mesothelioma - Metastasis localisation 15 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC15CD': 1}
+  Mesothelioma - Metastasis localisation 16     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC16': 1}
+  Mesothelioma - Metastasis localisation 16 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC16CD': 1}
+  Mesothelioma - Metastasis localisation 17     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC17': 1}
+  Mesothelioma - Metastasis localisation 17 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC17CD': 1}
+  Mesothelioma - Metastasis localisation 18     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC18': 1}
+  Mesothelioma - Metastasis localisation 18 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC18CD': 1}
+  Mesothelioma - Metastasis localisation 19     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC19': 1}
+  Mesothelioma - Metastasis localisation 19 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC19CD': 1}
+  Mesothelioma - Metastasis localisation 20     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC20': 1}
+  Mesothelioma - Metastasis localisation 20 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC20CD': 1}
+  Mesothelioma - Metastasis localisation 21     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC21': 1}
+  Mesothelioma - Metastasis localisation 21 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC21CD': 1}
+  Mesothelioma - Metastasis localisation 22     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC22': 1}
+  Mesothelioma - Metastasis localisation 22 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC22CD': 1}
+  Mesothelioma - Metastasis localisation 23     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC23': 1}
+  Mesothelioma - Metastasis localisation 23 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC23CD': 1}
+  Mesothelioma - Metastasis localisation 24     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC24': 1}
+  Mesothelioma - Metastasis localisation 24 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC24CD': 1}
+  Mesothelioma - Metastasis localisation 25     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC25': 1}
+  Mesothelioma - Metastasis localisation 25 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC25CD': 1}
+  Mesothelioma - Metastasis localisation 26     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC26': 1}
+  Mesothelioma - Metastasis localisation 26 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC26CD': 1}
+  Mesothelioma - Metastasis localisation 99     object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC99': 1}
+  Mesothelioma - Metastasis localisation 99 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOC99CD': 1}
+  Mesothelioma - Metastasis location other: specify object     n_unique=1     n_null=172
+       {nan: 172, 'MSMT_TU1LOCOTH': 1}
+  Mesothelioma - Subject history of COPD        object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSMHCOPDYN': 1}
+  Mesothelioma - Subject history of COPD - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSMHCOPDYNCD': 1}
+  Mesothelioma - COPD stage                     object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSCOPDSTAGE': 1}
+  Mesothelioma - COPD stage - Code              object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSCOPDSTAGECD': 1}
+  Mesothelioma - chronic lung inflammation      object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSMHLUNG': 1}
+  MS - Forced exp volume (% of theoretical value) object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSFEV1ORRES': 1}
+  Forced expiratory volume (FEV-1) (NA) 97      object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSFEV1NA97': 1}
+  Forced expiratory volume (FEV-1) (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSFEV1NA97CD': 1}
+  MS-Forced vital capacity (% of theoretical value) object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSFVCORRES': 1}
+  Forced vital capacity (FVC) (NA) 97           object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSFVCNA97': 1}
+  Forced vital capacity (FVC) (NA) 97 - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSFVCNA97CD': 1}
+  MS - (FEV-1 / FVC)                            object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSFORRES': 1}
+  MS - Residual volume (% of theoretical value) object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSRVORRES': 1}
+  Residual volume (RV) (NA) 97                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSRVNA97': 1}
+  Residual volume (RV) (NA) 97 - Code           object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSRVNA97CD': 1}
+  MS - DLCO (% of theoretical value)            object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSDLCOORRES': 1}
+  DLCO (NA) 97                                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSDLCONA97': 1}
+  DLCO (NA) 97 - Code                           object     n_unique=1     n_null=172
+       {nan: 172, 'TU1_MSDLCONA97CD': 1}
+  Transformation of low grade lymphoma          object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLTRNSLWGRADEYN': 1}
+  Transformation of low grade lymphoma - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLTRNSLWGRADEYNCD': 1}
+  Ann Arbor stage at diagnosis                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLAASTAGE': 1}
+  Ann Arbor stage at diagnosis - Code           object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLAASTAGECD': 1}
+  Extranodal disease 1                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS1': 1}
+  Extranodal disease 1 - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS1CD': 1}
+  Extranodal disease 2                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS2': 1}
+  Extranodal disease 2 - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS2CD': 1}
+  Extranodal disease 3                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS3': 1}
+  Extranodal disease 3 - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS3CD': 1}
+  Extranodal disease 4                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS4': 1}
+  Extranodal disease 4 - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS4CD': 1}
+  Extranodal disease 5                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS5': 1}
+  Extranodal disease 5 - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS5CD': 1}
+  Extranodal disease 6                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS6': 1}
+  Extranodal disease 6 - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS6CD': 1}
+  Extranodal disease 7                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS7': 1}
+  Extranodal disease 7 - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS7CD': 1}
+  Extranodal disease 99                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS99': 1}
+  Extranodal disease 99 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS99CD': 1}
+  Extranodal disease 98                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS98': 1}
+  Extranodal disease 98 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDIS98CD': 1}
+  Number of extranodal sites                    object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDNUM': 1}
+  Other extranodal disease specify              object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLEXTNDOTH': 1}
+  IPI (as reported in EHR in value)             object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLIPIEHRV': 1}
+  IPI (as reported in EHR in value) - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLIPIEHRVCD': 1}
+  IPI (as reported in EHR in text)              object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLIPIEHRT': 1}
+  IPI (as reported in EHR in text) - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLIPIEHRTCD': 1}
+  Age-adjusted IPI (as reported in EHR)         object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLAGEIPIEHR': 1}
+  Age-adjusted IPI (as reported in EHR) - Code  object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLAGEIPIEHRCD': 1}
+  Revised-IPI (R-IPI) (as reported in EHR in text) object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLRIPIEHRT': 1}
+  Revised-IPI (R-IPI) (as reported in EHR in text) - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU2_DLRIPIEHRTCD': 1}
+  Lesion side 1                                 object     n_unique=1     n_null=172
+       {nan: 172, 'BL_TU3LAT1': 1}
+  Lesion side 1 - Code                          object     n_unique=1     n_null=172
+       {nan: 172, 'BL_TU3LAT1CD': 1}
+  Lesion side 2                                 object     n_unique=1     n_null=172
+       {nan: 172, 'BL_TU3LAT2': 1}
+  Lesion side 2 - Code                          object     n_unique=1     n_null=172
+       {nan: 172, 'BL_TU3LAT2CD': 1}
+  Number of total tumour sites                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTOTSITE': 1}
+  Number of total tumour sites (NA) 97          object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTOTSITENA97': 1}
+  Number of total tumour sites (NA) 97 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTOTSITENA97CD': 1}
+  Tumour detection-Blue light / hexaminolevulinate object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTUDTYN': 1}
+  Tumour detection-Blue light / hexaminolevulinate - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLTUDTYNCD': 1}
+  Upper urinary tract urothelial carcinoma      object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLSYCURCAR': 1}
+  Upper urinary tract urothelial carcinoma - Code object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLSYCURCARCD': 1}
+  Bladder - cT at diagnosis                     object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCT': 1}
+  Bladder - cT at diagnosis - Code              object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCTCD': 1}
+  Bladder - cN at diagnosis                     object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCN': 1}
+  Bladder - cN at diagnosis - Code              object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCNCD': 1}
+  Bladder - cM at diagnosis                     object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCM': 1}
+  Bladder - cM at diagnosis - Code              object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCMCD': 1}
+  Bladder - cTNM stage at diagnosis             object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLCTNM': 1}
+  Retroperitoneal node invaded                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLROPNODYN': 1}
+  Retroperitoneal node invaded - Code           object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLROPNODYNCD': 1}
+  BL - Stage as per EHR                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLSTAGEHR': 1}
+  BL - Stage as per EHR - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLSTAGEHRCD': 1}
+  Bladder - Metastasis localisation 1           object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC1': 1}
+  Bladder - Metastasis localisation 1 - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC1CD': 1}
+  Bladder - Metastasis localisation 2           object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC2': 1}
+  Bladder - Metastasis localisation 2 - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC2CD': 1}
+  Bladder - Metastasis localisation 3           object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC3': 1}
+  Bladder - Metastasis localisation 3 - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC3CD': 1}
+  Bladder - Metastasis localisation 4           object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC4': 1}
+  Bladder - Metastasis localisation 4 - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC4CD': 1}
+  Bladder - Metastasis localisation 5           object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC5': 1}
+  Bladder - Metastasis localisation 5 - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC5CD': 1}
+  Bladder - Metastasis localisation 6           object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC6': 1}
+  Bladder - Metastasis localisation 6 - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC6CD': 1}
+  Bladder - Metastasis localisation 7           object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC7': 1}
+  Bladder - Metastasis localisation 7 - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC7CD': 1}
+  Bladder - Metastasis localisation 8           object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC8': 1}
+  Bladder - Metastasis localisation 8 - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC8CD': 1}
+  Bladder - Metastasis localisation 9           object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC9': 1}
+  Bladder - Metastasis localisation 9 - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC9CD': 1}
+  Bladder - Metastasis localisation 10          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC10': 1}
+  Bladder - Metastasis localisation 10 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC10CD': 1}
+  Bladder - Metastasis localisation 11          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC11': 1}
+  Bladder - Metastasis localisation 11 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC11CD': 1}
+  Bladder - Metastasis localisation 12          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC12': 1}
+  Bladder - Metastasis localisation 12 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC12CD': 1}
+  Bladder - Metastasis localisation 13          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC13': 1}
+  Bladder - Metastasis localisation 13 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC13CD': 1}
+  Bladder - Metastasis localisation 14          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC14': 1}
+  Bladder - Metastasis localisation 14 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC14CD': 1}
+  Bladder - Metastasis localisation 15          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC15': 1}
+  Bladder - Metastasis localisation 15 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC15CD': 1}
+  Bladder - Metastasis localisation 16          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC16': 1}
+  Bladder - Metastasis localisation 16 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC16CD': 1}
+  Bladder - Metastasis localisation 17          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC17': 1}
+  Bladder - Metastasis localisation 17 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC17CD': 1}
+  Bladder - Metastasis localisation 18          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC18': 1}
+  Bladder - Metastasis localisation 18 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC18CD': 1}
+  Bladder - Metastasis localisation 19          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC19': 1}
+  Bladder - Metastasis localisation 19 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC19CD': 1}
+  Bladder - Metastasis localisation 20          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC20': 1}
+  Bladder - Metastasis localisation 20 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC20CD': 1}
+  Bladder - Metastasis localisation 21          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC21': 1}
+  Bladder - Metastasis localisation 21 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC21CD': 1}
+  Bladder - Metastasis localisation 22          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC22': 1}
+  Bladder - Metastasis localisation 22 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC22CD': 1}
+  Bladder - Metastasis localisation 23          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC23': 1}
+  Bladder - Metastasis localisation 23 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC23CD': 1}
+  Bladder - Metastasis localisation 24          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC24': 1}
+  Bladder - Metastasis localisation 24 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC24CD': 1}
+  Bladder - Metastasis localisation 25          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC25': 1}
+  Bladder - Metastasis localisation 25 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC25CD': 1}
+  Bladder - Metastasis localisation 26          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC26': 1}
+  Bladder - Metastasis localisation 26 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC26CD': 1}
+  Bladder - Metastasis localisation 27          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC27': 1}
+  Bladder - Metastasis localisation 27 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC27CD': 1}
+  Bladder - Metastasis localisation 99          object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC99': 1}
+  Bladder - Metastasis localisation 99 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'BLMTS_TU3LOC99CD': 1}
+  BL-Sum of largest diameter of all metastases (mm) object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_BLMT_TRORRES': 1}
+  BL-Sum of largest diameter of all metastases (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_BLMT_TRNA97': 1}
+  BL-Sum of largest diameter of all metastases (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_BLMT_TRNA97CD': 1}
+  Symptom at diagnosis                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLSYMP': 1}
+  Symptom at diagnosis - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU3_BLSYMPCD': 1}
+  Multiple synchronous lung cancers             object     n_unique=3     n_null=2
+       {'No': 161, 'Yes': 9, nan: 2, 'TU4_NSMSLNGCAN': 1}
+  Multiple synchronous lung cancers - Code      object     n_unique=3     n_null=2
+       {'0': 161, '1': 9, nan: 2, 'TU4_NSMSLNGCANCD': 1}
+  Multiple synchronous lung cancers specify     object     n_unique=10    n_null=163
+       {nan: 163, 'TU4_NSMSLNGCANSP': 1, 'Two synchronous tumors: a pulmonary squamous cell carcinoma spanning the right upper and middle lobes, G2, pT2b pN0 cM0, L0 V0 Pn1 PL0, R0, stage IIA, and an in situ squamous cell carcinoma at a minimum of the left lower lobe bronchus, cTis minimum cN0 cM0, stage 0 diagnosed on 17.05.2016 and on 14.06.2016': 1, ' 3.9 cm lesion crossing the visceral pleura without evidence of lymphovascular invasion; a second focus of adenocarcinoma with lepidic predominance (95%, acinar 5%) forming a 2 cm lesion; and a third focus of adenocarcinoma in situ forming a 1 cm lesion': 1, 'Pulmonary adenocarcinoma of the right lower lobe, cT1b (2.6 cm) cN0 cM0, stage IA (according to the 7th edition of the TNM classification), without ALK or ROS1 rearrangement; cT1c (2.5 cm) cN0 cM0, stage IA3.': 1, 'Moderately differentiated squamous cell carcinoma of the right middle lobe, classified as pT1b pN1 (2/5)c cM0, L1 V0 Pn0, R0, stage IIA 20JAN2022; Squamous cell carcinoma of the left lower lobe, classified as pT3 (5.5 cm) pN2 (3/6) cM0, L1 V1 Pn0 PL1, possible R1 (at the staple line from prior segmentectomy), stage IIIB (8th edition TNM), PD-L1 negative 15MAR2022': 1, 'Adenocarcinoma with predominant acinar pattern (90% acinar, 10% lepidic); Adenocarcinoma with predominant acinar pattern (60% acinar, 40% lepidic); Adenocarcinoma with predominant lepidic pattern (70% lepidic, 30% acinar); Adenocarcinoma in situ; Adenocarcinoma with predominant lepidic pattern (80% lepidic, 20% acinar).': 1, 'lung': 1, 'left lower lung': 1, 'Second Synchronous Tumor : Left upper lobe; Not explicitly detailed; ≤2 cm; cT1a; cN0; cM0; Stage IA. Left upper lobe nodule not detected anymore after neoadjuvant therapy.': 1, 'Left upper lobar pulmonary adenocarcinoma oligometastatic at cerebral and contralateral level versus right upper lobar lung tumor synchronous': 1}
+  NS - Primary tumour side                      object     n_unique=4     n_null=0
+       {'Right': 102, 'Left': 69, 'NS_TU4LAT': 1, 'Unknown': 1}
+  NS - Primary tumour side - Code               object     n_unique=4     n_null=0
+       {'1': 102, '2': 69, 'NS_TU4LATCD': 1, '98': 1}
+  Primary tumour localisation                   object     n_unique=5     n_null=3
+       {'Upper lobe': 95, 'Lower lobe': 64, 'Middle lobe': 9, nan: 3, 'NSP_TU4LOC': 1, 'Unknown': 1}
+  Primary tumour localisation - Code            object     n_unique=5     n_null=3
+       {'2': 95, '4': 64, '3': 9, nan: 3, 'NSP_TU4LOCCD': 1, '98': 1}
+  NSCLC - cT at diagnosis                       object     n_unique=12    n_null=54
+       {nan: 54, 'X': 39, '4': 24, '3': 17, '2b': 12, '1b': 11, '1a': 4, '2a': 3, '1': 3, '2': 2, '1c': 2, 'TU4_NSCT': 1, '1mi': 1}
+  NSCLC - cT at diagnosis - Code                object     n_unique=12    n_null=54
+       {nan: 54, '12': 39, '11': 24, '10': 17, '9': 12, '5': 11, '4': 4, '8': 3, '2': 3, '7': 2, '6': 2, 'TU4_NSCTCD': 1, '3': 1}
+  NSCLC - cN at diagnosis                       object     n_unique=6     n_null=49
+       {nan: 49, '2': 44, 'X': 37, '0': 18, '3': 14, '1': 10, 'TU4_NSCN': 1}
+  NSCLC - cN at diagnosis - Code                object     n_unique=6     n_null=49
+       {nan: 49, '3': 44, '5': 37, '1': 18, '4': 14, '2': 10, 'TU4_NSCNCD': 1}
+  NSCLC - cM at diagnosis                       object     n_unique=7     n_null=5
+       {'0': 137, '1c': 14, '1b': 9, nan: 5, '1a': 4, '1': 2, 'X': 1, 'TU4_NSCM': 1}
+  NSCLC - cM at diagnosis - Code                object     n_unique=7     n_null=5
+       {'1': 137, '5': 14, '4': 9, nan: 5, '3': 4, '2': 2, '6': 1, 'TU4_NSCMCD': 1}
+  NSCLC - cTNM stage at diagnosis               object     n_unique=41    n_null=57
+  NS - Stage as per EHR                         object     n_unique=10    n_null=4
+       {'IA': 61, 'IB': 32, 'IIIA': 25, 'IVB': 16, 'IIIB': 14, 'IVA': 10, 'IIB': 5, nan: 4, 'IIA': 4, 'TU4_NSEHRSTAGE': 1, 'IIIC': 1}
+  NS - Stage as per EHR - Code                  object     n_unique=10    n_null=4
+       {'1': 61, '2': 32, '5': 25, '9': 16, '6': 14, '8': 10, '4': 5, nan: 4, '3': 4, 'TU4_NSEHRSTAGECD': 1, '7': 1}
+  NS-Largest diameter of the primary tumour (mm) object     n_unique=47    n_null=61
+  NS-Largest diameter of primary tumour (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'NSPLDIAM_TRNA97': 1}
+  NS-Largest diameter of primary tumour (NA) 97 - Code object     n_unique=2     n_null=111
+       {nan: 111, '97': 61, 'NSPLDIAM_TRNA97CD': 1}
+  NSCLC - Metastasis localisation 1             object     n_unique=2     n_null=165
+       {nan: 165, 'Adrenal gland': 7, 'NSMT_TU4LOC1': 1}
+  NSCLC - Metastasis localisation 1 - Code      object     n_unique=2     n_null=165
+       {nan: 165, '1': 7, 'NSMT_TU4LOC1CD': 1}
+  NSCLC - Metastasis localisation 2             object     n_unique=2     n_null=160
+       {nan: 160, 'Bone': 12, 'NSMT_TU4LOC2': 1}
+  NSCLC - Metastasis localisation 2 - Code      object     n_unique=2     n_null=160
+       {nan: 160, '2': 12, 'NSMT_TU4LOC2CD': 1}
+  NSCLC - Metastasis localisation 3             object     n_unique=2     n_null=161
+       {nan: 161, 'Brain': 11, 'NSMT_TU4LOC3': 1}
+  NSCLC - Metastasis localisation 3 - Code      object     n_unique=2     n_null=161
+       {nan: 161, '3': 11, 'NSMT_TU4LOC3CD': 1}
+  NSCLC - Metastasis localisation 4             object     n_unique=2     n_null=171
+       {nan: 171, 'NSMT_TU4LOC4': 1, 'Nervous system other than brain': 1}
+  NSCLC - Metastasis localisation 4 - Code      object     n_unique=2     n_null=171
+       {nan: 171, 'NSMT_TU4LOC4CD': 1, '4': 1}
+  NSCLC - Metastasis localisation 5             object     n_unique=2     n_null=169
+       {nan: 169, 'Homolateral lung': 3, 'NSMT_TU4LOC5': 1}
+  NSCLC - Metastasis localisation 5 - Code      object     n_unique=2     n_null=169
+       {nan: 169, '5': 3, 'NSMT_TU4LOC5CD': 1}
+  NSCLC - Metastasis localisation 6             object     n_unique=2     n_null=165
+       {nan: 165, 'Contralateral lung': 7, 'NSMT_TU4LOC6': 1}
+  NSCLC - Metastasis localisation 6 - Code      object     n_unique=2     n_null=165
+       {nan: 165, '6': 7, 'NSMT_TU4LOC6CD': 1}
+  NSCLC - Metastasis localisation 7             object     n_unique=2     n_null=171
+       {nan: 171, 'NSMT_TU4LOC7': 1, 'Diaphragm': 1}
+  NSCLC - Metastasis localisation 7 - Code      object     n_unique=2     n_null=171
+       {nan: 171, 'NSMT_TU4LOC7CD': 1, '7': 1}
+  NSCLC - Metastasis localisation 8             object     n_unique=2     n_null=168
+       {nan: 168, 'Pleura': 4, 'NSMT_TU4LOC8': 1}
+  NSCLC - Metastasis localisation 8 - Code      object     n_unique=2     n_null=168
+       {nan: 168, '8': 4, 'NSMT_TU4LOC8CD': 1}
+  NSCLC - Metastasis localisation 9             object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC9': 1}
+  NSCLC - Metastasis localisation 9 - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC9CD': 1}
+  NSCLC - Metastasis localisation 10            object     n_unique=2     n_null=166
+       {nan: 166, 'Mediastinum': 6, 'NSMT_TU4LOC10': 1}
+  NSCLC - Metastasis localisation 10 - Code     object     n_unique=2     n_null=166
+       {nan: 166, '10': 6, 'NSMT_TU4LOC10CD': 1}
+  NSCLC - Metastasis localisation 11            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC11': 1}
+  NSCLC - Metastasis localisation 11 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC11CD': 1}
+  NSCLC - Metastasis localisation 12            object     n_unique=2     n_null=170
+       {nan: 170, 'Liver': 2, 'NSMT_TU4LOC12': 1}
+  NSCLC - Metastasis localisation 12 - Code     object     n_unique=2     n_null=170
+       {nan: 170, '12': 2, 'NSMT_TU4LOC12CD': 1}
+  NSCLC - Metastasis localisation 13            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC13': 1}
+  NSCLC - Metastasis localisation 13 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC13CD': 1}
+  NSCLC - Metastasis localisation 14            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC14': 1}
+  NSCLC - Metastasis localisation 14 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC14CD': 1}
+  NSCLC - Metastasis localisation 15            object     n_unique=2     n_null=168
+       {nan: 168, 'Peritoneum': 4, 'NSMT_TU4LOC15': 1}
+  NSCLC - Metastasis localisation 15 - Code     object     n_unique=2     n_null=168
+       {nan: 168, '15': 4, 'NSMT_TU4LOC15CD': 1}
+  NSCLC - Metastasis localisation 16            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC16': 1}
+  NSCLC - Metastasis localisation 16 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC16CD': 1}
+  NSCLC - Metastasis localisation 17            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC17': 1}
+  NSCLC - Metastasis localisation 17 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC17CD': 1}
+  NSCLC - Metastasis localisation 18            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC18': 1}
+  NSCLC - Metastasis localisation 18 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC18CD': 1}
+  NSCLC - Metastasis localisation 19            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC19': 1}
+  NSCLC - Metastasis localisation 19 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC19CD': 1}
+  NSCLC - Metastasis localisation 20            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC20': 1}
+  NSCLC - Metastasis localisation 20 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC20CD': 1}
+  NSCLC - Metastasis localisation 21            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC21': 1}
+  NSCLC - Metastasis localisation 21 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC21CD': 1}
+  NSCLC - Metastasis localisation 22            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC22': 1}
+  NSCLC - Metastasis localisation 22 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC22CD': 1}
+  NSCLC - Metastasis localisation 23            object     n_unique=2     n_null=171
+       {nan: 171, 'NSMT_TU4LOC23': 1, 'Other urinary tract': 1}
+  NSCLC - Metastasis localisation 23 - Code     object     n_unique=2     n_null=171
+       {nan: 171, 'NSMT_TU4LOC23CD': 1, '23': 1}
+  NSCLC - Metastasis localisation 24            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC24': 1}
+  NSCLC - Metastasis localisation 24 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC24CD': 1}
+  NSCLC - Metastasis localisation 25            object     n_unique=2     n_null=171
+       {nan: 171, 'NSMT_TU4LOC25': 1, 'Muscle': 1}
+  NSCLC - Metastasis localisation 25 - Code     object     n_unique=2     n_null=171
+       {nan: 171, 'NSMT_TU4LOC25CD': 1, '25': 1}
+  NSCLC - Metastasis localisation 26            object     n_unique=2     n_null=167
+       {nan: 167, 'Distant lymph node': 5, 'NSMT_TU4LOC26': 1}
+  NSCLC - Metastasis localisation 26 - Code     object     n_unique=2     n_null=167
+       {nan: 167, '26': 5, 'NSMT_TU4LOC26CD': 1}
+  NSCLC - Metastasis localisation 27            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC27': 1}
+  NSCLC - Metastasis localisation 27 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC27CD': 1}
+  NSCLC - Metastasis localisation 28            object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC28': 1}
+  NSCLC - Metastasis localisation 28 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'NSMT_TU4LOC28CD': 1}
+  NSCLC - Metastasis localisation 99            object     n_unique=2     n_null=165
+       {nan: 165, 'Other': 7, 'NSMT_TU4LOC99': 1}
+  NSCLC - Metastasis localisation 99 - Code     object     n_unique=2     n_null=165
+       {nan: 165, '99': 7, 'NSMT_TU4LOC99CD': 1}
+  Number of metastatic sites                    object     n_unique=7     n_null=146
+       {nan: 146, '1': 10, '4': 6, '2': 4, '3': 3, '6': 2, 'TU4_NSMTSITENUM': 1, '7': 1}
+  Number of metastatic sites (NA) 97            object     n_unique=1     n_null=172
+       {nan: 172, 'TU4_NSMTSITENA97': 1}
+  Number of metastatic sites (NA) 97 - Code     object     n_unique=2     n_null=168
+       {nan: 168, '97': 4, 'TU4_NSMTSITENA97CD': 1}
+  NS-Sum of largest diameter of all metastases (mm) object     n_unique=1     n_null=172
+       {nan: 172, 'NSMLDIAMSUM_TRORRES': 1}
+  NS-Sum of largest diameter of metastases (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'NSMLDIAMSUM_TRNA97': 1}
+  NS-Sum of largest diameter of metastases (NA) 97 - Code object     n_unique=2     n_null=142
+       {nan: 142, '97': 30, 'NSMLDIAMSUM_TRNA97CD': 1}
+  NSCLC - Subject history of COPD               object     n_unique=3     n_null=3
+       {'No': 102, 'Yes': 67, nan: 3, 'TU4_NSMHCOPDYN': 1}
+  NSCLC - Subject history of COPD - Code        object     n_unique=3     n_null=3
+       {'0': 102, '1': 67, nan: 3, 'TU4_NSMHCOPDYNCD': 1}
+  NSCLC - COPD stage                            object     n_unique=6     n_null=105
+       {nan: 105, 'Unknown': 27, '2': 22, '1': 11, '3': 6, 'TU4_NSMHCOPDNUM': 1, '4': 1}
+  NSCLC - COPD stage - Code                     object     n_unique=6     n_null=105
+       {nan: 105, '98': 27, '2': 22, '1': 11, '3': 6, 'TU4_NSMHCOPDNUMCD': 1, '4': 1}
+  Pulmonary fibrosis                            object     n_unique=3     n_null=2
+       {'No': 159, 'Yes': 11, nan: 2, 'TU4_NSPLMFBRYN': 1}
+  Pulmonary fibrosis - Code                     object     n_unique=3     n_null=2
+       {'0': 159, '1': 11, nan: 2, 'TU4_NSPLMFBRYNCD': 1}
+  NSCLC - chronic lung inflammation             object     n_unique=22    n_null=145
+  NS - Forced exp volume (% of theoretical value) object     n_unique=56    n_null=63
+  NS - Forced exp volume (NA) 97                object     n_unique=1     n_null=172
+       {nan: 172, 'TU4_NSFEV1NA97': 1}
+  NS - Forced exp volume (NA) 97 - Code         object     n_unique=2     n_null=110
+       {nan: 110, '97': 62, 'TU4_NSFEV1NA97CD': 1}
+  NS-Forced vital capacity (% of theoretical value) object     n_unique=35    n_null=127
+  NS-Forced vital capacity (NA) 97              object     n_unique=1     n_null=172
+       {nan: 172, 'TU4_NSFVCNA97': 1}
+  NS-Forced vital capacity (NA) 97 - Code       object     n_unique=2     n_null=46
+       {'97': 126, nan: 46, 'TU4_NSFVCNA97CD': 1}
+  NS - (FEV-1 / FVC)                            object     n_unique=28    n_null=128
+  NS - Residual volume (% of theoretical value) object     n_unique=27    n_null=145
+       examples: ['TU4_NSRVORRES', '157', '97', '129']
+  NS - Residual volume (NA) 97                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU4_NSRVNA97': 1}
+  NS - Residual volume (NA) 97 - Code           object     n_unique=2     n_null=28
+       {'97': 144, nan: 28, 'TU4_NSRVNA97CD': 1}
+  NS - DLCO (% of theoretical value)            object     n_unique=59    n_null=71
+  NS - DLCO (NA) 97                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU4_NSDLCONA97': 1}
+  NS - DLCO (NA) 97 - Code                      object     n_unique=2     n_null=101
+       {nan: 101, '97': 71, 'TU4_NSDLCONA97CD': 1}
+  PCI Sugarbaker scoring                        object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVSBSCORE': 1}
+  PCI Sugarbaker scoring (NA) 97                object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVSBNA97': 1}
+  PCI Sugarbaker scoring (NA) 97 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVSBNA97CD': 1}
+  Ovarian - Menopausal status                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVMPSTATUS': 1}
+  Ovarian - Menopausal status - Code            object     n_unique=1     n_null=172
+       {nan: 172, 'TU5_OVMPSTATUSCD': 1}
+  Primary tumour localisation.1                 object     n_unique=1     n_null=172
+       {nan: 172, 'OV_TU5LOC': 1}
+  Primary tumour localisation - Code.1          object     n_unique=1     n_null=172
+       {nan: 172, 'OV_TU5LOCCD': 1}
+  Primary tumour localisation 1                 object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC1': 1}
+  Primary tumour localisation 1 - Code          object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC1CD': 1}
+  Primary tumour localisation 2                 object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC2': 1}
+  Primary tumour localisation 2 - Code          object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC2CD': 1}
+  Primary tumour localisation 3                 object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC3': 1}
+  Primary tumour localisation 3 - Code          object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC3CD': 1}
+  Primary tumour localisation 4                 object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC4': 1}
+  Primary tumour localisation 4 - Code          object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC4CD': 1}
+  Primary tumour localisation 5                 object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC5': 1}
+  Primary tumour localisation 5 - Code          object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC5CD': 1}
+  Primary tumour localisation 6                 object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC6': 1}
+  Primary tumour localisation 6 - Code          object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC6CD': 1}
+  Primary tumour localisation 7                 object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC7': 1}
+  Primary tumour localisation 7 - Code          object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC7CD': 1}
+  Primary tumour localisation 8                 object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC8': 1}
+  Primary tumour localisation 8 - Code          object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC8CD': 1}
+  Primary tumour localisation 9                 object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC9': 1}
+  Primary tumour localisation 9 - Code          object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC9CD': 1}
+  Primary tumour localisation 99                object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC99': 1}
+  Primary tumour localisation 99 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC99CD': 1}
+  Primary tumour localisation 98                object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC98': 1}
+  Primary tumour localisation 98 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LOC98CD': 1}
+  GB - Primary tumour side                      object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LAT': 1}
+  GB - Primary tumour side - Code               object     n_unique=1     n_null=172
+       {nan: 172, 'GB_TU6LATCD': 1}
+  Subventricular zone involvement               object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSVZNINVYN': 1}
+  Subventricular zone involvement - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBSVZNINVYNCD': 1}
+  Number of brain tumour sites                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBBRTUSITENUM': 1}
+  Number of brain tumour sites (NA) 97          object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBBRTUSITENA97': 1}
+  Number of brain tumour sites (NA) 97 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBBRTUSITENA97CD': 1}
+  GB-Largest diameter of the primary tumour (mm) object     n_unique=1     n_null=172
+       {nan: 172, 'GBLDIAM_TRORRES': 1}
+  GB-Largest diameter of primary tumour (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'GBLDIAM_TRNA97': 1}
+  GB-Largest diameter of primary tumour (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'GBLDIAM_TRNA97CD': 1}
+  CET at baseline (mL)                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBCET': 1}
+  CET at baseline (NA) 97                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBCETNA97': 1}
+  CET at baseline (NA) 97 - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBCETNA97CD': 1}
+  nCET at baseline (mL)                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBNCET': 1}
+  nCET at baseline (NA) 97                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBNCETNA97': 1}
+  nCET at baseline (NA) 97 - Code               object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBNCETNA97CD': 1}
+  Metastatic status                             object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBMTSTATUS': 1}
+  Metastatic status - Code                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU6_GBMTSTATUSCD': 1}
+  GB - Metastasis localisation 1                object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC1': 1}
+  GB - Metastasis localisation 1 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC1CD': 1}
+  GB - Metastasis localisation 2                object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC2': 1}
+  GB - Metastasis localisation 2 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC2CD': 1}
+  GB - Metastasis localisation 3                object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC3': 1}
+  GB - Metastasis localisation 3 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC3CD': 1}
+  GB - Metastasis localisation 4                object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC4': 1}
+  GB - Metastasis localisation 4 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC4CD': 1}
+  GB - Metastasis localisation 5                object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC5': 1}
+  GB - Metastasis localisation 5 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC5CD': 1}
+  GB - Metastasis localisation 6                object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC6': 1}
+  GB - Metastasis localisation 6 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC6CD': 1}
+  GB - Metastasis localisation 7                object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC7': 1}
+  GB - Metastasis localisation 7 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC7CD': 1}
+  GB - Metastasis localisation 8                object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC8': 1}
+  GB - Metastasis localisation 8 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC8CD': 1}
+  GB - Metastasis localisation 9                object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC9': 1}
+  GB - Metastasis localisation 9 - Code         object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC9CD': 1}
+  GB - Metastasis localisation 10               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC10': 1}
+  GB - Metastasis localisation 10 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC10CD': 1}
+  GB - Metastasis localisation 11               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC11': 1}
+  GB - Metastasis localisation 11 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC11CD': 1}
+  GB - Metastasis localisation 12               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC12': 1}
+  GB - Metastasis localisation 12 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC12CD': 1}
+  GB - Metastasis localisation 13               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC13': 1}
+  GB - Metastasis localisation 13 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC13CD': 1}
+  GB - Metastasis localisation 14               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC14': 1}
+  GB - Metastasis localisation 14 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC14CD': 1}
+  GB - Metastasis localisation 15               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC15': 1}
+  GB - Metastasis localisation 15 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC15CD': 1}
+  GB - Metastasis localisation 16               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC16': 1}
+  GB - Metastasis localisation 16 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC16CD': 1}
+  GB - Metastasis localisation 17               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC17': 1}
+  GB - Metastasis localisation 17 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC17CD': 1}
+  GB - Metastasis localisation 18               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC18': 1}
+  GB - Metastasis localisation 18 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC18CD': 1}
+  GB - Metastasis localisation 19               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC19': 1}
+  GB - Metastasis localisation 19 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC19CD': 1}
+  GB - Metastasis localisation 20               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC20': 1}
+  GB - Metastasis localisation 20 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC20CD': 1}
+  GB - Metastasis localisation 21               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC21': 1}
+  GB - Metastasis localisation 21 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC21CD': 1}
+  GB - Metastasis localisation 22               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC22': 1}
+  GB - Metastasis localisation 22 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC22CD': 1}
+  GB - Metastasis localisation 23               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC23': 1}
+  GB - Metastasis localisation 23 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC23CD': 1}
+  GB - Metastasis localisation 24               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC24': 1}
+  GB - Metastasis localisation 24 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC24CD': 1}
+  GB - Metastasis localisation 25               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC25': 1}
+  GB - Metastasis localisation 25 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC25CD': 1}
+  GB - Metastasis localisation 26               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC26': 1}
+  GB - Metastasis localisation 26 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC26CD': 1}
+  GB - Metastasis localisation 27               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC27': 1}
+  GB - Metastasis localisation 27 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC27CD': 1}
+  GB - Metastasis localisation 99               object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC99': 1}
+  GB - Metastasis localisation 99 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'GBMT_TU6LOC99CD': 1}
+  GB-Sum of largest diameter of all metastases (mm) object     n_unique=1     n_null=172
+       {nan: 172, 'GBLDIAMSUM_TRORRES': 1}
+  GB-Sum of largest diameter of metastases (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'GBLDIAMSUM_TRNA97': 1}
+  GB-Sum of largest diameter of metastases (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'GBLDIAMSUM_TRNA97CD': 1}
+  Breast cancer side                            object     n_unique=1     n_null=172
+       {nan: 172, 'BC_TU7LAT': 1}
+  Breast cancer side - Code                     object     n_unique=1     n_null=172
+       {nan: 172, 'BC_TU7LATCD': 1}
+  Breast cancer quadran 1                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN1': 1}
+  Breast cancer quadran 1 - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN1CD': 1}
+  Breast cancer quadran 2                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN2': 1}
+  Breast cancer quadran 2 - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN2CD': 1}
+  Breast cancer quadran 3                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN3': 1}
+  Breast cancer quadran 3 - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN3CD': 1}
+  Breast cancer quadran 4                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN4': 1}
+  Breast cancer quadran 4 - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN4CD': 1}
+  Breast cancer quadran 5                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN5': 1}
+  Breast cancer quadran 5 - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN5CD': 1}
+  Breast cancer quadran 6                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN6': 1}
+  Breast cancer quadran 6 - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN6CD': 1}
+  Breast cancer quadran 7                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN7': 1}
+  Breast cancer quadran 7 - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN7CD': 1}
+  Breast cancer quadran 98                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN98': 1}
+  Breast cancer quadran 98 - Code               object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCQUADRAN98CD': 1}
+  BC - Menopausal status                        object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCMPSTATUS': 1}
+  BC - Menopausal status - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCMPSTATUSCD': 1}
+  BC - cT at diagnosis                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCCT': 1}
+  BC - cT at diagnosis - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCCTCD': 1}
+  BC - cN at diagnosis                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCCN': 1}
+  BC - cN at diagnosis - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCCNCD': 1}
+  BC - cM at diagnosis                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCCM': 1}
+  BC - cM at diagnosis - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCCMCD': 1}
+  BC - cTNM stage at diagnosis                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCCTNM': 1}
+  BC - Stage as per EHR                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCSTAGEEHR': 1}
+  BC - Stage as per EHR - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU7_BCSTAGEEHRCD': 1}
+  Metastasis location 1                         object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC1': 1}
+  Metastasis location 1 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC1CD': 1}
+  Metastasis location 2                         object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC2': 1}
+  Metastasis location 2 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC2CD': 1}
+  Metastasis location 3                         object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC3': 1}
+  Metastasis location 3 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC3CD': 1}
+  Metastasis location 4                         object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC4': 1}
+  Metastasis location 4 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC4CD': 1}
+  Metastasis location 5                         object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC5': 1}
+  Metastasis location 5 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC5CD': 1}
+  Metastasis location 6                         object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC6': 1}
+  Metastasis location 6 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC6CD': 1}
+  Metastasis location 7                         object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC7': 1}
+  Metastasis location 7 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC7CD': 1}
+  Metastasis location 8                         object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC8': 1}
+  Metastasis location 8 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC8CD': 1}
+  Metastasis location 9                         object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC9': 1}
+  Metastasis location 9 - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC9CD': 1}
+  Metastasis location 10                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC10': 1}
+  Metastasis location 10 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC10CD': 1}
+  Metastasis location 11                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC11': 1}
+  Metastasis location 11 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC11CD': 1}
+  Metastasis location 12                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC12': 1}
+  Metastasis location 12 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC12CD': 1}
+  Metastasis location 13                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC13': 1}
+  Metastasis location 13 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC13CD': 1}
+  Metastasis location 14                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC14': 1}
+  Metastasis location 14 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC14CD': 1}
+  Metastasis location 15                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC15': 1}
+  Metastasis location 15 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC15CD': 1}
+  Metastasis location 16                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC16': 1}
+  Metastasis location 16 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC16CD': 1}
+  Metastasis location 17                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC17': 1}
+  Metastasis location 17 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC17CD': 1}
+  Metastasis location 18                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC18': 1}
+  Metastasis location 18 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC18CD': 1}
+  Metastasis location 19                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC19': 1}
+  Metastasis location 19 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC19CD': 1}
+  Metastasis location 20                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC20': 1}
+  Metastasis location 20 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC20CD': 1}
+  Metastasis location 21                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC21': 1}
+  Metastasis location 21 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC21CD': 1}
+  Metastasis location 22                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC22': 1}
+  Metastasis location 22 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC22CD': 1}
+  Metastasis location 23                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC23': 1}
+  Metastasis location 23 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC23CD': 1}
+  Metastasis location 24                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC24': 1}
+  Metastasis location 24 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC24CD': 1}
+  Metastasis location 25                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC25': 1}
+  Metastasis location 25 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC25CD': 1}
+  Metastasis location 26                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC26': 1}
+  Metastasis location 26 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC26CD': 1}
+  Metastasis location 27                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC27': 1}
+  Metastasis location 27 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC27CD': 1}
+  Metastasis location 99                        object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC99': 1}
+  Metastasis location 99 - Code                 object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOC99CD': 1}
+  Breast Cancer - Metastasis location other: specify object     n_unique=1     n_null=172
+       {nan: 172, 'BCMT_TU7LOCOTH': 1}
+  BC-Largest diameter of the primary tumour (mm) object     n_unique=1     n_null=172
+       {nan: 172, 'BCLDIAM_TRORRES': 1}
+  BC-Largest diameter of primary tumour (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'BCLDIAM_TRNA97': 1}
+  BC-Largest diameter of primary tumour (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'BCLDIAM_TRNA97CD': 1}
+  BC-Sum of largest diameter of all metastases (mm) object     n_unique=1     n_null=172
+       {nan: 172, 'BCLDIAMSUM_TRORRES': 1}
+  BC-Sum of largest diameter of metastases (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'BCLDIAMSUM_TRNA97': 1}
+  BC-Sum of largest diameter of metastases (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'BCLDIAMSUM_TRNA97CD': 1}
+  Multiple synchronous H&N cancers              object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_MUSYHNCAN': 1}
+  Multiple synchronous H&N cancers - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_MUSYHNCANCD': 1}
+  Multiple synchronous H&N cancers specify      object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_MUSYHNCAN_SPEC': 1}
+  Primary tumor localisation                    object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_PRIMLOC': 1}
+  Primary tumor localisation - Code             object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_PRIMLOCCD': 1}
+  cTNM edition                                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNCTNM_EDI': 1}
+  cTNM edition - Code                           object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNCTNM_EDICD': 1}
+  HNSCC - cT at diagnosis                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNCT': 1}
+  HNSCC - cT at diagnosis - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNCTCD': 1}
+  HNSCC - cN at diagnosis                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNCN': 1}
+  HNSCC - cN at diagnosis - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNCNCD': 1}
+  HNSCC - cM at diagnosis                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNCM': 1}
+  HNSCC - cM at diagnosis - Code                object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNCMCD': 1}
+  HNSCC - cTNM stage at diagnosis               object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNCTNM': 1}
+  HNSCC - Stage as per EHR                      object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_STAGEHR': 1}
+  HNSCC - Stage as per EHR - Code               object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_STAGEHRCD': 1}
+  HNSCC - Metastasis localisation 1             object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC1': 1}
+  HNSCC - Metastasis localisation 1 - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC1CD': 1}
+  HNSCC - Metastasis localisation 2             object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC2': 1}
+  HNSCC - Metastasis localisation 2 - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC2CD': 1}
+  HNSCC - Metastasis localisation 3             object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC3': 1}
+  HNSCC - Metastasis localisation 3 - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC3CD': 1}
+  HNSCC - Metastasis localisation 4             object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC4': 1}
+  HNSCC - Metastasis localisation 4 - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC4CD': 1}
+  HNSCC - Metastasis localisation 5             object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC5': 1}
+  HNSCC - Metastasis localisation 5 - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC5CD': 1}
+  HNSCC - Metastasis localisation 6             object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC6': 1}
+  HNSCC - Metastasis localisation 6 - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC6CD': 1}
+  HNSCC - Metastasis localisation 7             object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC7': 1}
+  HNSCC - Metastasis localisation 7 - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC7CD': 1}
+  HNSCC - Metastasis localisation 8             object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC8': 1}
+  HNSCC - Metastasis localisation 8 - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC8CD': 1}
+  HNSCC - Metastasis localisation 9             object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC9': 1}
+  HNSCC - Metastasis localisation 9 - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC9CD': 1}
+  HNSCC - Metastasis localisation 10            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC10': 1}
+  HNSCC - Metastasis localisation 10 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC10CD': 1}
+  HNSCC - Metastasis localisation 11            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC11': 1}
+  HNSCC - Metastasis localisation 11 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC11CD': 1}
+  HNSCC - Metastasis localisation 12            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC12': 1}
+  HNSCC - Metastasis localisation 12 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC12CD': 1}
+  HNSCC - Metastasis localisation 13            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC13': 1}
+  HNSCC - Metastasis localisation 13 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC13CD': 1}
+  HNSCC - Metastasis localisation 14            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC14': 1}
+  HNSCC - Metastasis localisation 14 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC14CD': 1}
+  HNSCC - Metastasis localisation 15            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC15': 1}
+  HNSCC - Metastasis localisation 15 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC15CD': 1}
+  HNSCC - Metastasis localisation 16            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC16': 1}
+  HNSCC - Metastasis localisation 16 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC16CD': 1}
+  HNSCC - Metastasis localisation 17            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC17': 1}
+  HNSCC - Metastasis localisation 17 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC17CD': 1}
+  HNSCC - Metastasis localisation 18            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC18': 1}
+  HNSCC - Metastasis localisation 18 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC18CD': 1}
+  HNSCC - Metastasis localisation 19            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC19': 1}
+  HNSCC - Metastasis localisation 19 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC19CD': 1}
+  HNSCC - Metastasis localisation 20            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC20': 1}
+  HNSCC - Metastasis localisation 20 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC20CD': 1}
+  HNSCC - Metastasis localisation 21            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC21': 1}
+  HNSCC - Metastasis localisation 21 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC21CD': 1}
+  HNSCC - Metastasis localisation 22            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC22': 1}
+  HNSCC - Metastasis localisation 22 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC22CD': 1}
+  HNSCC - Metastasis localisation 23            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC23': 1}
+  HNSCC - Metastasis localisation 23 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC23CD': 1}
+  HNSCC - Metastasis localisation 24            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC24': 1}
+  HNSCC - Metastasis localisation 24 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC24CD': 1}
+  HNSCC - Metastasis localisation 25            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC25': 1}
+  HNSCC - Metastasis localisation 25 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC25CD': 1}
+  HNSCC - Metastasis localisation 26            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC26': 1}
+  HNSCC - Metastasis localisation 26 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC26CD': 1}
+  HNSCC - Metastasis localisation 27            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC27': 1}
+  HNSCC - Metastasis localisation 27 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC27CD': 1}
+  HNSCC - Metastasis localisation 99            object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC99': 1}
+  HNSCC - Metastasis localisation 99 - Code     object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_TU8LOC99CD': 1}
+  HNSCC - Metastasis location other: specify    object     n_unique=1     n_null=172
+       {nan: 172, 'HNMTS_LOCOTH': 1}
+  HNSCC-Largest diameter of the primary tumour (mm) object     n_unique=1     n_null=172
+       {nan: 172, 'HNSCCDIAM_TRORRES': 1}
+  HNSCC-Largest diameter of primary tumour (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'HNSCCDIAM_TRNA97': 1}
+  HNSCC-Largest diameter of primary tumour (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'HNSCCDIAM_TRNA97CD': 1}
+  Number of metastatic sites.1                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNMTSITENUM': 1}
+  Number of metastatic sites (NA) 97.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNMTSITENA97': 1}
+  Number of metastatic sites (NA) 97 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU8_HNMTSITENA97CD': 1}
+  BL-Sum of largest diameter of all metastases (mm).1 object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_HNMT_TRORRES': 1}
+  HN-Sum of largest diameter of all metastases (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_HNMT_TRNA97': 1}
+  HN-Sum of largest diameter of all metastases (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_HNMT_TRNA97CD': 1}
+  Primary tumor localisation.1                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PRIMLOC': 1}
+  Primary tumor localisation - Code.1           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PRIMLOCCD': 1}
+  HNSCC - cT at diagnosis.1                     object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCCT': 1}
+  HNSCC - cT at diagnosis - Code.1              object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCCTCD': 1}
+  HNSCC - cN at diagnosis.1                     object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCCN': 1}
+  HNSCC - cN at diagnosis - Code.1              object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCCNCD': 1}
+  HNSCC - cM at diagnosis.1                     object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCCM': 1}
+  HNSCC - cM at diagnosis - Code.1              object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCCMCD': 1}
+  HNSCC - cTNM stage at diagnosis.1             object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCCTNM': 1}
+  HNSCC - Stage as per EHR.1                    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_STAGEHR': 1}
+  HNSCC - Stage as per EHR - Code.1             object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_STAGEHRCD': 1}
+  HNSCC - Metastasis localisation 1.1           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS1': 1}
+  HNSCC - Metastasis localisation 1 - Code.1    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS1CD': 1}
+  HNSCC - Metastasis localisation 2.1           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS2': 1}
+  HNSCC - Metastasis localisation 2 - Code.1    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS2CD': 1}
+  HNSCC - Metastasis localisation 3.1           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS3': 1}
+  HNSCC - Metastasis localisation 3 - Code.1    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS3CD': 1}
+  HNSCC - Metastasis localisation 4.1           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS4': 1}
+  HNSCC - Metastasis localisation 4 - Code.1    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS4CD': 1}
+  HNSCC - Metastasis localisation 5.1           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS5': 1}
+  HNSCC - Metastasis localisation 5 - Code.1    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS5CD': 1}
+  HNSCC - Metastasis localisation 6.1           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS6': 1}
+  HNSCC - Metastasis localisation 6 - Code.1    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS6CD': 1}
+  HNSCC - Metastasis localisation 7.1           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS7': 1}
+  HNSCC - Metastasis localisation 7 - Code.1    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS7CD': 1}
+  HNSCC - Metastasis localisation 8.1           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS8': 1}
+  HNSCC - Metastasis localisation 8 - Code.1    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS8CD': 1}
+  HNSCC - Metastasis localisation 9.1           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS9': 1}
+  HNSCC - Metastasis localisation 9 - Code.1    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS9CD': 1}
+  HNSCC - Metastasis localisation 10.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS10': 1}
+  HNSCC - Metastasis localisation 10 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS10CD': 1}
+  HNSCC - Metastasis localisation 11.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS11': 1}
+  HNSCC - Metastasis localisation 11 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS11CD': 1}
+  HNSCC - Metastasis localisation 12.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS12': 1}
+  HNSCC - Metastasis localisation 12 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS12CD': 1}
+  HNSCC - Metastasis localisation 13.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS13': 1}
+  HNSCC - Metastasis localisation 13 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS13CD': 1}
+  HNSCC - Metastasis localisation 14.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS14': 1}
+  HNSCC - Metastasis localisation 14 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS14CD': 1}
+  HNSCC - Metastasis localisation 15.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS15': 1}
+  HNSCC - Metastasis localisation 15 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS15CD': 1}
+  HNSCC - Metastasis localisation 16.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS16': 1}
+  HNSCC - Metastasis localisation 16 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS16CD': 1}
+  HNSCC - Metastasis localisation 17.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS17': 1}
+  HNSCC - Metastasis localisation 17 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS17CD': 1}
+  HNSCC - Metastasis localisation 18.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS18': 1}
+  HNSCC - Metastasis localisation 18 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS18CD': 1}
+  HNSCC - Metastasis localisation 19.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS19': 1}
+  HNSCC - Metastasis localisation 19 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS19CD': 1}
+  HNSCC - Metastasis localisation 20.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS20': 1}
+  HNSCC - Metastasis localisation 20 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS20CD': 1}
+  HNSCC - Metastasis localisation 21.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS21': 1}
+  HNSCC - Metastasis localisation 21 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS21CD': 1}
+  HNSCC - Metastasis localisation 22.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS22': 1}
+  HNSCC - Metastasis localisation 22 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS22CD': 1}
+  HNSCC - Metastasis localisation 23.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS23': 1}
+  HNSCC - Metastasis localisation 23 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS23CD': 1}
+  HNSCC - Metastasis localisation 24.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS24': 1}
+  HNSCC - Metastasis localisation 24 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS24CD': 1}
+  HNSCC - Metastasis localisation 25.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS25': 1}
+  HNSCC - Metastasis localisation 25 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS25CD': 1}
+  HNSCC - Metastasis localisation 26.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS26': 1}
+  HNSCC - Metastasis localisation 26 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS26CD': 1}
+  HNSCC - Metastasis localisation 27.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS27': 1}
+  HNSCC - Metastasis localisation 27 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS27CD': 1}
+  HNSCC - Metastasis localisation 99.1          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS99': 1}
+  HNSCC - Metastasis localisation 99 - Code.1   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9LOC_PCMTS99CD': 1}
+  HNSCC - Metastasis location other: specify.1  object     n_unique=1     n_null=172
+       {nan: 172, 'PCMTS_LOCOTH': 1}
+  Number of metastatic sites.2                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCMTSITENUM': 1}
+  Number of metastatic sites (NA) 97.2          object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCMTSITENA97': 1}
+  Number of metastatic sites (NA) 97 - Code.2   object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCMTSITENA97CD': 1}
+  BL-Sum of largest diameter of all metastases (mm).2 object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_PCMT_TRORRES': 1}
+  HN-Sum of largest diameter of all metastases (NA) 97.1 object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_PCMT_TRNA97': 1}
+  HN-Sum of largest diameter of all metastases (NA) 97 - Code.1 object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_PCMT_TRNA97CD': 1}
+  Pancres - Borderline tumor status             object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_TUM_BRDL': 1}
+  Pancres - Borderline tumor status - Code      object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_TUM_BRDLCD': 1}
+  Largest diameter of the primary tumour (mm)   object     n_unique=1     n_null=172
+       {nan: 172, 'PCDIAM_TRORRES': 1}
+  Largest diameter of primary tumour (NA) 97    object     n_unique=1     n_null=172
+       {nan: 172, 'PCDIAM_TRNA97': 1}
+  Largest diameter of primary tumour (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'PCDIAM_TRNA97CD': 1}
+  Largest diameter of the primary tumour (mm).1 object     n_unique=1     n_null=172
+       {nan: 172, 'PCY_TRORRES': 1}
+   97                                           object     n_unique=1     n_null=172
+       {nan: 172, 'PCY_TRNA97': 1}
+   97 - Code                                    object     n_unique=1     n_null=172
+       {nan: 172, 'PCY_TRNA97CD': 1}
+  Largest diameter of the primary tumour (mm).2 object     n_unique=1     n_null=172
+       {nan: 172, 'PCZ_TRORRES': 1}
+   97.1                                         object     n_unique=1     n_null=172
+       {nan: 172, 'PCZ_TRNA97': 1}
+   97 - Code.1                                  object     n_unique=1     n_null=172
+       {nan: 172, 'PCZ_TRNA97CD': 1}
+  Resectability status as per imaging           object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCRSI': 1}
+  Resectability status as per imaging - Code    object     n_unique=1     n_null=172
+       {nan: 172, 'TU9_PCRSICD': 1}
+  BL-Sum of largest diameter of all metastases (mm).3 object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_PCMT2D_TRORRES': 1}
+  HN-Sum of largest diameter of all metastases (NA) 97.2 object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_PCMT2D_TRNA97': 1}
+  HN-Sum of largest diameter of all metastases (NA) 97 - Code.2 object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_PCMT2D_TRNA97CD': 1}
+  Primary tumor localisation.2                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_PRIMLOC': 1}
+  Primary tumor localisation - Code.2           object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_PRIMLOCCD': 1}
+  CRC - cT at diagnosis                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCCT': 1}
+  CRC - cT at diagnosis - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCCTCD': 1}
+  CRC- cN at diagnosis                          object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCCN': 1}
+  CRC- cN at diagnosis - Code                   object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCCNCD': 1}
+  CRC - cM at diagnosis                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCCM': 1}
+  CRC - cM at diagnosis - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCCMCD': 1}
+  CRC - cTNM stage at diagnosis                 object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCCTNM': 1}
+  CRC- Stage as per EHR                         object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_STAGEHR': 1}
+  CRC- Stage as per EHR - Code                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_STAGEHRCD': 1}
+  Largest diameter of the primary tumour (mm).3 object     n_unique=1     n_null=172
+       {nan: 172, 'CRCDIAM_TRORRES': 1}
+  Largest diameter of primary tumour (NA) 97.1  object     n_unique=1     n_null=172
+       {nan: 172, 'CRCDIAM_TRNA97': 1}
+  Largest diameter of primary tumour (NA) 97 - Code.1 object     n_unique=1     n_null=172
+       {nan: 172, 'CRCDIAM_TRNA97CD': 1}
+  Metastatic disease resectability              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCMDR': 1}
+  Metastatic disease resectability - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCMDRCD': 1}
+  CRC - Metastasis localisation 1               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS1': 1}
+  CRC - Metastasis localisation 1 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS1CD': 1}
+  CRC - Metastasis localisation 2               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS2': 1}
+  CRC - Metastasis localisation 2 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS2CD': 1}
+  CRC - Metastasis localisation 3               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS3': 1}
+  CRC - Metastasis localisation 3 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS3CD': 1}
+  CRC - Metastasis localisation 4               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS4': 1}
+  CRC - Metastasis localisation 4 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS4CD': 1}
+  CRC - Metastasis localisation 5               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS5': 1}
+  CRC - Metastasis localisation 5 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS5CD': 1}
+  CRC - Metastasis localisation 6               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS6': 1}
+  CRC - Metastasis localisation 6 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS6CD': 1}
+  CRC - Metastasis localisation 7               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS7': 1}
+  CRC - Metastasis localisation 7 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS7CD': 1}
+  CRC - Metastasis localisation 8               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS8': 1}
+  CRC - Metastasis localisation 8 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS8CD': 1}
+  CRC - Metastasis localisation 9               object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS9': 1}
+  CRC - Metastasis localisation 9 - Code        object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS9CD': 1}
+  CRC - Metastasis localisation 10              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS10': 1}
+  CRC - Metastasis localisation 10 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS10CD': 1}
+  CRC - Metastasis localisation 11              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS11': 1}
+  CRC - Metastasis localisation 11 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS11CD': 1}
+  CRC - Metastasis localisation 12              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS12': 1}
+  CRC - Metastasis localisation 12 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS12CD': 1}
+  CRC - Metastasis localisation 13              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS13': 1}
+  CRC - Metastasis localisation 13 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS13CD': 1}
+  CRC - Metastasis localisation 14              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS14': 1}
+  CRC - Metastasis localisation 14 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS14CD': 1}
+  CRC - Metastasis localisation 15              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS15': 1}
+  CRC - Metastasis localisation 15 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS15CD': 1}
+  CRC - Metastasis localisation 16              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS16': 1}
+  CRC - Metastasis localisation 16 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS16CD': 1}
+  CRC - Metastasis localisation 17              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS17': 1}
+  CRC - Metastasis localisation 17 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS17CD': 1}
+  CRC - Metastasis localisation 18              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS18': 1}
+  CRC - Metastasis localisation 18 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS18CD': 1}
+  CRC - Metastasis localisation 19              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS19': 1}
+  CRC - Metastasis localisation 19 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS19CD': 1}
+  CRC - Metastasis localisation 20              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS20': 1}
+  CRC - Metastasis localisation 20 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS20CD': 1}
+  CRC - Metastasis localisation 21              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS21': 1}
+  CRC - Metastasis localisation 21 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS21CD': 1}
+  CRC - Metastasis localisation 22              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS22': 1}
+  CRC - Metastasis localisation 22 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS22CD': 1}
+  CRC - Metastasis localisation 23              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS23': 1}
+  CRC - Metastasis localisation 23 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS23CD': 1}
+  CRC - Metastasis localisation 24              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS24': 1}
+  CRC - Metastasis localisation 24 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS24CD': 1}
+  CRC - Metastasis localisation 25              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS25': 1}
+  CRC - Metastasis localisation 25 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS25CD': 1}
+  CRC - Metastasis localisation 26              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS26': 1}
+  CRC - Metastasis localisation 26 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS26CD': 1}
+  CRC - Metastasis localisation 27              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS27': 1}
+  CRC - Metastasis localisation 27 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS27CD': 1}
+  CRC - Metastasis localisation 99              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS99': 1}
+  CRC - Metastasis localisation 99 - Code       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10LOC_CRCMTS99CD': 1}
+  CRC - Metastasis location other: specify      object     n_unique=1     n_null=172
+       {nan: 172, 'CRCMTS_LOCOTH': 1}
+  Liver metastasis                              object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCLIVMET': 1}
+  Liver metastasis - Code                       object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCLIVMETCD': 1}
+  Number of metastatic sites.3                  object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCMTSITENUM': 1}
+  Number of metastatic sites (NA) 97.3          object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCMTSITENA97': 1}
+  Number of metastatic sites (NA) 97 - Code.3   object     n_unique=1     n_null=172
+       {nan: 172, 'TU10_CRCMTSITENA97CD': 1}
+  CRC-Sum of largest diameter of all metastases (mm) object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_CRCMT_TRORRES': 1}
+  CRC-Sum of largest diameter of all metastases (NA) 97 object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_CRCMT_TRNA97': 1}
+  CRC-Sum of largest diameter of all metastases (NA) 97 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'LDIAM_CRCMT_TRNA97CD': 1}
+  General comments                              object     n_unique=34    n_null=139
+
+--- IE.csv: 173 rows x 58 columns
+  Site sequence number                          object     n_unique=2     n_null=0
+       {'5': 172, 'SiteSeq': 1}
+  Site name                                     object     n_unique=2     n_null=0
+       {'Centre Hospitalier Universitaire Vaudois': 172, 'SiteName': 1}
+  Site code                                     object     n_unique=2     n_null=0
+       {'CH': 172, 'SiteCode': 1}
+  Subject sequence number                       object     n_unique=173   n_null=0
+       examples: ['SubjectSeq', '275', '276', '277']
+  Subject Id                                    object     n_unique=173   n_null=0
+       examples: ['SubjectId', 'CH_L_275', 'CH_L_276', 'CH_L_277']
+  Event sequence number                         object     n_unique=2     n_null=0
+       {'1': 172, 'EventSeq': 1}
+  Event Id                                      object     n_unique=2     n_null=0
+       {'E01_V1': 172, 'EventId': 1}
+  Event name                                    object     n_unique=2     n_null=0
+       {'Baseline': 172, 'EventName': 1}
+  Event date                                    object     n_unique=29    n_null=0
+  Activity Id                                   object     n_unique=2     n_null=0
+       {'E01_IE': 172, 'ActivityId': 1}
+  Activity name                                 object     n_unique=1     n_null=172
+       {nan: 172, 'ActivityName': 1}
+  Form sequence number                          object     n_unique=2     n_null=0
+       {'1': 172, 'FormSeq': 1}
+  Subject form sequence number                  object     n_unique=2     n_null=0
+       {'1': 172, 'SubjectFormSeq': 1}
+  Origin Subject form sequence number           object     n_unique=2     n_null=0
+       {'1': 172, 'OriginSubjectFormSeq': 1}
+  Source Subject form sequence number           object     n_unique=1     n_null=172
+       {nan: 172, 'SourceSubjectFormSeq': 1}
+  Design version                                object     n_unique=3     n_null=0
+       {'9.23': 101, '12.2': 71, 'DesignVersion': 1}
+  Letter of information sent? (Subject notice)  object     n_unique=1     n_null=172
+       {nan: 172, 'ICYN': 1}
+  Letter of information sent? (Subject notice) - Code object     n_unique=2     n_null=0
+       {'97': 172, 'ICYNCD': 1}
+  Date of letter of information was sent        object     n_unique=1     n_null=172
+       {nan: 172, 'ICSNTDAT': 1}
+  Status of the consent                         object     n_unique=3     n_null=0
+       {'Signed': 155, 'Not applicable': 17, 'ICSTAT': 1}
+  Status of the consent - Code                  object     n_unique=3     n_null=0
+       {'1': 155, '97': 17, 'ICSTATCD': 1}
+  Date of signature                             object     n_unique=152   n_null=17
+  Date of implied consent                       object     n_unique=1     n_null=172
+       {nan: 172, 'ICDAT': 1}
+  Type of consent                               object     n_unique=2     n_null=17
+       {'General': 155, nan: 17, 'ICTYP': 1}
+  Type of consent - Code                        object     n_unique=2     n_null=17
+       {'1': 155, nan: 17, 'ICTYPCD': 1}
+  Did the subject satisfy the eligibility criteria? object     n_unique=2     n_null=0
+       {'Yes': 172, 'IEYN': 1}
+  Did the subject satisfy the eligibility criteria? - Code object     n_unique=2     n_null=0
+       {'1': 172, 'IEYNCD': 1}
+  Date of inclusion in MOSAIC                   object     n_unique=29    n_null=0
+  Were all inclusion criteria fulfilled?        object     n_unique=1     n_null=172
+       {nan: 172, 'IEINYN': 1}
+  Were all inclusion criteria fulfilled? - Code object     n_unique=1     n_null=172
+       {nan: 172, 'IEINYNCD': 1}
+  Specify the inclusion criteria not met 1      object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD1': 1}
+  Specify the inclusion criteria not met 1 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD1CD': 1}
+  Specify the inclusion criteria not met 2      object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD2': 1}
+  Specify the inclusion criteria not met 2 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD2CD': 1}
+  Specify the inclusion criteria not met 3      object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD3': 1}
+  Specify the inclusion criteria not met 3 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD3CD': 1}
+  Specify the inclusion criteria not met 4      object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD4': 1}
+  Specify the inclusion criteria not met 4 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD4CD': 1}
+  Specify the inclusion criteria not met 5      object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD5': 1}
+  Specify the inclusion criteria not met 5 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD5CD': 1}
+  Specify the inclusion criteria not met 6      object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD6': 1}
+  Specify the inclusion criteria not met 6 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD6CD': 1}
+  Specify the inclusion criteria not met 7      object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD7': 1}
+  Specify the inclusion criteria not met 7 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD7CD': 1}
+  Specify the inclusion criteria not met 8      object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD8': 1}
+  Specify the inclusion criteria not met 8 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD8CD': 1}
+  Specify the inclusion criteria not met 9      object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD9': 1}
+  Specify the inclusion criteria not met 9 - Code object     n_unique=1     n_null=172
+       {nan: 172, 'IEINTESTCD9CD': 1}
+  Was the exclusion criteria fulfilled?         object     n_unique=1     n_null=172
+       {nan: 172, 'IEEXYN': 1}
+  Was the exclusion criteria fulfilled? - Code  object     n_unique=1     n_null=172
+       {nan: 172, 'IEEXYNCD': 1}
+  Specify the exclusion criteria met 1          object     n_unique=1     n_null=172
+       {nan: 172, 'IEEXTESTCD1': 1}
+  Specify the exclusion criteria met 1 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'IEEXTESTCD1CD': 1}
+  Specify the exclusion criteria met 2          object     n_unique=1     n_null=172
+       {nan: 172, 'IEEXTESTCD2': 1}
+  Specify the exclusion criteria met 2 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'IEEXTESTCD2CD': 1}
+  Specify the exclusion criteria met 3          object     n_unique=1     n_null=172
+       {nan: 172, 'IEEXTESTCD3': 1}
+  Specify the exclusion criteria met 3 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'IEEXTESTCD3CD': 1}
+  Specify the exclusion criteria met 4          object     n_unique=1     n_null=172
+       {nan: 172, 'IEEXTESTCD4': 1}
+  Specify the exclusion criteria met 4 - Code   object     n_unique=1     n_null=172
+       {nan: 172, 'IEEXTESTCD4CD': 1}
