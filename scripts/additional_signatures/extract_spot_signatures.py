@@ -45,7 +45,10 @@ for i, patient_id in enumerate(selected, 1):
     (SPOT_TABLES / f"{patient_id}_genes_used.json").write_text(json.dumps(genes_used))
     print(f"[{i}/{len(selected)}] {patient_id}: {len(table)} spots, genes used {genes_used}")
 
+failures_file = SPOT_TABLES / "failures.txt"
 if failed:
+    failures_file.write_text("\n".join(f"=== {patient_id}\n{trace}" for patient_id, trace in failed.items()))
     for patient_id, trace in failed.items():
         print(f"\n=== {patient_id}\n{trace}")
+    print(f"\ntracebacks also written to {failures_file}")
     raise RuntimeError(f"{len(failed)} patient(s) failed: {sorted(failed)}")
