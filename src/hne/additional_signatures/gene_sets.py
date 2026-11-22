@@ -1,0 +1,36 @@
+"""src/hne/additional_signatures/gene_sets.py
+
+Gene sets scored per spot in this analysis. Human symbols.
+
+Both APM versions are kept so the plots can show which one behaves better.
+HLA-A, HLA-B and HLA-C are not on the Visium Human Transcriptome Probe Set v2.0 (the panel of
+these slides), so they are never in the h5ad and the 12-gene set is scored on its 9 measured genes.
+"""
+
+# copy of the FMRP_signature in hne.preprocessing.spot_signatures.compute_signatures, where it is a
+# local variable and cannot be imported. Keep the two identical.
+FMRP_GENES = ["MARCKSL1", "S100A16", "DDAH1", "MYCL", "SHANK2", "ITIH2", "PIK3AP1",
+              "LHFPL6", "FRMD5", "CLDN6", "ATP11A", "SLC25A21", "B4GALNT3", "WNT10A",
+              "KCTD17", "BCAM", "CCL14", "CCL15", "CCL23", "DLG4", "SPTSSB", "SOGA1",
+              "MAP9", "CCDC149", "CMBL", "PTPRN", "WTIP", "FXR1", "ARHGEF26", "PROS1",
+              "PARP8", "OSR1", "TFF2", "UCHL1", "PRSS35", "KCNK5", "AEBP1", "SP8", "CFTR",
+              "CYSLTR1", "FSCN1", "IL33", "ELFN1", "AFAP1L1", "LPAR4", "CASD1", "HS6ST2",
+              "CD109", "MAL2", "PHF19"]
+
+# 4-gene antigen-processing set
+APM4_GENES = ["TAP1", "TAP2", "PSMB8", "PSMB10"]
+
+# Dijkstra et al., Cancer Cell 2025: 11 mouse genes (Nlrc5, Erap1, Calr, Canx, Pdia3, B2m, H2-K1,
+# H2-D1, Sppl3, Mogs, Ganab); H2-K1 and H2-D1 map to HLA-A, HLA-B, HLA-C, giving 12 human genes
+APM12_GENES = ["NLRC5", "ERAP1", "CALR", "CANX", "PDIA3", "B2M", "HLA-A", "HLA-B", "HLA-C",
+               "SPPL3", "MOGS", "GANAB"]
+
+GENE_SETS = {
+    "FMRP": FMRP_GENES,
+    "APM4": APM4_GENES,
+    "APM12": APM12_GENES,
+}
+
+# deconvolution cell types counted as immune. Keys of obsm["deconv_sample_level_custom1_weights"].
+IMMUNE_CELL_TYPES = ["B_cell", "Plasma", "T_CD4", "T_CD8", "T_NK_cycling", "T_nos", "T_reg", "NK",
+                     "MoMac", "Granulocyte", "Mast", "cDC1", "cDC2", "cDC_LAMP3", "pDC"]

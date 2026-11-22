@@ -14,6 +14,7 @@ Each stage reads the previous stage's outputs from disk.
 | Phase 1 baseline | `scripts/model_train/phase1/train_phase1_ridge.py` | `src/hne/models/` | `results/phase1_ridge/` |
 | Phase 2 ABMIL | `scripts/model_train/phase2/train_phase2_abmil.py` | `src/hne/models/abmil.py`, `src/hne/models/torch_cv.py` | `results/phase2_abmil/` |
 | Registration audit | `scripts/audit/` | `src/hne/feature_extraction/registration_audit.py` | `results/registration_audit/` |
+| Additional signatures (branch `additional-signatures`) | `scripts/additional_signatures/` (5 scripts, run in the order in the note) | `src/hne/additional_signatures/` | `results/additional_signatures/` |
 
 - **Preprocessing**: tumor fraction from deconvolution, Bayesian tile purity, tumor-tile filter, per-spot ssGSEA scores, tile-level means, top-quartile binary calls. Every patient gets a QC verdict (`OK` / `REVIEW` / `EXCLUDE`).
 - **Feature extraction**: each tile is split into 112 µm sub-patches, embedded with Phikon-v2 (1024-d CLS token), and mean-pooled to one vector per tile. Runs in a fresh worker process per group of patients and resumes per tile.
@@ -58,6 +59,7 @@ Each stage reads the previous stage's outputs from disk.
 - Statistics count patients, not tiles: CIs from a patient-level bootstrap, p-values from patient-level permutation. Never report a tile-level p-value.
 - Data that influenced a choice (epoch, hyperparameter, model) cannot report that choice's result. Do not edit a `CONFIG` and rerun to improve a reported number.
 - Scripts fail loudly on a missing input. No fallback values.
+- Treatment-naive status comes from the `Clinical/` forms of `RAW_DATA_PREFIX`, never from patient ids. HLA-A/B/C are not on the Visium probe panel, so they are never in the h5ad.
 - Patients lost in preprocessing are the `EXCLUDE` verdicts in `qc_summary.csv` plus the `Failed patients` list in the cohort log. Patients that crash never reach the QC summary.
 
 ## After changing code
@@ -76,6 +78,7 @@ Each stage reads the previous stage's outputs from disk.
 - `review/04_phase1_ridge_baseline.md`
 - `review/04_phase2_abmil.md`
 - `review/06_registration_audit.md`
+- `review/07_additional_signatures.md`
 - `review/plan_decisions.md` (decisions and evaluation rules for all phases)
 - `review/00_glossary.md` (project vocabulary)
 - `review/Privé et partagé/` (export of the MOSAIC Data Science wiki: how the cohort's data was produced)
