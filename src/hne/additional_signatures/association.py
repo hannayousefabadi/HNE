@@ -14,6 +14,19 @@ from scipy.stats import spearmanr
 INK, MUTED, GRID = "#222222", "#666666", "#e6e6e6"
 
 
+def analysis_patients(naive_csv, spot_dir, excluded: dict) -> list[str]:
+    """Selected patients that have a spot table. A selected patient without one must be named in `excluded`
+    (patient -> reason); any other missing table is an error."""
+    selected = pd.read_csv(naive_csv).query("selected")["patient_id"].tolist()
+    missing = [p for p in selected if not (spot_dir / f"{p}.csv").exists()]
+    unexplained = [p for p in missing if p not in excluded]
+    if unexplained:
+        raise FileNotFoundError(f"no spot table for {unexplained}: rerun extract_spot_signatures.py or add them to EXCLUDED_PATIENTS")
+    for p in missing:
+        print(f"excluded {p}: {excluded[p]}")
+    return [p for p in selected if p not in missing]
+
+
 def load_spot_tables(spot_dir, patient_ids) -> pd.DataFrame:
     missing = [p for p in patient_ids if not (spot_dir / f"{p}.csv").exists()]
     if missing:

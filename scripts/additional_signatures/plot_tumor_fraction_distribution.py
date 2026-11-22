@@ -9,13 +9,21 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from hne.additional_signatures.association import load_spot_tables
+from hne.additional_signatures import association
 from hne.additional_signatures.paths import ADDITIONAL_SIGNATURES_PLOTS, NAIVE_PATIENTS_CSV, SPOT_TABLES
+
+# selected patients whose extraction failed, and why. The plots run on the others.
+EXCLUDED_PATIENTS = {
+    "CH_L_378a": "h5ad has no deconv_sample_level_custom1_weights",
+    "CH_L_394a": "h5ad has no deconv_sample_level_custom1_weights",
+    "CH_L_401a": "h5ad has no deconv_sample_level_custom1_weights",
+    "CH_L_377a": "extraction failed, reason not yet read from failures.txt",
+}
 
 CONFIG = {"n_bins": 50, "reference_lines": [0.3, 0.5, 0.7]}   # candidate thresholds drawn as guides, not decisions
 
-patients = pd.read_csv(NAIVE_PATIENTS_CSV).query("selected")["patient_id"].tolist()
-spots = load_spot_tables(SPOT_TABLES, patients)
+patients = association.analysis_patients(NAIVE_PATIENTS_CSV, SPOT_TABLES, EXCLUDED_PATIENTS)
+spots = association.load_spot_tables(SPOT_TABLES, patients)
 
 fig, (ax_all, ax_patient) = plt.subplots(1, 2, figsize=(11, 4))
 ax_all.hist(spots["tumor_fraction"], bins=CONFIG["n_bins"], color="#08519c", linewidth=0)

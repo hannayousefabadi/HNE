@@ -16,6 +16,14 @@ from hne.additional_signatures import association
 from hne.additional_signatures.paths import (ADDITIONAL_SIGNATURES, ADDITIONAL_SIGNATURES_PLOTS,
                                              NAIVE_PATIENTS_CSV, SPOT_TABLES)
 
+# selected patients whose extraction failed, and why. The plots run on the others.
+EXCLUDED_PATIENTS = {
+    "CH_L_378a": "h5ad has no deconv_sample_level_custom1_weights",
+    "CH_L_394a": "h5ad has no deconv_sample_level_custom1_weights",
+    "CH_L_401a": "h5ad has no deconv_sample_level_custom1_weights",
+    "CH_L_377a": "extraction failed, reason not yet read from failures.txt",
+}
+
 CONFIG = {
     "cancer_dominant_threshold": None,   # tumor_fraction >= this keeps a spot. Set after step 3.
     "min_spots_per_patient": 50,         # a patient with fewer cancer-dominant spots is left out of the statistics
@@ -31,7 +39,7 @@ SCORES = ["FMRP_score", "APM4_score", "APM12_score"]
 if CONFIG["cancer_dominant_threshold"] is None:
     raise RuntimeError("set CONFIG['cancer_dominant_threshold'] after looking at plot_tumor_fraction_distribution.py")
 
-patients = pd.read_csv(NAIVE_PATIENTS_CSV).query("selected")["patient_id"].tolist()
+patients = association.analysis_patients(NAIVE_PATIENTS_CSV, SPOT_TABLES, EXCLUDED_PATIENTS)
 spots = association.load_spot_tables(SPOT_TABLES, patients)
 dominant = spots[spots["tumor_fraction"] >= CONFIG["cancer_dominant_threshold"]]
 per_patient = dominant.groupby("patient_id").size()
