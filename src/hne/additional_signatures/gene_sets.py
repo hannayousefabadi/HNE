@@ -31,6 +31,8 @@ GENE_SETS = {
     "APM12": APM12_GENES,
 }
 
-# deconvolution cell types counted as immune. Keys of obsm["deconv_sample_level_custom1_weights"].
-IMMUNE_CELL_TYPES = ["B_cell", "Plasma", "T_CD4", "T_CD8", "T_NK_cycling", "T_nos", "T_reg", "NK",
+# deconvolution cell types counted as immune. Keys of obsm["deconv_sample_level_custom1_weights"] in the
+# v2 h5ads on S3, which have no T_nos, T_reg or NK column (older local copies do), so regulatory T cells,
+# NK cells and unspecified T cells are not counted unless they sit in T_CD4, T_CD8 or T_NK_cycling.
+IMMUNE_CELL_TYPES = ["B_cell", "Plasma", "T_CD4", "T_CD8", "T_NK_cycling",
                      "MoMac", "Granulocyte", "Mast", "cDC1", "cDC2", "cDC_LAMP3", "pDC"]
