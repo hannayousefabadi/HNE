@@ -69,7 +69,8 @@ def extract_patient_spots(patient_id: str, radius_um: float, include_self: bool,
     weights, fractions = vis.obsm[WEIGHTS_KEY], vis.obsm[FRACTIONS_KEY]
     missing = [c for c in IMMUNE_CELL_TYPES if c not in weights.columns]
     if missing:
-        raise KeyError(f"{patient_id}: no deconvolution column for {missing}")
+        raise KeyError(f"{patient_id}: no deconvolution column for {missing}; "
+                       f"available: {list(weights.columns)}")
     tumor_columns = [c for c in fractions.columns if c.startswith("Tu_")]
     if not tumor_columns:
         raise KeyError(f"{patient_id}: no Tu_ column in {FRACTIONS_KEY}")
