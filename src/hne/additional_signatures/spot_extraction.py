@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 from scipy.spatial import cKDTree
 
-from hne.additional_signatures.gene_sets import GENE_SETS, IMMUNE_CELL_TYPES
+from hne.additional_signatures.gene_sets import GENE_SETS, IMMUNE_CELL_TYPES, SINGLE_GENES
 from hne.core.data_io import load_visium
 from hne.core.paths import PATIENTS
 
@@ -57,6 +57,16 @@ def score_gene_sets(vis, processes: int, min_size: int):
     return scores, genes_used
 
 
+def single_gene_expression(vis, genes: list[str]) -> pd.DataFrame:
+    """log1p-CPM expression per spot of each gene, columns "{gene}_expression". A gene absent from the h5ad raises."""
+    missing = [g for g in genes if g not in vis.var_names]
+    if missing:
+        raise KeyError(f"gene(s) {missing} are not in the h5ad")
+    layer = vis[:, genes].layers["log_norm_count"]
+    values = layer.toarray() if hasattr(layer, "toarray") else np.asarray(layer)
+    return pd.DataFrame(values, index=vis.obs_names, columns=[f"{g}_expression" for g in genes])
+
+
 def extract_patient_spots(patient_id: str, radius_um: float, include_self: bool,
                           ssgsea_processes: int, ssgsea_min_size: int):
     """Table with one row per in-tissue spot, plus the gene coverage of each set."""
@@ -92,4 +102,7 @@ def extract_patient_spots(patient_id: str, radius_um: float, include_self: bool,
     })
     for name in GENE_SETS:
         table[f"{name}_score"] = scores[name].to_numpy()
+    expression = single_gene_expression(vis, SINGLE_GENES)
+    for column in expression.columns:
+        table[column] = expression[column].to_numpy(dtype=float)
     return table, genes_used

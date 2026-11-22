@@ -31,6 +31,10 @@ GENE_SETS = {
     "APM12": APM12_GENES,
 }
 
+# single genes reported as plain log1p-CPM expression per spot (one gene is not an ssGSEA set).
+# Column name in the spot tables: "{gene}_expression".
+SINGLE_GENES = ["FMR1"]
+
 # deconvolution cell types counted as immune. Keys of obsm["deconv_sample_level_custom1_weights"] in the
 # v2 h5ads on S3, which have no T_nos, T_reg or NK column (older local copies do), so regulatory T cells,
 # NK cells and unspecified T cells are not counted unless they sit in T_CD4, T_CD8 or T_NK_cycling.

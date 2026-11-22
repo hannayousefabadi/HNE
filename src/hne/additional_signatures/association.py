@@ -11,6 +11,8 @@ import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 
+from hne.additional_signatures.gene_sets import SINGLE_GENES
+
 INK, MUTED, GRID = "#222222", "#666666", "#e6e6e6"
 
 
@@ -100,17 +102,17 @@ def _style(ax):
     ax.set_axisbelow(True)
 
 
-def plot_surface(spots, color_score, label, path, cfg):
+def plot_surface(spots, color_score, label, path, cfg, x_score="FMRP_score", x_label="FMRP"):
     """Reference-style figure: colour = color_score over FMRP (x) and immune count (y, log)."""
-    xs, ys, surface = smoothed_surface(spots["FMRP_score"].to_numpy(), spots["immune_count"].to_numpy(),
+    xs, ys, surface = smoothed_surface(spots[x_score].to_numpy(), spots["immune_count"].to_numpy(),
                                        spots[color_score].to_numpy(), cfg["surface_grid"],
                                        cfg["surface_bandwidth"], cfg["surface_min_support"])
     fig, ax = plt.subplots(figsize=(6.4, 5))
     mesh = ax.pcolormesh(xs, ys, np.ma.masked_invalid(surface), cmap="inferno", shading="auto")
     ax.set_yscale("log")
-    ax.set_xlabel("FMRP score", color=INK)
+    ax.set_xlabel(f"{x_label} score" if x_score.endswith("_score") else f"{x_label} expression (log1p CPM)", color=INK)
     ax.set_ylabel("Immune cell count (200 µm)", color=INK)
-    ax.set_title(f"Association of FMRP Signature With {label}\nAcross Immune Cell Density", color=INK, fontsize=12)
+    ax.set_title(f"Association of {x_label} With {label}\nAcross Immune Cell Density", color=INK, fontsize=12)
     cbar = fig.colorbar(mesh, ax=ax)
     cbar.set_label(f"{label}", color=INK)
     cbar.ax.tick_params(colors=MUTED)
@@ -132,7 +134,7 @@ def plot_trends(trends: dict, summaries: dict, path):
                 transform=ax.transAxes, va="top", fontsize=8.5, color=INK)
         ax.set_xscale("log")
         ax.set_xlabel("Immune cell count (200 µm)", color=INK)
-        ax.set_ylabel("score (ssGSEA)", color=INK)
+        ax.set_ylabel("expression (log1p CPM)" if score in SINGLE_GENES else "score (ssGSEA)", color=INK)
         _style(ax)
     fig.tight_layout()
     fig.savefig(path, dpi=200)
