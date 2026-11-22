@@ -1,0 +1,31 @@
+=== CH_L_377a
+Traceback (most recent call last):
+  File "/home/sagemaker-user/HNE/scripts/additional_signatures/extract_spot_signatures.py", line 38, in <module>
+    table, genes_used = extract_patient_spots(patient_id, CONFIG["radius_um"], CONFIG["include_self"],
+  File "/home/sagemaker-user/HNE/src/hne/additional_signatures/spot_extraction.py", line 68, in extract_patient_spots
+    raise KeyError(f"{patient_id}: obsm has no {key!r}")
+KeyError: "CH_L_377a: obsm has no 'deconv_sample_level_custom1_weights'"
+
+=== CH_L_378a
+Traceback (most recent call last):
+  File "/home/sagemaker-user/HNE/scripts/additional_signatures/extract_spot_signatures.py", line 38, in <module>
+    table, genes_used = extract_patient_spots(patient_id, CONFIG["radius_um"], CONFIG["include_self"],
+  File "/home/sagemaker-user/HNE/src/hne/additional_signatures/spot_extraction.py", line 68, in extract_patient_spots
+    raise KeyError(f"{patient_id}: obsm has no {key!r}")
+KeyError: "CH_L_378a: obsm has no 'deconv_sample_level_custom1_weights'"
+
+=== CH_L_394a
+Traceback (most recent call last):
+  File "/home/sagemaker-user/HNE/scripts/additional_signatures/extract_spot_signatures.py", line 38, in <module>
+    table, genes_used = extract_patient_spots(patient_id, CONFIG["radius_um"], CONFIG["include_self"],
+  File "/home/sagemaker-user/HNE/src/hne/additional_signatures/spot_extraction.py", line 68, in extract_patient_spots
+    raise KeyError(f"{patient_id}: obsm has no {key!r}")
+KeyError: "CH_L_394a: obsm has no 'deconv_sample_level_custom1_weights'"
+
+=== CH_L_401a
+Traceback (most recent call last):
+  File "/home/sagemaker-user/HNE/scripts/additional_signatures/extract_spot_signatures.py", line 38, in <module>
+    table, genes_used = extract_patient_spots(patient_id, CONFIG["radius_um"], CONFIG["include_self"],
+  File "/home/sagemaker-user/HNE/src/hne/additional_signatures/spot_extraction.py", line 68, in extract_patient_spots
+    raise KeyError(f"{patient_id}: obsm has no {key!r}")
+KeyError: "CH_L_401a: obsm has no 'deconv_sample_level_custom1_weights'"
