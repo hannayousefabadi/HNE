@@ -8,25 +8,16 @@ APM12 against the immune count within 200 um.
   plots/trend_vs_immune_count.png                   FMRP, APM4, APM12 each against immune count, patient-bootstrap band
   patient_level_summary.csv                         mean per-patient Spearman rho, 95% bootstrap CI, permutation p
 
-The threshold is read off the tumor-fraction distribution from step 3 and set below by hand.
-Do not change it after looking at these plots to improve a result.
+The threshold and the excluded patients are in hne.additional_signatures.analysis_config.
 """
 import pandas as pd
 
 from hne.additional_signatures import association
+from hne.additional_signatures.analysis_config import CANCER_DOMINANT_THRESHOLD, EXCLUDED_PATIENTS
 from hne.additional_signatures.paths import (ADDITIONAL_SIGNATURES, ADDITIONAL_SIGNATURES_PLOTS,
                                              NAIVE_PATIENTS_CSV, SPOT_TABLES)
 
-# selected patients whose extraction failed, and why. The plots run on the others.
-EXCLUDED_PATIENTS = {
-    "CH_L_378a": "h5ad has no deconv_sample_level_custom1_weights",
-    "CH_L_394a": "h5ad has no deconv_sample_level_custom1_weights",
-    "CH_L_401a": "h5ad has no deconv_sample_level_custom1_weights",
-    "CH_L_377a": "h5ad has no deconv_sample_level_custom1_weights",
-}
-
 CONFIG = {
-    "cancer_dominant_threshold": 0.5,    # tumor_fraction >= this keeps a spot: tumor outweighs all other cell types together
     "min_spots_per_patient": 50,         # a patient with fewer cancer-dominant spots is left out of the statistics
     "n_bins": 8,                         # immune-count quantile bins of the trend plot
     "n_boot": 2000,
@@ -37,12 +28,9 @@ CONFIG = {
 }
 SCORES = ["FMRP_score", "FMR1_expression", "APM4_score", "APM12_score"]
 
-if CONFIG["cancer_dominant_threshold"] is None:
-    raise RuntimeError("set CONFIG['cancer_dominant_threshold'] after looking at plot_tumor_fraction_distribution.py")
-
 patients = association.analysis_patients(NAIVE_PATIENTS_CSV, SPOT_TABLES, EXCLUDED_PATIENTS)
 spots = association.load_spot_tables(SPOT_TABLES, patients)
-dominant = spots[spots["tumor_fraction"] >= CONFIG["cancer_dominant_threshold"]]
+dominant = spots[spots["tumor_fraction"] >= CANCER_DOMINANT_THRESHOLD]
 per_patient = dominant.groupby("patient_id").size()
 kept = per_patient[per_patient >= CONFIG["min_spots_per_patient"]].index
 print(f"{len(dominant):,}/{len(spots):,} spots cancer-dominant; {len(kept)}/{len(patients)} patients with "

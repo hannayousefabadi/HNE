@@ -57,10 +57,11 @@ def patient_level_summary(rho: pd.Series, n_boot: int, seed: int) -> dict:
             "p_perm": (np.sum(np.abs(null) >= abs(values.mean())) + 1) / (n_boot + 1)}
 
 
-def binned_trend(spots: pd.DataFrame, score: str, n_bins: int, n_boot: int, seed: int, bins=None) -> pd.DataFrame:
+def binned_trend(spots: pd.DataFrame, score: str, n_bins: int, n_boot: int, seed: int, bins=None,
+                 x: str = "immune_count") -> pd.DataFrame:
     """Mean score per immune-count quantile bin, with a patient-bootstrap CI (patients resampled, then spots pooled).
     `bins` (one bin number per row of spots) replaces the quantile bins when given."""
-    bins = pd.qcut(spots["immune_count"], n_bins, labels=False, duplicates="drop") if bins is None else bins
+    bins = pd.qcut(spots[x], n_bins, labels=False, duplicates="drop") if bins is None else bins
     spots = spots.assign(bin=bins)
     patients = spots["patient_id"].unique()
     per_patient = {p: g.groupby("bin")[score].agg(["sum", "count"]) for p, g in spots.groupby("patient_id")}
@@ -72,8 +73,8 @@ def binned_trend(spots: pd.DataFrame, score: str, n_bins: int, n_boot: int, seed
         return (total["sum"] / total["count"]).to_numpy()
 
     boots = np.array([pooled_mean(rng.choice(patients, size=len(patients), replace=True)) for _ in range(n_boot)])
-    x = spots.groupby("bin")["immune_count"].median().reindex(bins).to_numpy()
-    return pd.DataFrame({"immune_count": x, "mean": pooled_mean(patients),
+    x_values = spots.groupby("bin")[x].median().reindex(bins).to_numpy()
+    return pd.DataFrame({"x": x_values, "mean": pooled_mean(patients),
                          "ci_low": np.nanpercentile(boots, 2.5, axis=0),
                          "ci_high": np.nanpercentile(boots, 97.5, axis=0)})
 
@@ -92,6 +93,11 @@ def smoothed_surface(x, y, z, grid_size: int, bandwidth: float, min_support: flo
         den += w
     surface = np.where(den >= min_support, num / np.maximum(den, 1e-12), np.nan)
     return xs, 10 ** ys, surface
+
+
+def _p_label(p: float) -> str:
+    """A permutation p-value cannot go below 1 / (n_perm + 1), so it is shown as a bound there."""
+    return "p < 0.001" if p <= 1e-3 else f"p = {p:.3f}"
 
 
 def _style(ax):
@@ -127,12 +133,12 @@ def plot_trends(trends: dict, summaries: dict, path):
     """One panel per score: binned mean vs immune count with patient-bootstrap band; rho annotated."""
     fig, axes = plt.subplots(1, len(trends), figsize=(4.2 * len(trends), 3.8), sharex=True)
     for ax, (score, trend) in zip(np.atleast_1d(axes), trends.items()):
-        ax.fill_between(trend["immune_count"], trend["ci_low"], trend["ci_high"], color="#9ecae1", alpha=0.6, linewidth=0)
-        ax.plot(trend["immune_count"], trend["mean"], color="#08519c", linewidth=2, marker="o", markersize=5)
+        ax.fill_between(trend["x"], trend["ci_low"], trend["ci_high"], color="#9ecae1", alpha=0.6, linewidth=0)
+        ax.plot(trend["x"], trend["mean"], color="#08519c", linewidth=2, marker="o", markersize=5)
         s = summaries[score]
         ax.set_title(score, color=INK, fontsize=11)
         ax.text(0.03, 0.95, f"mean per-patient ρ = {s['mean_rho']:.2f}\n95% CI [{s['ci_low']:.2f}, {s['ci_high']:.2f}]\n"
-                f"p = {s['p_perm']:.3f}, n = {s['n_patients']} patients",
+                f"{_p_label(s['p_perm'])}, n = {s['n_patients']} patients",
                 transform=ax.transAxes, va="top", fontsize=8.5, color=INK)
         ax.set_xscale("log")
         ax.set_xlabel("Immune cell count (200 µm)", color=INK)
@@ -151,8 +157,8 @@ def plot_split_by_detection(spots, score, label, gene_column, gene, path, n_bins
     fig, ax = plt.subplots(figsize=(6, 4.2))
     for mask, name, color in [(~detected, f"{gene} not detected", "#7f7f7f"), (detected, f"{gene} detected", "#08519c")]:
         trend = binned_trend(spots[mask], score, n_bins, n_boot, seed, bins=bins[mask])
-        ax.fill_between(trend["immune_count"], trend["ci_low"], trend["ci_high"], color=color, alpha=0.2, linewidth=0)
-        ax.plot(trend["immune_count"], trend["mean"], color=color, linewidth=2, marker="o", markersize=5,
+        ax.fill_between(trend["x"], trend["ci_low"], trend["ci_high"], color=color, alpha=0.2, linewidth=0)
+        ax.plot(trend["x"], trend["mean"], color=color, linewidth=2, marker="o", markersize=5,
                 label=f"{name} ({int(mask.sum()):,} spots)")
     ax.set_xscale("log")
     ax.set_xlabel("Immune cell count (200 µm)", color=INK)
@@ -163,3 +169,59 @@ def plot_split_by_detection(spots, score, label, gene_column, gene, path, n_bins
     fig.tight_layout()
     fig.savefig(path, dpi=200)
     plt.close(fig)
+
+
+def fmrp_vs_fmr1(spots, path, n_bins, n_boot, seed, min_spots_per_group):
+    """FMRP score against FMR1 expression, for the zero-inflated FMR1 (no count vs at least one count).
+    Left: per patient, mean FMRP in spots without vs with an FMR1 count (paired). Right: in spots with a count only,
+    FMRP against FMR1 level in quantile bins, patient-bootstrap band. Returns the patient-level statistics."""
+    detected = spots["FMR1_expression"] > 0
+    paired = {}
+    for patient, group in spots.groupby("patient_id"):
+        on = group.loc[group["FMR1_expression"] > 0, "FMRP_score"]
+        off = group.loc[group["FMR1_expression"] == 0, "FMRP_score"]
+        if len(on) >= min_spots_per_group and len(off) >= min_spots_per_group:
+            paired[patient] = (off.mean(), on.mean())
+    paired = pd.DataFrame(paired, index=["not detected", "detected"]).T
+    difference = patient_level_summary(paired["detected"] - paired["not detected"], n_boot, seed)
+    rho_all = patient_level_summary(per_patient_rho_pair(spots, "FMRP_score", "FMR1_expression", min_spots_per_group), n_boot, seed)
+    rho_detected = patient_level_summary(
+        per_patient_rho_pair(spots[detected], "FMRP_score", "FMR1_expression", min_spots_per_group), n_boot, seed)
+
+    fig, (ax_pair, ax_level) = plt.subplots(1, 2, figsize=(10.5, 4.2))
+    for _, (off, on) in paired.iterrows():
+        ax_pair.plot([0, 1], [off, on], color="#bbbbbb", linewidth=1, zorder=1)
+    ax_pair.scatter(np.zeros(len(paired)), paired["not detected"], color="#7f7f7f", s=28, zorder=2)
+    ax_pair.scatter(np.ones(len(paired)), paired["detected"], color="#08519c", s=28, zorder=2)
+    ax_pair.set_xticks([0, 1], ["FMR1 not detected", "FMR1 detected"])
+    ax_pair.set_xlim(-0.4, 1.4)
+    ax_pair.set_ylabel("mean FMRP score per patient (ssGSEA)", color=INK)
+    ax_pair.set_title(f"Per patient (n = {difference['n_patients']})", color=INK, fontsize=11)
+    ax_pair.text(0.03, 0.97, f"detected - not detected = {difference['mean_rho']:+.3f}\n"
+                 f"95% CI [{difference['ci_low']:+.3f}, {difference['ci_high']:+.3f}]\n{_p_label(difference['p_perm'])}",
+                 transform=ax_pair.transAxes, va="top", fontsize=8.5, color=INK)
+    _style(ax_pair)
+
+    trend = binned_trend(spots[detected], "FMRP_score", n_bins, n_boot, seed, x="FMR1_expression")
+    ax_level.fill_between(trend["x"], trend["ci_low"], trend["ci_high"], color="#9ecae1", alpha=0.6, linewidth=0)
+    ax_level.plot(trend["x"], trend["mean"], color="#08519c", linewidth=2, marker="o", markersize=5)
+    ax_level.set_xlabel("FMR1 expression, spots with a count (log1p CPM)", color=INK)
+    ax_level.set_ylabel("FMRP score (ssGSEA)", color=INK)
+    ax_level.set_title("Spots with an FMR1 count", color=INK, fontsize=11)
+    ax_level.text(0.03, 0.97, f"mean per-patient ρ = {rho_detected['mean_rho']:.2f}\n95% CI [{rho_detected['ci_low']:.2f}, "
+                  f"{rho_detected['ci_high']:.2f}]\n{_p_label(rho_detected['p_perm'])}, n = {rho_detected['n_patients']} patients",
+                  transform=ax_level.transAxes, va="top", fontsize=8.5, color=INK)
+    _style(ax_level)
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)
+    return {"paired_difference": difference, "rho_all_spots": rho_all, "rho_detected_spots": rho_detected}
+
+
+def per_patient_rho_pair(spots, a: str, b: str, min_spots: int) -> pd.Series:
+    """Spearman rho between columns a and b inside each patient; undefined (constant column) or small patients drop out."""
+    rho = {}
+    for patient, group in spots.groupby("patient_id"):
+        if len(group) >= min_spots and group[a].nunique() > 1 and group[b].nunique() > 1:
+            rho[patient] = spearmanr(group[a], group[b]).statistic
+    return pd.Series(rho, dtype=float)

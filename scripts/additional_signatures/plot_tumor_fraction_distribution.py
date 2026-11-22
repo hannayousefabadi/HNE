@@ -2,7 +2,7 @@
 
 Step 3. Distribution of tumor fraction over all in-tissue spots of the selected naive patients, to
 choose the "cancer-dominant" threshold by eye. Writes plots/tumor_fraction_distribution.png and prints the
-quantiles. Then set CONFIG["cancer_dominant_threshold"] in plot_signature_associations.py.
+quantiles. The threshold itself is CANCER_DOMINANT_THRESHOLD in hne.additional_signatures.analysis_config.
 """
 import matplotlib
 matplotlib.use("Agg")
@@ -10,15 +10,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 from hne.additional_signatures import association
+from hne.additional_signatures.analysis_config import EXCLUDED_PATIENTS
 from hne.additional_signatures.paths import ADDITIONAL_SIGNATURES_PLOTS, NAIVE_PATIENTS_CSV, SPOT_TABLES
-
-# selected patients whose extraction failed, and why. The plots run on the others.
-EXCLUDED_PATIENTS = {
-    "CH_L_378a": "h5ad has no deconv_sample_level_custom1_weights",
-    "CH_L_394a": "h5ad has no deconv_sample_level_custom1_weights",
-    "CH_L_401a": "h5ad has no deconv_sample_level_custom1_weights",
-    "CH_L_377a": "h5ad has no deconv_sample_level_custom1_weights",
-}
 
 CONFIG = {"n_bins": 50, "reference_lines": [0.3, 0.5, 0.7]}   # candidate thresholds drawn as guides, not decisions
 
