@@ -21,11 +21,11 @@ EXCLUDED_PATIENTS = {
     "CH_L_378a": "h5ad has no deconv_sample_level_custom1_weights",
     "CH_L_394a": "h5ad has no deconv_sample_level_custom1_weights",
     "CH_L_401a": "h5ad has no deconv_sample_level_custom1_weights",
-    "CH_L_377a": "extraction failed, reason not yet read from failures.txt",
+    "CH_L_377a": "h5ad has no deconv_sample_level_custom1_weights",
 }
 
 CONFIG = {
-    "cancer_dominant_threshold": None,   # tumor_fraction >= this keeps a spot. Set after step 3.
+    "cancer_dominant_threshold": 0.5,    # tumor_fraction >= this keeps a spot: tumor outweighs all other cell types together
     "min_spots_per_patient": 50,         # a patient with fewer cancer-dominant spots is left out of the statistics
     "n_bins": 8,                         # immune-count quantile bins of the trend plot
     "n_boot": 2000,

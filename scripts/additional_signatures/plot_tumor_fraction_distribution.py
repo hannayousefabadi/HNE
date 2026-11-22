@@ -17,7 +17,7 @@ EXCLUDED_PATIENTS = {
     "CH_L_378a": "h5ad has no deconv_sample_level_custom1_weights",
     "CH_L_394a": "h5ad has no deconv_sample_level_custom1_weights",
     "CH_L_401a": "h5ad has no deconv_sample_level_custom1_weights",
-    "CH_L_377a": "extraction failed, reason not yet read from failures.txt",
+    "CH_L_377a": "h5ad has no deconv_sample_level_custom1_weights",
 }
 
 CONFIG = {"n_bins": 50, "reference_lines": [0.3, 0.5, 0.7]}   # candidate thresholds drawn as guides, not decisions
