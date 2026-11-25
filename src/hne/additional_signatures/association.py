@@ -227,19 +227,43 @@ def per_patient_rho_pair(spots, a: str, b: str, min_spots: int) -> pd.Series:
     return pd.Series(rho, dtype=float)
 
 
-def plot_updown_opposition(spots, composites: dict, apm_scores: dict, path, min_spots: int, n_boot: int, seed: int):
+def per_patient_partial_rho(spots, a: str, b: str, covariates: list[str], min_spots: int) -> pd.Series:
+    """Partial Spearman rho between columns a and b inside each patient, controlling for `covariates`:
+    the Pearson correlation of the ranks of a and b after a linear regression of each on the ranks of the
+    covariates. Undefined (constant column) or small patients drop out."""
+    rho = {}
+    for patient, group in spots.groupby("patient_id"):
+        if len(group) < min_spots or group[a].nunique() < 2 or group[b].nunique() < 2:
+            continue
+        ranks = group[[a, b, *covariates]].rank()
+        design = np.column_stack([np.ones(len(group)), ranks[covariates].to_numpy()])
+        residuals = {}
+        for column in (a, b):
+            y = ranks[column].to_numpy()
+            residuals[column] = y - design @ np.linalg.lstsq(design, y, rcond=None)[0]
+        rho[patient] = np.corrcoef(residuals[a], residuals[b])[0, 1]
+    return pd.Series(rho, dtype=float)
+
+
+def plot_updown_opposition(spots, composites: dict, apm_scores: dict, path, min_spots: int, n_boot: int, seed: int,
+                           covariates: list[str] = None):
     """Per patient, rho(FMRP up set, APM) against rho(FMRP down set, APM): one panel per composite (column) and
     APM score (row). A real FMRP-APM link puts patients in an opposite-sign quadrant (shaded): bottom right when
     FMRP goes with APM, top left when against it. composites: name -> (up column, down column);
     apm_scores: label -> column. Returns the per-patient rho table and one summary row per panel, where
-    "up_minus_down" is rho(up) - rho(down) per patient (positive = FMRP goes with APM)."""
+    "up_minus_down" is rho(up) - rho(down) per patient (positive = FMRP goes with APM).
+    With `covariates`, every rho is a partial Spearman rho controlling for them (per_patient_partial_rho)."""
+    def rho_of(a, b):
+        if covariates:
+            return per_patient_partial_rho(spots, a, b, covariates, min_spots)
+        return per_patient_rho_pair(spots, a, b, min_spots)
+    rho_name = "partial rho" if covariates else "rho"
     fig, axes = plt.subplots(len(apm_scores), len(composites), figsize=(4.2 * len(composites), 4.2 * len(apm_scores)),
                              squeeze=False)
     per_patient, rows = [], []
     for row, (apm_label, apm) in enumerate(apm_scores.items()):
         for col, (name, (up, down)) in enumerate(composites.items()):
-            rho = pd.DataFrame({"up": per_patient_rho_pair(spots, up, apm, min_spots),
-                                "down": per_patient_rho_pair(spots, down, apm, min_spots)}).dropna()
+            rho = pd.DataFrame({"up": rho_of(up, apm), "down": rho_of(down, apm)}).dropna()
             rho["up_minus_down"] = rho["up"] - rho["down"]
             per_patient.append(rho.rename_axis("patient_id").reset_index().assign(fmrp=name, apm=apm_label))
             stats = {part: patient_level_summary(rho[part], n_boot, seed) for part in ("up", "down", "up_minus_down")}
@@ -271,10 +295,13 @@ def plot_updown_opposition(spots, composites: dict, apm_scores: dict, path, min_
             ax.set_aspect("equal")
             _style(ax)
             ax.set_title(f"FMRP {name.replace('_', ' ')} vs {apm_label}", color=INK, fontsize=11)
-            ax.set_xlabel(f"rho(FMRP up genes, {apm_label}) per patient", color=INK)
-            ax.set_ylabel(f"rho(FMRP down genes, {apm_label}) per patient", color=INK)
-    fig.suptitle("FMRP up and down genes against APM, per patient (diamond: mean, patient-bootstrap 95% CI)",
-                 color=INK, fontsize=12)
+            ax.set_xlabel(f"{rho_name}(FMRP up genes, {apm_label}) per patient", color=INK)
+            ax.set_ylabel(f"{rho_name}(FMRP down genes, {apm_label}) per patient", color=INK)
+    title = "FMRP up and down genes against APM, per patient (diamond: mean, patient-bootstrap 95% CI)"
+    if covariates:
+        title = (f"FMRP up and down genes against APM, per patient, controlling for {' and '.join(covariates)}\n"
+                 "(diamond: mean, patient-bootstrap 95% CI)")
+    fig.suptitle(title, color=INK, fontsize=12)
     fig.tight_layout()
     fig.savefig(path, dpi=200)
     plt.close(fig)
