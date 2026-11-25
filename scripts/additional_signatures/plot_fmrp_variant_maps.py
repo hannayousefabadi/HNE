@@ -8,6 +8,10 @@ is not partly the same genes.
 Writes, in results/additional_signatures/plots/:
   surface_{APM4,APM12}_by_FMRP_{bulk,all,all_noAPM}.png
       reference-style maps: colour = APM score over FMRP (up minus down) x immune count
+  fmrp_updown_vs_apm.png
+      per patient, rho(FMRP up genes, APM) against rho(FMRP down genes, APM). If FMRP and APM are linked, the two
+      parts go opposite ways; if they do not, "up minus down" mixes two different effects and only the parts count
+and fmrp_updown_vs_apm_summary.csv / fmrp_updown_vs_apm_per_patient.csv (the numbers of that figure),
 and fmrp_variants_summary.csv: per-patient Spearman rho of every FMRP component with immune count and with APM4 / APM12,
 mean over patients with a patient-bootstrap CI and a sign-flip permutation p.
 """
@@ -61,4 +65,12 @@ for kind in COMPOSITES:
         association.plot_surface(dominant, f"{apm}_score", f"{apm} score",
                                  ADDITIONAL_SIGNATURES_PLOTS / f"surface_{apm}_by_FMRP_{kind}.png", CONFIG,
                                  x_score=f"FMRP_{kind}_updown_score", x_label=f"FMRP {kind} (up minus down)")
+per_patient, opposition = association.plot_updown_opposition(
+    dominant, {kind: (f"{up}_score", f"{down}_score") for kind, (up, down) in COMPOSITES.items()},
+    {"APM4": "APM4_score", "APM12": "APM12_score"},
+    ADDITIONAL_SIGNATURES_PLOTS / "fmrp_updown_vs_apm.png",
+    CONFIG["min_spots_per_patient"], CONFIG["n_boot"], CONFIG["seed"])
+opposition.to_csv(ADDITIONAL_SIGNATURES / "fmrp_updown_vs_apm_summary.csv", index=False)
+per_patient.to_csv(ADDITIONAL_SIGNATURES / "fmrp_updown_vs_apm_per_patient.csv", index=False)
+print(opposition.round(3).to_string(index=False))
 print("plots in", ADDITIONAL_SIGNATURES_PLOTS)

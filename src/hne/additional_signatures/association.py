@@ -225,3 +225,57 @@ def per_patient_rho_pair(spots, a: str, b: str, min_spots: int) -> pd.Series:
         if len(group) >= min_spots and group[a].nunique() > 1 and group[b].nunique() > 1:
             rho[patient] = spearmanr(group[a], group[b]).statistic
     return pd.Series(rho, dtype=float)
+
+
+def plot_updown_opposition(spots, composites: dict, apm_scores: dict, path, min_spots: int, n_boot: int, seed: int):
+    """Per patient, rho(FMRP up set, APM) against rho(FMRP down set, APM): one panel per composite (column) and
+    APM score (row). A real FMRP-APM link puts patients in an opposite-sign quadrant (shaded): bottom right when
+    FMRP goes with APM, top left when against it. composites: name -> (up column, down column);
+    apm_scores: label -> column. Returns the per-patient rho table and one summary row per panel, where
+    "up_minus_down" is rho(up) - rho(down) per patient (positive = FMRP goes with APM)."""
+    fig, axes = plt.subplots(len(apm_scores), len(composites), figsize=(4.2 * len(composites), 4.2 * len(apm_scores)),
+                             squeeze=False)
+    per_patient, rows = [], []
+    for row, (apm_label, apm) in enumerate(apm_scores.items()):
+        for col, (name, (up, down)) in enumerate(composites.items()):
+            rho = pd.DataFrame({"up": per_patient_rho_pair(spots, up, apm, min_spots),
+                                "down": per_patient_rho_pair(spots, down, apm, min_spots)}).dropna()
+            rho["up_minus_down"] = rho["up"] - rho["down"]
+            per_patient.append(rho.rename_axis("patient_id").reset_index().assign(fmrp=name, apm=apm_label))
+            stats = {part: patient_level_summary(rho[part], n_boot, seed) for part in ("up", "down", "up_minus_down")}
+            opposite = int(((rho["up"] > 0) & (rho["down"] < 0)).sum() + ((rho["up"] < 0) & (rho["down"] > 0)).sum())
+            rows += [{"fmrp": name, "apm": apm_label, "rho_of": part, "n_opposite_sign": opposite, **s}
+                     for part, s in stats.items()]
+
+            ax = axes[row, col]
+            lim = 1.1 * max(rho[["up", "down"]].abs().max().max(), 0.1)
+            ax.fill_between([0, lim], -lim, 0, color="#f0efec", linewidth=0, zorder=0)
+            ax.fill_between([-lim, 0], 0, lim, color="#f0efec", linewidth=0, zorder=0)
+            ax.axhline(0, color=MUTED, linewidth=0.8)
+            ax.axvline(0, color=MUTED, linewidth=0.8)
+            ax.plot([-lim, lim], [lim, -lim], color=MUTED, linewidth=0.8, linestyle="--")
+            ax.scatter(rho["up"], rho["down"], s=36, color="#2a78d6", edgecolor="white", linewidth=1, zorder=3)
+            mu, md = stats["up"], stats["down"]
+            ax.errorbar(mu["mean_rho"], md["mean_rho"], xerr=[[mu["mean_rho"] - mu["ci_low"]], [mu["ci_high"] - mu["mean_rho"]]],
+                        yerr=[[md["mean_rho"] - md["ci_low"]], [md["ci_high"] - md["mean_rho"]]],
+                        fmt="D", color=INK, markersize=7, linewidth=1.5, capsize=3, zorder=4)
+            ax.text(0.97, 0.03, f"FMRP with {apm_label}", transform=ax.transAxes, ha="right", va="bottom", fontsize=8, color=MUTED)
+            ax.text(0.03, 0.97, f"FMRP against {apm_label}", transform=ax.transAxes, ha="left", va="top", fontsize=8, color=MUTED)
+            d = stats["up_minus_down"]
+            ax.text(0.97, 0.97, f"up {mu['mean_rho']:+.2f}, down {md['mean_rho']:+.2f}\n"
+                                f"up - down {d['mean_rho']:+.2f} [{d['ci_low']:+.2f}, {d['ci_high']:+.2f}], {_p_label(d['p_perm'])}\n"
+                                f"opposite sign: {opposite} of {len(rho)} patients",
+                    transform=ax.transAxes, ha="right", va="top", fontsize=7.5, color=INK)
+            ax.set_xlim(-lim, lim)
+            ax.set_ylim(-lim, lim)
+            ax.set_aspect("equal")
+            _style(ax)
+            ax.set_title(f"FMRP {name.replace('_', ' ')} vs {apm_label}", color=INK, fontsize=11)
+            ax.set_xlabel(f"rho(FMRP up genes, {apm_label}) per patient", color=INK)
+            ax.set_ylabel(f"rho(FMRP down genes, {apm_label}) per patient", color=INK)
+    fig.suptitle("FMRP up and down genes against APM, per patient (diamond: mean, patient-bootstrap 95% CI)",
+                 color=INK, fontsize=12)
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)
+    return pd.concat(per_patient, ignore_index=True), pd.DataFrame(rows)
