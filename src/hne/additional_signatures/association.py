@@ -7,6 +7,7 @@ Spots are only used to draw the pictures; every interval and p-value counts pati
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import matplotlib.ticker
 import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
@@ -110,15 +111,18 @@ def _style(ax):
     ax.set_axisbelow(True)
 
 
-def plot_surface(spots, color_score, label, path, cfg, x_score="FMRP_score", x_label="FMRP"):
-    """Reference-style figure: colour = color_score over FMRP (x) and immune count (y, log)."""
+def plot_surface(spots, color_score, label, path, cfg, x_score="FMRP_score", x_label="FMRP", max_xticks=None):
+    """Reference-style figure: colour = color_score over FMRP (x) and immune count (y, log).
+    An x column ending in "score" is labelled a score, any other an expression; max_xticks caps the x ticks."""
     xs, ys, surface = smoothed_surface(spots[x_score].to_numpy(), spots["immune_count"].to_numpy(),
                                        spots[color_score].to_numpy(), cfg["surface_grid"],
                                        cfg["surface_bandwidth"], cfg["surface_min_support"])
     fig, ax = plt.subplots(figsize=(6.4, 5))
     mesh = ax.pcolormesh(xs, ys, np.ma.masked_invalid(surface), cmap="inferno", shading="auto")
     ax.set_yscale("log")
-    ax.set_xlabel(f"{x_label} score" if x_score.endswith("_score") else f"{x_label} expression (log1p CPM)", color=INK)
+    ax.set_xlabel(f"{x_label} score" if x_score.endswith("score") else f"{x_label} expression (log1p CPM)", color=INK)
+    if max_xticks:
+        ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(max_xticks))
     ax.set_ylabel("Immune cell count (200 µm)", color=INK)
     ax.set_title(f"Association of {x_label} With {label}\nAcross Immune Cell Density", color=INK, fontsize=12)
     cbar = fig.colorbar(mesh, ax=ax)
