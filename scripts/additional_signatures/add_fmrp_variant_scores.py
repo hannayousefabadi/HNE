@@ -1,8 +1,9 @@
 """scripts/additional_signatures/add_fmrp_variant_scores.py
 
-Runs on the server (needs the h5ads). Adds the ssGSEA scores of the four FMRP signature variants
-(gene_sets.load_fmrp_variants: bulk / all, up / down) to the spot tables that extract_spot_signatures.py
-already wrote: columns FMRP_bulk_up_score, FMRP_bulk_down_score, FMRP_all_up_score, FMRP_all_down_score.
+Runs on the server (needs the h5ads). Adds the ssGSEA scores of the FMRP signature variants
+(gene_sets.load_fmrp_variants: bulk / all, up / down in the FMRP-active direction, plus all down without the
+APM genes) to the spot tables that extract_spot_signatures.py already wrote: columns FMRP_bulk_up_score,
+FMRP_bulk_down_score, FMRP_all_up_score, FMRP_all_down_score, FMRP_all_down_noAPM_score.
 Nothing else in the tables changes. Push the tables afterwards; plot_fmrp_variant_maps.py runs locally from them.
 A table that already has all four columns is skipped.
 """

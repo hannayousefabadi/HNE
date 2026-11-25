@@ -19,24 +19,36 @@ FMRP_GENES = ["MARCKSL1", "S100A16", "DDAH1", "MYCL", "SHANK2", "ITIH2", "PIK3AP
               "CYSLTR1", "FSCN1", "IL33", "ELFN1", "AFAP1L1", "LPAR4", "CASD1", "HS6ST2",
               "CD109", "MAL2", "PHF19"]
 
-# FMRP signatures with up and down genes, exported from R (FMRP.signature) to fmrp_signature.json:
+# FMRP knockout signatures, copied verbatim from the R object FMRP.signature into fmrp_signature.json:
 # {"bulk.signature": {"up": [...], "down": [...]}, "all.signature": {"up": [...], "down": [...]}}.
-# bulk down (50 genes) is the FMRP_GENES list above. Sizes are checked so a mistyped export fails loudly.
+# "up" / "down" there are the genes up / down in FMRP knockout, so they are flipped here: a gene down in
+# knockout is up when FMRP is active. R "bulk down" (50 genes) is the FMRP_GENES list above.
+# Sizes are checked so an edited file fails loudly.
 FMRP_SIGNATURE_JSON = Path(__file__).with_name("fmrp_signature.json")
 FMRP_SIGNATURE_SIZES = {("bulk", "up"): 36, ("bulk", "down"): 50, ("all", "up"): 66, ("all", "down"): 90}
+FMRP_ACTIVE_DIRECTION = {"down": "up", "up": "down"}   # knockout direction -> FMRP-active direction
+
+# R symbols renamed to the symbol of the same gene in the h5ad (FMRP_GENES already uses CCL14).
+# CKMT1A, CKMT1B, RPL29 and GNAS are not on the probe panel and are dropped at scoring time.
+H5AD_SYMBOLS = {"CCL15-CCL14": "CCL14", "H3-3B": "H3F3B"}
 
 
 def load_fmrp_variants() -> dict:
-    """{"FMRP_bulk_up": [...], "FMRP_bulk_down": [...], "FMRP_all_up": [...], "FMRP_all_down": [...]}"""
+    """FMRP-active sets {"FMRP_bulk_up", "FMRP_bulk_down", "FMRP_all_up", "FMRP_all_down"}, plus a
+    "{name}_noAPM" copy, without the APM4 / APM12 genes, of every set that shares genes with them."""
     if not FMRP_SIGNATURE_JSON.exists():
         raise FileNotFoundError(f"{FMRP_SIGNATURE_JSON} is missing: export FMRP.signature from R (see review/07_additional_signatures.md)")
     raw = json.loads(FMRP_SIGNATURE_JSON.read_text())
+    apm = set(APM4_GENES) | set(APM12_GENES)
     variants = {}
-    for (kind, direction), size in FMRP_SIGNATURE_SIZES.items():
-        genes = list(raw[f"{kind}.signature"][direction])
+    for (kind, ko_direction), size in FMRP_SIGNATURE_SIZES.items():
+        genes = [H5AD_SYMBOLS.get(g, g) for g in raw[f"{kind}.signature"][ko_direction]]
         if len(genes) != size:
-            raise ValueError(f"{kind} {direction}: {len(genes)} genes in {FMRP_SIGNATURE_JSON.name}, expected {size}")
-        variants[f"FMRP_{kind}_{direction}"] = genes
+            raise ValueError(f"{kind} {ko_direction}: {len(genes)} genes in {FMRP_SIGNATURE_JSON.name}, expected {size}")
+        name = f"FMRP_{kind}_{FMRP_ACTIVE_DIRECTION[ko_direction]}"
+        variants[name] = genes
+        if apm & set(genes):
+            variants[f"{name}_noAPM"] = [g for g in genes if g not in apm]
     return variants
 
 
