@@ -40,9 +40,10 @@ def immune_count_within_radius(array_row, array_col, immune_weight, radius_um: f
     return counts, n_spots
 
 
-def score_gene_sets(vis, processes: int, min_size: int):
-    """ssGSEA score per spot for every set in GENE_SETS, scored on the genes present in the h5ad."""
-    present = {name: [g for g in genes if g in vis.var_names] for name, genes in GENE_SETS.items()}
+def score_gene_sets(vis, processes: int, min_size: int, gene_sets: dict = None):
+    """ssGSEA score per spot for every set in `gene_sets` (default GENE_SETS), scored on the genes present in the h5ad."""
+    gene_sets = GENE_SETS if gene_sets is None else gene_sets
+    present = {name: [g for g in genes if g in vis.var_names] for name, genes in gene_sets.items()}
     empty = [name for name, genes in present.items() if not genes]
     if empty:
         raise ValueError(f"no gene of {empty} is in the h5ad")
@@ -52,8 +53,8 @@ def score_gene_sets(vis, processes: int, min_size: int):
     res = gp.ssgsea(data=expr, gene_sets=present, outdir=None, permutation_num=0,
                     no_plot=True, processes=processes, min_size=min_size).res2d
     scores = res.pivot(index="Name", columns="Term", values="NES").astype(float)
-    scores = scores.reindex(index=vis.obs_names)[list(GENE_SETS)]
-    genes_used = {name: f"{len(genes)}/{len(GENE_SETS[name])}" for name, genes in present.items()}
+    scores = scores.reindex(index=vis.obs_names)[list(gene_sets)]
+    genes_used = {name: f"{len(genes)}/{len(gene_sets[name])}" for name, genes in present.items()}
     return scores, genes_used
 
 

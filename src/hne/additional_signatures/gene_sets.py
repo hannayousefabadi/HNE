@@ -6,6 +6,8 @@ Both APM versions are kept so the plots can show which one behaves better.
 HLA-A, HLA-B and HLA-C are not on the Visium Human Transcriptome Probe Set v2.0 (the panel of
 these slides), so they are never in the h5ad and the 12-gene set is scored on its 9 measured genes.
 """
+import json
+from pathlib import Path
 
 # copy of the FMRP_signature in hne.preprocessing.spot_signatures.compute_signatures, where it is a
 # local variable and cannot be imported. Keep the two identical.
@@ -16,6 +18,27 @@ FMRP_GENES = ["MARCKSL1", "S100A16", "DDAH1", "MYCL", "SHANK2", "ITIH2", "PIK3AP
               "PARP8", "OSR1", "TFF2", "UCHL1", "PRSS35", "KCNK5", "AEBP1", "SP8", "CFTR",
               "CYSLTR1", "FSCN1", "IL33", "ELFN1", "AFAP1L1", "LPAR4", "CASD1", "HS6ST2",
               "CD109", "MAL2", "PHF19"]
+
+# FMRP signatures with up and down genes, exported from R (FMRP.signature) to fmrp_signature.json:
+# {"bulk.signature": {"up": [...], "down": [...]}, "all.signature": {"up": [...], "down": [...]}}.
+# bulk down (50 genes) is the FMRP_GENES list above. Sizes are checked so a mistyped export fails loudly.
+FMRP_SIGNATURE_JSON = Path(__file__).with_name("fmrp_signature.json")
+FMRP_SIGNATURE_SIZES = {("bulk", "up"): 36, ("bulk", "down"): 50, ("all", "up"): 66, ("all", "down"): 90}
+
+
+def load_fmrp_variants() -> dict:
+    """{"FMRP_bulk_up": [...], "FMRP_bulk_down": [...], "FMRP_all_up": [...], "FMRP_all_down": [...]}"""
+    if not FMRP_SIGNATURE_JSON.exists():
+        raise FileNotFoundError(f"{FMRP_SIGNATURE_JSON} is missing: export FMRP.signature from R (see review/07_additional_signatures.md)")
+    raw = json.loads(FMRP_SIGNATURE_JSON.read_text())
+    variants = {}
+    for (kind, direction), size in FMRP_SIGNATURE_SIZES.items():
+        genes = list(raw[f"{kind}.signature"][direction])
+        if len(genes) != size:
+            raise ValueError(f"{kind} {direction}: {len(genes)} genes in {FMRP_SIGNATURE_JSON.name}, expected {size}")
+        variants[f"FMRP_{kind}_{direction}"] = genes
+    return variants
+
 
 # 4-gene antigen-processing set
 APM4_GENES = ["TAP1", "TAP2", "PSMB8", "PSMB10"]
