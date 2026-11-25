@@ -246,13 +246,14 @@ def per_patient_partial_rho(spots, a: str, b: str, covariates: list[str], min_sp
 
 
 def plot_updown_opposition(spots, composites: dict, apm_scores: dict, path, min_spots: int, n_boot: int, seed: int,
-                           covariates: list[str] = None):
+                           covariates: list[str] = None, score_method: str = None):
     """Per patient, rho(FMRP up set, APM) against rho(FMRP down set, APM): one panel per composite (column) and
     APM score (row). A real FMRP-APM link puts patients in an opposite-sign quadrant (shaded): bottom right when
     FMRP goes with APM, top left when against it. composites: name -> (up column, down column);
     apm_scores: label -> column. Returns the per-patient rho table and one summary row per panel, where
     "up_minus_down" is rho(up) - rho(down) per patient (positive = FMRP goes with APM).
-    With `covariates`, every rho is a partial Spearman rho controlling for them (per_patient_partial_rho)."""
+    With `covariates`, every rho is a partial Spearman rho controlling for them (per_patient_partial_rho).
+    `score_method` (e.g. "module score") is named in the title."""
     def rho_of(a, b):
         if covariates:
             return per_patient_partial_rho(spots, a, b, covariates, min_spots)
@@ -297,10 +298,10 @@ def plot_updown_opposition(spots, composites: dict, apm_scores: dict, path, min_
             ax.set_title(f"FMRP {name.replace('_', ' ')} vs {apm_label}", color=INK, fontsize=11)
             ax.set_xlabel(f"{rho_name}(FMRP up genes, {apm_label}) per patient", color=INK)
             ax.set_ylabel(f"{rho_name}(FMRP down genes, {apm_label}) per patient", color=INK)
-    title = "FMRP up and down genes against APM, per patient (diamond: mean, patient-bootstrap 95% CI)"
+    head = "FMRP up and down genes against APM" + (f" ({score_method})" if score_method else "") + ", per patient"
+    title = f"{head} (diamond: mean, patient-bootstrap 95% CI)"
     if covariates:
-        title = (f"FMRP up and down genes against APM, per patient, controlling for {' and '.join(covariates)}\n"
-                 "(diamond: mean, patient-bootstrap 95% CI)")
+        title = f"{head}, controlling for {' and '.join(covariates)}\n(diamond: mean, patient-bootstrap 95% CI)"
     fig.suptitle(title, color=INK, fontsize=12)
     fig.tight_layout()
     fig.savefig(path, dpi=200)
